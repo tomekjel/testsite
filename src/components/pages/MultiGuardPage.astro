@@ -1,0 +1,2358 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../Navbar.astro";
+import Footer from "../Footer.astro";
+import type { Lang } from "../../i18n/translations";
+import "../../styles/ix/index.css";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "pl" } = Astro.props;
+const prefix = lang === "pl" ? "" : `/${lang}`;
+const currentPath = `${prefix}/multi-guard`;
+
+const content = {
+  pl: {
+    seoTitle: "Multi-Guard — Bezpieczeństwo i Kondycja PC | Multi-Servis Bydgoszcz",
+    seoDesc: "Program rozwijany przez Multi-Servis: ochrona Microsoft Defender, kontrola prywatności (kamera/mikrofon), monitoring temperatur i obciążenia CPU/GPU oraz zdalna pomoc Pro.",
+    keywords: "Multi-Guard, ochrona komputera Bydgoszcz, monitoring temperatur PC, Microsoft Defender panel, zdalna pomoc techniczna Bydgoszcz, Multi-Servis oprogramowanie Windows",
+    breadcrumbHome: "Główna",
+    breadcrumbCurrent: "Multi-Guard",
+    heroBadge: "Autorskie oprogramowanie Multi-Servis dla Windows 10 & 11",
+    heroTitle: "Multi-Guard — bezpieczeństwo, diagnostyka i kondycja Twojego komputera",
+    heroSubtitle: "Ochrona antywirusowa w oparciu o Microsoft Defender, kontrola prywatności, monitoring podzespołów w czasie rzeczywistym i profesjonalne wsparcie techniczne — w jednym, spójnym programie dla Windows.",
+    heroCtaPhone: "Zapytaj o Multi-Guard w serwisie",
+    heroCtaCompare: "Porównaj wersje Standard i Pro ↓",
+    previewCaption: "Interfejs programu Multi-Guard — widok poglądowy (edycja Pro)",
+    pills: [
+      "🛡️ Ochrona z Microsoft Defender",
+      "🔒 Kontrola kamery i mikrofonu",
+      "⚡ Monitoring CPU, RAM i GPU na żywo",
+      "🌐 Browser Shield przeciw fałszywym alertom",
+      "🤝 Bezpieczna zdalna pomoc na życzenie (Pro)",
+      "🚫 Zero ukrytych opłat i zbędnego obciążenia"
+    ],
+    whyBadge: "Doświadczenie z warsztatu",
+    whyTitle: "Dlaczego stworzyliśmy Multi-Guard w Multi-Servis?",
+    whyDesc: "Od ponad 20 lat w naszym serwisie przy ul. Ku Wiatrakom 18 w Bydgoszczy naprawiamy komputery i laptopy. Widzimy na co dzień dwa powtarzające się problemy: ociężałe zewnętrzne antywirusy pożerające zasoby komputera oraz użytkowników, którzy dowiadują się o awarii chłodzenia dopiero, gdy spali się procesor lub padnie karta graficzna. Multi-Guard powstał, aby dać pełny wgląd w stan maszyny — lekko, przejrzyście i bezpiecznie.",
+
+    sec1Badge: "Pulpit i Ochrona",
+    sec1Title: "Pulpit i Ochrona Windows: bez zbędnego zamulania",
+    sec1Desc: "Multi-Guard korzysta z Microsoft Defender jako zaufanego dostawcy ochrony antywirusowej. Zamiast instalować ociężałe pakiety firm trzecich, program zapewnia wygodny wgląd w stan zabezpieczeń systemowych, skróty do skanowania szybkiego, pełnego i niestandardowego oraz pełną historię kwarantanny.",
+    sec1AlertTitle: "Płatne antywirusy często same zachowują się jak wirusy: pożerają RAM i zasypują reklamami",
+    sec1AlertDesc: "Wielu użytkowników płaci wysokie abonamenty za programy, które spowalniają komputer o 50%, skanują dysk w losowych momentach i co chwilę straszą fałszywymi komunikatami, by wyłudzić pakiet 'Premium'. Windows ma fabrycznie znakomity silnik Microsoft Defender o 100% skuteczności wykrywania. Multi-Guard daje Ci nad nim pełną kontrolę: lekko, szybko i bez naciągania na subskrypcje.",
+    sec1Points: [
+      "Bieżący stan ochrony Microsoft Defender i zapory sieciowej (Windows Firewall)",
+      "Szybkie, pełne lub wybiórcze skanowanie uruchamiane 1 kliknięciem",
+      "Przejrzysta historia wykryć i kwarantanny bez uciążliwych fałszywych alarmów",
+      "Rzetelność serwisowa: Multi-Guard nie udaje własnego silnika antywirusowego — wykorzystuje bezpieczny i stabilny silnik Microsoft Defender"
+    ],
+
+    sec2Badge: "Prywatność i Anty-Podsłuch",
+    sec2Title: "Zwykły plaster nie uchroni Cię przed podsłuchem. Multi-Guard tak.",
+    sec2Desc: "Ilu znasz ludzi, którzy zaklejają kamerkę w laptopie taśmą izolacyjną, plastrem z opatrunkiem lub plastikową zasuwką ze strachu przed podglądaniem? Słusznie się boją. Ale zastanów się: JAK ZAKLEISZ MIKROFON?",
+    sec2AlertTitle: "Taśma na kamerze to złudzenie bezpieczeństwa. Mikrofonu nie zakleisz!",
+    sec2AlertDesc: "Mikrofony w laptopach i komputerach to mikroskopijne otworki ukryte w obudowie i ramce ekranu. Nie da się ich skutecznie zakleić, a szpiegujące oprogramowanie nie potrzebuje wideo — wystarczy mu podsłuch audio. Co gorsza, mikrofon w 99% laptopów NIE MA żadnej diody LED! Ktoś może podsłuchiwać Twoje prywatne rozmowy, dyktowane hasła i tajemnice firmowe 24/7, a Ty nawet o tym nie wiesz. Multi-Guard rozwiązuje to bezkompromisowo: całkowicie odcina kamerę i mikrofon na poziomie systemu. Zero dźwięku, zero obrazu.",
+    sec2Points: [
+      "Całkowite odcięcie mikrofonu: program wyłącza nasłuch audio tak, że szpiegujące skrypty i aplikacje w tle rejestrują wyłącznie 100% głuchą ciszę",
+      "Całkowite wyłączenie kamery: bezpieczne odcięcie sensora bez obskurnych plastrów, taśm klejących i brudzącego kleju na matrycy",
+      "Inteligentne zezwolenia (biała lista): możesz w ułamku sekundy odblokować mikrofon i kamerę tylko dla wybranej aplikacji (np. Teams lub Zoom podczas spotkania), a po rozmowie natychmiast zablokować wszystko jednym kliknięciem",
+      "Blokada Bluetooth i Wi-Fi: włączony Bluetooth i Wi-Fi w kawiarni czy hotelu rozgłaszają Twój sprzęt — wyłącz moduły radiowe, gdy z nich nie korzystasz, zapobiegając śledzeniu lokalizacji i nieautoryzowanemu parowaniu"
+    ],
+    sec2ImgCaption: "Panel prywatności Multi-Guard — widok poglądowy",
+
+    sec3Badge: "Ochrona Przeglądarek",
+    sec3Title: "Browser Shield: koniec z fałszywymi alertami o wirusach",
+    sec3Desc: "Czy zdarzyło Ci się zobaczyć głośne, migające okno w przeglądarce krzyczące: „Twój komputer jest zawirusowany! Zadzwoń pod ten numer”? To najczęstsza metoda oszustów internetowych. Browser Shield nadzoruje moduły ochronne w przeglądarkach i ostrzega przed próbami wyłudzenia.",
+    sec3AlertTitle: "Wyjący na czerwono ekran i fałszywy alert o wirusie? Nie daj się okraść!",
+    sec3AlertDesc: "Wyskakujące w przeglądarce okno krzyczące: 'Twój komputer jest zablokowany! Zadzwoń do pomocy technicznej!' to najczęstszy przekręt internetowy. Przerażeni ludzie dzwonią pod podany numer, wpuszczają oszustów i tracą oszczędności życia z konta bankowego. Multi-Guard Browser Shield bezwzględnie blokuje te oszukańcze skrypty i powiadomienia.",
+    sec3Points: [
+      "Nadzór nad dostępnymi rozszerzeniami ochronnymi w przeglądarkach internetowych",
+      "Ostrzeganie przed fałszywymi alertami o infekcjach i oszukańczymi komunikatami pomocy technicznej",
+      "Ochrona przed nachalnymi powiadomieniami push i skryptami wyłudzającymi kliknięcia",
+      "Sprawdź zasady: zobacz naszą oficjalną Politykę prywatności Browser Shield"
+    ],
+    sec3PolicyLink: "Polityka prywatności Multi-Guard Browser Shield →",
+
+    sec4Badge: "Sprzęt i Diagnostyka",
+    sec4Title: "Sprzęt i wydajność: wczesne wykrywanie usterek",
+    sec4Desc: "Komputer nie psuje się nagle bez ostrzeżenia — zazwyczaj wcześniej rosną temperatury, spadają obroty wentylatorów lub pojawiają się błędy zasilania. Multi-Guard umożliwia monitoring kluczowych podzespołów w czasie rzeczywistym.",
+    sec4AlertTitle: "Cichy zabójca podzespołów: 95°C – 105°C niszczy płytę główną bez żadnego ostrzeżenia",
+    sec4AlertDesc: "Wyschnięta po roku pasta termoprzewodząca i radiator zapchany kurzem to wyrok dla laptopa. Komputer nie wyświetli komunikatu o awarii — po cichu dławi taktowanie procesora, aż pod wpływem żaru pękną luty BGA lub spali się zasilanie. Koszt naprawy w serwisie to 600–1800 zł! Multi-Guard bez przerwy pilnuje temperatur i ostrzega o przegrzewaniu ZANIM dojdzie do kosztownego zniszczenia krzemu.",
+    sec4Points: [
+      "Czytelne wskaźniki obciążenia: procesor CPU (z podglądem pojedynczych rdzeni), pamięć RAM oraz karta graficzna GPU / iGPU",
+      "Odczyty temperatur i wentylatorów tam, gdzie sprzęt i sterowniki udostępniają czujniki",
+      "Wychwytywanie wczesnych objawów niestabilności: rejestracja nagłych zamknięć, zdarzeń Kernel-Power 41 oraz błędów WHEA",
+      "Wgląd w stan dysków SSD/HDD ułatwiający decyzję o terminie przeglądu w warsztacie"
+    ],
+    sec4ImgCaption: "Panel wydajności i parametrów sprzętowych Multi-Guard — widok poglądowy",
+
+    sec5Badge: "W PRZYGOTOWANIU",
+    sec5Title: "Centrum Testów Podzespołów — diagnostyka przyszłości",
+    sec5Desc: "W warunkach serwisowych Multi-Servis pracujemy nad autorskim Centrum Testów Podzespołów, rozwijanym z myślą o edycji Pro. Będzie to zestaw kontrolowanych narzędzi pomiarowych i obciążeniowych.",
+    sec5Points: [
+      "Kontrolowane testy obciążeniowe procesora (CPU) i karty graficznej (GPU stress test)",
+      "Diagnostyka stabilności pamięci operacyjnej RAM",
+      "Ocena wydajności chłodzenia oraz stabilności całej platformy pod długotrwałym obciążeniem",
+      "Analiza zasilania i napięć tam, gdzie płyta główna udostępnia wiarygodne sensory pomiarowe",
+      "Uwaga rzetelności: Jest to zapowiedź rozwoju na naszej mapie drogowej, a nie lista obecnie dostępnych testów."
+    ],
+
+    sec6Badge: "Wybierz wariant",
+    sec6Title: "Dwie edycje programu: Standard oraz Pro",
+    sec6Subtitle: "Przejrzyste zasady bez ukrytych abonamentów. Skonsultuj dobór edycji w Multi-Servis.",
+    standardBadge: "Ochrona i codzienna kontrola",
+    standardTitle: "Multi-Guard Standard",
+    standardTheme: "Grafit / granat z dynamicznymi czerwonymi akcentami",
+    standardSlogan: "„Ochrona i kontrola każdego dnia”",
+    standardTarget: "Dla użytkowników domowych i biurowych, którzy chcą sprawnej ochrony, kontroli prywatności i wglądu w temperatury.",
+    standardFeatures: [
+      "Pulpit ze statystykami i historią",
+      "Integracja z Microsoft Defender i Zaporą Windows",
+      "Browser Shield — ochrona przed fałszywymi alertami",
+      "Panel prywatności (kamera, mikrofon, BT, Wi-Fi)",
+      "Bieżący monitoring obciążenia CPU, RAM, GPU",
+      "Odczyty temperatur i wentylatorów (zależnie od czujników)",
+      "Wgląd w historię zdarzeń systemowych i błędów",
+      "Zdalny dostęp serwisu: Brak (edycja w pełni autonomiczna)"
+    ],
+    standardCta: "Zapytaj o edycję Standard w Multi-Servis →",
+
+    proBadge: "Maksimum możliwości i wsparcie",
+    proTitle: "Multi-Guard Pro",
+    proTheme: "Grafit / granat z eleganckimi złotymi akcentami",
+    proSlogan: "„Więcej możliwości i pomoc techniczna na Twoich warunkach”",
+    proTarget: "Dla graczy, profesjonalistów i klientów serwisu, którzy cenią bezkompromisową diagnostykę oraz szybką pomoc zdalną.",
+    proFeatures: [
+      "Wszystkie funkcje edycji Standard",
+      "Rozszerzona diagnostyka stabilności i raporty serwisowe",
+      "Dostęp do Centrum Testów Podzespołów (w przygotowaniu)",
+      "⚡ Zdalna pomoc techniczna Multi-Servis — bez wychodzenia z domu",
+      "Połączenie zdalne WYŁĄCZNIE po każdorazowej zgodzie użytkownika",
+      "Możliwość natychmiastowego przerwania sesji zdalnej w dowolnym momencie",
+      "Pełna zgodność z Regulaminem Zdalnej Pomocy Multi-Servis"
+    ],
+    proCta: "Zapytaj o edycję Pro w Multi-Servis →",
+    tilesCompareCaption: "Frontend kafli Multi-Guard Standard (czerwony) i Pro (złoty) — widok poglądowy",
+
+    sec7Badge: "Transparentne Bezpieczeństwo",
+    sec7Title: "Zasady zdalnej pomocy technicznej w edycji Pro",
+    sec7Desc: "Twoja prywatność i poczucie kontroli są dla nas priorytetem. Zdalna pomoc w Multi-Guard Pro została zaprojektowana na rygorystycznych zasadach bezpieczeństwa:",
+    sec7Card1Title: "Brak stałego dostępu",
+    sec7Card1Desc: "Instalacja programu ani posiadanie wersji Pro NIE daje serwisowi dostępu w tle. Technik nie może połączyć się samowolnie.",
+    sec7Card2Title: "Zgoda na każdą sesję",
+    sec7Card2Desc: "Każde połączenie wymaga Twojego wyraźnego kliknięcia i akceptacji. Bez Twojego potwierdzenia żadne połączenie nie dojdzie do skutku.",
+    sec7Card3Title: "Pełny podgląd na żywo",
+    sec7Card3Desc: "Przez cały czas widzisz na ekranie, co robi serwisant. Masz kontrolę nad każdym ruchem kursora.",
+    sec7Card4Title: "Rozłączenie jednym kliknięciem",
+    sec7Card4Desc: "W każdej sekundzie możesz kliknąć przycisk zakończenia i natychmiast zerwać połączenie ze stanowiskiem serwisowym.",
+    sec7PolicyBtn: "Przeczytaj pełną Politykę Zdalnej Pomocy Multi-Guard →",
+
+    faqBadge: "Najczęściej zadawane pytania",
+    faqTitle: "Wszystko, co warto wiedzieć o Multi-Guard",
+    faqs: [
+      {
+        q: "Czy Multi-Guard to osobny antywirus z własnym silnikiem skanującym?",
+        a: "Nie. Multi-Guard korzysta z Microsoft Defender jako zaufanego dostawcy ochrony antywirusowej. Nie obciąża systemu dodatkowymi, ciężkimi silnikami firm trzecich, lecz oferuje wygodny, zunifikowany pulpit do zarządzania Defenderem, zaporą sieciową, skanowaniem i kwarantanną."
+      },
+      {
+        q: "Czym dokładnie różni się edycja Standard od Pro?",
+        a: "Wersja Standard (z czerwonymi akcentami) zapewnia codzienną kontrolę: Defender, Browser Shield, panel prywatności urządzeń oraz monitoring parametrów CPU/GPU/RAM. Wersja Pro (ze złotymi akcentami) oferuje rozszerzoną diagnostykę, dostęp do planowanego Centrum Testów oraz moduł bezpiecznej Zdalnej Pomocy Technicznej ze stanowiskiem Multi-Servis."
+      },
+      {
+        q: "Czy serwis może połączyć się z moim komputerem bez mojej wiedzy?",
+        a: "Absolutnie nie. Edycja Standard w ogóle nie posiada funkcji zdalnego dostępu. W edycji Pro każde połączenie wymaga Twojej osobnej, świadomej zgody przed rozpoczęciem sesji. Widzisz wszystkie działania na ekranie i możesz w ułamku sekundy przerwać połączenie jednym kliknięciem."
+      },
+      {
+        q: "Jakie są wymagania systemowe programu?",
+        a: "Multi-Guard jest zoptymalizowany dla 64-bitowych systemów Windows 10 oraz Windows 11. Dostępność niektórych odczytów (np. prędkości wentylatorów czy temperatur poszczególnych podzespołów) zależy od czujników wbudowanych w Twoją płytę główną i sterowników sprzętowych."
+      },
+      {
+        q: "Czym jest Centrum Testów Podzespołów?",
+        a: "Centrum Testów to autorski moduł testów obciążeniowych (stress testów procesora, pamięci RAM i karty graficznej) rozwijany przez inżynierów Multi-Servis dla edycji Pro. Obecnie jest oznaczony jako „W przygotowaniu” na naszej mapie drogowej."
+      },
+      {
+        q: "Dlaczego programu Multi-Guard nie można pobrać z internetu do samodzielnej instalacji?",
+        a: "To nasza w pełni świadoma, bezkompromisowa decyzja inżynierska. Programy masowe z internetu muszą być tzw. 'ciężkimi uniwersalnymi kombajnami' — zawierają tysiące zbędnych sterowników, bibliotek i modułów dla setek różnych płyt głównych, przez co same ważą gigabajty, pożerają pamięć RAM i spowalniają komputer. My chcieliśmy stworzyć program niewiarygodnie lekki, szybki i niewidoczny dla zasobów systemu. Dlatego Multi-Guard wdrażamy wyłącznie stacjonarnie w warsztacie Multi-Servis (ul. Ku Wiatrakom 18 w Bydgoszczy): testujemy Twój konkretny sprzęt na stanowisku diagnostycznym, dopasowujemy program pod płytę główną i dołączamy wyłącznie te sterowniki i sensory, których wymaga Twój procesor i układ chłodzenia. Zero zbędnego balastu, maksymalna prędkość!"
+      },
+      {
+        q: "Jak mogę zainstalować Multi-Guard na swoim komputerze?",
+        a: "Multi-Guard jest konfigurowany i wgrywany wyłącznie przez techników serwisu Multi-Servis przy ul. Ku Wiatrakom 18 w Bydgoszczy. Zapytaj o przygotowanie dedykowanej wersji podczas odbioru sprzętu po naprawie/czyszczeniu lub zadzwoń do nas pod numer 505 012 914."
+      }
+    ],
+
+    installWhyBadge: "Dedykowana optymalizacja sprzętowa",
+    installWhyTitle: "Instalacja wyłącznie w warsztacie Multi-Servis — dlaczego nie udostępniamy instalatora w sieci?",
+    installWhyDesc: "Często pytacie nas: „Dlaczego nie mogę po prostu pobrać pliku instalacyjnego ze strony?”. To nasza w pełni świadoma, bezkompromisowa decyzja inżynierska. Programy masowe z internetu muszą być ociężałymi, uniwersalnymi kombajnami zawierającymi tysiące sterowników dla setek różnych płyt głównych — przez co same ważą gigabajty, pożerają RAM i spowalniają Windowsa. My robimy to dokładnie odwrotnie.",
+    installWhyPoints: [
+      "Testy na Twoim sprzęcie: W serwisie przy ul. Ku Wiatrakom 18 w Bydgoszczy testujemy Twój konkretny model laptopa lub PC na stanowisku diagnostycznym.",
+      "Tylko niezbędne sterowniki: Wgrywamy i konfigurujemy wyłącznie te moduły czujników, których wymaga Twoja płyta główna i procesor — zero zbędnego balastu.",
+      "Niewiarygodna lekkość i szybkość: Program nie obciąża procesora ani pamięci RAM, uruchamia się w ułamku sekundy i nie spowalnia komputera.",
+      "Zero konfliktów i stabilność: Unikamy błędów uniwersalnych instalatorów — program jest w 100% zintegrowany ze sterownikami Twojego urządzenia."
+    ],
+    ctaBadge: "Dostępność w serwisie",
+    ctaTitle: "Zapytaj o program Multi-Guard w Multi-Servis",
+    ctaSubtitle: "Chcesz zabezpieczyć swój komputer, sprawdzić temperatury podzespołów i zyskać wsparcie techniczne na jasnych zasadach? Zadzwoń do nas przed przyjazdem do warsztatu w Bydgoszczy.",
+    ctaPhoneBtn: "Zadzwoń do serwisu: 505 012 914",
+    ctaContactBtn: "Dojazd i kontakt: Ku Wiatrakom 18 →",
+    phoneNotice: "Otrzymujemy bardzo dużą liczbę ofert handlowych i spamu reklamowego. W związku z powyższym nie odpowiadamy na wiadomości SMS – prosimy o bezpośredni kontakt telefoniczny.",
+    serviceHours: "Serwis stacjonarny czynny: Poniedziałek – Piątek 10:00 – 17:00"
+  },
+
+  en: {
+    seoTitle: "Multi-Guard — PC Security, Hardware Health & Support | Multi-Servis",
+    seoDesc: "Developed by Multi-Servis: Microsoft Defender management, webcam/mic privacy controls, live CPU/GPU thermal telemetry, and Pro on-demand remote support.",
+    keywords: "Multi-Guard, PC security Bydgoszcz, hardware monitor Windows, Microsoft Defender control, remote computer support Bydgoszcz, Multi-Servis software",
+    breadcrumbHome: "Home",
+    breadcrumbCurrent: "Multi-Guard",
+    heroBadge: "Proprietary Multi-Servis Software for Windows 10 & 11",
+    heroTitle: "Multi-Guard — Security, Diagnostics & Health for Your PC",
+    heroSubtitle: "Antivirus integration with Microsoft Defender, hardware privacy controls, live component telemetry, and professional technician support — all in one clean Windows utility.",
+    heroCtaPhone: "Inquire about Multi-Guard at workshop",
+    heroCtaCompare: "Compare Standard vs Pro ↓",
+    previewCaption: "Multi-Guard interface — preview mockup (Pro edition)",
+    pills: [
+      "🛡️ Microsoft Defender Integration",
+      "🔒 Camera & Microphone Privacy Control",
+      "⚡ Real-time CPU, RAM & GPU Telemetry",
+      "🌐 Browser Shield Scam Protection",
+      "🤝 Secure On-demand Remote Support (Pro)",
+      "🚫 Zero Bloatware & No System Slowdown"
+    ],
+    whyBadge: "Workshop Experience",
+    whyTitle: "Why did Multi-Servis build Multi-Guard?",
+    whyDesc: "For over 20 years at our electronics repair shop in Bydgoszcz (Ku Wiatrakom 18), we have fixed thousands of computers and laptops. We see two recurrent problems: bloated third-party antiviruses consuming 80% of PC resources, and users noticing failing cooling fans only after a CPU or GPU has fried. Multi-Guard provides honest, real-time insight into your system.",
+
+    sec1Badge: "Dashboard & Security",
+    sec1Title: "Windows Dashboard & Security: Zero bloat, total control",
+    sec1Desc: "Multi-Guard utilizes Microsoft Defender as its trusted antivirus provider. Instead of loading heavyweight third-party suites, Multi-Guard delivers a unified overview of system defenses, 1-click quick, full and custom scans, and a clean quarantine log.",
+    sec1AlertTitle: "Paid antiviruses often behave like malware themselves: eating RAM and spamming upsells",
+    sec1AlertDesc: "Many users pay costly annual subscriptions for software that slows down Windows by 50%, runs random disk scans during work, and bombards you with deceptive scareware popups to sell 'Premium' add-ons. Windows already includes the top-tier Microsoft Defender engine with 100% test detection rates. Multi-Guard puts you in full command: lightweight, transparent, and bloat-free.",
+    sec1Points: [
+      "Live status of Microsoft Defender and Windows Firewall",
+      "Quick, full, or custom scan triggers in a single click",
+      "Clear detection and quarantine history without intrusive false alarms",
+      "Full transparency: Multi-Guard does not claim a proprietary AV engine — it integrates with the proven, lightweight Microsoft Defender engine"
+    ],
+
+    sec2Badge: "Privacy & Anti-Wiretapping",
+    sec2Title: "A piece of tape won't stop eavesdroppers. Multi-Guard will.",
+    sec2Desc: "How many people do you know who stick electrical tape, band-aids, or plastic sliders over their laptop webcam out of fear of being watched? They are right to be cautious. But consider this: HOW DO YOU TAPE A MICROPHONE?",
+    sec2AlertTitle: "Webcam stickers offer fake security. You cannot tape a microphone!",
+    sec2AlertDesc: "Microphones in laptops and desktop monitors are microscopic pinholes concealed inside the chassis. Tape cannot block sound waves, and spy tools do not need video — audio surveillance is far more valuable. Even worse, 99% of laptop microphones have NO indicator LED. Malicious background processes can record your private conversations, passwords, and bank credentials 24/7 without any visual sign. Multi-Guard solves this at the root: it totally and completely cuts off both camera and microphone at the system level. Absolute silence, zero video.",
+    sec2Points: [
+      "Total microphone cutoff: software turns off audio capture at the driver/permission level, feeding eavesdroppers pure, absolute digital silence",
+      "Complete webcam shutdown: hardware-level sensor disable without sticky tape residue or unsightly stickers on your bezel",
+      "Granular app whitelist: selectively grant temporary camera/mic access to trusted apps (e.g., Zoom or Teams during meetings) and instantly lock down everything with one click when done",
+      "Bluetooth & Wi-Fi isolation: roaming Bluetooth/Wi-Fi adapters in public spaces broadcast your device identity; switch off wireless radios when idle to prevent beacon tracking and rogue pairing"
+    ],
+    sec2ImgCaption: "Multi-Guard Privacy Panel — preview mockup",
+
+    sec3Badge: "Browser Shield",
+    sec3Title: "Browser Shield: No more fake virus popups",
+    sec3Desc: "Ever seen a loud popup screaming 'Your computer is infected! Call technical support now'? That is the number one scam today. Browser Shield monitors your browser modules and alerts you before scammers fool you.",
+    sec3AlertTitle: "Screaming red popups claiming your PC is locked? Don't let scammers rob you!",
+    sec3AlertDesc: "A blaring browser window with sirens claiming 'Your PC is infected by Trojan! Call Microsoft support now!' is today's #1 cyber scam. Panicked users call the number, grant remote access, and watch their bank accounts get drained in minutes. Multi-Guard Browser Shield blocks deceptive push notifications and scam alerts before they can manipulate you.",
+    sec3Points: [
+      "Supervision of active protection modules in web browsers",
+      "Proactive defense against fake virus alerts and deceptive tech-support scams",
+      "Protection against malicious push notifications and scam redirects",
+      "Transparent terms: review our official Browser Shield Privacy Policy"
+    ],
+    sec3PolicyLink: "Multi-Guard Browser Shield Privacy Policy →",
+
+    sec4Badge: "Hardware Diagnostics",
+    sec4Title: "Hardware & Performance: Early fault detection",
+    sec4Desc: "Hardware rarely dies instantly without warnings — temperatures climb, fans stall, or silent power anomalies occur first. Multi-Guard tracks critical metrics in real time.",
+    sec4AlertTitle: "The silent hardware killer: 95°C – 105°C fries motherboards without any warning",
+    sec4AlertDesc: "After a year or two, factory thermal paste dries into hard chalk and cooling fins choke on dust. Your computer won't display a warning: it quietly throttles performance until excessive heat cracks BGA solder balls or shorts the VRM power circuit. Workshop repair costs range from 600 to 1800 PLN! Multi-Guard continuously monitors CPU/GPU core temperatures and warns you BEFORE catastrophic hardware death.",
+    sec4Points: [
+      "Clear utilization charts: CPU (individual core load), RAM, and GPU / iGPU",
+      "Temperature and fan telemetry where motherboard sensors and drivers support them",
+      "Early warning signals: captures unexpected shutdowns, Kernel-Power 41 events, and WHEA hardware errors",
+      "SSD/HDD health overview helping determine when physical maintenance is needed"
+    ],
+    sec4ImgCaption: "Multi-Guard Hardware & Performance Panel — preview mockup",
+
+    sec5Badge: "IN DEVELOPMENT",
+    sec5Title: "Component Test Center — Future Diagnostics",
+    sec5Desc: "Inside the Multi-Servis lab, we are developing a dedicated Component Test Center tailored for the Pro edition. This suite will feature controlled stress tests and benchmarking routines.",
+    sec5Points: [
+      "Controlled CPU and GPU stress testing routines",
+      "Comprehensive RAM memory stability diagnostics",
+      "Cooling system thermal endurance tests under sustained workload",
+      "Power delivery and rail voltage telemetry where compatible hardware sensors exist",
+      "Transparency note: This is an active roadmap preview, not a finished module in current builds."
+    ],
+
+    sec6Badge: "Editions",
+    sec6Title: "Two Editions: Standard and Pro",
+    sec6Subtitle: "Clear terms with zero hidden subscriptions. Ask about edition suitability at Multi-Servis.",
+    standardBadge: "Daily Protection & Overview",
+    standardTitle: "Multi-Guard Standard",
+    standardTheme: "Dark graphite with dynamic red accents",
+    standardSlogan: "“Daily protection and control”",
+    standardTarget: "For home and office users seeking dependable protection, privacy control, and thermal overview.",
+    standardFeatures: [
+      "Overview dashboard with scan history",
+      "Microsoft Defender & Windows Firewall integration",
+      "Browser Shield anti-scam supervision",
+      "Privacy dashboard (webcam, mic, BT, Wi-Fi)",
+      "Live CPU, RAM, and GPU telemetry",
+      "Fan and temperature readouts (hardware dependent)",
+      "System stability and event log insights",
+      "Remote service access: None (completely standalone)"
+    ],
+    standardCta: "Ask about Standard at Multi-Servis →",
+
+    proBadge: "Enhanced Diagnostics & Remote Care",
+    proTitle: "Multi-Guard Pro",
+    proTheme: "Dark graphite with prestigious gold accents",
+    proSlogan: "“Enhanced capabilities and support on your terms”",
+    proTarget: "For power users, gamers, and clients who want deep telemetry and fast remote repair assistance.",
+    proFeatures: [
+      "All features of Multi-Guard Standard",
+      "Advanced diagnostics and detailed hardware reports",
+      "Component Test Center access (in development)",
+      "⚡ Remote technician assistance by Multi-Servis",
+      "Remote connection requires EXPLICIT user consent every time",
+      "User can terminate the remote session instantly with 1 click",
+      "Strict compliance with Multi-Servis Remote Support Policy"
+    ],
+    proCta: "Ask about Pro at Multi-Servis →",
+    tilesCompareCaption: "Multi-Guard Standard (Red) vs Pro (Gold) tile frontend — preview mockup",
+
+    sec7Badge: "Transparent Security",
+    sec7Title: "Remote Assistance Rules in Pro Edition",
+    sec7Desc: "Your privacy and control come first. Remote assistance in Multi-Guard Pro is built on non-negotiable security guarantees:",
+    sec7Card1Title: "No Background Backdoors",
+    sec7Card1Desc: "Installing the software or owning Pro never grants background access. Technicians cannot connect without you.",
+    sec7Card2Title: "Consent on Every Session",
+    sec7Card2Desc: "Each session requires your explicit click and confirmation. Without it, no connection can ever be initiated.",
+    sec7Card3Title: "Full Live Visibility",
+    sec7Card3Desc: "You see every action and cursor movement in real time on your monitor throughout the entire support session.",
+    sec7Card4Title: "1-Click Termination",
+    sec7Card4Desc: "You can click disconnect at any second to immediately sever the connection to the technician.",
+    sec7PolicyBtn: "Read full Multi-Guard Remote Support Policy →",
+
+    faqBadge: "Frequently Asked Questions",
+    faqTitle: "Everything You Need to Know About Multi-Guard",
+    faqs: [
+      {
+        q: "Is Multi-Guard a standalone antivirus with its own scanner?",
+        a: "No. Multi-Guard utilizes Microsoft Defender as its trusted antivirus provider. It does not burden your PC with heavy third-party background daemons, but instead provides an intuitive dashboard for Defender scans, firewall rules, and threat logs."
+      },
+      {
+        q: "What is the key difference between Standard and Pro?",
+        a: "Standard (red accents) covers daily security: Defender, Browser Shield, privacy switches, and CPU/GPU monitoring. Pro (gold accents) unlocks deeper diagnostics, the upcoming Test Center, and on-demand Remote Technician Support."
+      },
+      {
+        q: "Can a technician connect to my computer without permission?",
+        a: "Never. Standard has no remote capabilities whatsoever. In Pro, every remote session requires explicit user confirmation. You can terminate the connection at any time."
+      },
+      {
+        q: "What are the system requirements?",
+        a: "Multi-Guard is tailored for 64-bit Windows 10 and Windows 11. Sensor metrics (such as fan speeds and VRM/GPU temps) depend on your hardware sensors and vendor drivers."
+      },
+      {
+        q: "What is the Component Test Center?",
+        a: "It is an engineering stress-testing suite (CPU, RAM, GPU, PSU rail stability) currently under active development in our workshop for the Pro edition, marked as 'In Development'."
+      },
+      {
+        q: "Why isn't Multi-Guard available for public download and self-installation?",
+        a: "This is a deliberate, uncompromising technical choice. Public software installers must be bloated 'universal packages' bundling thousands of generic drivers for hundreds of different platforms, wasting gigabytes of storage, devouring RAM, and slowing Windows down. We wanted Multi-Guard to be ultra-light, agile, and resource-free. We install and configure it exclusively in our workshop at Ku Wiatrakom 18 in Bydgoszcz: we bench-test your exact machine, tailor the utility to your laptop/PC model, and inject only the exact drivers your motherboard needs. Zero bloat, maximum performance!"
+      },
+      {
+        q: "How can I get Multi-Guard installed on my computer?",
+        a: "Multi-Guard is tailored and configured exclusively by Multi-Servis technicians at our workshop at Ku Wiatrakom 18 in Bydgoszcz. Ask for installation when picking up your serviced device or call us at 505 012 914 to schedule a tailored installation for your laptop or PC."
+      }
+    ],
+
+    installWhyBadge: "Tailored Hardware Optimization",
+    installWhyTitle: "Installed exclusively at the Multi-Servis workshop — why no public online installer?",
+    installWhyDesc: "Clients often ask us: 'Why can\'t I just download the installer from your website?'. This is our deliberate, uncompromising engineering choice. Mass-market web installers must be bloated, universal packages bundling thousands of generic drivers for hundreds of different motherboards — consuming gigabytes, devouring RAM, and slowing Windows down. We do the exact opposite.",
+    installWhyPoints: [
+      "Hands-on workshop testing: At our workshop (Ku Wiatrakom 18, Bydgoszcz), we benchmark and test your specific laptop or PC on our diagnostic bench.",
+      "Only exact machine drivers: We inject and configure only the specific sensor modules required by your exact motherboard and CPU — zero bloatware.",
+      "Ultra-lightweight & blazing fast: Multi-Guard consumes practically zero background CPU and RAM, starting instantaneously without dragging Windows down.",
+      "Zero conflicts & rock-solid stability: Custom-tailored configuration prevents blue screens, driver collisions, and system freezes."
+    ],
+    ctaBadge: "Workshop Availability",
+    ctaTitle: "Ask about Multi-Guard at Multi-Servis",
+    ctaSubtitle: "Looking to protect your Windows PC, monitor hardware temps, and receive trusted technical assistance? Please call us before visiting our workshop in Bydgoszcz.",
+    ctaPhoneBtn: "Call workshop: +48 505 012 914",
+    ctaContactBtn: "Location & directions: Ku Wiatrakom 18 →",
+    phoneNotice: "We receive a large volume of commercial offers and spam daily. In connection with the above, we do not respond to SMS messages – please contact us by phone.",
+    serviceHours: "Workshop hours: Monday – Friday 10:00 – 17:00"
+  },
+
+  uk: {
+    seoTitle: "Multi-Guard — Безпека, Діагностика та Стан ПК | Multi-Servis Бидгощ",
+    seoDesc: "Програма від Multi-Servis: захист Microsoft Defender, контроль конфіденційності (камера/мікрофон), моніторинг температур CPU/GPU та дистанційна допомога Pro.",
+    keywords: "Multi-Guard, захист комп’ютера Бидгощ, моніторинг температури ПК, Microsoft Defender, дистанційна підтримка комп’ютера Бидгощ, Multi-Servis",
+    breadcrumbHome: "Головна",
+    breadcrumbCurrent: "Multi-Guard",
+    heroBadge: "Власне програмне забезпечення Multi-Servis для Windows 10 & 11",
+    heroTitle: "Multi-Guard — безпека, діагностика та стан вашого комп’ютера",
+    heroSubtitle: "Антивірусний захист на базі Microsoft Defender, контроль конфіденційності, моніторинг компонентів у реальному часі та професійна підтримка — усе в одній зручній програмі.",
+    heroCtaPhone: "Запитати про Multi-Guard у майстерні",
+    heroCtaCompare: "Порівняти версії Standard та Pro ↓",
+    previewCaption: "Інтерфейс програми Multi-Guard — демонстраційний вигляд (версія Pro)",
+    pills: [
+      "🛡️ Інтеграція з Microsoft Defender",
+      "🔒 Контроль камери та мікрофона",
+      "⚡ Моніторинг CPU, RAM та GPU наживо",
+      "🌐 Browser Shield проти шахрайських сповіщень",
+      "🤝 Безпечна дистанційна допомога на запит (Pro)",
+      "🚫 Жодного прихованого навантаження системи"
+    ],
+    whyBadge: "Досвід нашого сервісу",
+    whyTitle: "Чому ми розробили Multi-Guard у Multi-Servis?",
+    whyDesc: "Понад 20 років у майстерні у Бидгощі (Ku Wiatrakom 18) ми ремонтуємо комп’ютери та ноутбуки. Ми щодня стикаємося з двома проблемами: важкими сторонніми антивірусами, що забирають 80% ресурсів, та перегрівом, про який власник дізнається вже після виходу з ладу процесора чи відеокарти. Multi-Guard створено для надійного контролю.",
+
+    sec1Badge: "Головна панель та Захист",
+    sec1Title: "Головна панель та Захист Windows: без зайвого навантаження",
+    sec1Desc: "Multi-Guard використовує Microsoft Defender як надійного провайдера антивірусного захисту. Замість важких сторонніх програм, Multi-Guard надає зручний огляд безпеки, запуск сканування та історію виявлень.",
+    sec1AlertTitle: "Платні антивіруси нерідко самі поводяться як віруси: з'їдають пам'ять та завалюють рекламою",
+    sec1AlertDesc: "Користувачі щороку платять за програми, які сповільнюють Windows на 50%, завантажують диск і щогодини показують тривожні вікна для нав'язування версії 'Ultimate'. Windows має чудовий вбудований Microsoft Defender зі 100% ефективністю. Multi-Guard надає вам повний контроль над ним без переплат та навантаження.",
+    sec1Points: [
+      "Актуальний статус Microsoft Defender та брандмауера Windows Firewall",
+      "Швидке, повне або вибіркове сканування в 1 клік",
+      "Зрозуміла історія загроз та карантину без хибних тривог",
+      "Чесність сервісу: Multi-Guard не імітує власний антивірусний рушій, а використовує перевірений та оптимізований Microsoft Defender"
+    ],
+
+    sec2Badge: "Конфіденційність та Анти-Прослуховування",
+    sec2Title: "Звичайний пластир не захистить від прослуховування. Multi-Guard — захистить.",
+    sec2Desc: "Скільки ваших знайомих заклеюють веб-камеру ізоляційною стрічкою, пластиром або пластиковою шторкою через страх стеження? Але подумайте: ЯК ЗАКЛЕЇТИ МІКРОФОН?",
+    sec2AlertTitle: "Ізоляційна стрічка на камері — ілюзія безпеки. Мікрофон заклеїти неможливо!",
+    sec2AlertDesc: "Мікрофони в ноутбуках — це крихітні отвори в корпусі. Стрічка не зупиняє звук, а шпигунським програмам не потрібне відео — аудіозапису достатньо. До того ж мікрофон у 99% ноутбуків НЕ МАЄ жодного світлодіода! Хтось може записувати ваші розмови, паролі та банківські дані 24/7. Multi-Guard вирішує це безкомпромісно: повне відключення камери та мікрофона на системному рівні.",
+    sec2Points: [
+      "Повне відключення мікрофона: блокує запис звуку, тож шпигунські процеси чують лише абсолютну цифрову тишу",
+      "Повне блокування веб-камери: надійне відключення сенсора без клейких слідів від скотчу на екрані",
+      "Гнучкі дозволи (білий список): вмикайте доступ виключно для довірених програм (наприклад, Teams або Zoom під час дзвінка) і блокуйте все назад в один клік",
+      "Захист Bluetooth та Wi-Fi: увімкнений Bluetooth у громадських місцях розкриває пристрій — вимикайте бездротові модулі, коли не користуєтеся ними, захищаючись від стеження та несанкціонованого підключення"
+    ],
+    sec2ImgCaption: "Панель конфіденційності Multi-Guard — демонстраційний вигляд",
+
+    sec3Badge: "Browser Shield",
+    sec3Title: "Browser Shield: захист від фальшивих вірусних тривог",
+    sec3Desc: "Бачили колись гучне вікно в браузері: «Ваш комп'ютер заражено! Терміново зателефонуйте за номером»? Це поширений обман. Browser Shield контролює модулі захисту та блокує фальшиві тривоги.",
+    sec3AlertTitle: "Екран, що волає про вірус та блокування? Не дайте себе ошукати!",
+    sec3AlertDesc: "Вікно у браузері з сиреною та криком: 'Ваш комп'ютер заблоковано! Терміново дзвоніть у підтримку!' — найпоширеніший обман. Налякані люди телефонують шахраям, пускають їх на екран і втрачають кошти з банківських карток. Multi-Guard Browser Shield блокує такі тривоги та шкідливі push-сповіщення.",
+    sec3Points: [
+      "Контроль захисних модулів у веб-браузерах",
+      "Попередження про фальшиві сповіщення про віруси та шахрайські сайти",
+      "Блокування небажаних push-повідомлень",
+      "Ознайомтеся з Політикою конфіденційності Browser Shield"
+    ],
+    sec3PolicyLink: "Політика конфіденційності Multi-Guard Browser Shield →",
+
+    sec4Badge: "Апаратний стан",
+    sec4Title: "Апаратний стан та продуктивність: раннє виявлення несправностей",
+    sec4Desc: "Комп'ютер рідко ламається без попередження — спочатку зростають температури або з'являються помилки живлення. Multi-Guard відстежує параметри в реальному часі.",
+    sec4AlertTitle: "Тихий убивця компонентів: 95°C – 105°C випалюють материнську плату без жодного попередження",
+    sec4AlertDesc: "За рік-два термопаста висихає на камінь, а радіатор забивається пилом. Ноутбук не покаже помилку — він тихо скидатиме частоти, доки від перегріву не відпаяється BGA-чіп чи не згорить живлення. Ремонт у сервісі коштує від 600 до 1800 злотих! Multi-Guard стежить за температурами і попередить ДО виходу з ладу.",
+    sec4Points: [
+      "Графіки навантаження: процесор CPU (по всіх ядрах), пам'ять RAM та відеокарта GPU / iGPU",
+      "Показники температур та обертів вентиляторів за наявності відповідних датчиків",
+      "Ранні симптоми нестабільності: фіксація раптових перезавантажень, подій Kernel-Power 41 та помилок WHEA",
+      "Попередній аналіз стану SSD/HDD"
+    ],
+    sec4ImgCaption: "Панель продуктивності та параметрів Multi-Guard — демонстраційний вигляд",
+
+    sec5Badge: "У ПІДГОТОВЦІ",
+    sec5Title: "Центр Тестування Компонентів — діагностика майбутнього",
+    sec5Desc: "У майстерні Multi-Servis ми розробляємо власний Центр Тестування, орієнтований на версію Pro: комплекс стрес-тестів та перевірки стабільності під навантаженням.",
+    sec5Points: [
+      "Контрольовані стрес-тести процесора (CPU) та відеокарти (GPU)",
+      "Глибока діагностика стабільності оперативної пам'яті RAM",
+      "Тести системи охолодження під тривалим навантаженням",
+      "Аналіз ліній живлення за наявності надійних датчиків",
+      "Зауваження: це анонс розробки у планах, а не перелік готових функцій у поточному релізі."
+    ],
+
+    sec6Badge: "Версії програми",
+    sec6Title: "Дві версії: Standard та Pro",
+    sec6Subtitle: "Жодних прихованих підписок. Проконсультуйтеся щодо вибору версії у майстерні Multi-Servis.",
+    standardBadge: "Щоденний захист та контроль",
+    standardTitle: "Multi-Guard Standard",
+    standardTheme: "Графітовий інтерфейс з червоними акцентами",
+    standardSlogan: "«Щоденний захист та контроль»",
+    standardTarget: "Для домашніх та офісних користувачів, яким потрібен надійний захист, конфіденційність та контроль температури.",
+    standardFeatures: [
+      "Головна панель зі статистикою",
+      "Інтеграція з Microsoft Defender та Firewall",
+      "Browser Shield — захист від фейкових тривог",
+      "Панель конфіденційності (камера, мікрофон, BT, Wi-Fi)",
+      "Моніторинг навантаження CPU, RAM, GPU у реальному часі",
+      "Показники температур та кулерів (за наявності датчиків)",
+      "Перегляд системних збоїв та помилок",
+      "Дистанційний доступ: Відсутній (повна автономність)"
+    ],
+    standardCta: "Запитати про версію Standard у Multi-Servis →",
+
+    proBadge: "Максимум можливостей та підтримка",
+    proTitle: "Multi-Guard Pro",
+    proTheme: "Графітовий інтерфейс із золотими акцентами",
+    proSlogan: "«Більше можливостей та технічна допомога на ваших умовах»",
+    proTarget: "Для геймерів, професіоналів та клієнтів, які цінують детальну діагностику та швидку дистанційну допомогу.",
+    proFeatures: [
+      "Усі функції версії Standard",
+      "Розширена діагностика стабільності та звіти",
+      "Доступ до Центру Тестування (у підготовці)",
+      "⚡ Дистанційна технічна допомога майстра Multi-Servis",
+      "Підключення ВИКЛЮЧНО за вашою окремою згодою кожного разу",
+      "Можливість миттєво розірвати з'єднання в будь-яку секунду",
+      "Повна відповідність Правилам Дистанційної Допомоги Multi-Servis"
+    ],
+    proCta: "Запитати про версію Pro у Multi-Servis →",
+    tilesCompareCaption: "Вигляд плиток Multi-Guard Standard (червоний) та Pro (золотий) — демонстраційний вигляд",
+
+    sec7Badge: "Прозора Безпека",
+    sec7Title: "Правила дистанційної допомоги у версії Pro",
+    sec7Desc: "Ваша безпека та конфіденційність — понад усе. Дистанційна допомога побудована на чітких принципах:",
+    sec7Card1Title: "Жодного фонового доступу",
+    sec7Card1Desc: "Встановлення версії Pro НЕ дає сервісу фонового доступу. Майстер не може підключитися самостійно.",
+    sec7Card2Title: "Згода на кожне підключення",
+    sec7Card2Desc: "Кожен сеанс вимагає вашого явного підтвердження. Без вашої згоди з'єднання неможливе.",
+    sec7Card3Title: "Повний контроль на екрані",
+    sec7Card3Desc: "Ви бачите кожен рух курсора та кожну дію майстра на своєму моніторі.",
+    sec7Card4Title: "Вимкнення в 1 клік",
+    sec7Card4Desc: "У будь-яку мить ви можете натиснути кнопку відключення та миттєво розірвати зв'язок.",
+    sec7PolicyBtn: "Ознайомитися з Політикою Дистанційної Допомоги →",
+
+    faqBadge: "Часті запитання",
+    faqTitle: "Усе про програму Multi-Guard",
+    faqs: [
+      {
+        q: "Чи є Multi-Guard окремим антивірусом з власним рушієм?",
+        a: "Ні. Multi-Guard працює в парі з Microsoft Defender як перевіреним системним антивірусом. Програма не обтяжує Windows важкими сторонніми службами, а надає зручний центр керування захистом, скануванням та брандмауером."
+      },
+      {
+        q: "Чим відрізняється Standard від Pro?",
+        a: "Standard (з червоними акцентами) — це щоденний захист: Defender, Browser Shield, конфіденційність і моніторинг CPU/GPU/RAM. Pro (із золотими акцентами) відкриває розширену діагностику, майбутній Центр Тестів та дистанційну допомогу Multi-Servis."
+      },
+      {
+        q: "Чи може майстер підключитися без мого відома?",
+        a: "У жодному разі. У версії Standard віддаленого доступу взагалі немає. У версії Pro кожне підключення вимагає вашого явного кліку, ви бачите все на екрані і можете відключитися будь-якої секунди."
+      },
+      {
+        q: "Які системні вимоги?",
+        a: "Multi-Guard розрахований на 64-розрядні Windows 10 та Windows 11. Доступність датчиків (температури, кулери) залежить від материнської плати вашого пристрою."
+      },
+      {
+        q: "Що таке Центр Тестування Компонентів?",
+        a: "Це програмний комплекс стрес-тестів під навантаженням для перевірки CPU, RAM та GPU, що зараз розробляється нашими інженерами для версії Pro (статус «У підготовці»)."
+      },
+      {
+        q: "Чому програму Multi-Guard не можна завантажити з інтернету для самостійного встановлення?",
+        a: "Це наше свідоме інженерне рішення. Загальнодоступні програми з інтернету змушені бути важкими універсальними пакетами з тисячами зайвих драйверів для сотень конфігурацій, через що вони займають гігабайти пам'яті, споживають RAM та сповільнюють Windows. Ми створили Multi-Guard надлегким і швидким. Тому ми встановлюємо його виключно стаціонарно в нашій майстерні на вул. Ku Wiatrakom 18 у Бидгощі: тестуємо ваш пристрій на стенді, налаштовуємо програму під конкретну модель і додаємо лише ті драйвери, які потрібні вашій материнській платі. Жодного зайвого баласту!"
+      },
+      {
+        q: "Як встановити Multi-Guard на свій комп'ютер?",
+        a: "Multi-Guard налаштовується та встановлюється виключно майстрами сервісу Multi-Servis на вул. Ku Wiatrakom 18 у Бидгощі. Запитайте про встановлення під час отримання техніки з ремонту або зателефонуйте 505 012 914."
+      }
+    ],
+
+    installWhyBadge: "Індивідуальна апаратна оптимізація",
+    installWhyTitle: "Встановлення виключно у майстерні Multi-Servis — чому немає публічного завантаження?",
+    installWhyDesc: "Клієнти часто запитують нас: «Чому не можна просто завантажити програму з сайту?». Це наше свідоме інженерне рішення. Масові програми з інтернету змушені бути важкими універсальними пакетами з тисячами драйверів для сотень різних плат, через що вони займають гігабайти, з'їдають пам'ять і сповільнюють Windows. Ми робимо зовсім інакше.",
+    installWhyPoints: [
+      "Тестування у майстерні: На вул. Ku Wiatrakom 18 у Бидгощі ми тестуємо вашу конкретну модель ноутбука чи ПК на діагностичному стенді.",
+      "Тільки потрібні драйвери: Ми підключаємо та налаштовуємо лише ті модулі датчиків, які потрібні саме вашій материнській платі та процесору — жодного зайвого баласту.",
+      "Неймовірна легкість і швидкість: Програма практично не споживає ресурсів CPU та RAM, запускається миттєво і не гальмує роботу системи.",
+      "Жодних конфліктів та стабільність: Індивідуальне налаштування виключає збої драйверів, 'сині екрани' та підвисання системи."
+    ],
+    ctaBadge: "Доступність у сервісі",
+    ctaTitle: "Запитайте про Multi-Guard у Multi-Servis",
+    ctaSubtitle: "Бажаєте захистити свій ПК, контролювати робочі температури та отримати надійну технічну підтримку? Будь ласка, зателефонуйте нам перед візитом до майстерні у Бидгощі.",
+    ctaPhoneBtn: "Зателефонувати до майстерні: +48 505 012 914",
+    ctaContactBtn: "Адреса та проїзд: Ku Wiatrakom 18 →",
+    phoneNotice: "Щодня ми отримуємо велику кількість комерційних пропозицій та спаму. У зв’язку з цим ми не відповідаємо на SMS-повідомлення – просимо звертатися за телефоном.",
+    serviceHours: "Майстерня працює: Понеділок – П'ятниця 10:00 – 17:00"
+  }
+};
+
+const c = content[lang] || content.pl;
+
+// Structured Data for Multi-Guard (SoftwareApplication + Breadcrumbs + FAQPage)
+const multiGuardSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": `https://multi-servis.pl${prefix}/multi-guard#software`,
+      "name": "Multi-Guard",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Windows 10, Windows 11",
+      "author": {
+        "@type": "LocalBusiness",
+        "@id": "https://multi-servis.pl/#organization",
+        "name": "Multi-Servis",
+        "telephone": "+48505012914",
+        "url": "https://multi-servis.pl"
+      },
+      "description": c.seoDesc,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "PLN",
+        "availability": "https://schema.org/InStoreOnly",
+        "description": lang === "pl" ? "Dostępne i wdrażane w serwisie Multi-Servis w Bydgoszczy" : "Available at Multi-Servis workshop in Bydgoszcz"
+      },
+      "featureList": [
+        "Microsoft Defender Integration",
+        "Windows Firewall Management",
+        "Browser Shield Anti-Scam Protection",
+        "Webcam & Microphone Privacy Controls",
+        "Real-Time CPU, RAM & GPU Hardware Telemetry",
+        "Early Fault Detection (Kernel-Power 41 & WHEA)",
+        "On-Demand User-Consented Remote Support (Pro)",
+        "Component Test Center (In Development)"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": c.breadcrumbHome,
+          "item": `https://multi-servis.pl${prefix || "/"}`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": c.breadcrumbCurrent,
+          "item": `https://multi-servis.pl${prefix}/multi-guard`
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `https://multi-servis.pl${prefix}/multi-guard#faq`,
+      "mainEntity": c.faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.a
+        }
+      }))
+    }
+  ]
+});
+---
+
+<Layout
+  title={c.seoTitle}
+  description={c.seoDesc}
+  wfPage="multi-guard"
+  ogImage="/images/multiguard/multiguard-pro-desktop.png"
+  lang={lang}
+  keywords={c.keywords}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={multiGuardSchema} />
+
+  <!-- Unified Navbar -->
+  <Navbar lang={lang} currentPath={currentPath} />
+
+  <main class="mg-main">
+    <!-- Hero Section -->
+    <section class="mg-hero-section">
+      <div class="container centered-container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="mg-breadcrumbs">
+          <ol>
+            <li><a href={prefix || "/"}>{c.breadcrumbHome}</a></li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page">{c.breadcrumbCurrent}</li>
+          </ol>
+        </nav>
+
+        <div class="mg-hero-badge-wrap">
+          <span class="mg-badge mg-badge-brand">
+            <span class="mg-badge-dot"></span>
+            {c.heroBadge}
+          </span>
+        </div>
+
+        <h1 class="mg-hero-title">{c.heroTitle}</h1>
+        <p class="mg-hero-subtitle">{c.heroSubtitle}</p>
+
+        <!-- Trust Pills -->
+        <div class="mg-pills-grid">
+          {c.pills.map((pill) => (
+            <div class="mg-pill-item">
+              <span>{pill}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- Hero CTAs -->
+        <div class="mg-hero-actions">
+          <a href="tel:+48505012914" class="mg-btn mg-btn-primary">
+            <span class="mg-btn-icon">📞</span>
+            <span>{c.heroCtaPhone}</span>
+          </a>
+          <a href="#porownanie" class="mg-btn mg-btn-secondary">
+            <span>{c.heroCtaCompare}</span>
+          </a>
+        </div>
+
+        <!-- Hero Visual Mockup with Ambient Glow -->
+        <div class="mg-hero-mockup-wrap">
+          <div class="mg-hero-ambient-glow" aria-hidden="true"></div>
+          <div class="mg-window-frame">
+            <div class="mg-window-bar">
+              <div class="mg-window-dots">
+                <span class="mg-dot mg-dot-red"></span>
+                <span class="mg-dot mg-dot-yellow"></span>
+                <span class="mg-dot mg-dot-green"></span>
+              </div>
+              <div class="mg-window-title">{lang === 'pl' ? 'Multi-Guard Pro • Bezpieczeństwo i Telemetria Windows 10/11' : (lang === 'en' ? 'Multi-Guard Pro • Windows 10/11 Security & Telemetry' : 'Multi-Guard Pro • Безпека та телеметрія Windows 10/11')}</div>
+            </div>
+            <div class="mg-window-body">
+              <img
+                src="/images/multiguard/multiguard-pro-desktop.png"
+                alt="Multi-Guard Pro Desktop Interface"
+                loading="eager"
+                width="1360"
+                height="880"
+                class="mg-img-fluid"
+              />
+            </div>
+            <div class="mg-visual-caption">
+              <span class="mg-caption-badge">Widok poglądowy</span>
+              <span>{c.previewCaption}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Multi-Guard Section -->
+    <section class="mg-section mg-section-story">
+      <div class="container centered-container">
+        <div class="mg-story-card">
+          <div class="mg-story-badge-wrap">
+            <span class="mg-badge mg-badge-subtle">{c.whyBadge}</span>
+          </div>
+          <h2 class="mg-section-title">{c.whyTitle}</h2>
+          <p class="mg-paragraph">{c.whyDesc}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: Dashboard & Windows Protection -->
+    <section class="mg-section">
+      <div class="container centered-container">
+        <div class="mg-section-header">
+          <span class="mg-badge mg-badge-red">{c.sec1Badge}</span>
+          <h2 class="mg-section-title">{c.sec1Title}</h2>
+          <p class="mg-paragraph">{c.sec1Desc}</p>
+        </div>
+
+        <!-- Shocking Wake-up Call Banner for Bloatware / Antivirus -->
+        <div class="mg-alert-story-card mg-alert-red">
+          <div class="mg-alert-icon">💸</div>
+          <div class="mg-alert-body">
+            <h4>{c.sec1AlertTitle}</h4>
+            <p>{c.sec1AlertDesc}</p>
+          </div>
+        </div>
+
+        <!-- Centered Feature Points Grid -->
+        <div class="mg-points-grid">
+          {c.sec1Points.map((point) => (
+            <div class="mg-point-card">
+              <span class="mg-check-icon">✓</span>
+              <span>{point}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- Centered Window Mockup Frame -->
+        <div class="mg-window-frame">
+          <div class="mg-window-bar">
+            <div class="mg-window-dots">
+              <span class="mg-dot mg-dot-red"></span>
+              <span class="mg-dot mg-dot-yellow"></span>
+              <span class="mg-dot mg-dot-green"></span>
+            </div>
+            <div class="mg-window-title">{lang === 'pl' ? 'Multi-Guard • Pulpit i Ochrona Windows Defender' : (lang === 'en' ? 'Multi-Guard • Dashboard & Windows Defender' : 'Multi-Guard • Панель управління та Windows Defender')}</div>
+          </div>
+          <div class="mg-window-body">
+            <img
+              src="/images/multiguard/multiguard-desktop-ui.png"
+              alt="Multi-Guard Dashboard & Windows Defender Status"
+              loading="lazy"
+              width="1413"
+              height="717"
+              class="mg-img-fluid"
+            />
+          </div>
+          <div class="mg-visual-caption">
+            <span class="mg-caption-badge">Widok poglądowy</span>
+            <span>{c.previewCaption}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Privacy Controls -->
+    <section class="mg-section mg-section-alt">
+      <div class="container centered-container">
+        <div class="mg-section-header">
+          <span class="mg-badge mg-badge-cyan">{c.sec2Badge}</span>
+          <h2 class="mg-section-title">{c.sec2Title}</h2>
+          <p class="mg-paragraph">{c.sec2Desc}</p>
+        </div>
+
+        <!-- Shocking Wake-up Call Banner for Privacy -->
+        <div class="mg-alert-story-card mg-alert-cyan">
+          <div class="mg-alert-icon">🎙️</div>
+          <div class="mg-alert-body">
+            <h4>{c.sec2AlertTitle}</h4>
+            <p>{c.sec2AlertDesc}</p>
+          </div>
+        </div>
+
+        <!-- Centered Feature Points Grid -->
+        <div class="mg-points-grid">
+          {c.sec2Points.map((point) => (
+            <div class="mg-point-card">
+              <span class="mg-check-icon">✓</span>
+              <span>{point}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- Centered Window Mockup Frame -->
+        <div class="mg-window-frame">
+          <div class="mg-window-bar">
+            <div class="mg-window-dots">
+              <span class="mg-dot mg-dot-red"></span>
+              <span class="mg-dot mg-dot-yellow"></span>
+              <span class="mg-dot mg-dot-green"></span>
+            </div>
+            <div class="mg-window-title">{lang === 'pl' ? 'Multi-Guard • Kontrola Prywatności (Kamera / Mikrofon / BT / Wi-Fi)' : (lang === 'en' ? 'Multi-Guard • Privacy Controls (Camera / Mic / BT / Wi-Fi)' : 'Multi-Guard • Контроль приватності (Камера / Мікрофон / BT / Wi-Fi)')}</div>
+          </div>
+          <div class="mg-window-body">
+            <img
+              src="/images/multiguard/multiguard-privacy-ui.png"
+              alt="Multi-Guard Privacy Controls: Camera, Microphone, Bluetooth, Wi-Fi"
+              loading="lazy"
+              width="1409"
+              height="865"
+              class="mg-img-fluid"
+            />
+          </div>
+          <div class="mg-visual-caption">
+            <span class="mg-caption-badge">Widok poglądowy</span>
+            <span>{c.sec2ImgCaption}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Browser Shield -->
+    <section class="mg-section">
+      <div class="container centered-container">
+        <div class="mg-browser-shield-box">
+          <div class="mg-section-header" style="margin-bottom: 1.5rem;">
+            <span class="mg-badge mg-badge-blue">{c.sec3Badge}</span>
+            <h2 class="mg-section-title">{c.sec3Title}</h2>
+            <p class="mg-paragraph">{c.sec3Desc}</p>
+          </div>
+
+          <!-- Shocking Wake-up Call Banner for Scam Alerts -->
+          <div class="mg-alert-story-card mg-alert-blue" style="margin: 0 auto 2rem auto;">
+            <div class="mg-alert-icon">⚠️</div>
+            <div class="mg-alert-body">
+              <h4>{c.sec3AlertTitle}</h4>
+              <p>{c.sec3AlertDesc}</p>
+            </div>
+          </div>
+
+          <div class="mg-bs-grid">
+            {c.sec3Points.map((point) => (
+              <div class="mg-bs-card">
+                <div class="mg-bs-icon">🛡️</div>
+                <div class="mg-bs-text">{point}</div>
+              </div>
+            ))}
+          </div>
+          <div class="mg-bs-footer">
+            <a href="/polityka-prywatnosci-multi-guard-browser-shield/" class="mg-link-external">
+              {c.sec3PolicyLink}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Hardware & Performance -->
+    <section class="mg-section mg-section-alt">
+      <div class="container centered-container">
+        <div class="mg-section-header">
+          <span class="mg-badge mg-badge-amber">{c.sec4Badge}</span>
+          <h2 class="mg-section-title">{c.sec4Title}</h2>
+          <p class="mg-paragraph">{c.sec4Desc}</p>
+        </div>
+
+        <!-- Shocking Wake-up Call Banner for Thermals -->
+        <div class="mg-alert-story-card mg-alert-amber">
+          <div class="mg-alert-icon">🔥</div>
+          <div class="mg-alert-body">
+            <h4>{c.sec4AlertTitle}</h4>
+            <p>{c.sec4AlertDesc}</p>
+          </div>
+        </div>
+
+        <!-- Centered Feature Points Grid -->
+        <div class="mg-points-grid">
+          {c.sec4Points.map((point) => (
+            <div class="mg-point-card">
+              <span class="mg-check-icon">✓</span>
+              <span>{point}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- Centered Window Mockup Frame -->
+        <div class="mg-window-frame">
+          <div class="mg-window-bar">
+            <div class="mg-window-dots">
+              <span class="mg-dot mg-dot-red"></span>
+              <span class="mg-dot mg-dot-yellow"></span>
+              <span class="mg-dot mg-dot-green"></span>
+            </div>
+            <div class="mg-window-title">{lang === 'pl' ? 'Multi-Guard • Monitoring Temperatur i Parametrów Sprzętowych' : (lang === 'en' ? 'Multi-Guard • Hardware Telemetry & Temperatures' : 'Multi-Guard • Моніторинг температур та апаратних параметрів')}</div>
+          </div>
+          <div class="mg-window-body">
+            <img
+              src="/images/multiguard/multiguard-performance-ui.png"
+              alt="Multi-Guard Performance & Hardware Telemetry"
+              loading="lazy"
+              width="1408"
+              height="858"
+              class="mg-img-fluid"
+            />
+          </div>
+          <div class="mg-visual-caption">
+            <span class="mg-caption-badge">Widok poglądowy</span>
+            <span>{c.sec4ImgCaption}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Component Test Center (Roadmap - W PRZYGOTOWANIU) -->
+    <section class="mg-section">
+      <div class="container centered-container">
+        <div class="mg-roadmap-box">
+          <div class="mg-roadmap-badge-wrap">
+            <span class="mg-badge mg-badge-warning">
+              ⏳ {c.sec5Badge}
+            </span>
+          </div>
+          <h2 class="mg-section-title" style="text-align: center;">{c.sec5Title}</h2>
+          <p class="mg-paragraph" style="text-align: center; max-width: 760px; margin: 0 auto 2rem auto;">
+            {c.sec5Desc}
+          </p>
+          <div class="mg-roadmap-grid">
+            {c.sec5Points.map((point) => (
+              <div class="mg-roadmap-item">
+                <span class="mg-roadmap-bullet">⚙️</span>
+                <span>{point}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Standard vs Pro Comparison -->
+    <section class="mg-section mg-section-compare" id="porownanie">
+      <div class="container centered-container">
+        <div class="mg-section-header">
+          <span class="mg-badge mg-badge-brand">{c.sec6Badge}</span>
+          <h2 class="mg-section-title">{c.sec6Title}</h2>
+          <p class="mg-paragraph">{c.sec6Subtitle}</p>
+        </div>
+
+        <!-- Real Tiles Showcase Graphic in Window Frame (crisp max-width to prevent blur) -->
+        <div class="mg-window-frame mg-window-frame-compare" style="margin-bottom: 3.5rem;">
+          <div class="mg-window-bar">
+            <div class="mg-window-dots">
+              <span class="mg-dot mg-dot-red"></span>
+              <span class="mg-dot mg-dot-yellow"></span>
+              <span class="mg-dot mg-dot-green"></span>
+            </div>
+            <div class="mg-window-title">{lang === 'pl' ? 'Multi-Guard • Edycje Standard (Czerwony) i Pro (Złoty)' : (lang === 'en' ? 'Multi-Guard • Standard (Red) vs Pro (Gold) Editions' : 'Multi-Guard • Версії Standard (Червона) та Pro (Золота)')}</div>
+          </div>
+          <div class="mg-window-body">
+            <img
+              src="/images/multiguard/multiguard-standard-pro-tiles-compare.png"
+              alt="Multi-Guard Standard vs Pro Tiles Frontend"
+              loading="lazy"
+              width="1096"
+              height="352"
+              class="mg-img-fluid"
+            />
+          </div>
+          <div class="mg-visual-caption">
+            <span class="mg-caption-badge">Widok poglądowy</span>
+            <span>{c.tilesCompareCaption}</span>
+          </div>
+        </div>
+
+        <!-- Comparison Cards Grid -->
+        <div class="mg-editions-grid">
+          <!-- Card Standard -->
+          <div class="mg-edition-card mg-card-standard">
+            <div class="mg-edition-top">
+              <span class="mg-badge mg-badge-red">{c.standardBadge}</span>
+              <h3 class="mg-edition-title">{c.standardTitle}</h3>
+              <p class="mg-edition-slogan">{c.standardSlogan}</p>
+              <div class="mg-edition-theme">
+                <span class="mg-color-swatch mg-swatch-red"></span>
+                <span>{c.standardTheme}</span>
+              </div>
+              <p class="mg-edition-target">{c.standardTarget}</p>
+              <a href="tel:+48505012914" class="mg-btn mg-btn-standard">
+                <span>{c.standardCta}</span>
+              </a>
+            </div>
+            <div class="mg-edition-features">
+              <h4>{lang === 'pl' ? 'W zakresie edycji Standard:' : (lang === 'en' ? 'Included in Standard:' : 'У версії Standard:')}</h4>
+              <ul class="mg-edition-list">
+                {c.standardFeatures.map((feat) => (
+                  <li>
+                    <span class="mg-icon-check mg-icon-red">✓</span>
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card Pro -->
+          <div class="mg-edition-card mg-card-pro">
+            <div class="mg-pro-crown">★ REKOMENDOWANA DLA SERWISU ★</div>
+            <div class="mg-edition-top">
+              <span class="mg-badge mg-badge-gold">{c.proBadge}</span>
+              <h3 class="mg-edition-title">{c.proTitle}</h3>
+              <p class="mg-edition-slogan">{c.proSlogan}</p>
+              <div class="mg-edition-theme">
+                <span class="mg-color-swatch mg-swatch-gold"></span>
+                <span>{c.proTheme}</span>
+              </div>
+              <p class="mg-edition-target">{c.proTarget}</p>
+              <a href="tel:+48505012914" class="mg-btn mg-btn-pro">
+                <span>{c.proCta}</span>
+              </a>
+            </div>
+            <div class="mg-edition-features">
+              <h4>{lang === 'pl' ? 'Wszystko ze Standard plus:' : (lang === 'en' ? 'Everything in Standard plus:' : 'Усе зі Standard плюс:')}</h4>
+              <ul class="mg-edition-list">
+                {c.proFeatures.map((feat) => (
+                  <li>
+                    <span class="mg-icon-check mg-icon-gold">✓</span>
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Responsive Comparison Table -->
+        <div class="mg-table-wrap">
+          <table class="mg-table">
+            <thead>
+              <tr>
+                <th>{lang === 'pl' ? 'Zakres i możliwości' : (lang === 'en' ? 'Feature / Scope' : 'Функція / Можливості')}</th>
+                <th class="mg-col-standard">Standard</th>
+                <th class="mg-col-pro">Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>{lang === 'pl' ? 'Kolorystyka interfejsu' : (lang === 'en' ? 'Interface Theme' : 'Кольорова гама')}</strong></td>
+                <td>{lang === 'pl' ? 'Grafit / granat + czerwone akcenty' : (lang === 'en' ? 'Dark graphite + red accents' : 'Графіт + червоні акценти')}</td>
+                <td><strong style="color: #d4af37;">{lang === 'pl' ? 'Grafit / granat + złote akcenty' : (lang === 'en' ? 'Dark graphite + gold accents' : 'Графіт + золоті акценти')}</strong></td>
+              </tr>
+              <tr>
+                <td><strong>{lang === 'pl' ? 'Microsoft Defender i Zapora Windows' : (lang === 'en' ? 'Microsoft Defender & Firewall' : 'Microsoft Defender та Firewall')}</strong></td>
+                <td>✓ {lang === 'pl' ? 'Ochrona i kontrola' : (lang === 'en' ? 'Protection & control' : 'Захист та контроль')}</td>
+                <td>✓ {lang === 'pl' ? 'Ochrona i kontrola' : (lang === 'en' ? 'Protection & control' : 'Захист та контроль')}</td>
+              </tr>
+              <tr>
+                <td><strong>{lang === 'pl' ? 'Nadzór modułów Browser Shield' : (lang === 'en' ? 'Browser Shield Supervision' : 'Модуль Browser Shield')}</strong></td>
+                <td>✓ {lang === 'pl' ? 'Nadzór dostępnych modułów' : (lang === 'en' ? 'Supervision of active modules' : 'Контроль доступних модулів')}</td>
+                <td>✓ {lang === 'pl' ? 'Nadzór dostępnych modułów' : (lang === 'en' ? 'Supervision of active modules' : 'Контроль доступних модулів')}</td>
+              </tr>
+              <tr>
+                <td><strong>{lang === 'pl' ? 'Panel prywatności (kamera, mic, BT, Wi-Fi)' : (lang === 'en' ? 'Privacy Panel (camera, mic, BT, Wi-Fi)' : 'Панель конфіденційності')}</strong></td>
+                <td>✓ {lang === 'pl' ? 'Podgląd i kontrola Windows' : (lang === 'en' ? 'Windows permission control' : 'Контроль дозволів Windows')}</td>
+                <td>✓ {lang === 'pl' ? 'Podgląd i kontrola Windows' : (lang === 'en' ? 'Windows permission control' : 'Контроль дозволів Windows')}</td>
+              </tr>
+              <tr>
+                <td><strong>{lang === 'pl' ? 'Monitoring CPU, iGPU, RAM, GPU' : (lang === 'en' ? 'Hardware Telemetry (CPU/RAM/GPU)' : 'Моніторинг CPU, RAM, GPU')}</strong></td>
+                <td>✓ {lang === 'pl' ? 'Bieżący odczyt obciążenia' : (lang === 'en' ? 'Real-time telemetry' : 'Моніторинг у реальному часі')}</td>
+                <td>✓ {lang === 'pl' ? 'Bieżący odczyt obciążenia' : (lang === 'en' ? 'Real-time telemetry' : 'Моніторинг у реальному часі')}</td>
+              </tr>
+              <tr>
+                <td><strong>{lang === 'pl' ? 'Wykrywanie Kernel-Power 41 / WHEA' : (lang === 'en' ? 'Kernel-Power 41 & WHEA Detection' : 'Виявлення збоїв живлення та WHEA')}</strong></td>
+                <td>✓ {lang === 'pl' ? 'Podgląd zdarzeń systemowych' : (lang === 'en' ? 'Event log overview' : 'Перегляд системних подій')}</td>
+                <td>✓ {lang === 'pl' ? 'Rozszerzona analiza stabilności' : (lang === 'en' ? 'Extended stability analysis' : 'Розширений аналіз стабільності')}</td>
+              </tr>
+              <tr>
+                <td><strong>{lang === 'pl' ? 'Centrum Testów Podzespołów' : (lang === 'en' ? 'Component Test Center' : 'Центр Тестування Компонентів')}</strong></td>
+                <td>—</td>
+                <td><span class="mg-badge mg-badge-warning" style="font-size: 0.75rem;">⏳ {c.sec5Badge}</span></td>
+              </tr>
+              <tr class="mg-row-highlight">
+                <td><strong>{lang === 'pl' ? 'Zdalna pomoc techniczna Multi-Servis' : (lang === 'en' ? 'Multi-Servis Remote Technician Assistance' : 'Дистанційна допомога Multi-Servis')}</strong></td>
+                <td style="color: #ef4444; font-weight: 600;">✕ {lang === 'pl' ? 'Niedostępna' : (lang === 'en' ? 'Not available' : 'Недоступно')}</td>
+                <td style="color: #10b981; font-weight: 700;">✓ {lang === 'pl' ? 'TAK (po każdorazowej zgodzie)' : (lang === 'en' ? 'YES (requires per-session consent)' : 'ТАК (за окремою згодою)')}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dedicated In-Shop Installation & Custom Tailoring Section -->
+    <section class="mg-section mg-section-workshop-install" style="padding: 3rem 0 5rem 0;">
+      <div class="container centered-container">
+        <div class="mg-workshop-install-box">
+          <div class="mg-workshop-install-header">
+            <span class="mg-badge mg-badge-brand">🛠️ {c.installWhyBadge}</span>
+            <h2 class="mg-section-title">{c.installWhyTitle}</h2>
+            <p class="mg-paragraph">{c.installWhyDesc}</p>
+          </div>
+
+          <div class="mg-workshop-grid">
+            {c.installWhyPoints.map((point, idx) => (
+              <div class="mg-workshop-card">
+                <div class="mg-workshop-step">0{idx + 1}</div>
+                <div class="mg-workshop-text">{point}</div>
+              </div>
+            ))}
+          </div>
+
+          <div class="mg-workshop-footer">
+            <div class="mg-workshop-highlight">
+              <span>⚡</span>
+              <strong>{lang === 'pl' ? 'Efekt: Błyskawiczny, lekki program skrojony pod Twój komputer — zero zbędnego zamulania.' : (lang === 'en' ? 'Result: Blazing fast utility tailored to your machine — zero system drag.' : 'Результат: Надлегка, швидка програма під ваш пристрій — нуль гальмування.')}</strong>
+            </div>
+            <a href="tel:+48505012914" class="mg-btn mg-btn-primary">
+              <span class="mg-btn-icon">📞</span>
+              <span>{c.heroCtaPhone}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Remote Support Policy Highlights -->
+    <section class="mg-section">
+      <div class="container centered-container">
+        <div class="mg-policy-box">
+          <div class="mg-section-header" style="margin-bottom: 2.5rem;">
+            <span class="mg-badge mg-badge-cyan">{c.sec7Badge}</span>
+            <h2 class="mg-section-title">{c.sec7Title}</h2>
+            <p class="mg-paragraph">{c.sec7Desc}</p>
+          </div>
+          <div class="mg-policy-grid">
+            <div class="mg-policy-card">
+              <div class="mg-pcard-num">01</div>
+              <h3 class="mg-pcard-title">{c.sec7Card1Title}</h3>
+              <p class="mg-pcard-desc">{c.sec7Card1Desc}</p>
+            </div>
+            <div class="mg-policy-card">
+              <div class="mg-pcard-num">02</div>
+              <h3 class="mg-pcard-title">{c.sec7Card2Title}</h3>
+              <p class="mg-pcard-desc">{c.sec7Card2Desc}</p>
+            </div>
+            <div class="mg-policy-card">
+              <div class="mg-pcard-num">03</div>
+              <h3 class="mg-pcard-title">{c.sec7Card3Title}</h3>
+              <p class="mg-pcard-desc">{c.sec7Card3Desc}</p>
+            </div>
+            <div class="mg-policy-card">
+              <div class="mg-pcard-num">04</div>
+              <h3 class="mg-pcard-title">{c.sec7Card4Title}</h3>
+              <p class="mg-pcard-desc">{c.sec7Card4Desc}</p>
+            </div>
+          </div>
+          <div class="mg-policy-action">
+            <a href="/multiguard/polityka-zdalnej-pomocy/" class="mg-btn mg-btn-secondary">
+              {c.sec7PolicyBtn}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mg-section mg-section-alt" id="faq">
+      <div class="container centered-container">
+        <div class="mg-section-header">
+          <span class="mg-badge mg-badge-subtle">{c.faqBadge}</span>
+          <h2 class="mg-section-title">{c.faqTitle}</h2>
+        </div>
+        <div class="mg-faq-grid">
+          {c.faqs.map((faq) => (
+            <div class="mg-faq-card">
+              <h3 class="mg-faq-question">❓ {faq.q}</h3>
+              <p class="mg-faq-answer">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section with Phone Preference Rule -->
+    <section class="mg-section mg-section-cta">
+      <div class="container centered-container">
+        <div class="mg-cta-card">
+          <span class="mg-badge mg-badge-brand">{c.ctaBadge}</span>
+          <h2 class="mg-cta-title">{c.ctaTitle}</h2>
+          <p class="mg-cta-subtitle">{c.ctaSubtitle}</p>
+          
+          <div class="mg-cta-actions">
+            <a href="tel:+48505012914" class="mg-btn mg-btn-primary mg-btn-lg">
+              <span class="mg-btn-icon">📞</span>
+              <span>{c.ctaPhoneBtn}</span>
+            </a>
+            <a href={`${prefix}/kontakt`} class="mg-btn mg-btn-secondary mg-btn-lg">
+              <span>{c.ctaContactBtn}</span>
+            </a>
+          </div>
+
+          <div class="mg-phone-notice-box">
+            <div class="mg-notice-icon">⚠️</div>
+            <div class="mg-notice-text">
+              <strong>{lang === 'pl' ? 'Ważna informacja o kontakcie:' : (lang === 'en' ? 'Important contact notice:' : 'Важлива інформація про зв’язок:')}</strong><br />
+              {c.phoneNotice}
+            </div>
+          </div>
+
+          <div class="mg-cta-meta">
+            <span>📍 Ku Wiatrakom 18, 85-856 Bydgoszcz</span>
+            <span>🕒 {c.serviceHours}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>
+
+<style>
+  /* ==========================================================================
+     Multi-Guard Scoped Styling (Centered & Elegant Window Mockup Frames)
+     ========================================================================== */
+  .mg-main {
+    background-color: var(--neutral--neutral-00, #ffffff);
+    color: var(--neutral--neutral-12, #111827);
+    overflow-x: hidden;
+  }
+
+  html[data-theme="dark"] .mg-main {
+    background-color: #0b1322;
+    color: #f1f5f9;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Breadcrumbs */
+  .mg-breadcrumbs {
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+  .mg-breadcrumbs ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .mg-breadcrumbs a {
+    color: inherit;
+    opacity: 0.7;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .mg-breadcrumbs a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+  .mg-breadcrumbs li[aria-current="page"] {
+    color: #d32f2f;
+    font-weight: 600;
+  }
+
+  /* Badges */
+  .mg-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .mg-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+  }
+  .mg-badge-brand {
+    background: rgba(211, 47, 47, 0.12);
+    color: #d32f2f;
+    border: 1px solid rgba(211, 47, 47, 0.25);
+  }
+  html[data-theme="dark"] .mg-badge-brand {
+    background: rgba(211, 47, 47, 0.22);
+    color: #ff6b6b;
+    border-color: rgba(211, 47, 47, 0.4);
+  }
+  .mg-badge-subtle {
+    background: rgba(100, 116, 139, 0.12);
+    color: #475569;
+    border: 1px solid rgba(100, 116, 139, 0.25);
+  }
+  html[data-theme="dark"] .mg-badge-subtle {
+    background: rgba(148, 163, 184, 0.15);
+    color: #cbd5e1;
+    border-color: rgba(148, 163, 184, 0.3);
+  }
+  .mg-badge-red {
+    background: rgba(229, 57, 53, 0.12);
+    color: #d32f2f;
+    border: 1px solid rgba(229, 57, 53, 0.3);
+  }
+  .mg-badge-gold {
+    background: rgba(212, 175, 55, 0.15);
+    color: #b8860b;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+  }
+  html[data-theme="dark"] .mg-badge-gold {
+    background: rgba(212, 175, 55, 0.22);
+    color: #ffd700;
+    border-color: rgba(212, 175, 55, 0.45);
+  }
+  .mg-badge-cyan {
+    background: rgba(6, 182, 212, 0.12);
+    color: #0891b2;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+  }
+  html[data-theme="dark"] .mg-badge-cyan {
+    color: #22d3ee;
+  }
+  .mg-badge-blue {
+    background: rgba(37, 99, 235, 0.12);
+    color: #2563eb;
+    border: 1px solid rgba(37, 99, 235, 0.3);
+  }
+  html[data-theme="dark"] .mg-badge-blue {
+    color: #60a5fa;
+  }
+  .mg-badge-amber {
+    background: rgba(245, 158, 11, 0.12);
+    color: #d97706;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+  html[data-theme="dark"] .mg-badge-amber {
+    color: #fbbf24;
+  }
+  .mg-badge-warning {
+    background: rgba(245, 158, 11, 0.2);
+    color: #b45309;
+    border: 1px solid rgba(245, 158, 11, 0.5);
+  }
+  html[data-theme="dark"] .mg-badge-warning {
+    background: rgba(245, 158, 11, 0.25);
+    color: #fcd34d;
+    border-color: rgba(245, 158, 11, 0.6);
+  }
+
+  /* Hero Section */
+  .mg-hero-section {
+    padding: 3.5rem 0 5rem 0;
+    background: radial-gradient(circle at 50% 0%, rgba(211, 47, 47, 0.08) 0%, transparent 60%);
+    text-align: center;
+    width: 100%;
+  }
+  html[data-theme="dark"] .mg-hero-section {
+    background: radial-gradient(circle at 50% 0%, rgba(211, 47, 47, 0.15) 0%, transparent 70%);
+  }
+  .mg-hero-badge-wrap {
+    margin-bottom: 1.25rem;
+  }
+  .mg-hero-title {
+    font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    max-width: 980px;
+    margin: 0 auto 1.25rem auto;
+    text-align: center;
+  }
+  .mg-hero-subtitle {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    line-height: 1.6;
+    max-width: 820px;
+    margin: 0 auto 2.25rem auto;
+    opacity: 0.85;
+    text-align: center;
+  }
+
+  /* Pills Grid */
+  .mg-pills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+    max-width: 940px;
+    margin: 0 auto 2.5rem auto;
+  }
+  .mg-pill-item {
+    background: rgba(100, 116, 139, 0.08);
+    border: 1px solid rgba(100, 116, 139, 0.18);
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  html[data-theme="dark"] .mg-pill-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .mg-pill-item:hover {
+    transform: translateY(-2px);
+    border-color: #d32f2f;
+  }
+
+  /* Hero Actions */
+  .mg-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+  }
+  .mg-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.65rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  .mg-btn-primary {
+    background-color: #d32f2f;
+    color: #ffffff !important;
+    border: 1px solid #b71c1c;
+    box-shadow: 0 4px 14px rgba(211, 47, 47, 0.35);
+  }
+  .mg-btn-primary:hover {
+    background-color: #b71c1c;
+    box-shadow: 0 6px 20px rgba(211, 47, 47, 0.45);
+    transform: translateY(-2px);
+  }
+  .mg-btn-secondary {
+    background-color: transparent;
+    color: inherit;
+    border: 1px solid rgba(100, 116, 139, 0.3);
+  }
+  .mg-btn-secondary:hover {
+    background-color: rgba(100, 116, 139, 0.1);
+    border-color: currentColor;
+    transform: translateY(-2px);
+  }
+  .mg-btn-standard {
+    background-color: #d32f2f;
+    color: #ffffff !important;
+    border: 1px solid #b71c1c;
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .mg-btn-standard:hover {
+    background-color: #b71c1c;
+    transform: translateY(-2px);
+  }
+  .mg-btn-pro {
+    background: linear-gradient(135deg, #d4af37 0%, #aa8012 100%);
+    color: #0b1322 !important;
+    border: 1px solid #ffd700;
+    font-weight: 700;
+    width: 100%;
+    margin-top: 1rem;
+    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+  }
+  .mg-btn-pro:hover {
+    background: linear-gradient(135deg, #ffd700 0%, #c59b27 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
+  }
+  .mg-btn-lg {
+    padding: 1.1rem 2.2rem;
+    font-size: 1.125rem;
+  }
+
+  /* Hero Mockup Ambient Glow */
+  .mg-hero-mockup-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .mg-hero-ambient-glow {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    height: 75%;
+    background: radial-gradient(circle, rgba(211, 47, 47, 0.25) 0%, rgba(37, 99, 235, 0.18) 45%, transparent 75%);
+    filter: blur(48px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.9;
+  }
+  .mg-hero-mockup-wrap .mg-window-frame {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Universal Window Mockup Frame with Titlebar & Dots */
+  .mg-window-frame {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    border-radius: 16px;
+    background: #0f192b;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.4), 0 0 35px rgba(211, 47, 47, 0.08);
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .mg-window-frame-compare {
+    max-width: 860px !important;
+    margin: 0 auto 3.5rem auto !important;
+  }
+  .mg-window-frame:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 25px 55px -10px rgba(0, 0, 0, 0.5), 0 0 40px rgba(211, 47, 47, 0.14);
+  }
+  .mg-window-bar {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: #0a111e;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .mg-window-dots {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .mg-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+  .mg-dot-red { background: #ff5f56; }
+  .mg-dot-yellow { background: #ffbd2e; }
+  .mg-dot-green { background: #27c93f; }
+  .mg-window-title {
+    margin-left: 1rem;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mg-window-body {
+    background: #090e18;
+    line-height: 0;
+  }
+  .mg-img-fluid {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .mg-visual-caption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #0a111e;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.65);
+    text-align: center;
+  }
+  .mg-caption-badge {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  /* Centered Section Headers */
+  .mg-section {
+    padding: 5rem 0;
+    width: 100%;
+  }
+  .mg-section-alt {
+    background-color: var(--neutral--neutral-02, #f8fafc);
+  }
+  html[data-theme="dark"] .mg-section-alt {
+    background-color: #0e1726;
+  }
+  .mg-section-header {
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto 2.5rem auto;
+  }
+  .mg-section-title {
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0.75rem auto 1rem auto;
+    text-align: center;
+  }
+  .mg-paragraph {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    opacity: 0.85;
+    margin: 0 auto 1.5rem auto;
+    text-align: center;
+    max-width: 800px;
+  }
+
+  /* Centered Points Grid for Sections */
+  .mg-points-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    max-width: 1040px;
+    width: 100%;
+    margin: 0 auto 2.75rem auto;
+  }
+  .mg-point-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    background: var(--neutral--neutral-00, #ffffff);
+    border: 1px solid rgba(100, 116, 139, 0.18);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    text-align: left;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  html[data-theme="dark"] .mg-point-card {
+    background: #0f192b;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .mg-point-card:hover {
+    transform: translateY(-2px);
+    border-color: #d32f2f;
+  }
+  .mg-check-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    font-weight: 800;
+    font-size: 0.8125rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  /* Story Card */
+  .mg-story-card {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.75rem 2.25rem;
+    border-radius: 20px;
+    background: rgba(211, 47, 47, 0.04);
+    border: 1px solid rgba(211, 47, 47, 0.15);
+  }
+  html[data-theme="dark"] .mg-story-card {
+    background: rgba(211, 47, 47, 0.08);
+    border-color: rgba(211, 47, 47, 0.25);
+  }
+  .mg-story-badge-wrap {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Browser Shield Box */
+  .mg-browser-shield-box {
+    max-width: 1040px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3.5rem 2.5rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(6, 182, 212, 0.06) 100%);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    text-align: center;
+  }
+  html[data-theme="dark"] .mg-browser-shield-box {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(6, 182, 212, 0.1) 100%);
+    border-color: rgba(37, 99, 235, 0.3);
+  }
+  .mg-bs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+    text-align: left;
+  }
+  .mg-bs-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: var(--neutral--neutral-00, #ffffff);
+    border: 1px solid rgba(100, 116, 139, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  html[data-theme="dark"] .mg-bs-card {
+    background: #0e1726;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .mg-bs-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .mg-bs-text {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  .mg-link-external {
+    font-weight: 600;
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 1rem;
+    border-bottom: 1.5px solid currentColor;
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+  html[data-theme="dark"] .mg-link-external {
+    color: #60a5fa;
+  }
+  .mg-link-external:hover {
+    opacity: 0.8;
+  }
+
+  /* Roadmap Box */
+  .mg-roadmap-box {
+    max-width: 1040px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem 2.25rem;
+    border-radius: 20px;
+    background: rgba(245, 158, 11, 0.05);
+    border: 2px dashed rgba(245, 158, 11, 0.35);
+  }
+  html[data-theme="dark"] .mg-roadmap-box {
+    background: rgba(245, 158, 11, 0.08);
+    border-color: rgba(245, 158, 11, 0.45);
+  }
+  .mg-roadmap-badge-wrap {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .mg-roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .mg-roadmap-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+    background: var(--neutral--neutral-00, #ffffff);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    text-align: left;
+  }
+  html[data-theme="dark"] .mg-roadmap-item {
+    background: #0e1726;
+  }
+  .mg-roadmap-bullet {
+    flex-shrink: 0;
+  }
+
+  /* Compare Section & Editions Grid */
+  .mg-section-compare {
+    background: linear-gradient(180deg, transparent 0%, rgba(100, 116, 139, 0.05) 100%);
+  }
+  .mg-editions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1040px;
+    width: 100%;
+    margin: 0 auto 3.5rem auto;
+  }
+  .mg-edition-card {
+    border-radius: 18px;
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background: #111a2c;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .mg-card-standard {
+    border-top: 5px solid #d32f2f;
+    box-shadow: 0 10px 30px rgba(211, 47, 47, 0.12);
+  }
+  .mg-card-standard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(211, 47, 47, 0.2);
+  }
+  .mg-card-pro {
+    position: relative;
+    border-top: 5px solid #d4af37;
+    box-shadow: 0 12px 36px rgba(212, 175, 55, 0.22), 0 0 40px rgba(212, 175, 55, 0.08);
+    background: radial-gradient(circle at 85% 15%, rgba(212, 175, 55, 0.12), transparent 60%), #131f33;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+  }
+  .mg-card-pro:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 45px rgba(212, 175, 55, 0.35), 0 0 50px rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.6);
+  }
+  .mg-pro-crown {
+    position: absolute;
+    top: -14px;
+    right: 20px;
+    background: linear-gradient(135deg, #d4af37, #aa8012);
+    color: #0b1322;
+    font-size: 0.6875rem;
+    font-weight: 800;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    letter-spacing: 0.05em;
+  }
+  .mg-edition-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    margin: 0.75rem 0 0.25rem 0;
+  }
+  .mg-edition-slogan {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  .mg-edition-theme {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.75rem;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    margin-bottom: 1rem;
+  }
+  .mg-color-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+  }
+  .mg-swatch-red { background: #d32f2f; }
+  .mg-swatch-gold { background: #d4af37; }
+  .mg-edition-target {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 1.25rem;
+  }
+  .mg-edition-features {
+    margin-top: 1.75rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .mg-edition-features h4 {
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .mg-edition-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .mg-edition-list li {
+    display: flex;
+    gap: 0.65rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+  .mg-icon-check {
+    font-weight: 800;
+  }
+  .mg-icon-red { color: #ff5252; }
+  .mg-icon-gold { color: #ffd700; }
+
+  /* Comparison Table */
+  .mg-table-wrap {
+    overflow-x: auto;
+    border-radius: 14px;
+    border: 1px solid rgba(100, 116, 139, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    background: var(--neutral--neutral-00, #ffffff);
+    max-width: 1040px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  html[data-theme="dark"] .mg-table-wrap {
+    background: #0e1726;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .mg-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+    text-align: left;
+  }
+  .mg-table th, .mg-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(100, 116, 139, 0.12);
+  }
+  .mg-table th {
+    background: rgba(100, 116, 139, 0.05);
+    font-weight: 700;
+  }
+  html[data-theme="dark"] .mg-table th {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .mg-col-standard {
+    color: #d32f2f;
+  }
+  .mg-col-pro {
+    color: #d4af37;
+  }
+  .mg-row-highlight {
+    background: rgba(212, 175, 55, 0.04);
+  }
+  html[data-theme="dark"] .mg-row-highlight {
+    background: rgba(212, 175, 55, 0.08);
+  }
+
+  /* Policy Box */
+  .mg-policy-box {
+    max-width: 1040px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3.5rem 2.5rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.05) 0%, rgba(37, 99, 235, 0.05) 100%);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+  }
+  html[data-theme="dark"] .mg-policy-box {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%);
+    border-color: rgba(6, 182, 212, 0.35);
+  }
+  .mg-policy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .mg-policy-card {
+    padding: 1.75rem;
+    border-radius: 14px;
+    background: var(--neutral--neutral-00, #ffffff);
+    border: 1px solid rgba(100, 116, 139, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+  html[data-theme="dark"] .mg-policy-card {
+    background: #0e1726;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  .mg-pcard-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0891b2;
+    margin-bottom: 0.5rem;
+    font-family: monospace;
+  }
+  html[data-theme="dark"] .mg-pcard-num {
+    color: #22d3ee;
+  }
+  .mg-pcard-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+  .mg-pcard-desc {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    opacity: 0.85;
+    margin: 0;
+  }
+  .mg-policy-action {
+    text-align: center;
+  }
+
+  /* FAQ Grid */
+  .mg-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    max-width: 1040px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .mg-faq-card {
+    padding: 1.75rem;
+    border-radius: 14px;
+    background: var(--neutral--neutral-00, #ffffff);
+    border: 1px solid rgba(100, 116, 139, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  html[data-theme="dark"] .mg-faq-card {
+    background: #111a2c;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .mg-faq-question {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.35;
+  }
+  .mg-faq-answer {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    opacity: 0.85;
+    margin: 0;
+  }
+
+  /* CTA Section */
+  .mg-section-cta {
+    padding: 6rem 0;
+    background: radial-gradient(circle at 50% 50%, rgba(211, 47, 47, 0.1) 0%, transparent 70%);
+    width: 100%;
+  }
+  .mg-cta-card {
+    max-width: 860px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3.5rem 2.5rem;
+    border-radius: 24px;
+    text-align: center;
+    background: #0f192b;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  }
+  .mg-cta-title {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    margin: 1rem 0 1rem 0;
+  }
+  .mg-cta-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    max-width: 680px;
+    margin: 0 auto 2.5rem auto;
+    opacity: 0.85;
+  }
+  .mg-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .mg-phone-notice-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+    max-width: 680px;
+    margin: 0 auto 2rem auto;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: #fef3c7;
+  }
+  .mg-notice-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  .mg-cta-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.875rem;
+    opacity: 0.7;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+  }
+
+  /* Comprehensive Multi-Device Responsive Queries */
+  @media (max-width: 991px) {
+    .mg-section {
+      padding: 3.75rem 0;
+    }
+    .mg-hero-section {
+      padding: 2.75rem 0 4rem 0;
+    }
+    .mg-hero-title {
+      font-size: clamp(1.85rem, 5vw, 2.75rem);
+    }
+    .mg-hero-subtitle {
+      font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+      margin-bottom: 2rem;
+    }
+    .mg-section-title {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+    }
+    .mg-paragraph {
+      font-size: clamp(0.9rem, 2vw, 1.025rem);
+    }
+    .mg-editions-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 640px;
+      margin: 0 auto 3rem auto;
+    }
+    .mg-edition-card {
+      padding: 2rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mg-points-grid,
+    .mg-roadmap-grid,
+    .mg-policy-grid,
+    .mg-bs-grid,
+    .mg-faq-grid {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+    .mg-browser-shield-box,
+    .mg-roadmap-box,
+    .mg-policy-box,
+    .mg-story-card,
+    .mg-cta-card {
+      padding: 2rem 1.25rem;
+      border-radius: 16px;
+    }
+    .mg-hero-actions,
+    .mg-cta-actions {
+      flex-direction: column;
+      width: 100%;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+      gap: 0.75rem;
+    }
+    .mg-hero-actions .mg-btn,
+    .mg-cta-actions .mg-btn {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    .mg-window-frame {
+      border-radius: 12px;
+    }
+    .mg-window-bar {
+      padding: 0.55rem 0.85rem;
+    }
+    .mg-window-title {
+      font-size: 0.725rem;
+      margin-left: 0.65rem;
+    }
+    .mg-visual-caption {
+      flex-wrap: wrap;
+      font-size: 0.75rem;
+      padding: 0.6rem 0.85rem;
+      gap: 0.35rem;
+    }
+    .mg-window-dots {
+      gap: 5px;
+    }
+    .mg-dot {
+      width: 9px;
+      height: 9px;
+    }
+    .mg-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+    .mg-table {
+      min-width: 560px;
+      font-size: 0.8125rem;
+    }
+    .mg-table th, .mg-table td {
+      padding: 0.75rem 0.85rem;
+    }
+    .mg-edition-card {
+      padding: 1.75rem 1.35rem;
+      border-radius: 16px;
+    }
+    .mg-edition-title {
+      font-size: 1.55rem;
+    }
+    .mg-cta-title {
+      font-size: clamp(1.65rem, 5.5vw, 2.25rem);
+    }
+    .mg-cta-subtitle {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    .mg-window-frame-compare {
+      margin-bottom: 2rem !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mg-hero-section {
+      padding: 1.75rem 0 2.75rem 0;
+    }
+    .mg-section {
+      padding: 2.25rem 0;
+    }
+    .mg-browser-shield-box,
+    .mg-roadmap-box,
+    .mg-policy-box,
+    .mg-story-card,
+    .mg-cta-card {
+      padding: 1.5rem 1rem;
+      border-radius: 14px;
+    }
+    .mg-pills-row {
+      gap: 0.35rem;
+      margin-bottom: 1.75rem;
+    }
+    .mg-pill-item {
+      font-size: 0.78125rem;
+      padding: 0.35rem 0.7rem;
+    }
+    .mg-point-card {
+      padding: 0.875rem 1rem;
+      gap: 0.65rem;
+      font-size: 0.85rem;
+      border-radius: 10px;
+    }
+    .mg-check-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 0.75rem;
+    }
+    .mg-phone-notice-box {
+      padding: 0.75rem 0.85rem;
+      gap: 0.65rem;
+      font-size: 0.8125rem;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .mg-notice-icon {
+      font-size: 1.25rem;
+    }
+    .mg-cta-meta {
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.8125rem;
+    }
+    .mg-window-bar {
+      padding: 0.45rem 0.65rem;
+    }
+    .mg-window-title {
+      font-size: 0.65rem;
+      margin-left: 0.45rem;
+    }
+    .mg-caption-badge {
+      font-size: 0.625rem;
+      padding: 2px 6px;
+    }
+    .mg-visual-caption {
+      font-size: 0.6875rem;
+      padding: 0.5rem 0.65rem;
+    }
+    .mg-btn {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9375rem;
+    }
+    .mg-badge {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.7rem;
+    }
+    .mg-hero-ambient-glow {
+      display: none;
+    }
+  }
+</style>

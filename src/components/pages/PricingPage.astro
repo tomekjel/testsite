@@ -1,0 +1,503 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../Navbar.astro";
+import Footer from "../Footer.astro";
+import type { Lang } from "../../i18n/translations";
+import "../../styles/ix/index.css";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "pl" } = Astro.props;
+const prefix = lang === "pl" ? "" : `/${lang}`;
+const currentPath = `${prefix}/cennik`;
+
+const content = {
+  pl: {
+    seoTitle: "Cennik Serwisu Elektroniki Bydgoszcz | Diagnoza i Wycena | Multi-Servis",
+    seoDesc: "Przejrzyste zasady serwisu elektroniki w Bydgoszczy (Ku Wiatrakom 18). Rzetelna diagnoza, każda naprawa wyceniana indywidualnie przed realizacją. Gwarancja od 3 do 24 m-cy.",
+    heroBadge: "Przejrzyste zasady • Uczciwa wycena",
+    heroTitle: "Cennik i Zasady Napraw w Multi-Servis",
+    heroSubtitle: "W naszym serwisie nie stosujemy ukrytych kosztów ani sztucznych widełek cenowych. Każdą naprawę oraz diagnozę wyceniamy indywidualnie na podstawie usterki i kosztu części — naprawę wykonujemy wyłącznie po Twojej akceptacji. W przypadku rezygnacji z naprawy pobierana jest opłata za przeprowadzoną diagnostykę urządzenia.",
+    pills: ["⚡ Szybka realizacja", "😊 Miła i fachowa obsługa", "🔍 Rzetelna diagnoza i wycena", "🛡️ Gwarancja 3-24 m-ce", "🤝 Uczciwa wycena przed naprawą", "📍 Bydgoszcz Wyżyny"],
+    pricingBadge: "Model rozliczeń",
+    pricingTitle: "Jak rozliczamy naprawy w warsztacie?",
+    pricingSubtitle: "O kosztach decydujesz sam po otrzymaniu wyceny. Po sprawdzeniu sprzętu dzwonimy z dokładnym kosztorysem.",
+    card1Badge: "Rzetelna ocena usterki",
+    card1Title: "Diagnoza sprzętu",
+    card1Price: "Indywidualna",
+    card1Period: "/ przed naprawą",
+    card1Desc: "Dokładne sprawdzenie usterki w warsztacie i telefoniczna wycena.",
+    card1Btn: "Dostarcz sprzęt do serwisu →",
+    card1Features: [
+      "Lokalizacja uszkodzonego komponentu",
+      "Telefon z wyceną części i robocizny",
+      "Określenie czasu oczekiwania",
+      "Wycena przedstawiana przed rozpoczęciem naprawy"
+    ],
+    card2Badge: "Indywidualna kalkulacja",
+    card2Title: "Naprawa TV / PC / Laptop",
+    card2Price: "Wycena",
+    card2Period: "/ po diagnozie",
+    card2Desc: "Naprawa realizowana wyłącznie po Twojej wcześniejszej zgodzie telefonicznej.",
+    card2Btn: "Zadzwoń: 505 012 914 →",
+    card2Features: [
+      "Oryginalne lub sprawdzone części OEM",
+      "Gwarancja od 3 do 24 miesięcy",
+      "Testy obciążeniowe po wykonaniu usługi",
+      "Dostępna instalacja Multi-Guard (kontrola temperatur i ochrona)",
+      "Rozliczenie przy odbiorze sprzętu"
+    ],
+    procBadge: "Procedura serwisu",
+    procTitle: "Jak wygląda naprawa krok po kroku?",
+    procSubtitle: "Brak ukrytych kosztów i pełna kontrola nad decyzją na każdym etapie.",
+    step1Title: "Rzetelna diagnoza",
+    step1Desc: "Przynosisz sprzęt na ul. Ku Wiatrakom 18 w Bydgoszczy. Dokładnie sprawdzamy i mierzymy, co jest uszkodzone.",
+    step2Title: "Kontakt i Wycena",
+    step2Desc: "Dzwonimy do Ciebie z informacją: co uległo usterce, jak należy to naprawić, jaki będzie całkowity koszt i czas oczekiwania.",
+    step3Title: "Decyzja i Odbiór",
+    step3Desc: "Jeśli się zgadzasz – naprawiamy i otrzymujesz od min. 3  do 24 m-cy gwarancji. Jeśli nie wyrażasz zgody – odbierasz sprzęt. Terminy odbioru ustalamy elastycznie.",
+    hubsBadge: "Zakres usług",
+    hubsTitle: "Co naprawiamy w warsztacie Multi-Servis?",
+    hubsSubtitle: "Dowiedz się więcej o procesie diagnozy, metodach naprawy i typowych usterkach.",
+    hubTv: "Telewizory",
+    hubTvDesc: "Wymiana podświetlenia LED, naprawa zasilaczy, płyt głównych i modułów T-CON (LED, OLED, QLED).",
+    hubLaptop: "Laptopy",
+    hubLaptopDesc: "Naprawa po zalaniu cieczą, mikrolutowanie BGA, wymiana matryc, klawiatur, złącz zasilania i czyszczenie.",
+    hubPc: "Komputery PC",
+    hubPcDesc: "Diagnostyka zwarć płyt głównych i kart graficznych, komputery gamingowe, wymiana past i zasilaczy.",
+    hubMultiGuard: "Program Multi-Guard",
+    hubMultiGuardDesc: "Autorskie oprogramowanie: kontrola temperatur, ochrona kamery i mikrofonu, diagnostyka dysków i zdalne wsparcie warsztatu.",
+    detailsLink: "Szczegóły →"
+  },
+  en: {
+    seoTitle: "Electronics Repair Pricing Bydgoszcz | Diagnosis & Quote | Multi-Servis",
+    seoDesc: "Transparent pricing at Multi-Servis electronics workshop in Bydgoszcz (Ku Wiatrakom 18). Accurate fault diagnosis, individual repair quotes beforehand, 3-24 months warranty.",
+    heroBadge: "Transparent Rules • Fair Quotation",
+    heroTitle: "Pricing & Repair Policies at Multi-Servis",
+    heroSubtitle: "We do not use hidden costs or artificial price brackets. Every repair and diagnosis is priced individually based on the fault and cost of parts — repairs are carried out solely after your approval. In the event of declining the repair, a diagnostic fee applies for the assessment performed.",
+    pills: ["⚡ Fast turnaround", "😊 Friendly & professional service", "🔍 Fault diagnosis & quote", "🛡️ 3-24 months warranty", "🤝 Fair quote before repair", "📍 Bydgoszcz Wyżyny"],
+    pricingBadge: "Billing Model",
+    pricingTitle: "How we charge for repairs in our workshop",
+    pricingSubtitle: "You decide on costs after receiving our detailed quote. Work starts only after your explicit approval.",
+    card1Badge: "Thorough Inspection",
+    card1Title: "Hardware Diagnosis",
+    card1Price: "Individual",
+    card1Period: "/ before repair",
+    card1Desc: "Thorough electronic inspection in our workshop and a phone quotation.",
+    card1Btn: "Bring device to workshop →",
+    card1Features: [
+      "Precise fault localization",
+      "Phone call with parts & labor quote",
+      "Turnaround time estimate",
+      "Quote provided before starting work"
+    ],
+    card2Badge: "Custom Calculation",
+    card2Title: "TV / PC / Laptop Repair",
+    card2Price: "Quotation",
+    card2Period: "/ after diagnosis",
+    card2Desc: "Repairs proceed only after your explicit verbal confirmation.",
+    card2Btn: "Call: 505 012 914 →",
+    card2Features: [
+      "Genuine OEM or high-grade components",
+      "Warranty from 3 to 24 months",
+      "Full load testing after service",
+      "Optional Multi-Guard installation (thermal control & protection)",
+      "Payment upon device pickup"
+    ],
+    procBadge: "Service Process",
+    procTitle: "How repairs work step by step",
+    procSubtitle: "Zero hidden costs and full control over every decision at every phase.",
+    step1Title: "Thorough Diagnosis",
+    step1Desc: "Bring your device to Ku Wiatrakom 18, Bydgoszcz. We thoroughly inspect and measure all components.",
+    step2Title: "Contact & Quote",
+    step2Desc: "We call you with details: what broke down, how it can be fixed, the total price, and expected turnaround.",
+    step3Title: "Decision & Pickup",
+    step3Desc: "If you agree – we repair and you receive from min. 3 to 24 months warranty. If you do not agree – you pick up your equipment. Pickup times are flexible.",
+    hubsBadge: "Service Range",
+    hubsTitle: "What electronics do we repair?",
+    hubsSubtitle: "Learn more about our diagnostic procedures, repair methods, and common issues.",
+    hubTv: "Televisions",
+    hubTvDesc: "LED backlight replacement, power supplies, logic boards, and T-CON boards (LED, OLED, QLED).",
+    hubLaptop: "Laptops",
+    hubLaptopDesc: "Liquid damage repairs, BGA micro-soldering, screens, keyboards, charging ports, and thermal maintenance.",
+    hubPc: "Desktop PCs",
+    hubPcDesc: "Motherboard and graphics card short-circuit repair, gaming computers, thermal repasting, and power supplies.",
+    hubMultiGuard: "Multi-Guard Software",
+    hubMultiGuardDesc: "Proprietary software: thermal telemetry, camera & microphone privacy protection, disk diagnostics, and remote support.",
+    detailsLink: "Details →"
+  },
+  uk: {
+    seoTitle: "Прайс на ремонт електроніки Бидгощ | Діагностика та оцінка | Multi-Servis",
+    seoDesc: "Прозорі правила сервісу електроніки в Бидгощі (Ku Wiatrakom 18). Індивідуальна оцінка до початку ремонту, гарантія від 3 до 24 міс.",
+    heroBadge: "Прозорі правила • Чесна оцінка",
+    heroTitle: "Прайс та правила ремонту в Multi-Servis",
+    heroSubtitle: "У нашому сервісі немає прихованих платежів та штучних цінових рамок. Кожен ремонт та діагностику ми оцінюємо індивідуально на основі несправності та вартості деталей — ремонт виконується виключно після вашої згоди. У разі відмови від ремонту стягується плата за проведену діагностику пристрою.",
+    pills: ["⚡ Швидке виконання", "😊 Привітне та професійне обслуговування", "🔍 Діагностика та оцінка несправності", "🛡️ Гарантія 3-24 міс.", "🤝 Чесна оцінка до ремонту", "📍 Бидгощ Вижини"],
+    pricingBadge: "Модель розрахунків",
+    pricingTitle: "Як розраховується вартість ремонту в майстерні?",
+    pricingSubtitle: "Ви самі приймаєте рішення щодо ремонту після оцінки вартості.",
+    card1Badge: "Ретельний огляд",
+    card1Title: "Діагностика пристрою",
+    card1Price: "Індивідуальна",
+    card1Period: "/ до ремонту",
+    card1Desc: "Детальна перевірка несправності в майстерні та оцінка по телефону.",
+    card1Btn: "Привезти техніку до сервісу →",
+    card1Features: [
+      "Точна локалізація пошкодженого компонента",
+      "Дзвінок з вартістю запчастин та роботи",
+      "Узгодження термінів ремонту",
+      "Оцінка надається до початку робіт"
+    ],
+    card2Badge: "Індивідуальний розрахунок",
+    card2Title: "Ремонт TV / PC / Ноутбука",
+    card2Price: "Оцінка",
+    card2Period: "/ після огляду",
+    card2Desc: "Ремонт виконується виключно після вашої згоди телефоном.",
+    card2Btn: "Зателефонувати: 505 012 914 →",
+    card2Features: [
+      "Оригінальні або надійні OEM-деталі",
+      "Гарантія від 3 до 24 місяців",
+      "Навантажувальні тести після ремонту",
+      "Доступне встановлення Multi-Guard (контроль температур та захист)",
+      "Розрахунок при отриманні техніки"
+    ],
+    procBadge: "Процес ремонту",
+    procTitle: "Як відбувається ремонт крок за кроком?",
+    procSubtitle: "Жодних прихованих платежів та повний контроль над рішенням на кожному етапі.",
+    step1Title: "Точна діагностика",
+    step1Desc: "Ви привозите пристрій на вул. Ku Wiatrakom 18 у Бидгощі. Ми детально перевіряємо та вимірюємо, що вийшло з ладу.",
+    step2Title: "Дзвінок та оцінка",
+    step2Desc: "Ми телефонуємо вам із деталями: що зламалося, як це виправити, якою буде повна вартість та скільки часу знадобиться.",
+    step3Title: "Рішення та видача",
+    step3Desc: "Якщо ви згодні — ремонтуємо і надаємо від мін. 3 до 24 міс. гарантії. Якщо не даєте згоди — забираєте техніку. Терміни отримання узгоджуємо гнучко.",
+    hubsBadge: "Спектр послуг",
+    hubsTitle: "Що ми ремонтуємо в Multi-Servis?",
+    hubsSubtitle: "Дізнайтеся більше про процес діагностики, способи ремонту та типові несправності.",
+    hubTv: "Телевізори",
+    hubTvDesc: "Заміна LED-підсвічування, ремонт блоків живлення, материнських плат та модулів T-CON (LED, OLED, QLED).",
+    hubLaptop: "Ноутбуки",
+    hubLaptopDesc: "Ремонт після залиття, BGA-пайка, заміна матриць, клавіатур, роз'ємів живлення та чистка.",
+    hubPc: "Комп'ютери PC",
+    hubPcDesc: "Діагностика замикань материнських плат та відеокарт, ігрові комп'ютери, заміна паст та блоків живлення.",
+    hubMultiGuard: "Програма Multi-Guard",
+    hubMultiGuardDesc: "Фірмове ПЗ: моніторинг температур, захист камери й мікрофона, діагностика накопичувачів та віддалена підтримка.",
+    detailsLink: "Детальніше →"
+  }
+};
+
+const c = content[lang] || content.pl;
+
+// Service Offer + BreadcrumbList JSON-LD
+const pricingSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": `https://multi-servis.pl${prefix}/cennik#diagnosis`,
+      "name": lang === "pl" ? "Diagnoza sprzętu elektronicznego Bydgoszcz" : "Hardware Diagnostics Bydgoszcz",
+      "provider": { "@id": "https://multi-servis.pl/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Wyżyny, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Województwo kujawsko-pomorskie" }
+      ],
+      "offers": {
+        "@type": "Offer",
+        "name": lang === "pl" ? "Diagnoza i wycena sprzętu" : "Hardware Diagnostics & Quote",
+        "description": lang === "pl" ? "Precyzyjna diagnoza usterki telewizora, laptopa lub PC w warsztacie, telefon ze szczegółową wyceną przed naprawą." : "Hardware fault diagnostics at workshop with phone quote before repair."
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": lang === "pl" ? "Strona główna" : (lang === "en" ? "Home" : "Головна"), "item": `https://multi-servis.pl${prefix || "/"}` },
+        { "@type": "ListItem", "position": 2, "name": lang === "pl" ? "Cennik" : (lang === "en" ? "Pricing" : "Ціни"), "item": `https://multi-servis.pl${prefix}/cennik` }
+      ]
+    }
+  ]
+});
+---
+
+<Layout
+  title={c.seoTitle}
+  description={c.seoDesc}
+  wfPage="cennik"
+  ogImage="/images/social-20preview.avif"
+  lang={lang}
+  keywords={lang === "pl" ? "cennik serwis elektroniki Bydgoszcz, wycena diagnozy, cena naprawa telewizora, Multi-Servis cennik" : (lang === "en" ? "pricing electronics repair Bydgoszcz, diagnosis quote, TV repair cost, Multi-Servis pricing" : "ціни ремонт електроніки Бидгощ, діагностика та оцінка, Multi-Servis ціни")}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={pricingSchema} />
+
+  <!-- Unified Navbar -->
+  <Navbar lang={lang} currentPath={currentPath} />
+
+  <!-- Hero Section -->
+  <section class="section" style="padding-top: 2rem; padding-bottom: 3.5rem;">
+    <div class="container centered" style="max-width: 860px; margin: 0 auto; text-align: center;">
+      <nav aria-label="Breadcrumb" style="margin-bottom: 1rem; font-size: 0.875rem;">
+          <ol style="list-style: none; padding: 0; margin: 0; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <li><a href={prefix || "/"} style="color: inherit; opacity: 0.75; text-decoration: none;">{lang === "pl" ? "Główna" : (lang === "en" ? "Home" : "Головна")}</a></li>
+            <li aria-hidden="true" style="opacity: 0.4; font-size: 0.75rem;">/</li>
+            <li aria-current="page" style="color: #d32f2f; font-weight: 600;">{lang === "pl" ? "Cennik" : (lang === "en" ? "Pricing" : "Ціни")}</li>
+          </ol>
+        </nav>
+        <div class="section-badge">{c.heroBadge}</div>
+      <h1 class="display-h1" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
+        {c.heroTitle}
+      </h1>
+      <p class="large-paragraph t---neutral-10" style="max-width: 740px; margin: 0 auto 2rem auto;">
+        {c.heroSubtitle}
+      </p>
+
+      <!-- Trust Mini-Okienka Pills -->
+      <div class="hero-quick-stats" style="justify-content: center; margin: 0 auto;">
+        {c.pills.map((pill) => (
+          <div class="hero-stat-pill">
+            {pill}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Cards Section -->
+  <section class="section inverse" style="padding: 5rem 0;">
+    <div class="container centered">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem auto;">
+        <div class="section-badge" style="background: rgba(255,255,255,0.1); color: #ffffff;">{c.pricingBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.75rem; color: #ffffff;">{c.pricingTitle}</h2>
+        <p class="large-paragraph" style="color: rgba(255, 255, 255, 0.85);">
+          {c.pricingSubtitle}
+        </p>
+      </div>
+
+      <div class="pricing-cards-grid">
+        
+        <!-- Card 1: Diagnoza sprzętu -->
+        <div class="pricing-card">
+          <div class="pricing-main">
+            <div class="pricing-heading">
+              <div class="section-badge" style="margin-bottom: 0.75rem; background: rgba(211, 47, 47, 0.25); color: #ff6b6b; border: 1px solid rgba(211, 47, 47, 0.4);">{c.card1Badge}</div>
+              <h3 class="display-h4" style="color: #ffffff;">{c.card1Title}</h3>
+            </div>
+            <div class="pricing-description">
+              <div class="price">
+                <h4 class="display-h2" style="color: #d32f2f;">{c.card1Price}</h4>
+                <div class="large-paragraph t---neutral-10" style="color: rgba(255,255,255,0.7);">{c.card1Period}</div>
+              </div>
+              <p class="paragraph t---neutral-10" style="color: rgba(255,255,255,0.85);">{c.card1Desc}</p>
+            </div>
+            <a href={`${prefix}/kontakt`} class="primary-button w-inline-block" style="text-align: center; justify-content: center; color: #ffffff !important;">
+              <div class="button-content">
+                <p class="button-text" style="color: #ffffff !important; margin: 0;">{c.card1Btn}</p>
+              </div>
+            </a>
+          </div>
+          <div class="check-list-wrap">
+            {c.card1Features.map((feat, idx) => (
+              <div class="icon-text">
+                <div class="icon m w-embed">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#d32f2f" viewBox="0 0 256 256">
+                    <path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"></path>
+                  </svg>
+                </div>
+                <p class="paragraph" style="color: #ffffff;">
+                  {idx === c.card1Features.length - 1 ? <strong style="color: #ffffff;">{feat}</strong> : feat}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Card 2: Naprawa elektroniki -->
+        <div class="pricing-card">
+          <div class="pricing-main">
+            <div class="pricing-heading">
+              <div class="section-badge" style="margin-bottom: 0.75rem; background: rgba(211, 47, 47, 0.25); color: #ff6b6b; border: 1px solid rgba(211, 47, 47, 0.4);">{c.card2Badge}</div>
+              <h3 class="display-h4" style="color: #ffffff;">{c.card2Title}</h3>
+            </div>
+            <div class="pricing-description">
+              <div class="price">
+                <h4 class="display-h2" style="color: #ffffff;">{c.card2Price}</h4>
+                <div class="large-paragraph t---neutral-10" style="color: rgba(255,255,255,0.7);">{c.card2Period}</div>
+              </div>
+              <p class="paragraph t---neutral-10" style="color: rgba(255,255,255,0.85);">{c.card2Desc}</p>
+            </div>
+            <a href="tel:+48505012914" class="primary-button w-inline-block" style="text-align: center; justify-content: center; color: #ffffff !important;">
+              <div class="button-content">
+                <p class="button-text" style="color: #ffffff !important; margin: 0;">{c.card2Btn}</p>
+              </div>
+            </a>
+          </div>
+          <div class="check-list-wrap">
+            {c.card2Features.map((feat, idx) => (
+              <div class="icon-text">
+                <div class="icon m w-embed">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#d32f2f" viewBox="0 0 256 256">
+                    <path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"></path>
+                  </svg>
+                </div>
+                <p class="paragraph" style="color: #ffffff;">
+                  {idx === c.card2Features.length - 1 ? <strong style="color: #ffffff;">{feat}</strong> : feat}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="overlay-03"></div>
+    <div class="pricing-bg"></div>
+  </section>
+
+  <!-- Process Section: 3 Steps -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered">
+      <div style="text-align: center; max-width: 760px; margin: 0 auto 3rem auto;">
+        <div class="section-badge">{c.procBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.5rem;">{c.procTitle}</h2>
+        <p class="large-paragraph t---neutral-10">{c.procSubtitle}</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1.5rem; max-width: 980px; margin: 0 auto;">
+        <div class="subpage-card" style="text-align: left;">
+          <div style="color: #d32f2f; font-weight: 800; font-size: 1.75rem; margin-bottom: 0.5rem;">01</div>
+          <h3 class="display-h5" style="margin-bottom: 0.5rem;">{c.step1Title}</h3>
+          <p class="paragraph t---neutral-10">{c.step1Desc}</p>
+        </div>
+
+        <div class="subpage-card" style="text-align: left;">
+          <div style="color: #d32f2f; font-weight: 800; font-size: 1.75rem; margin-bottom: 0.5rem;">02</div>
+          <h3 class="display-h5" style="margin-bottom: 0.5rem;">{c.step2Title}</h3>
+          <p class="paragraph t---neutral-10">{c.step2Desc}</p>
+        </div>
+
+        <div class="subpage-card" style="text-align: left;">
+          <div style="color: #d32f2f; font-weight: 800; font-size: 1.75rem; margin-bottom: 0.5rem;">03</div>
+          <h3 class="display-h5" style="margin-bottom: 0.5rem;">{c.step3Title}</h3>
+          <p class="paragraph t---neutral-10">{c.step3Desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Multi-Guard Promo Banner on Pricing Page -->
+  <section class="section" style="padding: 1.5rem 0 3.5rem 0;">
+    <div class="container">
+      <div class="mg-service-promo-card">
+        <div class="mg-promo-text-wrap">
+          <div class="mg-promo-badge">🛡️ {lang === 'pl' ? 'Autorskie Oprogramowanie Warsztatowe' : (lang === 'en' ? 'Proprietary Workshop Software' : 'Фірмове програмне забезпечення')}</div>
+          <h3 class="mg-promo-title">
+            {lang === 'pl' ? 'Zabezpiecz sprzęt po naprawie z programem Multi-Guard' : (lang === 'en' ? 'Protect your hardware after repair with Multi-Guard' : 'Захистіть техніку після ремонту за допомогою Multi-Guard')}
+          </h3>
+          <p class="mg-promo-desc">
+            {lang === 'pl'
+              ? 'Multi-Guard to nasze autorskie, lekkie narzędzie instalowane i optymalizowane bezpośrednio w serwisie pod konkretny model laptopa lub PC. Zapewnia bieżący monitoring temperatur procesora, powiadomienia o awariach chłodzenia, sprzętową blokadę kamery/mikrofonu oraz zdalne wsparcie techniczne (edycja Pro).'
+              : (lang === 'en'
+                ? 'Multi-Guard is our lightweight proprietary tool installed and customized directly in the workshop for each specific laptop or PC model. It provides real-time CPU thermal monitoring, cooling warnings, camera/microphone hardware privacy, and remote technical support (Pro edition).'
+                : 'Multi-Guard — це наше легке фірмове ПЗ, яке встановлюється та оптимізується безпосередньо в сервісі під кожну модель ноутбука чи ПК. Забезпечує моніторинг температур, захист приватності та дистанційну підтримку (Pro).')}
+          </p>
+          <div class="mg-promo-features">
+            <span class="mg-promo-feat">⚡ {lang === 'pl' ? 'Podgląd temperatur CPU i dysków SSD' : (lang === 'en' ? 'CPU & SSD Thermal Telemetry' : 'Моніторинг температур')}</span>
+            <span class="mg-promo-feat">🔒 {lang === 'pl' ? 'Blokada kamery i mikrofonu' : (lang === 'en' ? 'Privacy camera & mic lock' : 'Блокування камери і мікрофона')}</span>
+            <span class="mg-promo-feat">⚙️ {lang === 'pl' ? 'Sterowniki dopasowane w warsztacie' : (lang === 'en' ? 'Custom drivers tailored in workshop' : 'Драйвери під конкретну модель')}</span>
+            <span class="mg-promo-feat">🤝 {lang === 'pl' ? 'Zdalne wsparcie serwisanta (Pro)' : (lang === 'en' ? 'Remote technician support (Pro)' : 'Дистанційна допомога (Pro)')}</span>
+          </div>
+          <div class="mg-promo-actions">
+            <a href={`${prefix}/multi-guard`} class="primary-button w-inline-block" style="color: #ffffff !important; text-decoration: none;">
+              <div class="button-content">
+                <p class="button-text" style="color: #ffffff !important; margin: 0;">
+                  {lang === 'pl' ? 'Szczegóły programu Multi-Guard →' : (lang === 'en' ? 'Multi-Guard details →' : 'Дізнатися більше →')}
+                </p>
+              </div>
+            </a>
+            <a href="tel:+48505012914" class="outline-button w-inline-block" style="color: #ffffff; border-color: rgba(255,255,255,0.3); text-decoration: none;">
+              <div class="button-content">
+                <p class="button-text" style="margin: 0; color: #ffffff;">📞 505 012 914</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="mg-promo-visual">
+          <div class="mg-promo-window">
+            <div class="mg-promo-window-bar">
+              <span class="mg-promo-dot" style="background:#ff5f56;"></span>
+              <span class="mg-promo-dot" style="background:#ffbd2e;"></span>
+              <span class="mg-promo-dot" style="background:#27c93f;"></span>
+              <span class="mg-promo-title-bar">{lang === 'pl' ? 'Multi-Guard Pro • Multi-Servis Bydgoszcz' : (lang === 'en' ? 'Multi-Guard Pro • Multi-Servis Bydgoszcz' : 'Multi-Guard Pro • Multi-Servis Бидгощ')}</span>
+            </div>
+            <img
+              src="/images/multiguard/multiguard-pro-desktop.png"
+              alt="Multi-Guard Pro Dashboard"
+              loading="lazy"
+              width="1360"
+              height="880"
+              class="mg-img-fluid"
+              style="object-fit: contain; max-width: 100%; height: auto;"
+            />
+            <div class="mg-promo-caption">
+              <span>{lang === 'pl' ? 'Multi-Guard Pro – zaawansowane narzędzie diagnostyczne' : (lang === 'en' ? 'Multi-Guard Pro – advanced diagnostics and workshop integration' : 'Multi-Guard Pro — діагностика та сервісна підтримка')}</span>
+              <span class="mg-promo-badge" style="font-size: 0.6875rem; padding: 2px 8px; margin: 0 0 0 6px;">Widok poglądowy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Hubs Section -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered" style="max-width: 1200px; margin: 0 auto;">
+      <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto; width: 100%;">
+        <div class="section-badge" style="margin: 0 auto;">{c.hubsBadge}</div>
+        <h2 class="display-h3" style="margin-top: 0.5rem; text-align: center;">{c.hubsTitle}</h2>
+        <p class="paragraph t---neutral-10" style="max-width: 600px; margin: 0.5rem auto 0 auto; text-align: center;">{c.hubsSubtitle}</p>
+      </div>
+
+      <div class="subpage-grid-4">
+        <a href={`${prefix}/serwis-telewizorow`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">📺</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem;">{c.hubTv}</h3>
+            <p class="paragraph t---neutral-10">{c.hubTvDesc}</p>
+          </div>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; color: #d32f2f; margin-top: 1rem;">{c.detailsLink}</span>
+        </a>
+
+        <a href={`${prefix}/serwis-laptopow`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">💻</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem;">{c.hubLaptop}</h3>
+            <p class="paragraph t---neutral-10">{c.hubLaptopDesc}</p>
+          </div>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; color: #d32f2f; margin-top: 1rem;">{c.detailsLink}</span>
+        </a>
+
+        <a href={`${prefix}/serwis-komputerow`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">🖥️</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem;">{c.hubPc}</h3>
+            <p class="paragraph t---neutral-10">{c.hubPcDesc}</p>
+          </div>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; color: #d32f2f; margin-top: 1rem;">{c.detailsLink}</span>
+        </a>
+
+        <a href={`${prefix}/multi-guard`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between; border-color: rgba(211, 47, 47, 0.4); background: rgba(211, 47, 47, 0.03);">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">🛡️</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem; color: #d32f2f;">{c.hubMultiGuard}</h3>
+            <p class="paragraph t---neutral-10">{c.hubMultiGuardDesc}</p>
+          </div>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; color: #d32f2f; margin-top: 1rem;">{c.detailsLink}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Unified Footer -->
+  <Footer lang={lang} />
+</Layout>

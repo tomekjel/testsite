@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/ix/index.css";
+---
+
+<Layout
+  title="Nie znaleziono strony (404) — Multi-Servis Bydgoszcz"
+  description="Przepraszamy, ta strona nie istnieje lub została przeniesiona. Zapraszamy do serwisu Multi-Servis."
+  wfPage="404"
+  ogImage="/images/social-20preview.avif"
+  lang="pl"
+>
+  <Navbar lang="pl" currentPath="/404" />
+
+  <section class="section">
+    <div class="container">
+      <div class="admin-header" style="text-align:center; padding-top:6rem; padding-bottom:6rem;">
+        <div class="section-badge" style="margin-bottom: 1rem;">Błąd 404</div>
+        <h1 class="display-h1" style="margin-bottom: 1rem;">404 — Nie znaleziono strony</h1>
+        <p class="paragraph t---neutral-10" style="max-width: 600px; margin: 0 auto 2rem auto;">
+          Strona, której szukasz nie istnieje lub została przeniesiona pod nowy adres. Zapraszamy do zapoznania się z ofertą serwisu.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="/cennik" class="filled-button main w-button" style="color: #ffffff !important;">
+            Cennik i Diagnoza
+          </a>
+          <a href="/kontakt" class="outline-button w-inline-block">
+            <span class="button-text">Kontakt i Dojazd</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern Clean Footer -->
+  <Footer lang="pl" />
+</Layout>

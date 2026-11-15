@@ -1,0 +1,282 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../Navbar.astro";
+import Footer from "../Footer.astro";
+import type { Lang } from "../../i18n/translations";
+import "../../styles/ix/index.css";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "pl" } = Astro.props;
+const prefix = lang === "pl" ? "" : `/${lang}`;
+const currentPath = `${prefix}/case-studies`;
+
+const content = {
+  pl: {
+    seoTitle: "Realizacje - Przykładowe Naprawy | Multi-Servis Bydgoszcz",
+    seoDesc: "Przykłady udanych napraw telewizorów, laptopów, komputerów i instalacji kamer monitoringu w Multi-Servis (Bydgoszcz, Ku Wiatrakom 18). Tel: 505 012 914.",
+    heroBadge: "Portfolio warsztatu",
+    heroTitle: "Przykładowe realizacje i naprawy",
+    heroSubtitle: "Zobacz, jak przywracamy sprzęt elektroniczny do pełnej sprawności. Każda naprawa objęta jest gwarancją od 3 do 24 miesięcy.",
+    pills: ["⚡ Szybka realizacja", "😊 Miła i fachowa obsługa", "🔍 Rzetelna diagnoza i wycena", "🛡️ Gwarancja 3-24 m-cy", "🤝 Uczciwa wycena przed naprawą", "📍 Bydgoszcz Wyżyny"],
+    ctaBadge: "Zgłoszenie naprawy",
+    ctaTitle: "Masz podobną usterkę?",
+    ctaSubtitle: "Skontaktuj się z nami — bezpłatnie ocenimy możliwość naprawy.",
+    phoneLabel: "Telefon:",
+    ownerLabel: "Serwis:",
+    addressLabel: "Adres serwisu:",
+    hoursLabel: "Godziny otwarcia:",
+    hoursVal: "Pon. - Pt. 10:00 - 17:00",
+    items: [
+      {
+        tag: "Telewizory LED",
+        img: "/images/minimalist-20note-20card-20composition.png",
+        title: "Wymiana podświetlenia LED - Samsung 65\"",
+        desc: "Usterka: brak obrazu, obecny dźwięk. Wymiana kompletnego zestawu fabrycznych listew LED z kalibracją prądu podświetlenia w celu wydłużenia żywotności."
+      },
+      {
+        tag: "Serwis Laptopów",
+        img: "/images/minimalist-20pastel-20composition.png",
+        title: "Naprawa płyty po zalaniu - MacBook Pro",
+        desc: "Czyszczenie ultradźwiękowe, mikrolutowanie skorodowanych linii zasilania 3.3V/5V oraz wymiana uszkodzonego kontrolera ładowania SMC."
+      },
+      {
+        tag: "Gaming PC",
+        img: "/images/modern-20object-20in-20coral-20color-20background-204.png",
+        title: "Zwarcie sekcji zasilania - Komputer Gamingowy",
+        desc: "Lokalizacja zwarcia przy użyciu kamery termowizyjnej, wymiana uszkodzonych tranzystorów MOSFET oraz testy obciążeniowe FurMark & OCCT."
+      },
+      {
+        tag: "Kamery CCTV",
+        img: "/images/modern-20laptop-20-26-20plant.png",
+        title: "Montaż systemu monitoringu IP 4K - Dom w Osielsku",
+        desc: "Instalacja 6 kamer z doświetleniem w nocy (ColorVu), rejestratora NVR oraz konfiguracja bezpiecznego podglądu zdalnego w aplikacji na smartfony."
+      },
+      {
+        tag: "Lutowanie BGA",
+        img: "/images/vintage-20mint-20green-20radio-20on-20pink-20background.png",
+        title: "Reballing GPU & konserwacja - Asus ROG Strix",
+        desc: "Usterka artefaktów na ekranie pod obciążeniem. Wymiana kulek BGA na spoiwo ołowiowe oraz aplikacja ciekłego metalu i termopadów Honeywell."
+      },
+      {
+        tag: "OLED TV",
+        img: "/images/serene-20plant-20aesthetics-20-1-.png",
+        title: "Naprawa przetwornicy i modułu T-CON - LG OLED 55\"",
+        desc: "Telewizor wyłączał się po 3 sekundach. Regeneracja modułu zasilania i wymiana pamięci EEPROM z nowym oprogramowaniem układowym."
+      }
+    ]
+  },
+  en: {
+    seoTitle: "Portfolio - Case Studies & Repairs | Multi-Servis Bydgoszcz",
+    seoDesc: "Examples of completed TV, laptop, PC repairs, and CCTV camera installations at Multi-Servis (Bydgoszcz, Ku Wiatrakom 18). Tel: 505 012 914.",
+    heroBadge: "Workshop Portfolio",
+    heroTitle: "Recent Repairs & Case Studies",
+    heroSubtitle: "See how we restore electronics to full working order. Every repair comes with a 3 to 24-month warranty.",
+    pills: ["⚡ Fast turnaround", "😊 Friendly & professional service", "🔍 Fault diagnosis & quote", "🛡️ 3-24 month warranty", "🤝 Fair quote before repair", "📍 Bydgoszcz Wyżyny"],
+    ctaBadge: "Repair Inquiry",
+    ctaTitle: "Do you have a similar issue?",
+    ctaSubtitle: "Get in touch with us — we provide an honest upfront appraisal.",
+    phoneLabel: "Phone:",
+    ownerLabel: "Service:",
+    addressLabel: "Workshop Address:",
+    hoursLabel: "Opening Hours:",
+    hoursVal: "Mon. - Fri. 10:00 - 17:00",
+    items: [
+      {
+        tag: "LED Televisions",
+        img: "/images/minimalist-20note-20card-20composition.png",
+        title: "LED Backlight Replacement - Samsung 65\"",
+        desc: "Issue: Sound present, black screen. Complete replacement with factory-grade aluminum LED bars and driver current recalibration for longevity."
+      },
+      {
+        tag: "Laptop Service",
+        img: "/images/minimalist-20pastel-20composition.png",
+        title: "Liquid Spill Logic Board Fix - MacBook Pro",
+        desc: "Ultrasonic cleaning, micro-soldering corroded 3.3V/5V rails, and replacing damaged SMC charging controllers."
+      },
+      {
+        tag: "Gaming PC",
+        img: "/images/modern-20object-20in-20coral-20color-20background-204.png",
+        title: "VRM Power Rail Short - Custom Gaming PC",
+        desc: "Short circuit detection with thermal camera, replacing blown MOSFET transistors, followed by OCCT and FurMark stability stress tests."
+      },
+      {
+        tag: "CCTV Cameras",
+        img: "/images/modern-20laptop-20-26-20plant.png",
+        title: "4K IP Surveillance System - Home in Osielsko",
+        desc: "Installation of 6 ColorVu night-vision cameras, NVR recorder, and encrypted remote access setup for mobile devices."
+      },
+      {
+        tag: "BGA Soldering",
+        img: "/images/vintage-20mint-20green-20radio-20on-20pink-20background.png",
+        title: "GPU Reballing & Thermal Overhaul - Asus ROG Strix",
+        desc: "Artifacts appearing under 3D load. Reballing BGA interconnects and applying authentic liquid metal and Honeywell PTM pads."
+      },
+      {
+        tag: "OLED TV",
+        img: "/images/serene-20plant-20aesthetics-20-1-.png",
+        title: "Power Inverter & T-CON Repair - LG OLED 55\"",
+        desc: "TV shut down after 3 seconds. Power board rebuild, replacing EEPROM flash memory with updated firmware."
+      }
+    ]
+  },
+  uk: {
+    seoTitle: "Наші роботи - Приклади ремонтів | Multi-Servis Бидгощ",
+    seoDesc: "Приклади успішних ремонтів телевізорів, ноутбуків, ПК та монтажу відеоспостереження у Multi-Servis (Бидгощ, Ku Wiatrakom 18). Тел: 505 012 914.",
+    heroBadge: "Портфоліо майстерні",
+    heroTitle: "Приклади виконаних ремонтів",
+    heroSubtitle: "Подивіться, як ми повертаємо техніку до життя. На кожен ремонт надається гарантія від 3 до 24 місяців.",
+    pills: ["⚡ Швидке виконання", "😊 Привітне та професійне обслуговування", "🔍 Діагностика та оцінка", "🛡️ Гарантія 3-24 міс.", "🤝 Чесна оцінка до ремонту", "📍 Бидгощ Вижини"],
+    ctaBadge: "Заявка на ремонт",
+    ctaTitle: "Маєте схожу поломку?",
+    ctaSubtitle: "Зв'яжіться з нами — ми безкоштовно оцінимо можливість та вартість ремонту.",
+    phoneLabel: "Телефон:",
+    ownerLabel: "Сервіс:",
+    addressLabel: "Адреса майстерні:",
+    hoursLabel: "Графік роботи:",
+    hoursVal: "Пн. - Пт. 10:00 - 17:00",
+    items: [
+      {
+        tag: "LED Телевізори",
+        img: "/images/minimalist-20note-20card-20composition.png",
+        title: "Заміна LED-підсвічування - Samsung 65\"",
+        desc: "Симптоми: звук є, зображення відсутнє. Повна заміна комплекту заводських планок LED з калібруванням струму підсвітки для тривалої служби."
+      },
+      {
+        tag: "Ремонт ноутбуків",
+        img: "/images/minimalist-20pastel-20composition.png",
+        title: "Ремонт плати після залиття - MacBook Pro",
+        desc: "Ультразвукова чистка, мікропайка пошкоджених шин живлення 3.3V/5V та заміна контролера заряду SMC."
+      },
+      {
+        tag: "Ігрові ПК",
+        img: "/images/modern-20object-20in-20coral-20color-20background-204.png",
+        title: "Коротке замикання живлення - Ігровий комп'ютер",
+        desc: "Пошук замикання за допомогою тепловізора, заміна MOSFET-транзисторів та навантажувальні тести FurMark / OCCT."
+      },
+      {
+        tag: "Камери CCTV",
+        img: "/images/modern-20laptop-20-26-20plant.png",
+        title: "Монтаж IP-відеоспостереження 4K - Будинок в Осельсько",
+        desc: "Встановлення 6 камер нічного бачення ColorVu, NVR-реєстратора та налаштування віддаленого доступу на смартфонах."
+      },
+      {
+        tag: "BGA-пайка",
+        img: "/images/vintage-20mint-20green-20radio-20on-20pink-20background.png",
+        title: "Реболлінг GPU та профілактика - Asus ROG Strix",
+        desc: "Артефакти на екрані під навантаженням. Реболлінг чипа BGA, нанесення рідкого металу та термопрокладок Honeywell."
+      },
+      {
+        tag: "OLED TV",
+        img: "/images/serene-20plant-20aesthetics-20-1-.png",
+        title: "Ремонт інвертора та T-CON - LG OLED 55\"",
+        desc: "Телевізор вимикався через 3 секунди. Відновлення блоку живлення та прошивка нової EEPROM пам'яті."
+      }
+    ]
+  }
+};
+
+const c = content[lang] || content.pl;
+---
+
+<Layout
+  title={c.seoTitle}
+  description={c.seoDesc}
+  wfPage="case-studies"
+  ogImage="/images/social-20preview.avif"
+  lang={lang}
+>
+  <!-- Unified Navbar -->
+  <Navbar lang={lang} currentPath={currentPath} />
+
+  <!-- Page Header -->
+  <section class="section" style="padding-top: 2rem; padding-bottom: 3.5rem;">
+    <div class="container centered">
+      <div class="page-header" style="text-align: center; max-width: 860px; margin: 0 auto;">
+        <div class="section-badge">{c.heroBadge}</div>
+        <h1 class="display-h1" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
+          {c.heroTitle}
+        </h1>
+        <div class="page-subheading">
+          <div class="large-paragraph t---neutral-10" style="max-width: 740px; margin: 0 auto 2rem auto;">
+            {c.heroSubtitle}
+          </div>
+        </div>
+
+        <!-- Trust Mini-Okienka Pills -->
+        <div class="hero-quick-stats" style="justify-content: center; margin: 0 auto 2rem auto;">
+          {c.pills.map((pill) => (
+            <div class="hero-stat-pill">
+              {pill}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Case Study Grid -->
+      <div class="case-study-cms-wrap w-dyn-list" style="margin-top: 2.5rem;">
+        <div role="list" class="case-study-cms-list w-dyn-items" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 2rem;">
+          {c.items.map((item) => (
+            <div role="listitem" class="case-study-cms w-dyn-item subpage-card" style="padding: 1.5rem; display: flex; flex-direction: column;">
+              <div class="case-study w-inline-block">
+                <div class="thumbnail-wrap" style="position: relative; overflow: hidden; border-radius: 12px; margin-bottom: 1rem;">
+                  <div class="year" style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); padding: 4px 10px; border-radius: 6px; z-index: 2;">
+                    <div class="small-paragraph" style="color: #ffffff; font-weight: 600; font-size: 0.8rem;">{item.tag}</div>
+                  </div>
+                  <img src={item.img} loading="lazy" alt={item.title} class="thumbnail" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px;" />
+                </div>
+                <div class="case-study-text">
+                  <h3 class="display-h5" style="margin-bottom: 0.5rem; font-size: 1.15rem;">{item.title}</h3>
+                  <div class="paragraph t---neutral-10" style="line-height: 1.5;">{item.desc}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section inverse" style="padding: 5rem 0;">
+    <div class="container">
+      <div class="contact-section-wrap" style="max-width: 860px; margin: 0 auto;">
+        <div class="contact-header" style="text-align: center; margin-bottom: 2.5rem;">
+          <div class="section-badge" style="background: rgba(255,255,255,0.1); color: #ffffff;">{c.ctaBadge}</div>
+          <h2 class="display-h2" style="margin-top: 0.75rem; color: #ffffff;">{c.ctaTitle}</h2>
+          <div class="large-paragraph" style="color: rgba(255, 255, 255, 0.85); margin-top: 0.5rem;">
+            {c.ctaSubtitle}
+          </div>
+        </div>
+
+        <div class="contact-info-wrap" style="width: 100%;">
+          <div class="contact-info-card">
+            <div class="large-paragraph" style="color: rgba(255, 255, 255, 0.9);">
+              <strong style="color: #ffffff;">{c.phoneLabel} </strong> 
+              <a href="tel:+48505012914" style="color: #ffffff; text-decoration: underline; font-weight: 700;">505 012 914</a>
+            </div>
+            <div class="large-paragraph" style="color: rgba(255, 255, 255, 0.9);">
+              <strong style="color: #ffffff;">{c.ownerLabel} </strong> Multi-Servis
+            </div>
+            <div class="large-paragraph" style="color: rgba(255, 255, 255, 0.9);">
+              <strong style="color: #ffffff;">{c.addressLabel} </strong> Ku Wiatrakom 18, 85-856 Bydgoszcz (Wyżyny)
+            </div>
+            <div class="large-paragraph" style="color: rgba(255, 255, 255, 0.9);">
+              <strong style="color: #ffffff;">{c.hoursLabel} </strong> {c.hoursVal}
+            </div>
+            <div class="display-h5" style="margin-top: 0.5rem; color: #ffffff;">
+              <a href="mailto:kontakt@multi-servis.pl" style="color: #ffffff; text-decoration: none;">kontakt@multi-servis.pl</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-03"></div>
+    <div class="contact-bg"></div>
+  </section>
+
+  <!-- Modern Clean Footer -->
+  <Footer lang={lang} />
+</Layout>

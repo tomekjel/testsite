@@ -1,0 +1,569 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../Navbar.astro";
+import Footer from "../Footer.astro";
+import type { Lang } from "../../i18n/translations";
+import "../../styles/ix/index.css";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "pl" } = Astro.props;
+const prefix = lang === "pl" ? "" : `/${lang}`;
+const currentPath = `${prefix}/serwis-telewizorow`;
+
+const content = {
+  pl: {
+    seoTitle: "Serwis Telewizorów Bydgoszcz | Naprawa TV LED, OLED, QLED | Multi-Servis",
+    seoDesc: "Profesjonalny serwis i naprawa telewizorów w Bydgoszczy (Ku Wiatrakom 18). Wymiana podświetlenia LED, zasilacze, płyty główne. Samsung, LG, Philips, Sony. Indywidualna wycena, gwarancja 3 m-ce.",
+    heroBadge: "Bydgoszcz • Ponad 20 lat doświadczenia • Ku Wiatrakom 18",
+    heroTitle: "Serwis i Naprawa Telewizorów w Bydgoszczy",
+    heroSubtitle: "Specjalistyczny serwis telewizorów LED, OLED, QLED oraz 4K prowadzony przez elektronika z ponad 20-letnią praktyką. Diagnozujemy i usuwamy trudne usterki płyt głównych, zasilaczy oraz podświetlenia matryc w Bydgoszczy przy ul. Ku Wiatrakom 18 (Wyżyny).",
+    pills: ["⚡ Szybka realizacja", "🔍 Diagnoza i indywidualna wycena", "🤝 Uczciwa wycena przed naprawą", "🛡️ Gwarancja 3-24 m-cy", "😊 Miła i fachowa obsługa", "📍 Bydgoszcz Wyżyny"],
+    ctaCall: "Zadzwoń: 505 012 914",
+    ctaContact: "Dojazd i kontakt",
+    metricsBadge: "Standard serwisu",
+    metricsTitle: "Dlaczego warto naprawić telewizor w Multi-Servis?",
+    metricsSubtitle: "Rzetelne podejście do diagnozy, naprawa na poziomie komponentów i brak ukrytych kosztów.",
+    m1Val: "Indywidualna",
+    m1Label: "Wycena diagnozy",
+    m1Desc: "Dokładne sprawdzenie telewizora w warsztacie, telefon ze szczegółową wyceną przed rozpoczęciem naprawy.",
+    m2Val: "3-24 m-ce",
+    m2Label: "Gwarancja na naprawę",
+    m2Desc: "Gwarancja od 3 do 24 miesięcy na wymienione elementy, taśmy i zasilacze. Odpowiedzialność za wykonaną usługę.",
+    m3Val: "20+ lat",
+    m3Label: "Doświadczenia w TV",
+    m3Desc: "Wieloletnia praktyka w naprawach matryc LED, płyt głównych, zasilaczy i elektroniki precyzyjnej.",
+    sympBadge: "Typowe usterki TV",
+    sympTitle: "Z jakimi problemami trafiają do nas telewizory?",
+    sympSubtitle: "Rozpoznaj objawy awarii swojego odbiornika. Naprawiamy usterki na poziomie pojedynczych elementów elektronicznych.",
+    symp1Title: "🔊 Jest dźwięk, brak obrazu (czarny ekran)",
+    symp1Desc: "Klasyczny objaw uszkodzenia podświetlenia matrycy LED / Edge LED lub przetwornicy LED Driver. Wymieniamy zawsze kompletne, fabrycznie nowe listwy LED na podłożu aluminiowym, co gwarantuje długą i bezawaryjną pracę.",
+    symp2Title: "⚡ Telewizor nie włącza się, miga dioda czuwania",
+    symp2Desc: "Awaria modułu zasilacza (PSU) po przepięciu w sieci, uderzeniu pioruna lub wyschnięciu kondensatorów elektrolitycznych. Regenerujemy zasilacze na poziomie mikroskopowym, wymieniając elementy kluczujące i sterowniki PWM.",
+    symp3Title: "🔄 Ciągły restart na logo (Bootloop)",
+    symp3Desc: "Uszkodzenie pamięci eMMC, pamięci SPI lub procesora wideo BGA na płycie głównej (Main Board). Przeprowadzamy programowanie programatorami zewnętrznymi oraz reballing BGA.",
+    symp4Title: "🌈 Paski pionowe/poziome lub zniekształcone kolory",
+    symp4Desc: "Usterka logiki matrycy (T-CON) lub uszkodzenie taśm flex COF. Weryfikujemy napięcia gamma (VGL, VGH, VCOM) i wymieniamy procesory obrazu na płytkach logicznych.",
+    symp5Title: "🔌 Uszkodzone lub wyrwane gniazda HDMI, optyczne",
+    symp5Desc: "Fizyczne wyłamanie portów po potknięciu o kabel lub przepięciu burzowym. Wlutowujemy pojedyncze, nowe gniazda w technologii mikrolutowania SMD.",
+    symp6Title: "❌ Kiedy naprawa telewizora się nie opłaca?",
+    symp6Desc: "Jeśli doszło do fizycznego pęknięcia szkła matrycy (uderzenie, pajęczynka na ekranie, czarna plama), wymiana ekranu przewyższa koszt zakupu nowego telewizora. Zadzwoń do nas — bezpłatnie doradzimy przez telefon, czy warto przywozić sprzęt.",
+    brandsBadge: "Obsługiwane marki",
+    brandsTitle: "Serwisujemy telewizory wszystkich wiodących producentów",
+    brandsSubtitle: "Posiadamy dokumentację serwisową, oryginalne profile podświetlenia oraz programatory procesorów wideo.",
+    procBadge: "Zasady współpracy",
+    procTitle: "Jak wygląda naprawa telewizora w Multi-Servis?",
+    p1Title: "Dostarczenie do warsztatu",
+    p1Desc: "Przywozisz telewizor do serwisu przy ul. Ku Wiatrakom 18 w Bydgoszczy (pon.-pt. 10:00 - 17:00). Warto zabrać pilot i przewód zasilający.",
+    p2Title: "Rzetelna diagnoza",
+    p2Desc: "Rozbieramy odbiornik, mierzymy napięcia, sprawdzamy moduł podświetlenia oraz zasilacz i kontaktujemy się z dokładną wyceną.",
+    p3Title: "Telefon z wyceną",
+    p3Desc: "Dzwonimy i przedstawiamy dokładny koszt części oraz robocizny. Decyzja należy wyłącznie do Ciebie. Brak ukrytych opłat.",
+    p4Title: "Odbiór i testy",
+    p4Desc: "Po naprawie testujemy sprzęt pod obciążeniem. Otrzymujesz od 3 do 24 miesięcy gwarancji.",
+    faqBadge: "Pytania o naprawę TV",
+    faqTitle: "Często zadawane pytania dotyczące serwisu telewizorów",
+    faq1Q: "Czy opłaca się naprawiać telewizor, gdy jest dźwięk, a brak obrazu?",
+    faq1A: "Tak, to najczęstsza usterka w telewizorach LED (przepalenie diod podświetlenia). Wymiana kompletnego zestawu fabrycznych listew LED przywraca telewizor do pełnej sprawności za ułamek ceny nowego odbiornika.",
+    faq2Q: "Czy naprawiacie stłuczone lub pęknięte matryce w telewizorach?",
+    faq2A: "W przypadku mechanicznego rozbicia szkła matrycy (pajączek, czarna plama po uderzeniu) naprawa jest ekonomicznie nieopłacalna, ponieważ koszt fabrycznie nowej matrycy przewyższa wartość całego telewizora. Zajmujemy się usterkami elektroniki, podświetlenia i zasilaczy przy nienaruszonej matrycy.",
+    faq3Q: "Ile kosztuje sprawdzenie i diagnoza telewizora?",
+    faq3A: "Każda diagnoza usterki w warsztacie prowadzona jest rzetelnie. Po rozebraniu sprzętu i zlokalizowaniu problemu dzwonimy z dokładną wyceną robocizny i części do akceptacji.",
+    faq4Q: "Jakie marki telewizorów naprawiacie w Bydgoszczy?",
+    faq4A: "Naprawiamy telewizory wszystkich marek: Samsung, LG, Philips (z Ambilight), Sony Bravia, TCL, Panasonic, Hisense, Xiaomi, Sharp, Toshiba i inne.",
+    ctaBoxBadge: "Masz problem z telewizorem?",
+    ctaBoxTitle: "Zadzwoń do serwisu Multi-Servis",
+    ctaBoxDesc: "Opisz usterkę przez telefon – powiemy Ci, jaka może być przyczyna i czy naprawa jest opłacalna.",
+    ctaBoxBtn1: "Zadzwoń: 505 012 914",
+    ctaBoxBtn2: "Sprawdź adres i godziny",
+    relBadge: "Kompleksowy serwis w Bydgoszczy",
+    relTitle: "Pozostałe usługi serwisu Multi-Servis",
+    relSubtitle: "W naszym warsztacie przy ul. Ku Wiatrakom 18 naprawiamy pełen przekrój elektroniki użytkowej.",
+  },
+  en: {
+    seoTitle: "TV Repair Bydgoszcz | LED, OLED, QLED Repair Service | Multi-Servis",
+    seoDesc: "Professional TV repair service in Bydgoszcz (Ku Wiatrakom 18). LED backlight replacement, power supply, mainboard repairs. Samsung, LG, Philips, Sony. Transparent diagnosis, 3-24 month warranty.",
+    heroBadge: "Bydgoszcz • 20+ Years Experience • Ku Wiatrakom 18",
+    heroTitle: "TV Repair & Maintenance Service in Bydgoszcz",
+    heroSubtitle: "Specialist repair of LED, OLED, QLED and 4K TVs led by an electronics technician with over 20 years of practice. Component-level repair of mainboards, power supplies and matrix backlights at Ku Wiatrakom 18, Bydgoszcz (Wyżyny).",
+    pills: ["⚡ Quick turnaround", "🔍 Diagnosis & individual quote", "🤝 Honest quote before repair", "🛡️ 3-24 month warranty", "😊 Friendly & expert service", "📍 Bydgoszcz Wyżyny"],
+    ctaCall: "Call: 505 012 914",
+    ctaContact: "Directions & Contact",
+    metricsBadge: "Service Standard",
+    metricsTitle: "Why repair your TV at Multi-Servis?",
+    metricsSubtitle: "Transparent diagnosis, component-level precision, and no hidden fees.",
+    m1Val: "Individual",
+    m1Label: "Diagnostic Quote",
+    m1Desc: "Accurate TV inspection in the workshop, direct phone quote before any work begins.",
+    m2Val: "3-24 mo.",
+    m2Label: "Repair Warranty",
+    m2Desc: "Warranty from 3 to 24 months on all replaced parts, LED strips, and repaired power supplies.",
+    m3Val: "20+ yrs",
+    m3Label: "TV Experience",
+    m3Desc: "Decades of expertise in LED backlights, power supplies, logic boards, and micro-soldering.",
+    sympBadge: "Common TV Issues",
+    sympTitle: "What television problems do we fix most frequently?",
+    sympSubtitle: "Identify the symptoms of your television malfunction. We repair down to the individual component level.",
+    symp1Title: "🔊 Sound works, black screen (no picture)",
+    symp1Desc: "The classic symptom of damaged LED / Edge LED backlights or LED Driver inverter failure. We always replace complete, brand-new aluminum-backed LED strips, guaranteeing long-term reliability.",
+    symp2Title: "⚡ TV does not power on, standby LED blinks",
+    symp2Desc: "Power Supply Unit (PSU) failure after electrical surge, lightning strike, or dried electrolytic capacitors. We repair boards microscopically, replacing switching MOSFETs and PWM controllers.",
+    symp3Title: "🔄 Constant restarting on boot logo (Bootloop)",
+    symp3Desc: "Corrupted eMMC, NAND flash memory, or video BGA processor on the Main Board. We perform external hardware programmer flashing and BGA reballing.",
+    symp4Title: "🌈 Horizontal/vertical lines or distorted colors",
+    symp4Desc: "Issue with the T-CON timing controller or damaged LVDS/COF flex cables. We verify gamma voltages and replace image processors on the T-CON board.",
+    symp5Title: "🔌 Damaged or ripped HDMI, optical or antenna jacks",
+    symp5Desc: "Physical damage to ports after tripping over cables or storm surges. We solder individual replacement HDMI sockets directly using micro-soldering.",
+    symp6Title: "❌ When is TV repair not economically viable?",
+    symp6Desc: "If the screen glass is cracked or broken (impact, drop, spiderweb cracks), replacing the panel costs more than a new TV. Call us first — we give free phone advice on whether bringing it in is worth it.",
+    brandsBadge: "Supported Brands",
+    brandsTitle: "We service televisions from all major manufacturers",
+    brandsSubtitle: "Equipped with official service manuals, factory LED profiles, and professional video processor programmers.",
+    procBadge: "How It Works",
+    procTitle: "Our 4-step TV repair process at Multi-Servis",
+    p1Title: "Bring to Workshop",
+    p1Desc: "Bring your TV to Ku Wiatrakom 18 in Bydgoszcz (Mon–Fri 10:00–17:00). Please bring the remote control and power cord.",
+    p2Title: "Accurate Diagnosis",
+    p2Desc: "We disassemble the unit, measure voltages, test backlights and power modules, then call you with a precise quote.",
+    p3Title: "Phone Consultation & Quote",
+    p3Desc: "We call you with the exact parts and labor cost. You decide whether to proceed. No hidden charges.",
+    p4Title: "Testing & Pickup",
+    p4Desc: "After repair, we burn-in test the device under load. You receive a 3 to 24-month warranty.",
+    faqBadge: "TV Repair FAQ",
+    faqTitle: "Frequently Asked Questions About Television Repairs",
+    faq1Q: "Is it worth repairing a TV with sound but no picture?",
+    faq1A: "Yes! This is the most common issue in modern LED TVs (burnt out backlight strips). Replacing the complete set of factory LED bars restores the TV to original condition for a fraction of the cost of a new television.",
+    faq2Q: "Do you repair physically cracked or broken TV screens?",
+    faq2A: "No. If the LCD/OLED glass panel is mechanically broken (spiderweb cracks, internal black ink blobs), factory replacement panels cost more than a brand new TV. We repair all electronic, power supply, and backlight faults where the glass is intact.",
+    faq3Q: "How much does device inspection and diagnosis cost?",
+    faq3A: "We inspect every unit thoroughly in our workshop. After locating the root cause, we call you with an exact quote for your approval before proceeding.",
+    faq4Q: "Which TV brands do you service in Bydgoszcz?",
+    faq4A: "We repair all brands including Samsung, LG OLED, Philips (with Ambilight), Sony Bravia, TCL, Panasonic, Hisense, Xiaomi, Sharp, and Toshiba.",
+    ctaBoxBadge: "TV not working properly?",
+    ctaBoxTitle: "Call Multi-Servis Repair Workshop",
+    ctaBoxDesc: "Describe the symptoms by phone — we will tell you the likely fault and whether repair is worthwhile.",
+    ctaBoxBtn1: "Call: +48 505 012 914",
+    ctaBoxBtn2: "Workshop Address & Hours",
+    relBadge: "Full Electronics Workshop",
+    relTitle: "Other Repair Services at Multi-Servis Bydgoszcz",
+    relSubtitle: "At Ku Wiatrakom 18, we repair the entire spectrum of modern consumer electronics.",
+  },
+  uk: {
+    seoTitle: "Ремонт Телевізорів Бидгощ | LED, OLED, QLED сервіс | Multi-Servis",
+    seoDesc: "Професійний ремонт телевізорів у Бидгощі (Ku Wiatrakom 18). Заміна LED підсвічування, блоків живлення, материнських плат. Samsung, LG, Philips, Sony. Індивідуальна оцінка, гарантія 3-24 міс.",
+    heroBadge: "Бидгощ • Понад 20 років досвіду • Ku Wiatrakom 18",
+    heroTitle: "Ремонт та Обслуговування Телевізорів у Бидгощі",
+    heroSubtitle: "Спеціалізований сервіс телевізорів LED, OLED, QLED та 4K. Досвідчений інженер-електронік із понад 20-річною практикою. Ремонт плат, блоків живлення та підсвічування матриць на вул. Ku Wiatrakom 18 (Wyżyny).",
+    pills: ["⚡ Швидке виконання", "🔍 Діагностика та оцінка", "🤝 Чесна оцінка до ремонту", "🛡️ Гарантія 3-24 міс.", "😊 Ввічливий та фаховий сервіс", "📍 Бидгощ Вижини"],
+    ctaCall: "Тел: 505 012 914",
+    ctaContact: "Контакти та проїзд",
+    metricsBadge: "Стандарти сервісу",
+    metricsTitle: "Чому варто відремонтувати телевізор у Multi-Servis?",
+    metricsSubtitle: "Відповідальна діагностика, ремонт на компонентному рівні та прозорі ціни без прихованих платежів.",
+    m1Val: "Індивідуальна",
+    m1Label: "Оцінка діагностики",
+    m1Desc: "Ретельна перевірка телевізора в майстерні, узгодження точного кошторису по телефону до початку ремонту.",
+    m2Val: "3-24 міс.",
+    m2Label: "Гарантія на ремонт",
+    m2Desc: "Гарантія від 3 до 24 місяців на замінені деталі, LED планки та відремонтовані блоки живлення.",
+    m3Val: "20+ р.",
+    m3Label: "Досвіду в ТВ",
+    m3Desc: "Багаторічний досвід ремонту LED-підсвічування, материнських плат, блоків живлення та мікропайки.",
+    sympBadge: "Типові несправності",
+    sympTitle: "З якими поломками найчастіше звертаються до нас?",
+    sympSubtitle: "Дізнайтеся симптоми несправності вашого телевізора. Ми ремонтуємо техніку на рівні мікросхем.",
+    symp1Title: "🔊 Звук є, зображення немає (чорний екран)",
+    symp1Desc: "Класичний симптом перегорання LED підсвічування або виходу з ладу LED Driver. Ми завжди встановлюємо повністю новий комплект алюмінієвих планок LED, що забезпечує довготривалу надійну роботу.",
+    symp2Title: "⚡ Телевізор не вмикається, блимає індикатор",
+    symp2Desc: "Поломка блоку живлення (PSU) після перепаду напруги в мережі, грози або висихання конденсаторів. Ми ремонтуємо плати мікропаянням, замінюючи силові транзистори та ШІМ-контролери.",
+    symp3Title: "🔄 Постійне перезавантаження на логотипі (Bootloop)",
+    symp3Desc: "Збій пам'яті eMMC, NAND flash або відеопроцесора на материнській платі (Main Board). Проводимо апаратне програмування мікросхем пам'яті та реболінг BGA чіпів.",
+    symp4Title: "🌈 Вертикальні чи горизонтальні смуги, спотворені кольори",
+    symp4Desc: "Проблема з платою таймінг-контролера (T-CON) або шлейфами LVDS/COF. Перевіряємо гамма-напруги та міняємо процесори керування дисплеєм.",
+    symp5Title: "🔌 Вирвані або пошкоджені порти HDMI, аудіо чи антени",
+    symp5Desc: "Механічні пошкодження роз'ємів через натяг кабелю або грозовий розряд. Перепаюємо окремі гнізда HDMI без потреби міняти всю дорогу материнську плату.",
+    symp6Title: "❌ Коли ремонт телевізора не має сенсу?",
+    symp6Desc: "Якщо розбите або тріснуте скло матриці, вартість панелі перевищує ціну нового телевізора. Зателефонуйте нам — ми безкоштовно проконсультуємо, чи є сенс привозити пристрій.",
+    brandsBadge: "Бренди, які ми ремонтуємо",
+    brandsTitle: "Обслуговуємо телевізори всіх провідних виробників",
+    brandsSubtitle: "Маємо сервісну документацію, заводські прошивки та якісні комплектуючі.",
+    procBadge: "Процес ремонту",
+    procTitle: "Як відбувається ремонт телевізора в Multi-Servis?",
+    p1Title: "Доставка до майстерні",
+    p1Desc: "Привозьте телевізор на вул. Ku Wiatrakom 18 у Бидгощі (Пн.–Пт. 10:00–17:00). Будь ласка, візьміть пульт і кабель живлення.",
+    p2Title: "Точна діагностика",
+    p2Desc: "Розбираємо пристрій, робимо виміри напруг, перевіряємо підсвічування та блок живлення і дзвонимо з точною вартістю.",
+    p3Title: "Дзвінок з оцінкою вартості",
+    p3Desc: "Телефонуємо і повідомляємо точну ціну деталей і роботи. Ви самі вирішуєте, чи робити ремонт. Жодних прихованих доплат.",
+    p4Title: "Тестування та видача",
+    p4Desc: "Після ремонту тестуємо техніку під навантаженням. Ви отримуєте від 3 до 24 місяців гарантії.",
+    faqBadge: "Питання про ремонт ТБ",
+    faqTitle: "Часті запитання щодо сервісу телевізорів",
+    faq1Q: "Чи вигідно ремонтувати телевізор, якщо звук є, а екран чорний?",
+    faq1A: "Так! Це найпоширеніша проблема (згоріли світлодіоди підсвічування). Повна заміна планок на нові повністю повертає телевізор до життя за значно менші гроші, ніж покупка нового.",
+    faq2Q: "Чи замінюєте ви розбите скло матриці телевізора?",
+    faq2A: "Ні. При механічному пошкодженні скла нова матриця коштує дорожче за новий телевізор. Ми усуваємо несправності електронних плат, підсвічування та блоків живлення за умови цілого скла.",
+    faq3Q: "Скільки коштує перевірка та діагностика?",
+    faq3A: "Кожна діагностика в майстерні проводиться ретельно. Після виявлення причини несправності ми дзвонимо вам із точним кошторисом робіт і деталей для погодження.",
+    faq4Q: "Телевізори яких марок ви ремонтуєте в Бидгощі?",
+    faq4A: "Ремонтуємо всі популярні марки: Samsung, LG OLED, Philips (з Ambilight), Sony Bravia, TCL, Panasonic, Hisense, Xiaomi, Sharp та інші.",
+    ctaBoxBadge: "Не працює телевізор?",
+    ctaBoxTitle: "Зателефонуйте до майстерні Multi-Servis",
+    ctaBoxDesc: "Опишіть ознаки несправності — ми оперативно підкажемо причину та орієнтовний кошторис.",
+    ctaBoxBtn1: "Тел: +48 505 012 914",
+    ctaBoxBtn2: "Адреса та години роботи",
+    relBadge: "Комплексні послуги у Бидгощі",
+    relTitle: "Інші послуги нашого сервісу",
+    relSubtitle: "У нашій майстерні на Ku Wiatrakom 18 ми ремонтуємо всі види сучасної споживчої електроніки.",
+  }
+};
+
+const t = content[lang];
+
+// Service + FAQPage + HowTo + BreadcrumbList JSON-LD
+const serviceSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": `https://multi-servis.pl${prefix}/serwis-telewizorow#service`,
+      "name": t.seoTitle,
+      "description": t.seoDesc,
+      "url": `https://multi-servis.pl${prefix}/serwis-telewizorow`,
+      "provider": { "@id": "https://multi-servis.pl/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Wyżyny, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Fordon, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Bartodzieje, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Bielawy, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Szwederowo, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Wzgórze Wolności, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Błonie, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Kapuściska, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Śródmieście, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Osowa Góra, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Solec Kujawski" },
+        { "@type": "AdministrativeArea", "name": "Białe Błota" },
+        { "@type": "AdministrativeArea", "name": "Osielsko" },
+        { "@type": "AdministrativeArea", "name": "Nowa Wieś Wielka" },
+        { "@type": "AdministrativeArea", "name": "Województwo kujawsko-pomorskie" }
+      ],
+      "serviceType": lang === "pl" ? "Naprawa telewizorów" : (lang === "en" ? "TV Repair" : "Ремонт телевізорів"),
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "PLN",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `https://multi-servis.pl${prefix}/serwis-telewizorow#faq`,
+      "mainEntity": [
+        { "@type": "Question", "name": t.faq1Q, "acceptedAnswer": { "@type": "Answer", "text": t.faq1A } },
+        { "@type": "Question", "name": t.faq2Q, "acceptedAnswer": { "@type": "Answer", "text": t.faq2A } },
+        { "@type": "Question", "name": t.faq3Q, "acceptedAnswer": { "@type": "Answer", "text": t.faq3A } },
+        { "@type": "Question", "name": t.faq4Q, "acceptedAnswer": { "@type": "Answer", "text": t.faq4A } }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": `https://multi-servis.pl${prefix}/serwis-telewizorow#howto`,
+      "name": t.procTitle,
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": t.p1Title, "text": t.p1Desc },
+        { "@type": "HowToStep", "position": 2, "name": t.p2Title, "text": t.p2Desc },
+        { "@type": "HowToStep", "position": 3, "name": t.p3Title, "text": t.p3Desc },
+        { "@type": "HowToStep", "position": 4, "name": t.p4Title, "text": t.p4Desc }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": lang === "pl" ? "Strona główna" : (lang === "en" ? "Home" : "Головна"), "item": `https://multi-servis.pl${prefix || "/"}` },
+        { "@type": "ListItem", "position": 2, "name": lang === "pl" ? "Serwis Telewizorów" : (lang === "en" ? "TV Repair" : "Ремонт Телевізорів"), "item": `https://multi-servis.pl${prefix}/serwis-telewizorow` }
+      ]
+    }
+  ]
+});
+---
+
+<Layout
+  title={t.seoTitle}
+  description={t.seoDesc}
+  wfPage="serwis-telewizorow"
+  ogImage="/images/service-tv-repair.jpg"
+  lang={lang}
+  keywords={lang === "pl" ? "serwis telewizorów Bydgoszcz, naprawa TV LED OLED QLED, wymiana podświetlenia, Multi-Servis" : (lang === "en" ? "TV repair Bydgoszcz, LED OLED QLED repair, backlight replacement, Multi-Servis" : "ремонт телевізорів Бидгощ, ремонт LED OLED QLED, заміна підсвічування, Multi-Servis")}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={serviceSchema} />
+
+  <!-- Navigation -->
+  <Navbar lang={lang} currentPath={currentPath} />
+
+  <!-- Hero Section -->
+  <section class="section" style="padding-top: 2rem; padding-bottom: 3.5rem;">
+    <div class="container centered">
+      <div class="page-header" style="text-align: center; max-width: 860px; margin: 0 auto;">
+        <nav aria-label="Breadcrumb" style="margin-bottom: 1rem; font-size: 0.875rem;">
+          <ol style="list-style: none; padding: 0; margin: 0; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <li><a href={prefix || "/"} style="color: inherit; opacity: 0.75; text-decoration: none;">{lang === "pl" ? "Główna" : (lang === "en" ? "Home" : "Головна")}</a></li>
+            <li aria-hidden="true" style="opacity: 0.4; font-size: 0.75rem;">/</li>
+            <li aria-current="page" style="color: #d32f2f; font-weight: 600;">{lang === "pl" ? "Serwis Telewizorów" : (lang === "en" ? "TV Repair" : "Ремонт Телевізорів")}</li>
+          </ol>
+        </nav>
+        <div class="section-badge">{t.heroBadge}</div>
+        <h1 class="display-h1" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
+          {t.heroTitle}
+        </h1>
+        <p class="large-paragraph t---neutral-10" style="max-width: 760px; margin: 0 auto 2rem auto;">
+          {t.heroSubtitle}
+        </p>
+
+        <!-- Trust Mini-Okienka Pills: Centered auto-layout -->
+        <div class="hero-quick-stats" style="justify-content: center; margin: 0 auto 2rem auto;">
+          {t.pills.map((pill) => (
+            <div class="hero-stat-pill">
+              {pill}
+            </div>
+          ))}
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="tel:+48505012914" class="primary-button w-inline-block" style="color: #ffffff !important;">
+            <div class="button-content">
+              <span class="button-text" style="color: #ffffff !important;">{t.ctaCall}</span>
+            </div>
+          </a>
+          <a href={`${prefix}/kontakt`} class="outline-button w-inline-block">
+            <div class="button-content">
+              <span class="button-text">{t.ctaContact}</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Parameters Bento Auto-Layout -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+        <div class="section-badge">{t.metricsBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.75rem;">{t.metricsTitle}</h2>
+        <p class="large-paragraph t---neutral-10">{t.metricsSubtitle}</p>
+      </div>
+
+      <div class="subpage-metrics-grid" style="max-width: 1040px; margin: 0 auto;">
+        <div class="subpage-card">
+          <div>
+            <div class="subpage-metrics-val">{t.m1Val}</div>
+            <div class="subpage-metrics-label">{t.m1Label}</div>
+          </div>
+          <div class="subpage-metrics-desc">{t.m1Desc}</div>
+        </div>
+        <div class="subpage-card">
+          <div>
+            <div class="subpage-metrics-val">{t.m2Val}</div>
+            <div class="subpage-metrics-label">{t.m2Label}</div>
+          </div>
+          <div class="subpage-metrics-desc">{t.m2Desc}</div>
+        </div>
+        <div class="subpage-card">
+          <div>
+            <div class="subpage-metrics-val">{t.m3Val}</div>
+            <div class="subpage-metrics-label">{t.m3Label}</div>
+          </div>
+          <div class="subpage-metrics-desc">{t.m3Desc}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Symptoms Section -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+        <div class="section-badge">{t.sympBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.75rem;">{t.sympTitle}</h2>
+        <p class="paragraph t---neutral-10">{t.sympSubtitle}</p>
+      </div>
+
+      <div class="subpage-grid-3">
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{t.symp1Title}</h3>
+          <p class="paragraph t---neutral-10">{t.symp1Desc}</p>
+        </div>
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{t.symp2Title}</h3>
+          <p class="paragraph t---neutral-10">{t.symp2Desc}</p>
+        </div>
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{t.symp3Title}</h3>
+          <p class="paragraph t---neutral-10">{t.symp3Desc}</p>
+        </div>
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{t.symp4Title}</h3>
+          <p class="paragraph t---neutral-10">{t.symp4Desc}</p>
+        </div>
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{t.symp5Title}</h3>
+          <p class="paragraph t---neutral-10">{t.symp5Desc}</p>
+        </div>
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{t.symp6Title}</h3>
+          <p class="paragraph t---neutral-10">{t.symp6Desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brands Section -->
+  <section class="section" style="padding: 4rem 0;">
+    <div class="container centered">
+      <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto;">
+        <div class="section-badge">{t.brandsBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.75rem;">{t.brandsTitle}</h2>
+        <p class="paragraph t---neutral-10">{t.brandsSubtitle}</p>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;">
+        {["Samsung Crystal / QLED / Neo QLED", "LG OLED / NanoCell", "Philips Ambilight", "Sony Bravia", "TCL", "Panasonic", "Hisense", "Xiaomi TV", "Sharp Aquos", "Toshiba", "JVC", "Manta"].map((b) => (
+          <div class="brand-pill">
+            <span>{b}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Repair Process Section -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered">
+      <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+        <div class="section-badge">{t.procBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.75rem;">{t.procTitle}</h2>
+      </div>
+
+      <div class="subpage-grid-4">
+        <div class="subpage-card">
+          <div style="font-size: 1.75rem; font-weight: 800; color: #d32f2f; margin-bottom: 0.5rem; letter-spacing: -0.02em;">01</div>
+          <h3 class="display-h5" style="margin-bottom: 0.5rem;">{t.p1Title}</h3>
+          <p class="paragraph t---neutral-10">{t.p1Desc}</p>
+        </div>
+        <div class="subpage-card">
+          <div style="font-size: 1.75rem; font-weight: 800; color: #d32f2f; margin-bottom: 0.5rem; letter-spacing: -0.02em;">02</div>
+          <h3 class="display-h5" style="margin-bottom: 0.5rem;">{t.p2Title}</h3>
+          <p class="paragraph t---neutral-10">{t.p2Desc}</p>
+        </div>
+        <div class="subpage-card">
+          <div style="font-size: 1.75rem; font-weight: 800; color: #d32f2f; margin-bottom: 0.5rem; letter-spacing: -0.02em;">03</div>
+          <h3 class="display-h5" style="margin-bottom: 0.5rem;">{t.p3Title}</h3>
+          <p class="paragraph t---neutral-10">{t.p3Desc}</p>
+        </div>
+        <div class="subpage-card">
+          <div style="font-size: 1.75rem; font-weight: 800; color: #d32f2f; margin-bottom: 0.5rem; letter-spacing: -0.02em;">04</div>
+          <h3 class="display-h5" style="margin-bottom: 0.5rem;">{t.p4Title}</h3>
+          <p class="paragraph t---neutral-10">{t.p4Desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section: Centered & Structured -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered">
+      <div class="faq-section-header">
+        <div class="section-badge">{t.faqBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.5rem;">{t.faqTitle}</h2>
+      </div>
+
+      <div class="faq-list-wrap">
+        <div class="subpage-card faq-card-item" style="padding: 1.5rem 1.75rem; width: 100%; box-sizing: border-box;">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{t.faq1Q}</h3>
+          <p class="paragraph t---neutral-10">{t.faq1A}</p>
+        </div>
+        <div class="subpage-card faq-card-item" style="padding: 1.5rem 1.75rem; width: 100%; box-sizing: border-box;">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{t.faq2Q}</h3>
+          <p class="paragraph t---neutral-10">{t.faq2A}</p>
+        </div>
+        <div class="subpage-card faq-card-item" style="padding: 1.5rem 1.75rem; width: 100%; box-sizing: border-box;">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{t.faq3Q}</h3>
+          <p class="paragraph t---neutral-10">{t.faq3A}</p>
+        </div>
+        <div class="subpage-card faq-card-item" style="padding: 1.5rem 1.75rem; width: 100%; box-sizing: border-box;">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{t.faq4Q}</h3>
+          <p class="paragraph t---neutral-10">{t.faq4A}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section: Smoky Glass Card with Abstract Artwork Backdrop -->
+  <section class="section inverse" style="padding: 4.5rem 0;">
+    <div class="container">
+      <div class="cta-glass-card" style="max-width: 860px; margin: 0 auto; padding: clamp(2.25rem, 5vw, 3.5rem) 2rem; text-align: center;">
+        <div class="section-badge" style="background: rgba(255,255,255,0.1); color: #ffffff;">{t.ctaBoxBadge}</div>
+        <h2 class="display-h2" style="margin-top: 1rem; margin-bottom: 1rem; color: #ffffff;">{t.ctaBoxTitle}</h2>
+        <p class="large-paragraph" style="max-width: 600px; margin: 0 auto 2rem auto; color: rgba(255,255,255,0.85);">
+          {t.ctaBoxDesc}
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="tel:+48505012914" class="primary-button w-inline-block" style="color: #ffffff !important;">
+            <span class="button-text" style="color: #ffffff !important;">{t.ctaBoxBtn1}</span>
+          </a>
+          <a href={`${prefix}/kontakt`} class="outline-button w-inline-block" style="color: #ffffff; border-color: rgba(255,255,255,0.4);">
+            <span class="button-text">{t.ctaBoxBtn2}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-03"></div>
+    <div class="contact-bg"></div>
+  </section>
+
+  <!-- Related Services Mesh -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto;">
+        <div class="section-badge">{t.relBadge}</div>
+        <h2 class="display-h3" style="margin-top: 0.5rem;">{t.relTitle}</h2>
+        <p class="paragraph t---neutral-10" style="max-width: 600px; margin: 0.5rem auto 0 auto;">{t.relSubtitle}</p>
+      </div>
+
+      <div class="subpage-grid-3">
+        <a href={`${prefix}/serwis-laptopow`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">💻</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem;">{lang === "pl" ? "Serwis Laptopów" : (lang === "en" ? "Laptop Repair" : "Ремонт Ноутбуків")}</h3>
+            <p class="paragraph t---neutral-10">{lang === "pl" ? "Naprawa płyt głównych, wymiana matryc, czyszczenie chłodzenia." : (lang === "en" ? "Motherboard repairs, screen replacements, cooling service." : "Ремонт материнських плат, заміна матриць, чищення охолодження.")}</p>
+          </div>
+          <span style="color: #d32f2f; font-weight: 700; margin-top: 1rem; display: inline-block;">{lang === "pl" ? "Szczegóły →" : (lang === "en" ? "Details →" : "Детальніше →")}</span>
+        </a>
+
+        <a href={`${prefix}/serwis-komputerow`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">🖥️</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem;">{lang === "pl" ? "Serwis Komputerów PC" : (lang === "en" ? "PC & Desktop Repair" : "Ремонт Комп’ютерів")}</h3>
+            <p class="paragraph t---neutral-10">{lang === "pl" ? "Diagnostyka jednostek stacjonarnych, modernizacje, składanie zestawów." : (lang === "en" ? "Diagnostics of desktop PCs, hardware upgrades, custom builds." : "Діагностика системних блоків, модернізація, збирання ПК.")}</p>
+          </div>
+          <span style="color: #d32f2f; font-weight: 700; margin-top: 1rem; display: inline-block;">{lang === "pl" ? "Szczegóły →" : (lang === "en" ? "Details →" : "Детальніше →")}</span>
+        </a>
+
+        <a href={`${prefix}/cennik`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">🔍</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem;">{lang === "pl" ? "Cennik i Diagnoza" : (lang === "en" ? "Pricing & Diagnosis" : "Прайс-лист та Діагностика")}</h3>
+            <p class="paragraph t---neutral-10">{lang === "pl" ? "Rzetelna diagnoza, indywidualna wycena przed naprawą i gwarancja od 3 do 24 m-cy." : (lang === "en" ? "Thorough diagnosis, individual quote before repair, and 3-24 month warranty." : "Ретельна діагностика, індивідуальна оцінка перед ремонтом та гарантія від 3 до 24 міс.")}</p>
+          </div>
+          <span style="color: #d32f2f; font-weight: 700; margin-top: 1rem; display: inline-block;">{lang === "pl" ? "Cennik →" : (lang === "en" ? "Pricing →" : "Ціни →")}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern Clean Footer -->
+  <Footer lang={lang} />
+</Layout>

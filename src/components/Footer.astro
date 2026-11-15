@@ -1,0 +1,102 @@
+---
+import { translations } from "../i18n/translations";
+
+interface Props {
+  lang?: 'pl' | 'en' | 'uk';
+}
+
+const { lang = 'pl' } = Astro.props;
+const t = translations[lang] || translations.pl;
+const homePath = lang === 'pl' ? '/' : `/${lang}`;
+const prefix = lang === 'pl' ? '' : `/${lang}`;
+---
+
+<!-- Modern Clean Unified Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Col 1: Brand & Info -->
+      <div class="footer-col footer-col-brand">
+        <a href={homePath} class="footer-brand">
+          <img src="/images/multi-servis-logo.png" loading="lazy" alt="Multi-Servis" class="footer-logo" />
+        </a>
+        <p class="footer-desc">
+          {lang === 'pl' && "Serwis elektroniki w Bydgoszczy (Ku Wiatrakom 18). Naprawa telewizorów LED/OLED, laptopów, komputerów PC oraz montaż instalacji monitoringu CCTV."}
+          {lang === 'en' && "Electronics repair service in Bydgoszcz (Ku Wiatrakom 18). LED/OLED TV repairs, laptops, desktop computers, and professional CCTV camera installations."}
+          {lang === 'uk' && "Сервіс електроніки у Бидгощі (Ku Wiatrakom 18). Ремонт телевізорів LED/OLED, ноутбуків, ПК та монтаж систем відеоспостереження CCTV."}
+        </p>
+        <div class="footer-badges">
+          <span class="footer-badge">{t.hero.pillCash}</span>
+          <span class="footer-badge">{t.hero.pillDiagnosis}</span>
+          <span class="footer-badge">{t.hero.pillFast}</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation -->
+      <div class="footer-col">
+        <h4 class="footer-heading">{lang === 'pl' ? 'Nawigacja' : (lang === 'en' ? 'Navigation' : 'Навігація')}</h4>
+        <ul class="footer-links">
+          <li><a href={homePath}>{t.nav.home}</a></li>
+          <li><a href={`${prefix}/serwis-laptopow`}>{lang === 'pl' ? 'Serwis Laptopów' : (lang === 'en' ? 'Laptop Repair' : 'Ремонт Ноутбуків')}</a></li>
+          <li><a href={`${prefix}/serwis-telewizorow`}>{lang === 'pl' ? 'Serwis Telewizorów' : (lang === 'en' ? 'TV Repair' : 'Ремонт Телевізорів')}</a></li>
+          <li><a href={`${prefix}/serwis-komputerow`}>{lang === 'pl' ? 'Serwis Komputerów' : (lang === 'en' ? 'PC & Desktop Repair' : 'Ремонт Комп’ютерів')}</a></li>
+          <li><a href={`${prefix}/cennik`}>{lang === 'pl' ? 'Cennik i zasady' : (lang === 'en' ? 'Pricing & Rules' : 'Ціни та правила')}</a></li>
+          <li><a href={`${prefix}/multi-guard`}>{lang === 'pl' ? 'Ochrona Multi-Guard' : (lang === 'en' ? 'Multi-Guard Protection' : 'Захист Multi-Guard')}</a></li>
+          <li><a href={`${prefix}/about`}>{t.nav.about}</a></li>
+          <li><a href={`${prefix}/faq`}>{lang === 'pl' ? 'Baza wiedzy FAQ' : (lang === 'en' ? 'FAQ Knowledge Base' : 'База знань FAQ')}</a></li>
+          <li><a href={`${prefix}/kontakt`}>{lang === 'pl' ? 'Kontakt i dojazd' : (lang === 'en' ? 'Contact & Map' : 'Контакти та проїзд')}</a></li>
+          <li><a href="/multiguard/polityka-zdalnej-pomocy/">{lang === 'pl' ? 'Polityka zdalnej pomocy' : (lang === 'en' ? 'Remote Support Policy' : 'Політика віддаленої допомоги')}</a></li>
+          <li><a href="/polityka-prywatnosci-multi-guard-browser-shield/">{lang === 'pl' ? 'Polityka prywatności (Browser Shield)' : (lang === 'en' ? 'Privacy Policy (Browser Shield)' : 'Політика конфіденційності (Browser Shield)')}</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Services -->
+      <div class="footer-col">
+        <h4 class="footer-heading">{lang === 'pl' ? 'Usługi w Bydgoszczy' : (lang === 'en' ? 'Services in Bydgoszcz' : 'Послуги у Бидгощі')}</h4>
+        <ul class="footer-links">
+          <li><a href={`${prefix}/serwis-laptopow`}>💻 {lang === 'pl' ? 'Serwis Laptopów' : (lang === 'en' ? 'Laptop Repair' : 'Ремонт Ноутбуків')}</a></li>
+          <li><a href={`${prefix}/serwis-telewizorow`}>📺 {lang === 'pl' ? 'Serwis Telewizorów (LED/OLED)' : (lang === 'en' ? 'TV Repair (LED/OLED)' : 'Ремонт Телевізорів (LED/OLED)')}</a></li>
+          <li><a href={`${prefix}/serwis-komputerow`}>🖥️ {lang === 'pl' ? 'Serwis Komputerów PC' : (lang === 'en' ? 'PC & Desktop Repair' : 'Ремонт Комп’ютерів ПК')}</a></li>
+          <li><a href={`${prefix}/multi-guard`}>🛡️ {lang === 'pl' ? 'Program Multi-Guard' : (lang === 'en' ? 'Multi-Guard Software' : 'Програма Multi-Guard')}</a></li>
+          <li><a href={`${prefix}/cennik`}>🔍 {lang === 'pl' ? 'Diagnoza i wycena' : (lang === 'en' ? 'Diagnosis & Quote' : 'Діагностика та оцінка')}</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Contact -->
+      <div class="footer-col footer-col-contact">
+        <h4 class="footer-heading">{lang === 'pl' ? 'Kontakt i Warsztat' : (lang === 'en' ? 'Contact & Workshop' : 'Контакти та Майстерня')}</h4>
+        <div class="footer-contact-item">
+          <span class="footer-icon">📍</span>
+          <div>
+            <strong>Ku Wiatrakom 18</strong><br />
+            <span>85-856 Bydgoszcz (Wyżyny)</span>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-icon">📞</span>
+          <div>
+            <a href="tel:+48505012914" class="footer-phone">505 012 914</a><br />
+            <span class="t---neutral-10">{lang === 'pl' ? 'Serwis czynny pn-pt' : (lang === 'en' ? 'Workshop open Mon-Fri' : 'Пн-Пт 10:00 - 17:00')}</span>
+          </div>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-icon">🕒</span>
+          <div>{t.contact.hoursVal}</div>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-icon">🛡️</span>
+          <div>{lang === 'pl' ? 'Gwarancja od 3 do 24 m-cy' : (lang === 'en' ? '3-24 months warranty' : 'Гарантія 3-24 місяці')}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        &copy; 2026 Multi-Servis. {t.footer.rights}
+      </div>
+      <div class="footer-bottom-notice">
+        Ku Wiatrakom 18, 85-856 Bydgoszcz &bull; Tel: <a href="tel:+48505012914" style="color: inherit; text-decoration: underline;">505 012 914</a> &bull; <a href="/multiguard/polityka-zdalnej-pomocy/" style="color: inherit; text-decoration: underline;">{lang === 'pl' ? 'Polityka zdalnej pomocy' : (lang === 'en' ? 'Remote Support Policy' : 'Політика віддаленої допомоги')}</a> &bull; <a href="/polityka-prywatnosci-multi-guard-browser-shield/" style="color: inherit; text-decoration: underline;">{lang === 'pl' ? 'Browser Shield' : 'Browser Shield'}</a>
+      </div>
+    </div>
+  </div>
+</footer>

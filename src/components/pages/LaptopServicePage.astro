@@ -1,0 +1,625 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../Navbar.astro";
+import Footer from "../Footer.astro";
+import type { Lang } from "../../i18n/translations";
+import "../../styles/ix/index.css";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "pl" } = Astro.props;
+const prefix = lang === "pl" ? "" : `/${lang}`;
+const currentPath = `${prefix}/serwis-laptopow`;
+
+const content = {
+  pl: {
+    seoTitle: "Serwis Laptopów Bydgoszcz | Naprawa Płyt, Zalań, Matryc | Multi-Servis",
+    seoDesc: "Profesjonalny serwis laptopów w Bydgoszczy (Ku Wiatrakom 18). Naprawa po zalaniu, mikrolutowanie BGA, wymiana matryc, gniazd USB-C/zasilania, czyszczenie. Indywidualna wycena, gwarancja 3 m-ce.",
+    heroBadge: "Bydgoszcz • Naprawa Płyt Głównych • Ku Wiatrakom 18",
+    heroTitle: "Serwis i Naprawa Laptopów w Bydgoszczy",
+    heroSubtitle: "Naprawiamy laptopy, notebooki oraz komputery Apple MacBook na poziomie zaawansowanej elektroniki (mikrolutowanie SMD/BGA, naprawa sekcji zasilania, odbudowa ścieżek po zalaniach). Nie ograniczamy się do wymiany całych podzespołów — naprawiamy oryginalne płyty główne, co pozwala zaoszczędzić setki złotych.",
+    pills: ["⚡ Szybka realizacja", "🔍 Diagnoza i indywidualna wycena", "🛡️ Monitoring temperatur Multi-Guard", "🛡️ Gwarancja 3-24 m-cy", "🤝 Uczciwa wycena przed naprawą", "📍 Bydgoszcz Wyżyny"],
+    ctaCall: "Zadzwoń: 505 012 914",
+    ctaContact: "Dojazd i kontakt",
+    metricsBadge: "Standard serwisu laptopów",
+    metricsTitle: "Dlaczego warto naprawić laptop w Multi-Servis?",
+    metricsSubtitle: "Naprawiamy płyty główne po zalaniach i zwarciach zamiast wymieniać całe moduły za tysiące złotych.",
+    m1Val: "Indywidualna",
+    m1Label: "Wycena diagnozy",
+    m1Desc: "Pomiary oscyloskopem i kamerą termowizyjną. Precyzyjna lokalizacja usterki i telefon z wyceną przed naprawą.",
+    m2Val: "3-24 m-ce",
+    m2Label: "Gwarancja na naprawę",
+    m2Desc: "Każda wykonana naprawa płyty, wymiana układu zasilania czy gniazda objęta jest gwarancją jakości od 3 do 24 miesięcy.",
+    m3Val: "20+ lat",
+    m3Label: "Doświadczenia",
+    m3Desc: "Specjalistyczna wiedza w mikrolutowaniu płyt głównych, układów BGA/SMD oraz naprawach po zalaniu.",
+    sympBadge: "Typowe usterki laptopów",
+    sympTitle: "Jakie awarie laptopów usuwamy najczęściej?",
+    sympSubtitle: "Większość awarii nie wymaga wymiany całej płyty. Naprawiamy elektronikę SMD/BGA.",
+    symp1Title: "☕ Laptop po zalaniu (kawa, herbata, woda)",
+    symp1Desc: "Natychmiast odłącz zasilacz i nie włączaj sprzętu! Myjemy płytę w myjce ultradźwiękowej, usuwamy korozję i tlenki pod mikroskopem, odtwarzamy zjedzone ścieżki i wymieniamy zwarte elementy sekcji zasilania.",
+    symp2Title: "🔌 Brak reakcji na włącznik, nie ładuje baterii",
+    symp2Desc: "Uszkodzenie gniazda zasilania DC-IN (wyłamany bolec, stopiony plastik), przebity MOSFET wejściowy, uszkodzony kontroler ładowania (Charger IC) lub zwarcie w głównej linii 19V / USB-C Power Delivery.",
+    symp3Title: "💻 Czarny ekran, brak obrazu, wiatraki kręcą",
+    symp3Desc: "Uszkodzenie wsadu BIOS/UEFI, awaria układu graficznego lub pamięci VRAM, brak któregoś z napięć wtórnych lub uszkodzona taśma eDP matrycy. Programujemy kości BIOS na programatorze.",
+    symp4Title: "🔥 Przegrzewanie się, głośna praca wentylatora",
+    symp4Desc: "Wyschnięta pasta termoprzewodząca, kurz w radiatorze. Wykonujemy pełny serwis układu chłodzenia z zastosowaniem markowych past (Arctic MX-6 / Thermal Grizzly) oraz nowych termopadów. Dodatkowo oferujemy wdrożenie programu Multi-Guard, który pozwala na bieżąco kontrolować temperatury CPU i pracę wentylatorów, chroniąc laptopa przed ponowną awarią.",
+    symp5Title: "🖥️ Pęknięta matryca lub brak podświetlenia",
+    symp5Desc: "Wymieniamy rozbite ekrany LCD/IPS (15.6\", 14\", 17.3\", 120Hz, 144Hz, OLED). Dobieramy fabrycznie nowe, oryginalne matryce o identycznych parametrach jasności, odświeżania i barw sRGB.",
+    symp6Title: "🔧 Naprawa połamanych zawiasów i kadłubków",
+    symp6Desc: "Wyłamane tuleje montażowe z klapy matrycy lub obudowy uniemożliwiające zamykanie ekranu. Regenerujemy punkty mocowania w żywicach przemysłowych oraz regulujemy docisk zawiasów.",
+    brandsBadge: "Marki laptopów",
+    brandsTitle: "Naprawiamy laptopy wszystkich producentów",
+    faqBadge: "Najczęstsze pytania",
+    faqTitle: "Pytania o naprawę laptopów w Bydgoszczy",
+    ctaBadge: "Twój laptop nie działa?",
+    ctaTitle: "Skonsultuj naprawę telefonicznie",
+    ctaDesc: "Zadzwoń do serwisu Multi-Servis w Bydgoszczy przy ul. Ku Wiatrakom 18. Rzetelna diagnoza i indywidualna wycena przed naprawą.",
+    ctaAddressBtn: "Sprawdź adres i godziny",
+    relBadge: "Kompleksowy serwis w Bydgoszczy",
+    relTitle: "Pozostałe usługi serwisu Multi-Servis",
+    relDesc: "W naszym warsztacie przy ul. Ku Wiatrakom 18 naprawiamy pełen przekrój elektroniki użytkowej.",
+    detailsLink: "Szczegóły →",
+    pricingLink: "Zobacz cennik →",
+    faqs: [
+      {
+        q: "Mój laptop strasznie muli i głośno chodzi. Jak można go przyspieszyć w Bydgoszczy?",
+        a: "Najczęstsze powody to zapchany kurzem układ chłodzenia (procesor obniża taktowanie, by się nie spalić) oraz przestarzały lub uszkodzony dysk twardy HDD. W Multi-Servis przy ul. Ku Wiatrakom 18 wymieniamy dysk na szybki SSD NVMe/SATA, klonujemy Twój system Windows/macOS ze wszystkimi plikami oraz wymieniamy pasty termoprzewodzące. Laptop przyspiesza kilkukrotnie i zaczyna pracować cicho."
+      },
+      {
+        q: "Co zrobić natychmiast po zalaniu laptopa kawą lub wodą?",
+        a: "Natychmiast odłącz zasilacz, wyłącz laptopa i nie włączaj go ponownie pod żadnym pozorem! Jeśli bateria jest wyjmowana – odłącz ją. Nie susz laptopa suszarką ani nie wkładaj do ryżu. Jak najszybciej dostarcz sprzęt do serwisu na czyszczenie w myjce ultradźwiękowej, aby zatrzymać elektrokorozję ścieżek płyty głównej."
+      },
+      {
+        q: "Jak często należy czyścić układ chłodzenia w laptopie?",
+        a: "Zalecamy kompleksową konserwację chłodzenia (usunięcie kurzu, wymiana fabrycznej pasty termoprzewodzącej i termopadów) raz na 12–18 miesięcy, a w laptopach gamingowych raz w roku. Zapobiega to przegrzewaniu się procesora i degradacji układu graficznego BGA."
+      },
+      {
+        q: "Ile kosztuje diagnoza laptopa w Multi-Servis?",
+        a: "Każdy laptop przechodzi szczegółowe sprawdzenie techniczne w naszym warsztacie w Bydgoszczy. Po sprawdzeniu płyty głównej i podzespołów dzwonimy z indywidualnym kosztorysem naprawy do Twojej akceptacji."
+      },
+      {
+        q: "Czy naprawiacie również laptopy Apple MacBook?",
+        a: "Tak, wykonujemy naprawy płyt głównych MacBook Air oraz MacBook Pro (zwłaszcza po zalaniach, naprawa przetwornic zasilania 3.3V/5V, układów SMC/KBC oraz wymiana złączy i baterii)."
+      },
+      {
+        q: "Jak kontrolować temperatury laptopa po czyszczeniu i zapobiec przegrzewaniu?",
+        a: "Po wykonaniu serwisu chłodzenia oferujemy wdrożenie naszego autorskiego oprogramowania Multi-Guard. Program na bieżąco monitoruje temperatury procesora CPU i karty graficznej GPU oraz obroty wentylatorów, zapewniając pełną kontrolę i chroniąc laptopa przed kolejną awarią termiczną. Posiada także ochronę Browser Shield i Microsoft Defender, a w wersji Pro pozwala na szybką zdalną pomoc technika Multi-Servis."
+      }
+    ]
+  },
+  en: {
+    seoTitle: "Laptop Repair Bydgoszcz | Motherboard, Liquid Damage, Screens | Multi-Servis",
+    seoDesc: "Professional laptop repair in Bydgoszcz (Ku Wiatrakom 18). Liquid spill restoration, BGA micro-soldering, screen & DC/USB-C jack replacement, thermal cleaning. Transparent diagnosis, 3-24 month warranty.",
+    heroBadge: "Bydgoszcz • Logic Board Repair • Ku Wiatrakom 18",
+    heroTitle: "Laptop & MacBook Repair Service in Bydgoszcz",
+    heroSubtitle: "We repair laptops, notebooks and Apple MacBooks at the component level (SMD/BGA micro-soldering, power rail diagnostics, liquid damage track restoration). We fix original logic boards instead of replacing whole modules, saving you significant money.",
+    pills: ["⚡ Fast turnaround", "🔍 Diagnosis & individual quote", "🛡️ Multi-Guard Telemetry", "🛡️ 3-24 month warranty", "🤝 Fair quote before repair", "📍 Bydgoszcz Wyżyny"],
+    ctaCall: "Call: 505 012 914",
+    ctaContact: "Directions & Contact",
+    metricsBadge: "Laptop Service Standards",
+    metricsTitle: "Why repair your laptop at Multi-Servis?",
+    metricsSubtitle: "We repair logic boards after liquid spills and short circuits instead of costly full module swaps.",
+    m1Val: "Individual",
+    m1Label: "Thorough diagnosis",
+    m1Desc: "Oscilloscope and thermal camera measurements. Exact pinpointing of shorts and direct quote before repair.",
+    m2Val: "3-24 months",
+    m2Label: "Repair warranty",
+    m2Desc: "Every motherboard repair, power IC swap or connector replacement is covered by a 3 to 24-month quality warranty.",
+    m3Val: "20+ yrs",
+    m3Label: "Experience",
+    m3Desc: "Specialized expertise in motherboard micro-soldering, BGA/SMD rework, and liquid damage recovery.",
+    sympBadge: "Typical Laptop Issues",
+    sympTitle: "What laptop faults do we resolve most often?",
+    sympSubtitle: "Most failures do not require buying an expensive new motherboard. We repair SMD/BGA electronics.",
+    symp1Title: "☕ Liquid damage (coffee, tea, water spills)",
+    symp1Desc: "Immediately disconnect power and never turn it on! We wash boards in an ultrasonic bath, clean oxidation under a microscope, rebuild eaten traces, and replace shorted power ICs.",
+    symp2Title: "🔌 No response to power button, not charging",
+    symp2Desc: "Broken DC jack, blown input MOSFETs, faulty charging IC, or a short circuit on the main 19V / USB-C Power Delivery line.",
+    symp3Title: "💻 Black screen, fans spinning, no picture",
+    symp3Desc: "Corrupt BIOS/UEFI firmware, faulty dedicated GPU or VRAM, power rail failure, or defective eDP video ribbon cable. We reprogram BIOS chips using hardware programmers.",
+    symp4Title: "🔥 Overheating, loud fan noise",
+    symp4Desc: "Dried thermal paste, clogged heatsink fins. We carry out full thermal service with top-grade paste (Arctic MX-6 / Thermal Grizzly) and new thermal pads. Furthermore, we deploy our proprietary Multi-Guard software so you can monitor CPU temperatures and fan RPMs in real time.",
+    symp5Title: "🖥️ Cracked screen or no backlight",
+    symp5Desc: "We replace broken LCD/IPS panels (15.6\", 14\", 17.3\", 120Hz, 144Hz, OLED). We source genuine panels matching original brightness and color gamut.",
+    symp6Title: "🔧 Broken hinges and damaged casing",
+    symp6Desc: "Ripped screw bushings from the lid or chassis preventing screen movement. We reconstruct mounting anchors using industrial resins and adjust hinge tension.",
+    brandsBadge: "Laptop Brands",
+    brandsTitle: "We repair laptops from all leading manufacturers",
+    faqBadge: "Frequently Asked Questions",
+    faqTitle: "Questions about laptop repairs in Bydgoszcz",
+    ctaBadge: "Is your laptop not working?",
+    ctaTitle: "Consult your repair by phone",
+    ctaDesc: "Call Multi-Servis in Bydgoszcz at Ku Wiatrakom 18. Thorough diagnosis and individual quote before repair.",
+    ctaAddressBtn: "Check address & hours",
+    relBadge: "Full-spectrum repair in Bydgoszcz",
+    relTitle: "Other services by Multi-Servis",
+    relDesc: "At our workshop on Ku Wiatrakom 18, we repair a wide range of consumer electronics.",
+    detailsLink: "Details →",
+    pricingLink: "View pricing →",
+    faqs: [
+      {
+        q: "What should I do immediately after spilling liquid on my laptop?",
+        a: "Immediately disconnect the charger, power down the laptop and do NOT attempt to turn it on! If the battery is removable, remove it. Do not use a hairdryer or put it in rice. Bring it to our shop as soon as possible for ultrasonic cleaning before corrosion destroys traces."
+      },
+      {
+        q: "How often should laptop cooling be serviced?",
+        a: "We recommend comprehensive cooling maintenance (dust removal, thermal paste and pad replacement) every 12–18 months, and annually for gaming laptops to prevent BGA chip degradation."
+      },
+      {
+        q: "How much does a diagnosis cost at Multi-Servis?",
+        a: "Every laptop undergoes thorough technical testing in our workshop. After checking the motherboard and components, we call you with an individual repair quote for your approval before proceeding."
+      },
+      {
+        q: "Do you also repair Apple MacBooks?",
+        a: "Yes, we repair MacBook Air and MacBook Pro logic boards (liquid damage restoration, 3.3V/5V rail fixes, SMC/T2/charging circuits, and battery replacements)."
+      },
+      {
+        q: "How can I monitor my laptop's temperatures after cleaning to prevent overheating?",
+        a: "We offer the deployment of our proprietary Multi-Guard software. It monitors CPU and GPU temperatures and fan speeds in real time, protecting your laptop from future thermal damage. It also integrates Microsoft Defender and Browser Shield, with on-demand remote support available in the Pro edition."
+      }
+    ]
+  },
+  uk: {
+    seoTitle: "Ремонт ноутбуків у Бидгощі | Материнські плати, залиття, матриці | Multi-Servis",
+    seoDesc: "Професійний ремонт ноутбуків у Бидгощі (Ku Wiatrakom 18). Ремонт після залиття, BGA-пайка, заміна матриць, роз'ємів USB-C/живлення, чистка. Індивідуальна оцінка, гарантія 3-24 міс.",
+    heroBadge: "Бидгощ • Ремонт материнських плат • Ku Wiatrakom 18",
+    heroTitle: "Ремонт та обслуговування ноутбуків у Бидгощі",
+    heroSubtitle: "Ремонтуємо ноутбуки та Apple MacBook на компонентному рівні (SMD/BGA мікропайка, відновлення ланцюгів живлення та доріжок після залиття). Ми відновлюємо оригінальні плати замість дорогої заміни модулів.",
+    pills: ["⚡ Швидке виконання", "🔍 Діагностика та оцінка", "🛡️ Моніторинг Multi-Guard", "🛡️ Гарантія 3-24 міс.", "🤝 Чесна оцінка до ремонту", "📍 Бидгощ Вижини"],
+    ctaCall: "Зателефонувати: 505 012 914",
+    ctaContact: "Маршрут і контакти",
+    metricsBadge: "Стандарти сервісу",
+    metricsTitle: "Чому варто відремонтувати ноутбук у Multi-Servis?",
+    metricsSubtitle: "Відновлюємо материнські плати після залиття та замикань замість заміни модулів за великі гроші.",
+    m1Val: "Індивідуальна",
+    m1Label: "Точна діагностика",
+    m1Desc: "Вимірювання осцилографом та тепловізором. Точна локалізація замикання та дзвінок з оцінкою до ремонту.",
+    m2Val: "3-24 міс.",
+    m2Label: "Гарантія на ремонт",
+    m2Desc: "Кожен виконаний ремонт плати, заміна мікросхем чи роз'ємів супроводжується гарантією від 3 до 24 місяців.",
+    m3Val: "20+ р.",
+    m3Label: "Досвіду",
+    m3Desc: "Спеціалізовані знання у мікропайці материнських плат, BGA/SMD компонентів та чистці після залиття.",
+    sympBadge: "Типові несправності ноутбуків",
+    sympTitle: "Які несправності ноутбуків ми усуваємо найчастіше?",
+    sympSubtitle: "Більшість несправностей не вимагає покупки нової плати. Ремонтуємо SMD/BGA електроніку.",
+    symp1Title: "☕ Ноутбук після залиття (кава, чай, вода)",
+    symp1Desc: "Негайно відключіть живлення і не вмикайте пристрій! Ми промиваємо плату в ультразвуковій ванні, видаляємо корозію під мікроскопом, відновлюємо доріжки та замінюємо замкнуті деталі.",
+    symp2Title: "🔌 Не реагує на кнопку, не заряджається",
+    symp2Desc: "Пошкодження гнізда живлення DC-IN, пробитий перший MOSFET, несправний контролер заряду (Charger IC) або замикання по лінії 19V / USB-C PD.",
+    symp3Title: "💻 Чорний екран, кулери крутяться, немає зображення",
+    symp3Desc: "Збій прошивки BIOS/UEFI, несправність GPU або відеопам'яті, збій живлення або пошкодження шлейфу матриці eDP. Прошиваємо BIOS на програматорі.",
+    symp4Title: "🔥 Перегрів, сильний шум вентилятора",
+    symp4Desc: "Засохла термопаста, забита пилом решітка радіатора. Виконуємо повне обслуговування із заміною термопасти (Arctic MX-6 / Thermal Grizzly) та термопрокладок. Додатково встановлюємо програму Multi-Guard для постійного контролю температури процесора та роботи кулера.",
+    symp5Title: "🖥️ Розбита матриця або відсутнє підсвічування",
+    symp5Desc: "Замінюємо розбиті екрани LCD/IPS (15.6\", 14\", 17.3\", 120Hz, 144Hz, OLED). Встановлюємо нові оригінальні матриці з ідентичними характеристиками.",
+    symp6Title: "🔧 Ремонт поламаних петель та корпусів",
+    symp6Desc: "Виламані втулки кріплення з кришки матриці або нижньої частини. Відновлюємо посадкові місця за допомогою промислових полімерів і регулюємо затиск петель.",
+    brandsBadge: "Бренди ноутбуків",
+    brandsTitle: "Ремонтуємо ноутбуки всіх виробників",
+    faqBadge: "Часті запитання",
+    faqTitle: "Запитання про ремонт ноутбуків у Бидгощі",
+    ctaBadge: "Ноутбук не працює?",
+    ctaTitle: "Проконсультуйтеся щодо ремонту телефоном",
+    ctaDesc: "Зателефонуйте до Multi-Servis у Бидгощі на Ku Wiatrakom 18. Ретельна діагностика та індивідуальна оцінка перед ремонтом.",
+    ctaAddressBtn: "Адреса та графік роботи",
+    relBadge: "Комплексний сервіс у Бидгощі",
+    relTitle: "Інші послуги сервісу Multi-Servis",
+    relDesc: "У нашій майстерні на Ku Wiatrakom 18 ми ремонтуємо повний спектр споживчої електроніки.",
+    detailsLink: "Детальніше →",
+    pricingLink: "Переглянути прайс →",
+    faqs: [
+      {
+        q: "Що робити негайно після залиття ноутбука?",
+        a: "Негайно від'єднайте зарядний пристрій, вимкніть ноутбук і ні за яких обставин не вмикайте його знову! Не сушіть феном і не кладіть у рис. Якнайшвидше принесіть до сервісу для ультразвукової чистки."
+      },
+      {
+        q: "Як часто потрібно чистити систему охолодження ноутбука?",
+        a: "Рекомендуємо комплексну профілактику (чистка від пилу, заміна термопасти і термопрокладок) кожні 12–18 місяців, а для ігрових ноутбуків — щороку."
+      },
+      {
+        q: "Скільки коштує діагностика ноутбука в Multi-Servis?",
+        a: "Кожен ноутбук проходить ретельну діагностику в нашій майстерні в Бидгощі. Після перевірки материнської плати та компонентів ми телефонуємо з індивідуальною оцінкою вартості ремонту."
+      },
+      {
+        q: "Чи ремонтуєте ви також ноутбуки Apple MacBook?",
+        a: "Так, ми виконуємо ремонт материнських плат MacBook Air та MacBook Pro (після залиття, відновлення ліній живлення 3.3V/5V, SMC/KBC, заміна роз'ємів та акумуляторів)."
+      },
+      {
+        q: "Як контролювати температуру ноутбука після чистки, щоб уникнути перегріву?",
+        a: "Ми пропонуємо встановлення нашого фірмового програмного забезпечення Multi-Guard. Програма в реальному часі відстежує температуру процесора, відеокарти та роботу кулерів, захищаючи ноутбук від перегріву. Вона також містить модулі Browser Shield і Microsoft Defender та дистанційну підтримку у версії Pro."
+      }
+    ]
+  }
+};
+
+const c = content[lang] || content.pl;
+
+const brandList = [
+  "Lenovo (Legion, ThinkPad, IdeaPad)",
+  "Dell (Inspiron, Latitude, XPS)",
+  "Asus (ROG, TUF, ZenBook)",
+  "HP (Pavilion, Omen, ProBook)",
+  "Apple MacBook (Air, Pro M1/M2/M3)",
+  "Acer (Nitro, Predator, Aspire)",
+  "MSI Gaming",
+  "Huawei MateBook",
+  "Fujitsu",
+  "Toshiba / Dynabook"
+];
+
+// Service + FAQPage + BreadcrumbList JSON-LD
+const serviceSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": `https://multi-servis.pl${prefix}/serwis-laptopow#service`,
+      "name": c.seoTitle,
+      "description": c.seoDesc,
+      "url": `https://multi-servis.pl${prefix}/serwis-laptopow`,
+      "provider": { "@id": "https://multi-servis.pl/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Wyżyny, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Fordon, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Bartodzieje, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Bielawy, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Szwederowo, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Wzgórze Wolności, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Błonie, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Kapuściska, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Śródmieście, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Osowa Góra, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Solec Kujawski" },
+        { "@type": "AdministrativeArea", "name": "Białe Błota" },
+        { "@type": "AdministrativeArea", "name": "Osielsko" },
+        { "@type": "AdministrativeArea", "name": "Nowa Wieś Wielka" },
+        { "@type": "AdministrativeArea", "name": "Województwo kujawsko-pomorskie" }
+      ],
+      "serviceType": lang === "pl" ? "Naprawa laptopów" : (lang === "en" ? "Laptop Repair" : "Ремонт ноутбуків"),
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "PLN",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `https://multi-servis.pl${prefix}/serwis-laptopow#faq`,
+      "mainEntity": c.faqs.map((item) => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": { "@type": "Answer", "text": item.a }
+      }))
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": lang === "pl" ? "Strona główna" : (lang === "en" ? "Home" : "Головна"), "item": `https://multi-servis.pl${prefix || "/"}` },
+        { "@type": "ListItem", "position": 2, "name": lang === "pl" ? "Serwis Laptopów" : (lang === "en" ? "Laptop Repair" : "Ремонт Ноутбуків"), "item": `https://multi-servis.pl${prefix}/serwis-laptopow` }
+      ]
+    }
+  ]
+});
+---
+
+<Layout
+  title={c.seoTitle}
+  description={c.seoDesc}
+  wfPage="serwis-laptopow"
+  ogImage="/images/service-laptop-repair.jpg"
+  lang={lang}
+  keywords={lang === "pl" ? "serwis laptopów Bydgoszcz, naprawa laptopów Bydgoszcz, laptop muli, przyspieszanie laptopa, czyszczenie laptopa Bydgoszcz, zalanie laptopa, wymiana matrycy, Multi-Servis Ku Wiatrakom 18" : (lang === "en" ? "laptop repair Bydgoszcz, laptop fix, liquid damage laptop, screen replacement, Multi-Servis" : "ремонт ноутбуків Бидгощ, залиття ноутбука, заміна матриці, Multi-Servis")}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={serviceSchema} />
+
+  <!-- Unified Navbar -->
+  <Navbar lang={lang} currentPath={currentPath} />
+
+  <!-- Hero Section -->
+  <section class="section" style="padding-top: 2rem; padding-bottom: 3.5rem;">
+    <div class="container centered">
+      <div class="page-header" style="text-align: center; max-width: 860px; margin: 0 auto;">
+        <nav aria-label="Breadcrumb" style="margin-bottom: 1rem; font-size: 0.875rem;">
+          <ol style="list-style: none; padding: 0; margin: 0; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <li><a href={prefix || "/"} style="color: inherit; opacity: 0.75; text-decoration: none;">{lang === "pl" ? "Główna" : (lang === "en" ? "Home" : "Головна")}</a></li>
+            <li aria-hidden="true" style="opacity: 0.4; font-size: 0.75rem;">/</li>
+            <li aria-current="page" style="color: #d32f2f; font-weight: 600;">{lang === "pl" ? "Serwis Laptopów" : (lang === "en" ? "Laptop Repair" : "Ремонт Ноутбуків")}</li>
+          </ol>
+        </nav>
+        <div class="section-badge">{c.heroBadge}</div>
+        <h1 class="display-h1" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
+          {c.heroTitle}
+        </h1>
+        <p class="large-paragraph t---neutral-10" style="max-width: 760px; margin: 0 auto 2rem auto;">
+          {c.heroSubtitle}
+        </p>
+
+        <!-- Trust Mini-Okienka Pills -->
+        <div class="hero-quick-stats" style="justify-content: center; margin: 0 auto 2rem auto;">
+          {c.pills.map((pill) => (
+            <div class="hero-stat-pill">
+              {pill}
+            </div>
+          ))}
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="tel:+48505012914" class="primary-button w-inline-block" style="color: #ffffff !important;">
+            <div class="button-content">
+              <span class="button-text" style="color: #ffffff !important;">{c.ctaCall}</span>
+            </div>
+          </a>
+          <a href={`${prefix}/kontakt`} class="outline-button w-inline-block">
+            <div class="button-content">
+              <span class="button-text">{c.ctaContact}</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Parameters Bento Auto-Layout -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+        <div class="section-badge">{c.metricsBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.75rem;">{c.metricsTitle}</h2>
+        <p class="large-paragraph t---neutral-10">{c.metricsSubtitle}</p>
+      </div>
+
+      <div class="subpage-metrics-grid" style="max-width: 1040px; margin: 0 auto;">
+        <div class="subpage-card">
+          <div>
+            <div class="subpage-metrics-val">{c.m1Val}</div>
+            <div class="subpage-metrics-label">{c.m1Label}</div>
+          </div>
+          <div class="subpage-metrics-desc">{c.m1Desc}</div>
+        </div>
+        <div class="subpage-card">
+          <div>
+            <div class="subpage-metrics-val">{c.m2Val}</div>
+            <div class="subpage-metrics-label">{c.m2Label}</div>
+          </div>
+          <div class="subpage-metrics-desc">{c.m2Desc}</div>
+        </div>
+        <div class="subpage-card">
+          <div>
+            <div class="subpage-metrics-val">{c.m3Val}</div>
+            <div class="subpage-metrics-label">{c.m3Label}</div>
+          </div>
+          <div class="subpage-metrics-desc">{c.m3Desc}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Laptop Issues Grid -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+        <div class="section-badge">{c.sympBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.75rem;">{c.sympTitle}</h2>
+        <p class="large-paragraph t---neutral-10">{c.sympSubtitle}</p>
+      </div>
+
+      <div class="subpage-grid-3">
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{c.symp1Title}</h3>
+          <p class="paragraph t---neutral-10">{c.symp1Desc}</p>
+        </div>
+
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{c.symp2Title}</h3>
+          <p class="paragraph t---neutral-10">{c.symp2Desc}</p>
+        </div>
+
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{c.symp3Title}</h3>
+          <p class="paragraph t---neutral-10">{c.symp3Desc}</p>
+        </div>
+
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{c.symp4Title}</h3>
+          <p class="paragraph t---neutral-10">{c.symp4Desc}</p>
+        </div>
+
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{c.symp5Title}</h3>
+          <p class="paragraph t---neutral-10">{c.symp5Desc}</p>
+        </div>
+
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{c.symp6Title}</h3>
+          <p class="paragraph t---neutral-10">{c.symp6Desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brands Section -->
+  <section class="section" style="padding: 4rem 0;">
+    <div class="container centered">
+      <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto;">
+        <div class="section-badge">{c.brandsBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.75rem;">{c.brandsTitle}</h2>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;">
+        {brandList.map((b) => (
+          <div class="customer-logo-badge" style="margin: 0.25rem;">
+            <span class="badge-dot"></span>
+            <span>{b}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered faq-centered-container" style="max-width: 900px; margin: 0 auto;">
+      <div class="section-header faq-section-header" style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto; width: 100%;">
+        <div class="section-badge" style="margin: 0 auto;">{c.faqBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.75rem; text-align: center;">{c.faqTitle}</h2>
+      </div>
+
+      <div class="faq-list-wrap" style="display: flex; flex-flow: column; gap: 1.25rem; width: 100%; max-width: 860px; margin: 0 auto;">
+        {c.faqs.map((faq) => (
+          <div class="subpage-card faq-card-item" style="padding: 1.5rem 1.75rem; width: 100%; box-sizing: border-box;">
+            <h3 class="display-h5" style="margin-bottom: 0.5rem; color: #d32f2f;">{faq.q}</h3>
+            <p class="paragraph t---neutral-10" style="margin: 0; line-height: 1.6;">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Multi-Guard Promo Banner -->
+  <section class="section" style="padding: 2rem 0 3.5rem 0;">
+    <div class="container">
+      <div class="mg-service-promo-card">
+        <div class="mg-promo-text-wrap">
+          <div class="mg-promo-badge">🛡️ {lang === 'pl' ? 'Autorskie Oprogramowanie Multi-Servis' : (lang === 'en' ? 'Proprietary Multi-Servis Software' : 'Фірмове ПЗ від Multi-Servis')}</div>
+          <h3 class="mg-promo-title">
+            {lang === 'pl' ? 'Zabezpiecz i chroń swój laptop przed przegrzaniem z Multi-Guard' : (lang === 'en' ? 'Protect and monitor your laptop thermal health with Multi-Guard' : 'Захистіть та контролюйте свій ноутбук з програмою Multi-Guard')}
+          </h3>
+          <p class="mg-promo-desc">
+            {lang === 'pl'
+              ? 'Większość poważnych awarii laptopów wynika ze skrytego przegrzania i braku kontroli nad temperaturami. Multi-Guard umożliwia bieżący podgląd temperatur CPU i wentylatorów, zabezpieczenie Microsoft Defender bez obciążania systemu oraz bezpośrednią zdalną pomoc serwisanta (edycja Pro).'
+              : (lang === 'en'
+                ? 'Most laptop hardware failures stem from silent overheating and unnoticed cooling failure. Multi-Guard provides live CPU thermal telemetry, fan metrics, Microsoft Defender protection, and on-demand remote support (Pro edition).'
+                : 'Більшість серйозних несправностей спричинені перегрівом. Multi-Guard забезпечує моніторинг температур CPU та вентиляторів, захист Microsoft Defender та дистанційну допомогу (Pro).')}
+          </p>
+          <div class="mg-promo-features">
+            <span class="mg-promo-feat">⚡ {lang === 'pl' ? 'Monitoring temperatur CPU & wentylatorów' : (lang === 'en' ? 'CPU & Fan Telemetry' : 'Моніторинг температур CPU')}</span>
+            <span class="mg-promo-feat">🛡️ Microsoft Defender</span>
+            <span class="mg-promo-feat">🔒 {lang === 'pl' ? 'Kontrola kamery i mikrofonu' : (lang === 'en' ? 'Privacy Controls' : 'Контроль приватності')}</span>
+            <span class="mg-promo-feat">🤝 {lang === 'pl' ? 'Zdalna pomoc techniczna (Pro)' : (lang === 'en' ? 'Remote Support (Pro)' : 'Дистанційна допомога (Pro)')}</span>
+          </div>
+          <div class="mg-promo-actions">
+            <a href={`${prefix}/multi-guard`} class="primary-button w-inline-block" style="color: #ffffff !important; text-decoration: none;">
+              <div class="button-content">
+                <p class="button-text" style="color: #ffffff !important; margin: 0;">
+                  {lang === 'pl' ? 'Poznaj program Multi-Guard →' : (lang === 'en' ? 'Explore Multi-Guard →' : 'Дізнатися більше →')}
+                </p>
+              </div>
+            </a>
+            <a href="tel:+48505012914" class="outline-button w-inline-block" style="color: #ffffff; border-color: rgba(255,255,255,0.3); text-decoration: none;">
+              <div class="button-content">
+                <p class="button-text" style="margin: 0; color: #ffffff;">📞 505 012 914</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="mg-promo-visual">
+          <div class="mg-promo-window">
+            <div class="mg-promo-window-bar">
+              <span class="mg-promo-dot" style="background:#ff5f56;"></span>
+              <span class="mg-promo-dot" style="background:#ffbd2e;"></span>
+              <span class="mg-promo-dot" style="background:#27c93f;"></span>
+              <span class="mg-promo-title-bar">{lang === 'pl' ? 'Multi-Guard • Monitoring Temperatur & CPU/GPU' : (lang === 'en' ? 'Multi-Guard • Thermal Telemetry & CPU/GPU' : 'Multi-Guard • Моніторинг температур CPU/GPU')}</span>
+            </div>
+            <img
+              src="/images/multiguard/multiguard-performance-ui.png"
+              alt="Multi-Guard Monitoring Temperatur i Sprzętu"
+              loading="lazy"
+              width="1408"
+              height="858"
+              class="mg-img-fluid"
+              style="object-fit: contain; max-width: 100%; height: auto;"
+            />
+            <div class="mg-promo-caption">
+              <span>{lang === 'pl' ? 'Autorski monitoring temperatur po serwisie chłodzenia' : (lang === 'en' ? 'Live thermal monitoring after cooling maintenance' : 'Моніторинг температур після чистки системи охолодження')}</span>
+              <span class="mg-promo-badge" style="font-size: 0.6875rem; padding: 2px 8px; margin: 0 0 0 6px;">Widok poglądowy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section inverse" style="padding: 4.5rem 0;">
+    <div class="container">
+      <div class="cta-glass-card" style="max-width: 860px; margin: 0 auto; padding: clamp(2.25rem, 5vw, 3.5rem) 2rem; text-align: center;">
+        <div class="section-badge" style="background: rgba(255,255,255,0.1); color: #ffffff;">{c.ctaBadge}</div>
+        <h2 class="display-h2" style="margin-top: 1rem; margin-bottom: 1rem; color: #ffffff;">{c.ctaTitle}</h2>
+        <p class="large-paragraph" style="max-width: 600px; margin: 0 auto 2rem auto; color: rgba(255,255,255,0.85);">
+          {c.ctaDesc}
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="tel:+48505012914" class="primary-button w-inline-block" style="color: #ffffff !important;">
+            <span class="button-text" style="color: #ffffff !important;">{c.ctaCall}</span>
+          </a>
+          <a href={`${prefix}/kontakt`} class="outline-button w-inline-block" style="color: #ffffff; border-color: rgba(255,255,255,0.4);">
+            <span class="button-text">{c.ctaAddressBtn}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-03"></div>
+    <div class="contact-bg"></div>
+  </section>
+
+  <!-- Related Services Mesh -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto;">
+        <div class="section-badge">{c.relBadge}</div>
+        <h2 class="display-h3" style="margin-top: 0.5rem;">{c.relTitle}</h2>
+        <p class="paragraph t---neutral-10" style="max-width: 600px; margin: 0.5rem auto 0 auto;">{c.relDesc}</p>
+      </div>
+
+      <div class="subpage-grid-3">
+        <a href={`${prefix}/serwis-telewizorow`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">📺</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem;">{lang === 'pl' ? 'Serwis Telewizorów' : lang === 'en' ? 'TV Repair' : 'Ремонт телевізорів'}</h3>
+            <p class="paragraph t---neutral-10">
+              {lang === 'pl' ? 'Wymiana podświetlenia LED, naprawa zasilaczy i płyt głównych TV Samsung, LG, Philips, Sony. Indywidualna wycena.' :
+               lang === 'en' ? 'LED backlight replacement, power board & logic board repairs for Samsung, LG, Philips, Sony TV.' :
+               'Заміна LED-підсвічування, ремонт блоків живлення та материнських плат Samsung, LG, Philips, Sony.'}
+            </p>
+          </div>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; color: #d32f2f; margin-top: 1rem;">{c.detailsLink}</span>
+        </a>
+
+        <a href={`${prefix}/serwis-komputerow`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">🖥️</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem;">{lang === 'pl' ? 'Serwis Komputerów PC' : lang === 'en' ? 'PC Computer Repair' : 'Ремонт комп\'ютерів PC'}</h3>
+            <p class="paragraph t---neutral-10">
+              {lang === 'pl' ? 'Diagnostyka płyt głównych, usuwanie zwarć VRM, serwis komputerów gamingowych, modernizacja i czyszczenie.' :
+               lang === 'en' ? 'Motherboard diagnostics, VRM short removal, gaming PC service, upgrades, and thermal cleaning.' :
+               'Діагностика материнських плат, усунення замикань VRM, ремонт ігрових ПК, модернізація та чистка.'}
+            </p>
+          </div>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; color: #d32f2f; margin-top: 1rem;">{c.detailsLink}</span>
+        </a>
+
+        <a href={`${prefix}/cennik`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">📋</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem;">{lang === 'pl' ? 'Cennik i Diagnoza' : lang === 'en' ? 'Pricing & Diagnosis' : 'Прайс та діагностика'}</h3>
+            <p class="paragraph t---neutral-10">
+              {lang === 'pl' ? 'Jasne reguły: rzetelna diagnoza, wycena przed przystąpieniem do naprawy i gwarancja od 3 do 24 m-cy.' :
+               lang === 'en' ? 'Clear rules: thorough diagnosis, price quote before repair, and 3-24 month warranty.' :
+               'Прозорі умови: точна діагностика, оцінка до початку ремонту та гарантія від 3 до 24 міс.'}
+            </p>
+          </div>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; color: #d32f2f; margin-top: 1rem;">{c.pricingLink}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Unified Footer -->
+  <Footer lang={lang} />
+</Layout>

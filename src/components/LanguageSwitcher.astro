@@ -1,0 +1,130 @@
+---
+import type { Lang } from '../i18n/translations';
+
+interface Props {
+  currentLang?: Lang;
+  currentPath?: string;
+}
+
+const { currentLang = 'pl', currentPath = Astro.url.pathname } = Astro.props;
+
+// Strip language prefixes /en/ or /uk/ (or /en or /uk) from path to get base route
+let baseRoute = currentPath;
+if (baseRoute.startsWith('/en/')) {
+  baseRoute = baseRoute.slice(3);
+} else if (baseRoute === '/en') {
+  baseRoute = '';
+} else if (baseRoute.startsWith('/uk/')) {
+  baseRoute = baseRoute.slice(3);
+} else if (baseRoute === '/uk') {
+  baseRoute = '';
+}
+
+// Normalize baseRoute: e.g. '/cennik/' -> '/cennik', '/' -> ''
+if (baseRoute.endsWith('/') && baseRoute.length > 1) {
+  baseRoute = baseRoute.slice(0, -1);
+}
+if (baseRoute === '/') {
+  baseRoute = '';
+}
+
+const plHref = baseRoute === '' ? '/' : baseRoute;
+const enHref = `/en${baseRoute}`;
+const ukHref = `/uk${baseRoute}`;
+
+const languages = [
+  { code: 'pl', name: 'Polski', flag: '🇵🇱', short: 'PL', href: plHref },
+  { code: 'en', name: 'English', flag: '🇬🇧', short: 'EN', href: enHref },
+  { code: 'uk', name: 'Українська', flag: '🇺🇦', short: 'UKR', href: ukHref },
+];
+
+const activeLang = languages.find(l => l.code === currentLang) || languages[0];
+---
+
+<div class="lang-switcher-container" id="langSwitcher">
+  <button
+    type="button"
+    class="lang-toggle-btn"
+    aria-label="Wybierz język / Select language / Оберіть мову"
+    aria-expanded="false"
+    aria-haspopup="true"
+    id="langToggleBtn"
+  >
+    <span class="lang-flag">{activeLang.flag}</span>
+    <span class="lang-code">{activeLang.short}</span>
+    <svg class="lang-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m6 9 6 6 6-6"/>
+    </svg>
+  </button>
+
+  <div class="lang-dropdown" id="langDropdown" role="menu" aria-labelledby="langToggleBtn">
+    {languages.map(lang => (
+      <a
+        href={lang.href}
+        class={`lang-item ${lang.code === currentLang ? 'active' : ''}`}
+        role="menuitem"
+        data-lang={lang.code}
+      >
+        <span class="lang-item-flag">{lang.flag}</span>
+        <span class="lang-item-name">{lang.name}</span>
+        <span class="lang-item-short">{lang.short}</span>
+      </a>
+    ))}
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    function initLangSwitcher() {
+      var container = document.getElementById('langSwitcher');
+      var btn = document.getElementById('langToggleBtn');
+      var dropdown = document.getElementById('langDropdown');
+      if (!container || !btn || !dropdown) return;
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var isOpen = dropdown.classList.contains('open');
+        if (isOpen) {
+          dropdown.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          dropdown.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!container.contains(e.target)) {
+          dropdown.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && dropdown.classList.contains('open')) {
+          dropdown.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.focus();
+        }
+      });
+
+      var items = dropdown.querySelectorAll('.lang-item');
+      items.forEach(function (item) {
+        item.addEventListener('click', function () {
+          var selected = item.getAttribute('data-lang');
+          if (selected) {
+            try {
+              localStorage.setItem('preferred_lang', selected);
+            } catch (err) {}
+          }
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLangSwitcher);
+    } else {
+      initLangSwitcher();
+    }
+  })();
+</script>

@@ -1,0 +1,587 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../Navbar.astro";
+import Footer from "../Footer.astro";
+import type { Lang } from "../../i18n/translations";
+import "../../styles/ix/index.css";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "pl" } = Astro.props;
+const prefix = lang === "pl" ? "" : `/${lang}`;
+const currentPath = `${prefix}/serwis-komputerow`;
+
+const content = {
+  pl: {
+    seoTitle: "Serwis Komputerowy Bydgoszcz | Naprawa Komputerów PC i Gaming | Multi-Servis",
+    seoDesc: "Rzetelny serwis komputerowy w Bydgoszczy (Ku Wiatrakom 18). Naprawa komputerów stacjonarnych, PC gamingowych, kart graficznych, zasilaczy i płyt głównych. Indywidualna wycena, gwarancja 3 m-ce.",
+    heroBadge: "Bydgoszcz • Serwis PC i Gaming • Ku Wiatrakom 18",
+    heroTitle: "Serwis i Naprawa Komputerów PC w Bydgoszczy",
+    heroSubtitle: "Zajmujemy się profesjonalną naprawą, diagnozą i modernizacją komputerów stacjonarnych, stacji roboczych oraz zestawów gamingowych. Rozwiązujemy problemy ze zwarciami sekcji zasilania, awariami kart graficznych, niestabilnością systemu oraz przegrzewaniem.",
+    pills: ["⚡ Szybka realizacja", "🔍 Diagnoza i indywidualna wycena", "🛡️ Oprogramowanie Multi-Guard", "🛡️ Gwarancja 3-24 m-cy", "🤝 Uczciwa wycena przed naprawą", "📍 Bydgoszcz Wyżyny"],
+    ctaCall: "Zadzwoń: 505 012 914",
+    ctaContact: "Dojazd i kontakt",
+    metricsBadge: "Standard serwisu PC",
+    metricsTitle: "Dlaczego warto naprawić komputer w Multi-Servis?",
+    metricsSubtitle: "Specjalizujemy się w trudnych usterkach płyt głównych, kart graficznych i zasilaczy komputerowych.",
+    m1Val: "Indywidualna",
+    m1Label: "Wycena diagnozy",
+    m1Desc: "Precyzyjne testy zasilacza, pamięci RAM, dysków i karty graficznej. Zawsze wiesz, co dokładnie jest uszkodzone przed naprawą.",
+    m2Val: "3-24 m-ce",
+    m2Label: "Gwarancja na naprawę",
+    m2Desc: "Gwarancja od 3 do 24 miesięcy na wymienione podzespoły i wykonane naprawy elektroniczne.",
+    m3Val: "20+ lat",
+    m3Label: "Doświadczenia",
+    m3Desc: "Wieloletnia praktyka w zaawansowanej diagnostyce sprzętu PC, stacji roboczych i zestawów gamingowych.",
+    sympBadge: "Typowe usterki komputerów PC",
+    sympTitle: "Problemy z komputerem, które skutecznie rozwiązujemy",
+    sympSubtitle: "Naprawiamy jednostki stacjonarne, gamingowe oraz biurowe stacje robocze.",
+    symp1Title: "🔌 Komputer nie reaguje na włącznik lub gaśnie po sekundzie",
+    symp1Desc: "Częsty objaw zwarcia w linii 12V procesora lub karty graficznej albo awarii zasilacza ATX. Testujemy zasilacz profesjonalnym testerem obciążeniowym i lokalizujemy zwarcia na płycie głównej za pomocą próby zwarciowej i termowizji.",
+    symp2Title: "🖥️ Brak sygnału na monitorze, wentylatory kręcą się na 100%",
+    symp2Desc: "Brak procedury POST, błąd inicjalizacji karty graficznej lub pamięci operacyjnej RAM. Diagnostyka płyty za pomocą karty POST, weryfikacja napięć na szynach PCIe oraz testy poszczególnych modułów.",
+    symp3Title: "🎮 Artefakty w grach, zawieszanie się, czarny ekran",
+    symp3Desc: "Kolorowe kwadraty, paski lub nagłe wyłączanie się komputera podczas obciążenia w grach. Weryfikujemy stabilność GPU (RTX / Radeon), sekcję zasilania VRM, temperatury pamięci VRAM oraz wymieniamy pasty i termopady.",
+    symp4Title: "🌀 Przegrzewanie i głośna praca wentylatorów",
+    symp4Desc: "Wyschnięta pasta termoprzewodząca, kurz w radiatorach, zapowietrzone chłodzenie wodne AIO. Wykonujemy gruntowne czyszczenie ciśnieniowe obudowy, wymianę past na markowe produkty (Thermal Grizzly, Arctic) oraz optymalizację krzywych wentylatorów w BIOS.",
+    symp5Title: "💾 Wolne działanie, Blue Screeny (BSOD), uszkodzenia dysków",
+    symp5Desc: "Ciągłe restarty i błędy krytyczne systemu Windows. Klonujemy system na szybkie dyski SSD NVMe M.2 bez utraty Twoich plików oraz instalujemy autorski program Multi-Guard, który monitoruje kondycję dysków SSD i rejestruje błędy Kernel-Power 41 oraz WHEA, ostrzegając o niestabilności zasilania.",
+    symp6Title: "🚀 Modernizacja starszych komputerów",
+    symp6Desc: "Zamiast kupować nowy komputer, doradzamy wymianę kluczowych wąskich gardeł (procesor, dodatkowy RAM, nowa karta graficzna, mocniejszy zasilacz). Otrzymujesz wyższą wydajność w rozsądnym budżecie.",
+    faqBadge: "Pytania i odpowiedzi",
+    faqTitle: "Pytania o naprawę komputerów w Bydgoszczy",
+    ctaBadge: "Komputer przestał działać?",
+    ctaTitle: "Zadzwoń do serwisu Multi-Servis w Bydgoszczy",
+    ctaDesc: "Zadzwoń lub przywieź jednostkę na ul. Ku Wiatrakom 18. Rzetelna diagnoza i indywidualna wycena przed naprawą.",
+    ctaAddressBtn: "Sprawdź adres i godziny",
+    relBadge: "Kompleksowy serwis w Bydgoszczy",
+    relTitle: "Pozostałe usługi serwisu Multi-Servis",
+    relDesc: "W naszym warsztacie przy ul. Ku Wiatrakom 18 naprawiamy pełen przekrój elektroniki użytkowej.",
+    detailsLink: "Szczegóły →",
+    pricingLink: "Zobacz cennik →",
+    faqs: [
+      {
+        q: "Komputer strasznie muli, zawiesza się lub wyskakuje Blue Screen. Jak można go przyspieszyć?",
+        a: "W Multi-Servis w Bydgoszczy przeprowadzamy testy obciążeniowe, weryfikujemy stan dysku oraz pamięci RAM. W większości przypadków instalujemy ultraszybki dysk SSD NVMe z bezstratnym klonowaniem systemu Windows i danych oraz wykonujemy pełny serwis termiczny (czyszczenie + markowa pasta Arctic/Thermal Grizzly). Komputer działa bez zawieszeń i kilkukrotnie szybciej."
+      },
+      {
+        q: "Co może być przyczyną, gdy komputer się włącza, ale nie ma obrazu na monitorze?",
+        a: "Najczęstsze przyczyny to uszkodzenie karty graficznej, niestabilność kości pamięci RAM, brak zasilania dodatkowego PCIe z zasilacza lub błąd BIOS płyty głównej. Sprawdzamy każdy komponent na stanowisku testowym w warsztacie."
+      },
+      {
+        q: "Dlaczego komputer zawiesza się lub wyświetla Blue Screen (BSOD) w grach?",
+        a: "Objaw ten z reguły wskazuje na przegrzewanie procesora/karty graficznej, uszkodzone sektory dysku SSD NVMe, błędy w modułach pamięci RAM lub spadki napięcia na zasilaczu. Przeprowadzamy pełne testy diagnostyczne OCCT, FurMark i MemTest."
+      },
+      {
+        q: "Ile kosztuje diagnostyka komputera w Bydgoszczy?",
+        a: "Każda diagnoza w Multi-Servis prowadzona jest rzetelnie. Po sprawdzeniu sprzętu dzwonimy z konkretną wyceną naprawy lub wymiany części do Twojej akceptacji."
+      },
+      {
+        q: "Czy pomagacie w doborze podzespołów i modernizacji starszego PC?",
+        a: "Tak. Dobieramy kompatybilne procesory, pamięci RAM, szybkie dyski SSD NVMe oraz mocniejsze zasilacze i karty graficzne tak, aby uzyskać maksymalny wzrost wydajności w założonym budżecie."
+      },
+      {
+        q: "Jak po naprawie dbać o stabilność komputera i kontrolować temperatury podzespołów?",
+        a: "W naszym serwisie oferujemy autorskie oprogramowanie Multi-Guard (edycja Standard lub Pro). Zapewnia ono bieżący monitoring obciążenia i temperatur CPU, RAM oraz GPU, chroni przed fałszywymi powiadomieniami w przeglądarkach (Browser Shield), a w edycji Pro umożliwia bezpośrednią, bezpieczną pomoc zdalną technika Multi-Servis."
+      }
+    ]
+  },
+  en: {
+    seoTitle: "PC Computer Repair Bydgoszcz | Desktop & Gaming PC Service | Multi-Servis",
+    seoDesc: "Professional desktop computer repair in Bydgoszcz (Ku Wiatrakom 18). Desktop & gaming PCs, graphics card diagnostics, power supplies, motherboard VRM repairs. Transparent diagnosis, 3-24 month warranty.",
+    heroBadge: "Bydgoszcz • PC & Gaming Service • Ku Wiatrakom 18",
+    heroTitle: "Desktop & Gaming PC Repair in Bydgoszcz",
+    heroSubtitle: "We provide professional repair, diagnostics, and upgrades for desktop computers, workstations, and custom gaming rigs. We resolve VRM power rail shorts, graphics card issues, system instability, and overheating.",
+    pills: ["⚡ Fast turnaround", "🔍 Diagnosis & individual quote", "🛡️ Multi-Guard Software", "🛡️ 3-24 month warranty", "🤝 Fair quote before repair", "📍 Bydgoszcz Wyżyny"],
+    ctaCall: "Call: 505 012 914",
+    ctaContact: "Directions & Contact",
+    metricsBadge: "PC Service Standards",
+    metricsTitle: "Why repair your PC at Multi-Servis?",
+    metricsSubtitle: "We specialize in complex motherboard, GPU, and ATX power supply faults.",
+    m1Val: "Individual",
+    m1Label: "Hardware diagnosis",
+    m1Desc: "Precision stress tests for power supplies, RAM modules, SSDs, and GPUs. You always know the exact quote before repair.",
+    m2Val: "3-24 months",
+    m2Label: "Repair warranty",
+    m2Desc: "Warranty from 3 to 24 months for replaced components and electronic circuit repairs.",
+    m3Val: "20+ yrs",
+    m3Label: "Experience",
+    m3Desc: "Extensive background in PC architecture, micro-soldering, and gaming workstation diagnostics.",
+    sympBadge: "Typical PC Issues",
+    sympTitle: "Computer problems we solve every day",
+    sympSubtitle: "We repair standard desktop PCs, gaming rigs, and high-load workstations.",
+    symp1Title: "🔌 PC won't power on or shuts down after 1 second",
+    symp1Desc: "A classic sign of a short circuit on the 12V CPU or GPU rail, or an ATX power supply failure. We test power supplies under load and locate motherboard shorts with thermal imaging.",
+    symp2Title: "🖥️ No signal on display, fans running at 100%",
+    symp2Desc: "Failed POST procedure, GPU initialization fault, or faulty RAM. We diagnose motherboard signals with POST diagnostic cards and check PCIe power voltages.",
+    symp3Title: "🎮 Artifacts in games, freezes, black screens",
+    symp3Desc: "Color blocks, lines, or sudden crashes during gaming. We inspect GPU stability (RTX/Radeon), VRM power circuitry, VRAM temperatures, and replace thermal pads.",
+    symp4Title: "🌀 Overheating and loud fan noise",
+    symp4Desc: "Dried thermal paste, clogged radiators, air pockets in AIO water coolers. We perform full pressurized dust cleaning and apply premium thermal compounds (Arctic / Thermal Grizzly).",
+    symp5Title: "💾 Slow performance, BSODs, dying drives",
+    symp5Desc: "Constant restarts and Windows blue screens. We clone systems to high-speed NVMe M.2 SSDs without losing any of your files, applications, or configurations.",
+    symp6Title: "🚀 Upgrades for older desktop PCs",
+    symp6Desc: "Instead of buying an expensive new PC, we identify bottlenecks (CPU, RAM capacity, modern GPU, efficient PSU) to deliver great performance within your budget.",
+    faqBadge: "Questions & Answers",
+    faqTitle: "Questions about PC computer repairs in Bydgoszcz",
+    ctaBadge: "Has your PC stopped working?",
+    ctaTitle: "Call Multi-Servis repair shop in Bydgoszcz",
+    ctaDesc: "Call or bring your PC tower to Ku Wiatrakom 18. Accurate diagnosis and individual quote before repair.",
+    ctaAddressBtn: "Check address & hours",
+    relBadge: "Full-spectrum repair in Bydgoszcz",
+    relTitle: "Other services by Multi-Servis",
+    relDesc: "At our workshop on Ku Wiatrakom 18, we repair a wide range of consumer electronics.",
+    detailsLink: "Details →",
+    pricingLink: "View pricing →",
+    faqs: [
+      {
+        q: "What could be the cause when a PC turns on but there is no display on the monitor?",
+        a: "Common causes include GPU failure, memory RAM instability, missing PCIe auxiliary power, or corrupted motherboard BIOS. We test each part on dedicated test benches."
+      },
+      {
+        q: "Why does my PC freeze or show a Blue Screen (BSOD) during games?",
+        a: "This symptom usually points to CPU/GPU overheating, failing NVMe SSD sectors, bad RAM blocks, or power voltage sags. We run full OCCT, FurMark, and MemTest stress tests."
+      },
+      {
+        q: "How much does a PC diagnosis cost in Bydgoszcz?",
+        a: "Every device undergoes thorough hardware diagnosis. After checking the components, we call you with an exact repair or replacement quote for your approval."
+      },
+      {
+        q: "Do you help select components and upgrade older PCs?",
+        a: "Yes. We select compatible processors, RAM kits, fast NVMe SSDs, and matching power supplies/GPUs to maximize performance for your budget."
+      },
+      {
+        q: "How can I monitor my PC stability and component temperatures after repair?",
+        a: "We recommend our proprietary Multi-Guard utility (Standard or Pro). It provides real-time telemetry of CPU, RAM, and GPU load and temperatures, integrates Microsoft Defender, and in the Pro edition enables on-demand remote support from Multi-Servis."
+      }
+    ]
+  },
+  uk: {
+    seoTitle: "Ремонт комп'ютерів у Бидгощі | Сервіс ПК та ігрових комп'ютерів | Multi-Servis",
+    seoDesc: "Надійний комп'ютерний сервіс у Бидгощі (Ku Wiatrakom 18). Ремонт стаціонарних та ігрових ПК, відеокарт, блоків живлення та материнських плат. Індивідуальна оцінка, гарантія 3-24 міс.",
+    heroBadge: "Бидгощ • Сервіс ПК та геймінгу • Ku Wiatrakom 18",
+    heroTitle: "Сервіс та ремонт комп'ютерів ПК у Бидгощі",
+    heroSubtitle: "Професійний ремонт, діагностика та модернізація стаціонарних комп'ютерів, робочих станцій та ігрових збірок. Усуваємо замикання ланцюгів живлення, поломки відеокарт, нестабільність системи та перегрів.",
+    pills: ["⚡ Швидке виконання", "🔍 Діагностика та оцінка", "🛡️ Програма Multi-Guard", "🛡️ Гарантія 3-24 міс.", "🤝 Чесна оцінка до ремонту", "📍 Бидгощ Вижини"],
+    ctaCall: "Зателефонувати: 505 012 914",
+    ctaContact: "Маршрут і контакти",
+    metricsBadge: "Стандарт сервісу ПК",
+    metricsTitle: "Чому варто відремонтувати комп'ютер у Multi-Servis?",
+    metricsSubtitle: "Спеціалізуємося на складних несправностях материнських плат, відеокарт та блоків живлення.",
+    m1Val: "Індивідуальна",
+    m1Label: "Діагностика заліза",
+    m1Desc: "Точне тестування блоку живлення, оперативної пам'яті, накопичувачів та відеокарти. Узгодження кошторису перед ремонтом.",
+    m2Val: "3-24 міс.",
+    m2Label: "Гарантія на ремонт",
+    m2Desc: "Гарантія від 3 до 24 місяців на замінені деталі та виконані електронні ремонти.",
+    m3Val: "20+ р.",
+    m3Label: "Досвіду",
+    m3Desc: "Багаторічний досвід складної діагностики материнських плат, відеокарт та блоків живлення.",
+    sympBadge: "Типові поломки ПК",
+    sympTitle: "Проблеми з комп'ютером, які ми ефективно вирішуємо",
+    sympSubtitle: "Ремонтуємо стаціонарні, ігрові та офісні робочі станції.",
+    symp1Title: "🔌 Комп'ютер не вмикається або гасне через секунду",
+    symp1Desc: "Поширена ознака замикання по лінії 12V процесора/відеокарти або поломки блоку живлення ATX. Тестуємо блок живлення під навантаженням і знаходимо замикання на платі тепловізором.",
+    symp2Title: "🖥️ Немає сигналу на моніторі, кулери крутяться на 100%",
+    symp2Desc: "Збій процедури POST, помилка ініціалізації відеокарти або оперативної пам'яті. Діагностуємо плату за допомогою POST-карти і перевіряємо живлення шин PCIe.",
+    symp3Title: "🎮 Артефакти в іграх, зависання, чорний екран",
+    symp3Desc: "Кольорові квадрати, смуги чи раптове вимкнення в іграх. Перевіряємо стабільність GPU (RTX / Radeon), VRM, температури відеопам'яті та міняємо термопрокладки.",
+    symp4Title: "🌀 Перегрів та сильний шум вентиляторів",
+    symp4Desc: "Засохла термопаста, пил у радіаторах, повітря у системі СРО (AIO). Проводимо чистку під тиском, заміну термопасти на преміум-пасти (Thermal Grizzly, Arctic) та оптимізацію кулерів у BIOS.",
+    symp5Title: "💾 Повільна робота, сині екрани (BSOD), збої дисків",
+    symp5Desc: "Постійні перезавантаження та помилки Windows. Клонуємо систему на швидкісні SSD NVMe M.2 без втрати ваших файлів і програм, прискорюючи запуск у рази.",
+    symp6Title: "🚀 Модернізація старіших комп'ютерів",
+    symp6Desc: "Замість покупки нового ПК пропонуємо заміну вузьких місць (процесор, RAM, нова відеокарта, потужніший блок живлення) для максимального приросту швидкості в межах бюджету.",
+    faqBadge: "Запитання та відповіді",
+    faqTitle: "Запитання про ремонт комп'ютерів у Бидгощі",
+    ctaBadge: "Комп'ютер перестав працювати?",
+    ctaTitle: "Зателефонуйте до Multi-Servis у Бидгощі",
+    ctaDesc: "Зателефонуйте або привезіть системний блок на вул. Ku Wiatrakom 18. Точна діагностика та індивідуальна оцінка перед ремонтом.",
+    ctaAddressBtn: "Адреса та години роботи",
+    relBadge: "Комплексний сервіс у Бидгощі",
+    relTitle: "Інші послуги сервісу Multi-Servis",
+    relDesc: "У нашій майстерні на Ku Wiatrakom 18 ми ремонтуємо повний спектр споживчої електроніки.",
+    detailsLink: "Детальніше →",
+    pricingLink: "Переглянути прайс →",
+    faqs: [
+      {
+        q: "Чому комп'ютер вмикається, але на моніторі немає зображення?",
+        a: "Найчастіші причини: несправність відеокарти, нестабільність оперативної пам'яті, відсутність живлення PCIe або збій BIOS материнської плати. Ми тестуємо кожен компонент на тестовому стенді."
+      },
+      {
+        q: "Чому комп'ютер зависає або видає синій екран (BSOD) в іграх?",
+        a: "Зазвичай це вказує на перегрів процесора/відеокарти, збійні сектори SSD NVMe, помилки RAM або просідання напруги блоку живлення. Ми проводимо повне тестування в OCCT, FurMark і MemTest."
+      },
+      {
+        q: "Скільки коштує діагностика комп'ютера в Бидгощі?",
+        a: "Кожна одиниця техніки проходить ретельну діагностику. Після огляду ми телефонуємо з точною вартістю ремонту або заміни комплектуючих."
+      },
+      {
+        q: "Чи допомагаєте ви з підбором деталей та модернізацією старого ПК?",
+        a: "Так. Підбираємо сумісні процесори, пам'ять RAM, швидкі SSD NVMe, відеокарти та блоки живлення для відчутного приросту продуктивності."
+      },
+      {
+        q: "Як контролювати стабільність ПК та температуру компонентів після ремонту?",
+        a: "Ми рекомендуємо фірмову програму Multi-Guard від Multi-Servis. Вона забезпечує моніторинг температури CPU, RAM та GPU, інтегрує захист Microsoft Defender та дозволяє отримати безпечну дистанційну допомогу у версії Pro."
+      }
+    ]
+  }
+};
+
+const c = content[lang] || content.pl;
+
+// Service + FAQPage + BreadcrumbList JSON-LD
+const serviceSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": `https://multi-servis.pl${prefix}/serwis-komputerow#service`,
+      "name": c.seoTitle,
+      "description": c.seoDesc,
+      "url": `https://multi-servis.pl${prefix}/serwis-komputerow`,
+      "provider": { "@id": "https://multi-servis.pl/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Wyżyny, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Fordon, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Bartodzieje, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Bielawy, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Szwederowo, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Wzgórze Wolności, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Błonie, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Kapuściska, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Śródmieście, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Osowa Góra, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Solec Kujawski" },
+        { "@type": "AdministrativeArea", "name": "Białe Błota" },
+        { "@type": "AdministrativeArea", "name": "Osielsko" },
+        { "@type": "AdministrativeArea", "name": "Nowa Wieś Wielka" },
+        { "@type": "AdministrativeArea", "name": "Województwo kujawsko-pomorskie" }
+      ],
+      "serviceType": lang === "pl" ? "Naprawa komputerów PC" : (lang === "en" ? "PC & Desktop Repair" : "Ремонт комп'ютерів ПК"),
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "PLN",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `https://multi-servis.pl${prefix}/serwis-komputerow#faq`,
+      "mainEntity": c.faqs.map((item) => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": { "@type": "Answer", "text": item.a }
+      }))
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": lang === "pl" ? "Strona główna" : (lang === "en" ? "Home" : "Головна"), "item": `https://multi-servis.pl${prefix || "/"}` },
+        { "@type": "ListItem", "position": 2, "name": lang === "pl" ? "Serwis Komputerów" : (lang === "en" ? "PC Repair" : "Ремонт ПК"), "item": `https://multi-servis.pl${prefix}/serwis-komputerow` }
+      ]
+    }
+  ]
+});
+---
+
+<Layout
+  title={c.seoTitle}
+  description={c.seoDesc}
+  wfPage="serwis-komputerow"
+  ogImage="/images/service-pc-repair.jpg"
+  lang={lang}
+  keywords={lang === "pl" ? "serwis komputerów Bydgoszcz, naprawa PC Bydgoszcz, komputer muli, przyspieszanie PC, blue screen, wymiana karty graficznej, modernizacja komputera, Multi-Servis Ku Wiatrakom 18" : (lang === "en" ? "PC repair Bydgoszcz, desktop repair, GPU replacement, PC upgrade, Multi-Servis" : "ремонт комп'ютерів Бидгощ, ремонт ПК, заміна відеокарти, Multi-Servis")}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={serviceSchema} />
+
+  <!-- Unified Navbar -->
+  <Navbar lang={lang} currentPath={currentPath} />
+
+  <!-- Hero Section -->
+  <section class="section" style="padding-top: 2rem; padding-bottom: 3.5rem;">
+    <div class="container centered">
+      <div class="page-header" style="text-align: center; max-width: 860px; margin: 0 auto;">
+        <nav aria-label="Breadcrumb" style="margin-bottom: 1rem; font-size: 0.875rem;">
+          <ol style="list-style: none; padding: 0; margin: 0; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <li><a href={prefix || "/"} style="color: inherit; opacity: 0.75; text-decoration: none;">{lang === "pl" ? "Główna" : (lang === "en" ? "Home" : "Головна")}</a></li>
+            <li aria-hidden="true" style="opacity: 0.4; font-size: 0.75rem;">/</li>
+            <li aria-current="page" style="color: #d32f2f; font-weight: 600;">{lang === "pl" ? "Serwis Komputerów PC" : (lang === "en" ? "PC Repair" : "Ремонт ПК")}</li>
+          </ol>
+        </nav>
+        <div class="section-badge">{c.heroBadge}</div>
+        <h1 class="display-h1" style="margin-top: 0.75rem; margin-bottom: 1.25rem;">
+          {c.heroTitle}
+        </h1>
+        <p class="large-paragraph t---neutral-10" style="max-width: 760px; margin: 0 auto 2rem auto;">
+          {c.heroSubtitle}
+        </p>
+
+        <!-- Trust Mini-Okienka Pills -->
+        <div class="hero-quick-stats" style="justify-content: center; margin: 0 auto 2rem auto;">
+          {c.pills.map((pill) => (
+            <div class="hero-stat-pill">
+              {pill}
+            </div>
+          ))}
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="tel:+48505012914" class="primary-button w-inline-block" style="color: #ffffff !important;">
+            <div class="button-content">
+              <span class="button-text" style="color: #ffffff !important;">{c.ctaCall}</span>
+            </div>
+          </a>
+          <a href={`${prefix}/kontakt`} class="outline-button w-inline-block">
+            <div class="button-content">
+              <span class="button-text">{c.ctaContact}</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Parameters Bento Auto-Layout -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+        <div class="section-badge">{c.metricsBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.75rem;">{c.metricsTitle}</h2>
+        <p class="large-paragraph t---neutral-10">{c.metricsSubtitle}</p>
+      </div>
+
+      <div class="subpage-metrics-grid" style="max-width: 1040px; margin: 0 auto;">
+        <div class="subpage-card">
+          <div>
+            <div class="subpage-metrics-val">{c.m1Val}</div>
+            <div class="subpage-metrics-label">{c.m1Label}</div>
+          </div>
+          <div class="subpage-metrics-desc">{c.m1Desc}</div>
+        </div>
+        <div class="subpage-card">
+          <div>
+            <div class="subpage-metrics-val">{c.m2Val}</div>
+            <div class="subpage-metrics-label">{c.m2Label}</div>
+          </div>
+          <div class="subpage-metrics-desc">{c.m2Desc}</div>
+        </div>
+        <div class="subpage-card">
+          <div>
+            <div class="subpage-metrics-val">{c.m3Val}</div>
+            <div class="subpage-metrics-label">{c.m3Label}</div>
+          </div>
+          <div class="subpage-metrics-desc">{c.m3Desc}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Issues Section -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+        <div class="section-badge">{c.sympBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.75rem;">{c.sympTitle}</h2>
+        <p class="large-paragraph t---neutral-10">{c.sympSubtitle}</p>
+      </div>
+
+      <div class="subpage-grid-3">
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{c.symp1Title}</h3>
+          <p class="paragraph t---neutral-10">{c.symp1Desc}</p>
+        </div>
+
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{c.symp2Title}</h3>
+          <p class="paragraph t---neutral-10">{c.symp2Desc}</p>
+        </div>
+
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{c.symp3Title}</h3>
+          <p class="paragraph t---neutral-10">{c.symp3Desc}</p>
+        </div>
+
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{c.symp4Title}</h3>
+          <p class="paragraph t---neutral-10">{c.symp4Desc}</p>
+        </div>
+
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{c.symp5Title}</h3>
+          <p class="paragraph t---neutral-10">{c.symp5Desc}</p>
+        </div>
+
+        <div class="subpage-card">
+          <h3 class="display-h5" style="color: #d32f2f; margin-bottom: 0.5rem;">{c.symp6Title}</h3>
+          <p class="paragraph t---neutral-10">{c.symp6Desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered faq-centered-container" style="max-width: 900px; margin: 0 auto;">
+      <div class="section-header faq-section-header" style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto; width: 100%;">
+        <div class="section-badge" style="margin: 0 auto;">{c.faqBadge}</div>
+        <h2 class="display-h2" style="margin-top: 0.75rem; text-align: center;">{c.faqTitle}</h2>
+      </div>
+
+      <div class="faq-list-wrap" style="display: flex; flex-flow: column; gap: 1.25rem; width: 100%; max-width: 860px; margin: 0 auto;">
+        {c.faqs.map((faq) => (
+          <div class="subpage-card faq-card-item" style="padding: 1.5rem 1.75rem; width: 100%; box-sizing: border-box;">
+            <h3 class="display-h5" style="margin-bottom: 0.5rem; color: #d32f2f;">{faq.q}</h3>
+            <p class="paragraph t---neutral-10" style="margin: 0; line-height: 1.6;">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Multi-Guard Promo Banner -->
+  <section class="section" style="padding: 2rem 0 3.5rem 0;">
+    <div class="container">
+      <div class="mg-service-promo-card">
+        <div class="mg-promo-text-wrap">
+          <div class="mg-promo-badge">🛡️ {lang === 'pl' ? 'Autorskie Oprogramowanie Multi-Servis' : (lang === 'en' ? 'Proprietary Multi-Servis Software' : 'Фірмове ПЗ від Multi-Servis')}</div>
+          <h3 class="mg-promo-title">
+            {lang === 'pl' ? 'Zabezpiecz i monitoruj swój komputer z programem Multi-Guard' : (lang === 'en' ? 'Protect and monitor your PC with Multi-Guard' : 'Захистіть та контролюйте свій ПК з програмою Multi-Guard')}
+          </h3>
+          <p class="mg-promo-desc">
+            {lang === 'pl'
+              ? 'Zapytaj w naszym warsztacie o wdrożenie Multi-Guard na Twoim komputerze. Otrzymasz ochronę Microsoft Defender, kontrolę prywatności, stały podgląd obciążenia CPU, RAM i karty graficznej GPU oraz bezpośrednią zdalną pomoc serwisową (w edycji Pro).'
+              : (lang === 'en'
+                ? 'Ask at our repair workshop about installing Multi-Guard. Benefit from Microsoft Defender management, real-time CPU/RAM/GPU telemetry, privacy controls, and remote support (Pro edition).'
+                : 'Запитайте у майстерні про встановлення Multi-Guard на ваш комп’ютер: захист Microsoft Defender, контроль приватності, моніторинг навантаження CPU/RAM/GPU та дистанційна допомога (Pro).')}
+          </p>
+          <div class="mg-promo-features">
+            <span class="mg-promo-feat">⚡ {lang === 'pl' ? 'Monitoring CPU, RAM & GPU na żywo' : (lang === 'en' ? 'Live CPU/RAM/GPU Telemetry' : 'Моніторинг CPU, RAM та GPU')}</span>
+            <span class="mg-promo-feat">🛡️ Microsoft Defender</span>
+            <span class="mg-promo-feat">🔍 {lang === 'pl' ? 'Wykrywanie Kernel-Power 41 & WHEA' : (lang === 'en' ? 'Kernel-Power 41 & WHEA Logging' : 'Фіксація Kernel-Power 41 та WHEA')}</span>
+            <span class="mg-promo-feat">🤝 {lang === 'pl' ? 'Zdalna pomoc techniczna (Pro)' : (lang === 'en' ? 'Remote Support (Pro)' : 'Дистанційна допомога (Pro)')}</span>
+          </div>
+          <div class="mg-promo-actions">
+            <a href={`${prefix}/multi-guard`} class="primary-button w-inline-block" style="color: #ffffff !important; text-decoration: none;">
+              <div class="button-content">
+                <p class="button-text" style="color: #ffffff !important; margin: 0;">
+                  {lang === 'pl' ? 'Poznaj program Multi-Guard →' : (lang === 'en' ? 'Explore Multi-Guard →' : 'Дізнатися більше →')}
+                </p>
+              </div>
+            </a>
+            <a href="tel:+48505012914" class="outline-button w-inline-block" style="color: #ffffff; border-color: rgba(255,255,255,0.3); text-decoration: none;">
+              <div class="button-content">
+                <p class="button-text" style="margin: 0; color: #ffffff;">📞 505 012 914</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="mg-promo-visual">
+          <div class="mg-promo-window">
+            <div class="mg-promo-window-bar">
+              <span class="mg-promo-dot" style="background:#ff5f56;"></span>
+              <span class="mg-promo-dot" style="background:#ffbd2e;"></span>
+              <span class="mg-promo-dot" style="background:#27c93f;"></span>
+              <span class="mg-promo-title-bar">{lang === 'pl' ? 'Multi-Guard • Diagnostyka PC & Defender Status' : (lang === 'en' ? 'Multi-Guard • PC Diagnostics & Defender Status' : 'Multi-Guard • Діагностика ПК та статус Defender')}</span>
+            </div>
+            <img
+              src="/images/multiguard/multiguard-desktop-ui.png"
+              alt="Multi-Guard Panel Diagnostyki i Bezpieczeństwa PC"
+              loading="lazy"
+              width="1413"
+              height="717"
+              class="mg-img-fluid"
+              style="object-fit: contain; max-width: 100%; height: auto;"
+            />
+            <div class="mg-promo-caption">
+              <span>{lang === 'pl' ? 'Diagnostyka stabilności, SSD i ochrona Microsoft Defender' : (lang === 'en' ? 'Hardware stability, SSD telemetry and Defender security' : 'Діагностика стабільності, SSD та захист Microsoft Defender')}</span>
+              <span class="mg-promo-badge" style="font-size: 0.6875rem; padding: 2px 8px; margin: 0 0 0 6px;">Widok poglądowy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section inverse" style="padding: 4.5rem 0;">
+    <div class="container">
+      <div class="cta-glass-card" style="max-width: 860px; margin: 0 auto; padding: clamp(2.25rem, 5vw, 3.5rem) 2rem; text-align: center;">
+        <div class="section-badge" style="background: rgba(255,255,255,0.1); color: #ffffff;">{c.ctaBadge}</div>
+        <h2 class="display-h2" style="margin-top: 1rem; margin-bottom: 1rem; color: #ffffff;">{c.ctaTitle}</h2>
+        <p class="large-paragraph" style="max-width: 600px; margin: 0 auto 2rem auto; color: rgba(255,255,255,0.85);">
+          {c.ctaDesc}
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="tel:+48505012914" class="primary-button w-inline-block" style="color: #ffffff !important;">
+            <span class="button-text" style="color: #ffffff !important;">{c.ctaCall}</span>
+          </a>
+          <a href={`${prefix}/kontakt`} class="outline-button w-inline-block" style="color: #ffffff; border-color: rgba(255,255,255,0.4);">
+            <span class="button-text">{c.ctaAddressBtn}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-03"></div>
+    <div class="contact-bg"></div>
+  </section>
+
+  <!-- Related Services Mesh -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered">
+      <div style="text-align: center; max-width: 800px; margin: 0 auto 2.5rem auto;">
+        <div class="section-badge">{c.relBadge}</div>
+        <h2 class="display-h3" style="margin-top: 0.5rem;">{c.relTitle}</h2>
+        <p class="paragraph t---neutral-10" style="max-width: 600px; margin: 0.5rem auto 0 auto;">{c.relDesc}</p>
+      </div>
+
+      <div class="subpage-grid-3">
+        <a href={`${prefix}/serwis-laptopow`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">💻</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem;">{lang === 'pl' ? 'Serwis Laptopów' : lang === 'en' ? 'Laptop Repair' : 'Ремонт ноутбуків'}</h3>
+            <p class="paragraph t---neutral-10">
+              {lang === 'pl' ? 'Naprawa laptopów po zalaniu, myjka ultradźwiękowa, lutowanie BGA, wymiana matryc, gniazd i układów chłodzenia.' :
+               lang === 'en' ? 'Liquid damage restoration, ultrasonic cleaning, BGA soldering, screen and cooling repairs.' :
+               'Ремонт після залиття, ультразвукова чистка, BGA-пайка, заміна матриць та систем охолодження.'}
+            </p>
+          </div>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; color: #d32f2f; margin-top: 1rem;">{c.detailsLink}</span>
+        </a>
+
+        <a href={`${prefix}/serwis-telewizorow`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">📺</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem;">{lang === 'pl' ? 'Serwis Telewizorów' : lang === 'en' ? 'TV Repair' : 'Ремонт телевізорів'}</h3>
+            <p class="paragraph t---neutral-10">
+              {lang === 'pl' ? 'Wymiana podświetlenia LED, naprawa zasilaczy i płyt głównych TV Samsung, LG, Philips, Sony.' :
+               lang === 'en' ? 'LED backlight replacement, power board & logic board repairs for Samsung, LG, Philips, Sony TV.' :
+               'Заміна LED-підсвічування, ремонт блоків живлення та материнських плат Samsung, LG, Philips, Sony.'}
+            </p>
+          </div>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; color: #d32f2f; margin-top: 1rem;">{c.detailsLink}</span>
+        </a>
+
+        <a href={`${prefix}/cennik`} class="subpage-card" style="text-decoration: none; color: inherit; display: flex; flex-flow: column; justify-content: space-between;">
+          <div>
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">📋</div>
+            <h3 class="display-h5" style="margin-bottom: 0.5rem;">{lang === 'pl' ? 'Cennik i Diagnoza' : lang === 'en' ? 'Pricing & Diagnosis' : 'Прайс та діагностика'}</h3>
+            <p class="paragraph t---neutral-10">
+              {lang === 'pl' ? 'Jasne reguły: rzetelna diagnoza, wycena przed przystąpieniem do naprawy i gwarancja od 3 do 24 m-cy.' :
+               lang === 'en' ? 'Clear rules: thorough diagnosis, price quote before repair, and 3-24 month warranty.' :
+               'Прозорі умови: точна діагностика, оцінка до початку ремонту та гарантія від 3 до 24 міс.'}
+            </p>
+          </div>
+          <span style="display: inline-flex; align-items: center; gap: 0.25rem; font-weight: 700; color: #d32f2f; margin-top: 1rem;">{c.pricingLink}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Unified Footer -->
+  <Footer lang={lang} />
+</Layout>

@@ -1,0 +1,332 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../Navbar.astro";
+import Footer from "../Footer.astro";
+import type { Lang } from "../../i18n/translations";
+import "../../styles/ix/index.css";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "pl" } = Astro.props;
+const prefix = lang === "pl" ? "" : `/${lang}`;
+const currentPath = `${prefix}/kontakt`;
+
+const content = {
+  pl: {
+    seoTitle: "Kontakt i Dojazd | Serwis Elektroniki Bydgoszcz Ku Wiatrakom 18 | Multi-Servis",
+    seoDesc: "Skontaktuj się z Multi-Servis w Bydgoszczy. Ul. Ku Wiatrakom 18 (Wyżyny). Tel: 505 012 914. Godziny: pon.-pt. 10:00 - 17:00. Dojazd i dane kontaktowe.",
+    heroBadge: "Bydgoszcz • Ku Wiatrakom 18 • Wyżyny",
+    heroTitle: "Kontakt z Serwisem i Dane Dojazdu",
+    heroSubtitle: "Warsztat serwisowy Multi-Servis mieści się w Bydgoszczy przy ulicy Ku Wiatrakom 18 (osiedle Wyżyny). Przyjmujemy sprzęt od poniedziałku do piątku w godzinach 10:00 – 17:00.",
+    pills: ["⚡ Szybka realizacja", "😊 Miła i fachowa obsługa", "🔍 Diagnoza i wycena usterki", "🛡️ Gwarancja 3-24 m-cy", "🤝 Uczciwa wycena przed naprawą", "📍 Bydgoszcz Wyżyny"],
+    card1Title: "Dane kontaktowe i adres",
+    addrLabel: "Adres warsztatu:",
+    addrVal: "ul. Ku Wiatrakom 18, 85-856 Bydgoszcz (Wyżyny)",
+    phoneLabel: "Telefon bezpośredni:",
+    phoneTag: "Preferowany kontakt",
+    phoneNoticeShort: "W związku z dużą ilością spamu nie odpowiadamy na wiadomości SMS – prosimy o kontakt telefoniczny.",
+    emailLabel: "Adres e-mail:",
+    hoursLabel: "Godziny otwarcia:",
+    hoursWeek: "Poniedziałek – Piątek: 10:00 – 17:00",
+    hoursWeekend: "Sobota – Niedziela: Nieczynne",
+    card2Title: "Jak dojechać do Multi-Servis?",
+    carTitle: "🚗 Samochodem:",
+    carDesc: "Dojazd z centrum Bydgoszczy przez rondo Toruńskie lub Trasę Uniwersytecką, a następnie ulicą Wojska Polskiego w kierunku Wyżyn. Przy ulicy Ku Wiatrakom dostępne są bezpłatne miejsca postojowe bezpośrednio przed budynkiem serwisu.",
+    transitTitle: "🚌 Komunikacją miejską ZDMiKP:",
+    transitDesc: "Dogodny dojazd tramwajami linii 2, 9, 11 (przystanek Rondo Kujawskie lub Szarych Szeregów / Wojska Polskiego) oraz autobusami linii 53, 56, 68, 69 i 89. Kilka minut spacerem z głównych węzłów komunikacyjnych Wyżyn.",
+    areaTitle: "📍 Obszar obsługi:",
+    areaDesc: "Obsługujemy mieszkańców całej Bydgoszczy (Wyżyny, Wzgórze Wolności, Szwederowo, Bartodzieje, Fordon, Błonie, Kapuściska, Śródmieście, Bielawy) oraz okolicznych miejscowości (Białe Błota, Solec Kujawski, Osielsko, Nowa Wieś Wielka).",
+    noticeBadge: "Kontakt telefoniczny",
+    noticeTitle: "Preferujemy kontakt telefoniczny",
+    noticeSubtitle: "Prosimy o bezpośredni kontakt telefoniczny pod numerem 505 012 914.",
+    noticeP1: "Otrzymujemy bardzo dużą liczbę ofert handlowych i spamu reklamowego. W związku z powyższym nie odpowiadamy na wiadomości SMS – prosimy o bezpośredni kontakt telefoniczny.",
+    callButton: "Zadzwoń: 505 012 914",
+    callNote: "Poniedziałek – Piątek w godz. 10:00 – 17:00"
+  },
+  en: {
+    seoTitle: "Contact & Directions | Multi-Servis Electronics Repair Bydgoszcz Ku Wiatrakom 18",
+    seoDesc: "Contact Multi-Servis in Bydgoszcz. Ku Wiatrakom 18 (Wyżyny). Phone: 505 012 914. Hours: Mon.-Fri. 10:00 - 17:00. Directions & contact details.",
+    heroBadge: "Bydgoszcz • Ku Wiatrakom 18 • Wyżyny",
+    heroTitle: "Workshop Contact & Directions",
+    heroSubtitle: "The Multi-Servis repair workshop is located in Bydgoszcz at Ku Wiatrakom 18 (Wyżyny district). We accept equipment Monday through Friday, 10:00 – 17:00.",
+    pills: ["⚡ Fast turnaround", "😊 Friendly & professional service", "🔍 Fault diagnosis & quote", "🛡️ 3-24 month warranty", "🤝 Fair quote before repair", "📍 Bydgoszcz Wyżyny"],
+    card1Title: "Contact Info & Address",
+    addrLabel: "Workshop Address:",
+    addrVal: "Ku Wiatrakom 18, 85-856 Bydgoszcz (Wyżyny)",
+    phoneLabel: "Direct Phone:",
+    phoneTag: "Preferred contact",
+    phoneNoticeShort: "Due to high spam volume, we do not respond to SMS – please call us.",
+    emailLabel: "E-mail Address:",
+    hoursLabel: "Opening Hours:",
+    hoursWeek: "Monday – Friday: 10:00 – 17:00",
+    hoursWeekend: "Saturday – Sunday: Closed",
+    card2Title: "How to reach Multi-Servis?",
+    carTitle: "🚗 By car:",
+    carDesc: "Access from central Bydgoszcz via Toruńskie roundabout or Trasa Uniwersytecka, then Wojska Polskiego towards Wyżyny. Free parking spots are available right outside the shop on Ku Wiatrakom.",
+    transitTitle: "🚌 By public transport (ZDMiKP):",
+    transitDesc: "Easy access via trams 2, 9, 11 (Rondo Kujawskie or Szarych Szeregów / Wojska Polskiego stops) and bus lines 53, 56, 68, 69, 89. A short walk from major transport hubs in Wyżyny.",
+    areaTitle: "📍 Service Area:",
+    areaDesc: "We serve clients across all Bydgoszcz districts (Wyżyny, Wzgórze Wolności, Szwederowo, Bartodzieje, Fordon, Błonie, Kapuściska, Śródmieście, Bielawy) and nearby towns (Białe Błota, Solec Kujawski, Osielsko).",
+    noticeBadge: "Phone Contact",
+    noticeTitle: "Phone contact preferred",
+    noticeSubtitle: "Please contact us directly by phone at +48 505 012 914.",
+    noticeP1: "We receive a large volume of commercial offers and marketing spam daily. In connection with the above, we do not respond to SMS messages – please contact us by phone.",
+    callButton: "Call us: +48 505 012 914",
+    callNote: "Monday – Friday: 10:00 – 17:00"
+    },
+  uk: {
+    seoTitle: "Контакти та маршрут | Сервіс електроніки Бидгощ Ku Wiatrakom 18 | Multi-Servis",
+    seoDesc: "Контакти Multi-Servis у Бидгощі. Вул. Ku Wiatrakom 18 (Вижини). Тел: 505 012 914. Графік: пн.-пт. 10:00 - 17:00. Маршрут та контактні дані.",
+    heroBadge: "Бидгощ • Ku Wiatrakom 18 • Вижини",
+    heroTitle: "Контакти сервісу та схема доїзду",
+    heroSubtitle: "Майстерня Multi-Servis розташована у Бидгощі на вулиці Ku Wiatrakom 18 (район Вижини). Приймаємо техніку з понеділка по п'ятницю з 10:00 до 17:00.",
+    pills: ["⚡ Швидке виконання", "😊 Привітне та професійне обслуговування", "🔍 Діагностика та оцінка несправності", "🛡️ Гарантія 3-24 міс.", "🤝 Чесна оцінка до ремонту", "📍 Бидгощ Вижини"],
+    card1Title: "Контактні дані та адреса",
+    addrLabel: "Адреса майстерні:",
+    addrVal: "вул. Ku Wiatrakom 18, 85-856 Бидгощ (Вижини)",
+    phoneLabel: "Прямий телефон:",
+    phoneTag: "Переважний зв'язок",
+    phoneNoticeShort: "У зв’язку зі спамом ми не відповідаємо на SMS – просимо телефонувати.",
+    emailLabel: "Електронна пошта:",
+    hoursLabel: "Години роботи:",
+    hoursWeek: "Понеділок – П'ятниця: 10:00 – 17:00",
+    hoursWeekend: "Субота – Неділя: Вихідний",
+    card2Title: "Як доїхати до Multi-Servis?",
+    carTitle: "🚗 Автомобілем:",
+    carDesc: "Доїзд із центру Бидгоща через rondo Toruńskie або Trasę Uniwersytecką, далі вулицею Wojska Polskiego в напрямку Вижин. Біля майстерні на Ku Wiatrakom є безкоштовні паркомісця.",
+    transitTitle: "🚌 Громадським транспортом ZDMiKP:",
+    transitDesc: "Зручний доїзд трамваями № 2, 9, 11 (зупинка Rondo Kujawskie або Szarych Szeregów / Wojska Polskiego) та автобусами 53, 56, 68, 69, 89.",
+    areaTitle: "📍 Територія обслуговування:",
+    areaDesc: "Обслуговуємо жителів усіх районів Бидгоща (Wyżyny, Wzgórze Wolności, Szwederowo, Bartodzieje, Fordon, Błonie, Kapuściska, Śródmieście, Bielawy) та сусідніх містечок.",
+    noticeBadge: "Телефонний зв’язок",
+    noticeTitle: "Надаємо перевагу дзвінкам",
+    noticeSubtitle: "Просимо звертатися безпосередньо за телефоном +48 505 012 914.",
+    noticeP1: "Щодня ми отримуємо велику кількість комерційних пропозицій та спаму. У зв’язку з цим ми не відповідаємо на SMS-повідомлення – просимо звертатися за телефоном.",
+    callButton: "Зателефонувати: +48 505 012 914",
+    callNote: "Понеділок – П'ятниця: 10:00 – 17:00"
+  }
+};
+
+const c = content[lang] || content.pl;
+
+// LocalBusiness + BreadcrumbList JSON-LD
+const contactSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "ElectronicsRepair"],
+      "@id": "https://multi-servis.pl/#business",
+      "name": "Multi-Servis",
+      "legalName": "Multi-Servis",
+      "description": c.seoDesc,
+      "url": `https://multi-servis.pl${currentPath}`,
+      "telephone": "+48505012914",
+      "email": "kontakt@multi-servis.pl",
+      "priceRange": "$$",
+      "currenciesAccepted": "PLN",
+      "image": "https://multi-servis.pl/images/multi-servis-logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ku Wiatrakom 18",
+        "addressLocality": "Bydgoszcz",
+        "postalCode": "85-856",
+        "addressRegion": "Kujawsko-Pomorskie",
+        "addressCountry": "PL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 53.108951,
+        "longitude": 18.040959
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "10:00",
+          "closes": "17:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.google.com/maps/search/?api=1&query=Multi-Servis+Ku+Wiatrakom+18+Bydgoszcz",
+        "https://maps.google.com/?q=Multi-Servis+Ku+Wiatrakom+18+Bydgoszcz"
+      ],
+      "areaServed": [
+        { "@type": "City", "name": "Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Wyżyny, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Fordon, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Bartodzieje, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Bielawy, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Szwederowo, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Wzgórze Wolności, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Błonie, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Kapuściska, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Śródmieście, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Osowa Góra, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Solec Kujawski" },
+        { "@type": "AdministrativeArea", "name": "Białe Błota" },
+        { "@type": "AdministrativeArea", "name": "Osielsko" },
+        { "@type": "AdministrativeArea", "name": "Nowa Wieś Wielka" },
+        { "@type": "AdministrativeArea", "name": "Województwo kujawsko-pomorskie" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": lang === "pl" ? "Strona główna" : (lang === "en" ? "Home" : "Головна"), "item": `https://multi-servis.pl${prefix || "/"}` },
+        { "@type": "ListItem", "position": 2, "name": lang === "pl" ? "Kontakt" : (lang === "en" ? "Contact" : "Контакти"), "item": `https://multi-servis.pl${prefix}/kontakt` }
+      ]
+    }
+  ]
+});
+---
+
+<Layout
+  title={c.seoTitle}
+  description={c.seoDesc}
+  wfPage="kontakt"
+  ogImage="/images/social-20preview.avif"
+  lang={lang}
+  keywords={lang === "pl" ? "kontakt Multi-Servis, serwis Ku Wiatrakom 18, dojazd Bydgoszcz, telefon 505 012 914" : (lang === "en" ? "contact Multi-Servis, Ku Wiatrakom 18, directions Bydgoszcz, phone 505 012 914" : "контакти Multi-Servis, Ku Wiatrakom 18, проїзд Бидгощ, телефон 505 012 914")}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={contactSchema} />
+
+  <!-- Unified Navbar -->
+  <Navbar lang={lang} currentPath={currentPath} />
+
+  <!-- Hero Section -->
+  <section class="section" style="padding-top: 2rem;">
+    <div class="container centered">
+      <div class="page-header" style="text-align: center; max-width: 900px; margin: 0 auto 3rem auto;">
+        <nav aria-label="Breadcrumb" style="margin-bottom: 1rem; font-size: 0.875rem;">
+          <ol style="list-style: none; padding: 0; margin: 0; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <li><a href={prefix || "/"} style="color: inherit; opacity: 0.75; text-decoration: none;">{lang === "pl" ? "Główna" : (lang === "en" ? "Home" : "Головна")}</a></li>
+            <li aria-hidden="true" style="opacity: 0.4; font-size: 0.75rem;">/</li>
+            <li aria-current="page" style="color: #d32f2f; font-weight: 600;">{lang === "pl" ? "Kontakt" : (lang === "en" ? "Contact" : "Контакти")}</li>
+          </ol>
+        </nav>
+        <div class="section-badge">{c.heroBadge}</div>
+        <h1 class="display-h1" style="margin-top: 1rem; margin-bottom: 1.25rem;">
+          {c.heroTitle}
+        </h1>
+        <p class="large-paragraph t---neutral-10">
+          {c.heroSubtitle}
+        </p>
+        <div class="hero-stats-row" style="margin-top: 2rem;">
+          {c.pills.map((pill) => (
+            <div class="hero-stat-pill">
+              {pill}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dane kontaktowe i Dojazd -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container">
+      <div class="subpage-grid-2">
+        <!-- Dane kontaktowe -->
+        <div class="subpage-card">
+          <h2 class="display-h5" style="color: #d32f2f; margin-bottom: 1.25rem;">{c.card1Title}</h2>
+          
+          <div style="display: flex; flex-direction: column; gap: 1.15rem; font-size: 1rem;">
+            <div>
+              <strong style="display: block; margin-bottom: 0.2rem;">{c.addrLabel}</strong>
+              <span>{c.addrVal}</span>
+            </div>
+
+            <div>
+              <strong style="display: block; margin-bottom: 0.2rem;">{c.phoneLabel}</strong>
+              <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+                <a href="tel:+48505012914" style="color: #d32f2f; font-weight: 700; font-size: 1.35rem; text-decoration: none;">505 012 914</a>
+                <span style="display: inline-block; background: rgba(211, 47, 47, 0.1); color: #d32f2f; border: 1px solid rgba(211, 47, 47, 0.25); padding: 0.2rem 0.55rem; border-radius: 6px; font-size: 0.8125rem; font-weight: 600;">
+                  {c.phoneTag}
+                </span>
+              </div>
+              <p style="margin: 0.35rem 0 0 0; font-size: 0.85rem; color: inherit; opacity: 0.85; line-height: 1.4;">
+                ⚠️ {c.phoneNoticeShort}
+              </p>
+            </div>
+
+            <div>
+              <strong style="display: block; margin-bottom: 0.2rem;">{c.emailLabel}</strong>
+              <a href="mailto:kontakt@multi-servis.pl" style="color: inherit; text-decoration: underline;">kontakt@multi-servis.pl</a>
+            </div>
+
+            <div>
+              <strong style="display: block; margin-bottom: 0.2rem;">{c.hoursLabel}</strong>
+              <span>{c.hoursWeek}</span><br />
+              <span class="paragraph t---neutral-10">{c.hoursWeekend}</span>
+            </div>
+
+            <div style="border-top: 1px solid rgba(211, 47, 47, 0.2); padding-top: 1rem;">
+              <strong style="display: block; color: #d32f2f; margin-bottom: 0.25rem;">🛡️ {lang === 'pl' ? 'Gwarancja od 3 do 24 m-cy' : (lang === 'en' ? 'Warranty 3-24 months' : 'Гарантія від 3 до 24 міс.')}</strong>
+              <span style="font-size: 0.9375rem;" class="paragraph t---neutral-10">{lang === 'pl' ? 'Gwarancja na każdą wykonaną naprawę oraz wymienione komponenty.' : (lang === 'en' ? 'Warranty on all repairs and replaced hardware components.' : 'Гарантія на всі виконані ремонти та замінені компоненти.')}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wskazówki dojazdu -->
+        <div class="subpage-card">
+          <h2 class="display-h5" style="color: #d32f2f; margin-bottom: 1.25rem;">{c.card2Title}</h2>
+          
+          <div style="display: flex; flex-direction: column; gap: 1.15rem; font-size: 0.9375rem;">
+            <div>
+              <strong style="display: block; font-size: 1rem; margin-bottom: 0.2rem;">{c.carTitle}</strong>
+              <p class="paragraph t---neutral-10" style="margin: 0;">{c.carDesc}</p>
+            </div>
+
+            <div>
+              <strong style="display: block; font-size: 1rem; margin-bottom: 0.2rem;">{c.transitTitle}</strong>
+              <p class="paragraph t---neutral-10" style="margin: 0;">{c.transitDesc}</p>
+            </div>
+
+            <div>
+              <strong style="display: block; font-size: 1rem; margin-bottom: 0.2rem;">{c.areaTitle}</strong>
+              <p class="paragraph t---neutral-10" style="margin: 0;">{c.areaDesc}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sekcja informacyjna: Preferowany kontakt telefoniczny -->
+  <section id="kontakt-telefoniczny" class="section inverse" style="padding: 4.5rem 0;">
+    <div class="container inverse-section">
+      <div class="contact-section-wrap" style="max-width: 860px; margin: 0 auto;">
+        <div class="contact-header" style="text-align: center; margin-bottom: 2rem;">
+          <div class="section-badge" style="background: rgba(255,255,255,0.12); color: #ffffff;">{c.noticeBadge}</div>
+          <h2 class="display-h2" style="margin-top: 0.5rem; color: #ffffff;">{c.noticeTitle}</h2>
+          <p class="large-paragraph" style="color: rgba(255, 255, 255, 0.85); max-width: 680px; margin: 0.5rem auto 0 auto;">{c.noticeSubtitle}</p>
+        </div>
+
+        <div class="contact-info-card" style="max-width: 760px; margin: 0 auto; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); padding: 2.2rem 2.5rem; border-radius: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 1.15rem; font-size: 1.05rem; line-height: 1.6; color: rgba(255, 255, 255, 0.9);">
+            <p style="margin: 0;">
+              {c.noticeP1}
+            </p>
+
+            <div style="text-align: center; margin-top: 0.75rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.12);">
+              <a href="tel:+48505012914" class="filled-button main" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; font-size: 1.25rem; font-weight: 700; padding: 1rem 2.2rem; text-decoration: none; border-radius: 8px;">
+                <span>📞</span>
+                <span>{c.callButton}</span>
+              </a>
+              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.7); margin-top: 0.75rem; margin-bottom: 0;">
+                {c.callNote}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-03"></div>
+    <div class="contact-bg"></div>
+  </section>
+
+  <!-- Modern Clean Footer -->
+  <Footer lang={lang} />
+</Layout>

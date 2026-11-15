@@ -1,0 +1,1025 @@
+/* ==========================================================================
+   Multi-Servis Mobile & Tablet Stylesheet (<= 991px)
+   This file ONLY applies to screens <= 991px (mobile phones and tablets).
+   Desktop PC screens (> 991px) are completely unaffected.
+   ========================================================================== */
+
+@media screen and (max-width: 991px) {
+  /* 1. Global Mobile Safeguards */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    position: relative;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  *, *:before, *:after {
+    box-sizing: border-box !important;
+  }
+
+  img, picture, video, svg, iframe {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .container {
+    padding-left: clamp(14px, 4vw, 24px) !important;
+    padding-right: clamp(14px, 4vw, 24px) !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .section {
+    padding-top: clamp(2.5rem, 5vh, 3.5rem) !important;
+    padding-bottom: clamp(2.5rem, 5vh, 3.5rem) !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Typography wrapping safeguards */
+  h1, h2, h3, h4, h5, h6,
+  .display-h1, .display-h2, .display-h3, .display-h4, .display-h5, .display-h6,
+  p, .paragraph, .large-paragraph, .small-paragraph {
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    box-sizing: border-box !important;
+  }
+
+  .display-h1,
+  .hero-heading .display-h1 {
+    font-size: clamp(1.6rem, 5.8vw, 2.25rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  .display-h2 {
+    font-size: clamp(1.35rem, 4.5vw, 1.85rem) !important;
+    line-height: 1.25 !important;
+  }
+
+  .display-h3 {
+    font-size: clamp(1.2rem, 4vw, 1.5rem) !important;
+    line-height: 1.3 !important;
+  }
+
+  .display-h4 {
+    font-size: clamp(1.1rem, 3.5vw, 1.3rem) !important;
+    line-height: 1.35 !important;
+  }
+
+  .display-h5 {
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .display-h6 {
+    font-size: 0.9375rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .large-paragraph {
+    font-size: 0.9375rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .paragraph {
+    font-size: 0.875rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .small-paragraph {
+    font-size: 0.8125rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Buttons text wrapping */
+  .button,
+  .primary-button,
+  .outline-button,
+  .button-content,
+  .button-text {
+    white-space: normal !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Mobile Navbar */
+  .nav-wrap {
+    pointer-events: auto !important;
+    overflow: visible !important;
+    padding: 0 12px !important;
+    top: 10px !important;
+  }
+
+  .navbar {
+    width: 100% !important;
+    max-width: 680px !important;
+    padding: 6px 12px 6px 14px !important;
+    overflow: visible !important;
+    border-radius: 9999px !important;
+  }
+
+  .nav-wrapper {
+    overflow: visible !important;
+  }
+
+  .nav-menu {
+    display: none !important;
+  }
+
+  .nav-menu-button-wrap {
+    display: flex !important;
+    align-items: center !important;
+    margin-left: 2px !important;
+    cursor: pointer !important;
+  }
+
+  .nav-menu-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 36px !important;
+    padding: 0 12px !important;
+    border-radius: 9999px !important;
+    background-color: var(--neutral--neutral-02, #f0f0f0) !important;
+    color: var(--neutral--neutral-12, #111827) !important;
+    font-size: 0.8125rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    border: none !important;
+    transition: all 0.2s ease !important;
+    box-sizing: border-box !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .nav-menu-button .button-content {
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+  }
+
+  .nav-hamburger-icon {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 14px !important;
+    height: 10px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .nav-hamburger-bar {
+    display: block !important;
+    width: 100% !important;
+    height: 1.75px !important;
+    background-color: currentColor !important;
+    border-radius: 1px !important;
+  }
+
+  .nav-close-icon {
+    font-size: 0.875rem !important;
+    line-height: 1 !important;
+    font-weight: 700 !important;
+  }
+
+  .nav-menu-button:hover {
+    background-color: rgba(211, 47, 47, 0.1) !important;
+    color: #d32f2f !important;
+  }
+
+  html[data-theme="dark"] .nav-menu-button {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: #f3f4f6 !important;
+  }
+
+  html[data-theme="dark"] .nav-menu-button:hover {
+    background-color: rgba(229, 57, 53, 0.2) !important;
+    color: #ff5252 !important;
+  }
+
+  .nav-menu-button.close {
+    display: none !important;
+    background-color: rgba(211, 47, 47, 0.1) !important;
+    color: #d32f2f !important;
+  }
+
+  html[data-theme="dark"] .nav-menu-button.close {
+    background-color: rgba(229, 57, 53, 0.2) !important;
+    color: #ff5252 !important;
+  }
+
+  .navbar.is-open .nav-menu-button:not(.close) {
+    display: none !important;
+  }
+
+  .navbar.is-open .nav-menu-button.close {
+    display: inline-flex !important;
+  }
+
+  /* Mobile Dropdown Menu */
+  .nav-dropdown-menu {
+    display: none !important;
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-height: calc(100vh - 85px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 1.25rem !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12) !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+    flex-direction: column !important;
+    gap: 3px !important;
+    z-index: 99999 !important;
+  }
+
+  .navbar.is-open .nav-dropdown-menu {
+    display: flex !important;
+    animation: navFadeDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  html[data-theme="dark"] .nav-dropdown-menu {
+    background: rgba(19, 23, 34, 0.98) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  .nav-dropdown-menu .navbar-link {
+    display: flex !important;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    border-radius: 10px !important;
+    font-size: 0.9375rem !important;
+    font-weight: 600 !important;
+    color: var(--neutral--neutral-11) !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .nav-dropdown-menu .navbar-link:hover,
+  .nav-dropdown-menu .navbar-link.w--current {
+    background: rgba(211, 47, 47, 0.08) !important;
+    color: #d32f2f !important;
+  }
+
+  html[data-theme="dark"] .nav-dropdown-menu .navbar-link {
+    color: #e5e7eb !important;
+  }
+
+  html[data-theme="dark"] .nav-dropdown-menu .navbar-link:hover,
+  html[data-theme="dark"] .nav-dropdown-menu .navbar-link.w--current {
+    background: rgba(211, 47, 47, 0.2) !important;
+    color: #ff5252 !important;
+  }
+
+  /* 3. Hero Section on Mobile / Tablet */
+  .section.hero {
+    padding-top: 50px !important;
+    padding-bottom: clamp(1.5rem, 4vh, 2.5rem) !important;
+  }
+
+  .hero-wrap {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    gap: 1.25rem !important;
+    width: 100% !important;
+  }
+
+  .hero-heading {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    gap: 0.6rem !important;
+    text-align: center !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .hero {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 1.75rem !important;
+    width: 100% !important;
+  }
+
+  .hero-text {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .hero-quick-stats {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    margin: 1.25rem auto 0.5rem auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .hero-stat-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px 12px !important;
+    font-size: 0.8125rem !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+    text-align: center !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 1.25rem auto 0 auto !important;
+    gap: 10px !important;
+  }
+
+  .hero-buttons .button,
+  .hero-buttons .primary-button,
+  .hero-buttons .outline-button,
+  .hero-buttons a {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* Hero UI Window Cards ("okna") - No floating off-screen */
+  .hero-ui {
+    width: 100% !important;
+    max-width: 360px !important;
+    margin: 1.5rem auto 0 auto !important;
+    position: relative !important;
+  }
+
+  .hero-ui-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    position: relative !important;
+  }
+
+  .hero-ui-card.hero-ui-logo {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.5rem 1.25rem !important;
+    transform: none !important;
+    border-radius: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero-ui-card-2.hero-info-card {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    margin: 12px auto 0 auto !important;
+    transform: none !important;
+    padding: 14px 16px !important;
+    border-radius: 14px !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+  }
+
+  .hero-ticker {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    margin-top: 1.25rem !important;
+  }
+
+  .ticker-h {
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  /* 4. Process Section (3 Steps) */
+  .process {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100% !important;
+  }
+
+  .process-card,
+  .process-card:hover,
+  .process-card.is-expanded {
+    width: 100% !important;
+    flex: none !important;
+    min-height: auto !important;
+    padding: 1.25rem 1rem !important;
+    border-radius: 14px !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  .process-image-wrap {
+    display: none !important;
+  }
+
+  .process-card-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+    min-height: auto !important;
+    padding: 0 !important;
+  }
+
+  .process-content-wrap {
+    width: 100% !important;
+  }
+
+  /* 5. "Co robimy w Multi-Servis" tabs and buttons */
+  .tab-wrap {
+    width: 100% !important;
+  }
+
+  .tab-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    width: 100% !important;
+    padding: 6px !important;
+    border-radius: 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  .tab-item {
+    flex: 1 1 calc(50% - 6px) !important;
+    min-width: 130px !important;
+    padding: 8px 10px !important;
+    text-align: center !important;
+    justify-content: center !important;
+    border-radius: 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  .tab-item-text {
+    font-size: 0.8125rem !important;
+    text-align: center !important;
+  }
+
+  .tab-content,
+  .feature-tab-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  .feature-content {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .feature-tab-ui {
+    width: 100% !important;
+    height: clamp(200px, 48vw, 300px) !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+  }
+
+  .feature-tab-photo {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .feature-content .primary-button {
+    width: 100% !important;
+    max-width: 320px !important;
+    text-align: center !important;
+    justify-content: center !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    display: flex !important;
+  }
+
+  .feature-content .primary-button .button-text {
+    white-space: normal !important;
+    word-break: normal !important;
+    text-align: center !important;
+  }
+
+  /* 6. Pricing Section (#cennik on homepage and /cennik) */
+  .pricing-content-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  .pricing-tab {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .pricing-header {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+  }
+
+  .pricing-header .section-header {
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .tabs-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 8px !important;
+    padding: 0 !important;
+  }
+
+  .pricing-menu-item {
+    width: 100% !important;
+    flex: 1 1 100% !important;
+    padding: 12px 14px !important;
+    text-align: left !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  .tabs-content {
+    width: 100% !important;
+    position: relative !important;
+    overflow: visible !important;
+    min-height: auto !important;
+  }
+
+  /* Strict Tab Pane Isolation for Mobile - Zero jumping/overlap */
+  .w-tab-pane {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .w-tab-pane:not(.w--tab-active) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    pointer-events: none !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .w-tab-pane.w--tab-active {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    pointer-events: auto !important;
+    animation: tabPaneFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  }
+
+  /* Pricing Cards on both Homepage and /cennik */
+  .pricing-cards-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.75rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto 2.5rem auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .pricing-card {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-flow: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 1.5rem 1.25rem !important;
+    border-radius: 16px !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+
+  .pricing-card:hover {
+    transform: none !important;
+  }
+
+  .pricing-main {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    flex-grow: 0 !important;
+  }
+
+  .check-list-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    margin-top: 1.25rem !important;
+    gap: 0.625rem !important;
+  }
+
+  .pricing-card .primary-button {
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    display: flex !important;
+  }
+
+  .pricing-card .primary-button .button-text {
+    white-space: normal !important;
+    word-break: normal !important;
+    text-align: center !important;
+  }
+
+  /* 7. All Grids and Subpages */
+  .subpage-grid-2,
+  .subpage-grid-3,
+  .subpage-grid-4,
+  .subpage-metrics-grid,
+  .case-study-cms-list,
+  .column-layout,
+  .contact-grid-body {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .subpage-card,
+  .subpage-metrics-card,
+  .case-study {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 1.5rem 1.25rem !important;
+  }
+
+  /* Contact boxes and forms */
+  .contact-box,
+  .contact-form,
+  .contact-info-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1.25rem 1rem !important;
+    box-sizing: border-box !important;
+  }
+
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form select,
+  .form-input,
+  .text-field {
+    width: 100% !important;
+    font-size: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* FAQ Accordion */
+  .accordion-item {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .accordion-title {
+    padding: 12px 14px !important;
+    font-size: 0.9375rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .accordion-body {
+    padding: 0 14px 14px 14px !important;
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* 7b. Multi-Guard Mobile Optimizations (<= 991px) */
+  .mg-service-promo-card {
+    grid-template-columns: 1fr !important;
+    padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1rem, 3.5vw, 1.75rem) !important;
+    gap: 1.75rem !important;
+    border-radius: 18px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+  .mg-promo-text-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .mg-promo-title {
+    font-size: clamp(1.25rem, 4.5vw, 1.65rem) !important;
+    line-height: 1.3 !important;
+  }
+  .mg-promo-desc {
+    font-size: 0.875rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 1.25rem !important;
+  }
+  .mg-promo-features {
+    gap: 0.4rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .mg-promo-feat {
+    font-size: 0.75rem !important;
+    padding: 0.3rem 0.65rem !important;
+  }
+  .mg-promo-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
+  }
+  .mg-promo-actions .primary-button,
+  .mg-promo-actions .outline-button {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+  .mg-promo-visual {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+  .mg-promo-window {
+    max-width: 100% !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+  }
+  .mg-promo-caption {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.75rem !important;
+    flex-wrap: wrap !important;
+    gap: 0.35rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  .mg-home-banner {
+    grid-template-columns: 1fr !important;
+    padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1rem, 3.5vw, 1.75rem) !important;
+    gap: 1.75rem !important;
+    border-radius: 18px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+  .mg-home-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
+  }
+  .mg-home-actions .primary-button,
+  .mg-home-actions .outline-button {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .mg-tab-inline-badge {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem 0.85rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .mg-tab-inline-text {
+    width: 100% !important;
+    font-size: 0.8125rem !important;
+    line-height: 1.4 !important;
+  }
+  .mg-tab-inline-link {
+    margin-left: 0 !important;
+    margin-top: 0.25rem !important;
+    display: inline-flex !important;
+    align-self: flex-start !important;
+  }
+
+  .mg-workshop-install-box {
+    padding: clamp(1.5rem, 4vw, 2.25rem) clamp(1rem, 3vw, 1.75rem) !important;
+    border-radius: 16px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+  .mg-workshop-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    margin-bottom: 1.75rem !important;
+  }
+  .mg-workshop-card {
+    padding: 1.15rem 1rem !important;
+    gap: 0.85rem !important;
+    box-sizing: border-box !important;
+  }
+  .mg-workshop-step {
+    font-size: 1.1rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+  .mg-workshop-highlight {
+    font-size: 0.8125rem !important;
+    padding: 0.6rem 1rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .mg-workshop-footer .primary-button {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .mg-alert-story-card {
+    flex-direction: column !important;
+    padding: clamp(1rem, 3vw, 1.35rem) !important;
+    gap: 0.75rem !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    margin: 1.5rem auto !important;
+  }
+  .mg-alert-icon {
+    font-size: 1.65rem !important;
+    padding: 0.4rem !important;
+  }
+  .mg-alert-body h4 {
+    font-size: clamp(1rem, 4vw, 1.15rem) !important;
+    line-height: 1.35 !important;
+    margin-bottom: 0.35rem !important;
+  }
+  .mg-alert-body p {
+    font-size: 0.875rem !important;
+    line-height: 1.55 !important;
+  }
+}
+
+/* 8. Small mobile phones (< 480px) */
+@media screen and (max-width: 480px) {
+  .nav-wrap {
+    padding: 0 8px !important;
+    top: 8px !important;
+  }
+
+  .navbar {
+    padding: 4px 10px 4px 12px !important;
+  }
+
+  .nav-logo {
+    height: 26px !important;
+  }
+
+  .nav-phone-btn {
+    height: 32px !important;
+    padding: 0 8px !important;
+    font-size: 0.75rem !important;
+    gap: 4px !important;
+  }
+
+  .nav-menu-button {
+    height: 32px !important;
+    padding: 0 10px !important;
+    font-size: 0.75rem !important;
+  }
+
+  .theme-toggle-btn {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .lang-switch-btn {
+    padding: 4px 6px !important;
+    font-size: 0.75rem !important;
+    height: 32px !important;
+  }
+
+  .tab-item {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+  }
+
+  .pricing-card {
+    padding: 1.25rem 1rem !important;
+  }
+
+  .pricing-card .price .display-h2 {
+    font-size: 1.75rem !important;
+  }
+
+  .hero-ui {
+    max-width: 310px !important;
+  }
+
+  .mg-service-promo-card {
+    padding: 1.25rem 0.875rem !important;
+    border-radius: 14px !important;
+  }
+  .mg-home-banner {
+    padding: 1.25rem 0.875rem !important;
+    border-radius: 14px !important;
+  }
+  .mg-workshop-install-box {
+    padding: 1.25rem 0.875rem !important;
+    border-radius: 14px !important;
+  }
+  .mg-workshop-card {
+    padding: 0.875rem !important;
+    gap: 0.65rem !important;
+  }
+  .mg-workshop-step {
+    font-size: 0.95rem !important;
+    padding: 0.2rem 0.4rem !important;
+  }
+  .mg-workshop-text {
+    font-size: 0.8125rem !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* 9. Extra small mobile phones (< 400px down to 320px) */
+@media screen and (max-width: 400px) {
+  .nav-phone-btn .phone-text {
+    display: none !important;
+  }
+
+  .nav-phone-btn {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+  }
+
+  .nav-phone-btn .phone-icon {
+    font-size: 1rem !important;
+  }
+
+  .nav-menu-button .button-text {
+    display: none !important;
+  }
+
+  .nav-menu-button {
+    width: 34px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+  }
+
+  .nav-wrapper {
+    gap: 4px !important;
+  }
+
+  .nav-actions-group {
+    gap: 4px !important;
+  }
+
+  .hero-stat-pill {
+    padding: 5px 8px !important;
+    font-size: 0.75rem !important;
+  }
+
+  .hero-ui {
+    max-width: 280px !important;
+  }
+}
+
+@keyframes navFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

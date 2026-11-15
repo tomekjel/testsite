@@ -1,0 +1,236 @@
+---
+import type { Lang } from "../i18n/translations";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+
+interface Props {
+  lang?: Lang;
+  currentPath?: string;
+}
+
+const { lang = "pl", currentPath = Astro.url.pathname } = Astro.props;
+
+const homePath = lang === "pl" ? "/" : `/${lang}`;
+const prefix = lang === "pl" ? "" : `/${lang}`;
+
+const navItems = [
+  {
+    path: `${prefix}/serwis-laptopow`,
+    label: lang === "pl" ? "Laptopy" : (lang === "en" ? "Laptops" : "Ноутбуки"),
+    icon: "💻",
+    fullLabel: lang === "pl" ? "Serwis Laptopów" : (lang === "en" ? "Laptop Repair" : "Ремонт Ноутбуків"),
+  },
+  {
+    path: `${prefix}/serwis-telewizorow`,
+    label: lang === "pl" ? "Telewizory" : (lang === "en" ? "TV Repair" : "Телевізори"),
+    icon: "📺",
+    fullLabel: lang === "pl" ? "Serwis Telewizorów (LED/OLED)" : (lang === "en" ? "TV Repair (LED/OLED)" : "Ремонт Телевізорів (LED/OLED)"),
+  },
+  {
+    path: `${prefix}/serwis-komputerow`,
+    label: lang === "pl" ? "Komputery" : (lang === "en" ? "Computers" : "Комп’ютери"),
+    icon: "🖥️",
+    fullLabel: lang === "pl" ? "Serwis Komputerów PC" : (lang === "en" ? "PC & Desktop Repair" : "Ремонт Комп’ютерів ПК"),
+  },
+  {
+    path: `${prefix}/multi-guard`,
+    label: "Multi-Guard",
+    icon: "🛡️",
+    fullLabel: lang === "pl" ? "Multi-Guard (Ochrona PC)" : (lang === "en" ? "Multi-Guard (PC Security)" : "Multi-Guard (Захист ПК)"),
+  },
+  {
+    path: `${prefix}/cennik`,
+    label: lang === "pl" ? "Cennik" : (lang === "en" ? "Pricing" : "Ціни"),
+    icon: "📋",
+    fullLabel: lang === "pl" ? "Cennik i Diagnoza" : (lang === "en" ? "Pricing & Diagnosis" : "Ціни та Діагностика"),
+  },
+  {
+    path: `${prefix}/about`,
+    label: lang === "pl" ? "O nas" : (lang === "en" ? "About" : "Про нас"),
+    icon: "ℹ️",
+    fullLabel: lang === "pl" ? "O nas (20+ lat doświadczenia)" : (lang === "en" ? "About (20+ Years Experience)" : "Про нас (20+ років досвіду)"),
+  },
+  {
+    path: `${prefix}/faq`,
+    label: "FAQ",
+    icon: "❓",
+    fullLabel: lang === "pl" ? "Baza wiedzy FAQ" : (lang === "en" ? "FAQ Knowledge Base" : "Часті запитання FAQ"),
+  },
+  {
+    path: `${prefix}/kontakt`,
+    label: lang === "pl" ? "Kontakt" : (lang === "en" ? "Contact" : "Контакти"),
+    icon: "📍",
+    fullLabel: lang === "pl" ? "Kontakt i Ku Wiatrakom 18" : (lang === "en" ? "Contact & Workshop Location" : "Контакти та Майстерня"),
+  },
+];
+
+// Normalize clean current path
+const cleanPath = currentPath.endsWith("/") && currentPath.length > 1 ? currentPath.slice(0, -1) : currentPath;
+const isCurrent = (itemPath: string) => {
+  const cleanItemPath = itemPath.endsWith("/") && itemPath.length > 1 ? itemPath.slice(0, -1) : itemPath;
+  return cleanPath === cleanItemPath;
+};
+const isHomePage = cleanPath === "" || cleanPath === "/" || cleanPath === "/en" || cleanPath === "/uk";
+---
+
+<div class="nav-wrap">
+  <div class="navbar">
+    <div class="nav-wrapper">
+      <div class="brand-wrapper">
+        <a href={homePath} aria-current={isHomePage ? "page" : undefined} class={`brand w-inline-block ${isHomePage ? "w--current" : ""}`}>
+          <img src="/images/multi-servis-logo.png" loading="lazy" alt="Multi-Servis" class="nav-logo" />
+        </a>
+      </div>
+
+      <div class="nav-menu">
+        {navItems.map((item) => (
+          <a
+            href={item.path}
+            aria-current={isCurrent(item.path) ? "page" : undefined}
+            class={`navbar-link w-inline-block ${isCurrent(item.path) ? "w--current" : ""}`}
+          >
+            <div class="nav">{item.label}</div>
+          </a>
+        ))}
+      </div>
+
+      <div class="nav-actions-group">
+        <a href="tel:+48505012914" class="nav-phone-btn" aria-label={lang === "pl" ? "Zadzwoń: 505 012 914" : (lang === "en" ? "Call: 505 012 914" : "Зателефонувати: 505 012 914")}>
+          <span class="phone-icon">📞</span>
+          <span class="phone-text">505 012 914</span>
+        </a>
+
+        <LanguageSwitcher currentLang={lang} currentPath={cleanPath} />
+        <ThemeToggle />
+
+        <div class="nav-menu-button-wrap">
+          <div
+            role="button"
+            tabindex="0"
+            class="nav-menu-button"
+            aria-label={lang === "pl" ? "Menu nawigacji" : "Menu"}
+            aria-expanded="false"
+          >
+            <div class="button-content">
+              <span class="nav-hamburger-icon" aria-hidden="true">
+                <span class="nav-hamburger-bar"></span>
+                <span class="nav-hamburger-bar"></span>
+                <span class="nav-hamburger-bar"></span>
+              </span>
+              <p class="button-text">Menu</p>
+            </div>
+          </div>
+          <div
+            role="button"
+            tabindex="0"
+            class="nav-menu-button close"
+            aria-label={lang === "pl" ? "Zamknij menu" : "Close"}
+          >
+            <div class="button-content">
+              <span class="nav-close-icon" aria-hidden="true">✕</span>
+              <p class="button-text">X</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-dropdown-menu">
+        <a href={homePath} class={`navbar-link in-menu w-inline-block ${isHomePage ? "w--current" : ""}`}>
+          <div class="nav">🏠 {lang === "pl" ? "Strona główna" : (lang === "en" ? "Home" : "Головна")}</div>
+        </a>
+        {navItems.map((item) => (
+          <a
+            href={item.path}
+            aria-current={isCurrent(item.path) ? "page" : undefined}
+            class={`navbar-link in-menu w-inline-block ${isCurrent(item.path) ? "w--current" : ""}`}
+          >
+            <div class="nav">{item.icon} {item.fullLabel}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    function bindNavbar() {
+      var navbars = document.querySelectorAll('.navbar');
+      navbars.forEach(function(navbar) {
+        var menuBtn = navbar.querySelector('.nav-menu-button:not(.close)');
+        var closeBtn = navbar.querySelector('.nav-menu-button.close');
+        var dropdown = navbar.querySelector('.nav-dropdown-menu');
+        if (!menuBtn || !dropdown) return;
+
+        var lastToggleTime = 0;
+        function toggleMenu(e) {
+          var now = Date.now();
+          if (now - lastToggleTime < 350) {
+            if (e) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+            return;
+          }
+          lastToggleTime = now;
+          if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+          var isOpen = navbar.classList.toggle('is-open');
+          menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        }
+
+        function closeMenu(e) {
+          navbar.classList.remove('is-open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        if (!menuBtn.dataset.bound) {
+          menuBtn.dataset.bound = 'true';
+          menuBtn.addEventListener('click', toggleMenu);
+          menuBtn.addEventListener('touchend', toggleMenu);
+        }
+
+        if (closeBtn && !closeBtn.dataset.bound) {
+          closeBtn.dataset.bound = 'true';
+          closeBtn.addEventListener('click', closeMenu);
+          closeBtn.addEventListener('touchend', closeMenu);
+        }
+
+        dropdown.querySelectorAll('a').forEach(function(link) {
+          if (!link.dataset.bound) {
+            link.dataset.bound = 'true';
+            link.addEventListener('click', closeMenu);
+          }
+        });
+
+        if (!navbar.dataset.outsideBound) {
+          navbar.dataset.outsideBound = 'true';
+          document.addEventListener('click', function(e) {
+            if (!navbar.contains(e.target)) {
+              closeMenu();
+            }
+          });
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+              closeMenu();
+            }
+          });
+          window.addEventListener('resize', function() {
+            if (window.innerWidth >= 992) {
+              closeMenu();
+            }
+          });
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bindNavbar);
+    } else {
+      bindNavbar();
+    }
+    document.addEventListener('astro:page-load', bindNavbar);
+  })();
+</script>

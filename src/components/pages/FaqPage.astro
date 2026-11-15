@@ -1,0 +1,308 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../Navbar.astro";
+import Footer from "../Footer.astro";
+import type { Lang } from "../../i18n/translations";
+import "../../styles/ix/index.css";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "pl" } = Astro.props;
+const prefix = lang === "pl" ? "" : `/${lang}`;
+const currentPath = `${prefix}/faq`;
+
+const content = {
+  pl: {
+    seoTitle: "FAQ - Najczęstsze Pytania o Serwis Elektroniki w Bydgoszczy | Multi-Servis",
+    seoDesc: "Odpowiedzi na najczęstsze pytania o naprawę telewizorów, laptopów i komputerów w Multi-Servis Bydgoszcz (Ku Wiatrakom 18). Czas naprawy, rzetelna diagnoza, indywidualna wycena, gwarancja.",
+    heroBadge: "Baza wiedzy serwisu Multi-Servis",
+    heroTitle: "Często Zadawane Pytania (FAQ)",
+    heroSubtitle: "Zebraliśmy odpowiedzi na najczęstsze pytania dotyczące napraw telewizorów, laptopów i komputerów w Bydgoszczy. Jeśli masz dodatkowe pytania, zadzwoń bezpośrednio pod numer 505 012 914.",
+    pills: ["⚡ Szybka realizacja", "😊 Miła i fachowa obsługa", "🔍 Rzetelna diagnoza i wycena", "🛡️ Gwarancja 3-24 m-cy", "🤝 Uczciwa wycena przed naprawą", "🛡️ Program Multi-Guard", "📍 Bydgoszcz Wyżyny"],
+    ctaBadge: "Nie znalazłeś odpowiedzi?",
+    ctaTitle: "Zadzwoń do Multi-Servis",
+    ctaSubtitle: "Chętnie odpowiemy na każde pytanie techniczne i ocenimy usterkę Twojego urządzenia.",
+    ctaCall: "Zadzwoń: 505 012 914",
+    ctaContact: "Dane kontaktowe i adres",
+    faqs: [
+      {
+        q: "Jak przebiega diagnoza i wycena usterki w warsztacie?",
+        a: "Każde urządzenie (telewizor, laptop czy komputer) przechodzi szczegółowe sprawdzenie techniczne w naszym warsztacie. Obejmuje to rozebranie sprzętu, pomiary elektroniczne oraz zlokalizowanie uszkodzonych podzespołów. Po ustaleniu przyczyny awarii dzwonimy do klienta z indywidualną wyceną kosztów naprawy i części — decyzję o naprawie podejmujesz dopiero po poznaniu dokładnej ceny."
+      },
+      {
+        q: "Czy przed rozpoczęciem naprawy poznam dokładny koszt?",
+        a: "Tak, zawsze kontaktujemy się telefonicznie po wykonaniu diagnostyki i przedstawiamy całkowity kosztorys usługi oraz niezbędnych podzespołów. Naprawę rozpoczynamy wyłącznie po Twojej akceptacji wyceny. Nie ma żadnych ukrytych kosztów."
+      },
+      {
+        q: "Jak długo trwa naprawa sprzętu elektronicznego?",
+        a: "Średni czas standardowej diagnostyki wynosi od 1 do 3 dni roboczych. Sama naprawa w przypadku dostępności podzespołów (np. listew LED do TV, gniazd, układów zasilania) trwa zazwyczaj 1–2 dni. Jeśli konieczne jest sprowadzenie rzadkiego układu scalonego od dystrybutora, informujemy o przewidywanym terminie podczas wyceny."
+      },
+      {
+        q: "Czy na wykonaną usługę otrzymam gwarancję?",
+        a: "Tak. Na każdą wykonaną naprawę oraz zamontowane nowe podzespoły (listwy podświetlenia, gniazda, układy zasilania, wentylatory) udzielamy od 3 do 24 miesięcy gwarancji."
+      },
+      {
+        q: "Czy naprawiacie telewizory ze stłuczoną lub pękniętą matrycą?",
+        a: "W przypadku fizycznego rozbicia szkła ekranu (uderzenie, pęknięcie, 'pajączek', rozlana czerń) naprawa jest ekonomicznie nieopłacalna, gdyż fabrycznie nowa matryca jako część zamienna kosztuje zazwyczaj 80-110% wartości całego nowego telewizora. Jeśli jednak ekran jest cały, a brak jest obrazu lub miga dioda — naprawa elektroniki i podświetlenia jest w 100% opłacalna."
+      },
+      {
+        q: "Co zrobić natychmiast po zalaniu laptopa cieczą?",
+        a: "Przede wszystkim natychmiast odłącz zasilacz od gniazdka i wyłącz laptopa przytrzymując włącznik. Nie próbuj go ponownie uruchamiać, nie susz suszarką ani nie wkładaj do ryżu. Jak najszybciej przynieś go do serwisu na czyszczenie w myjce ultradźwiękowej, aby nie dopuścić do przegnicia metalowych ścieżek na laminacie."
+      },
+      {
+        q: "Czy muszę wcześniej umawiać się na wizytę w serwisie?",
+        a: "Nie ma konieczności wcześniejszego umawiania wizyty. Zapraszamy bezpośrednio do naszego warsztatu przy ul. Ku Wiatrakom 18 w Bydgoszczy od poniedziałku do piątku w godzinach 10:00 – 17:00. Jeśli masz nietypowy sprzęt, możesz wcześniej zadzwonić pod numer 505 012 914."
+      },
+      {
+        q: "Mój laptop strasznie muli, wolno chodzi i wentylator głośno pracuje. Jak możecie go przyspieszyć?",
+        a: "W naszym serwisie w Bydgoszczy wymieniamy stare, zużyte dyski na superszybkie dyski SSD NVMe M.2, klonujemy Twój system Windows/macOS ze wszystkimi programami i danymi oraz kompleksowo czyścimy układ chłodzenia z wymianą pasty termoprzewodzącej na Arctic MX-6 / Thermal Grizzly. Po takim zabiegu laptop włącza się w kilkanaście sekund i pracuje cicho."
+      },
+      {
+        q: "W telewizorze słychać dźwięk, ale ekran pozostaje ciemny/czarny. Czy opłaca się to naprawiać?",
+        a: "Tak, w 95% przypadków winne jest przepalenie diod w listwach podświetlenia LED. Wymieniamy kompletny zestaw listew na fabrycznie nowe listwy na profilu aluminiowym. Przywraca to idealny obraz za ułamek ceny zakupu nowego odbiornika. Koszt naprawy ustalamy indywidualnie po sprawdzeniu modelu i przekątnej."
+      },
+      {
+        q: "Czym jest program Multi-Guard i dlaczego instalujecie go wyłącznie stacjonarnie w serwisie?",
+        a: "Multi-Guard to nasze autorskie oprogramowanie dla Windows 10 i 11. Nie publikujemy go do samodzielnej instalacji z internetu, ponieważ uniwersalne pakiety zawierają tysiące zbędnych sterowników i spowalniają komputer. W Multi-Servis przy ul. Ku Wiatrakom 18 w Bydgoszczy wgrywamy program dopasowany pod Twój konkretny model laptopa lub PC — dodając wyłącznie sterowniki czujników dla Twojej płyty głównej. Dzięki temu program jest ultralekki i szybki. Na bieżąco monitoruje temperatury CPU/GPU po czyszczeniu chłodzenia, integruje ochronę Microsoft Defender, blokuje podsłuch mikrofonu i kamery oraz umożliwia bezpieczną zdalną pomoc serwisu za Twoją zgodą."
+      }
+    ]
+  },
+  en: {
+    seoTitle: "FAQ - Frequently Asked Questions About Electronics Repair | Multi-Servis",
+    seoDesc: "Answers to frequently asked questions about repairing TVs, laptops, and computers at Multi-Servis Bydgoszcz (Ku Wiatrakom 18). Repair time, fault diagnosis, individual quote, warranty.",
+    heroBadge: "Multi-Servis Knowledge Base",
+    heroTitle: "Frequently Asked Questions (FAQ)",
+    heroSubtitle: "We collected answers to the most common questions regarding TV, laptop, and PC repairs in Bydgoszcz. If you have additional questions, call us directly at 505 012 914.",
+    pills: ["⚡ Fast turnaround", "😊 Friendly & professional service", "🔍 Fault diagnosis & quote", "🛡️ 3-24 month warranty", "🤝 Fair quote before repair", "🛡️ Multi-Guard Software", "📍 Bydgoszcz Wyżyny"],
+    ctaBadge: "Didn't find an answer?",
+    ctaTitle: "Call Multi-Servis",
+    ctaSubtitle: "We will gladly answer any technical question and give an initial evaluation of your device.",
+    ctaCall: "Call: 505 012 914",
+    ctaContact: "Contact details & address",
+    faqs: [
+      {
+        q: "How does fault diagnosis and quotation work at the workshop?",
+        a: "Every device (TV, laptop, or PC) undergoes thorough electronic testing in our workshop. This includes disassembly, circuit measurements, and fault localization. Once identified, we call you with an individual quotation for parts and labor — you decide whether to proceed only after knowing the exact cost."
+      },
+      {
+        q: "Will I know the exact repair cost before work begins?",
+        a: "Yes, we always call you after completing diagnostics to present an accurate estimate for labor and replacement parts. We only proceed with the repair once you have approved the quotation. There are never any hidden fees."
+      },
+      {
+        q: "How long does the repair take?",
+        a: "Standard diagnostics take 1 to 3 business days. If replacement parts (such as TV LED strips or power ICs) are in stock, the repair itself takes 1–2 days. If a rare component must be ordered, we inform you during quotation."
+      },
+      {
+        q: "Do I receive a warranty on the repair?",
+        a: "Yes. Every completed repair and newly installed component (backlight strips, connectors, power ICs, fans) is covered by a 3 to 24-month warranty."
+      },
+      {
+        q: "Do you repair TVs with shattered or cracked screen panels?",
+        a: "If the screen glass is physically cracked or broken, repair is not economically viable because a replacement panel costs 80-110% of a brand-new television. However, if the glass is intact and there is no picture or a flashing LED, repairing the electronics or backlighting is 100% worth it."
+      },
+      {
+        q: "What should I do immediately after spilling liquid on my laptop?",
+        a: "Immediately disconnect the charger and shut down the laptop. Do not turn it back on, do not blow dry it, and do not put it in rice. Bring it to our workshop as soon as possible for ultrasonic cleaning to prevent electrochemical corrosion of motherboard traces."
+      },
+      {
+        q: "Do I need to book an appointment before visiting?",
+        a: "No prior appointment is needed. You are welcome to visit our workshop at Ku Wiatrakom 18 in Bydgoszczy, Monday through Friday, 10:00 – 17:00. Feel free to call 505 012 914 if you have any questions."
+      },
+      {
+        q: "My laptop runs very slow, freezes and the fan is loud. How can you speed it up in Bydgoszcz?",
+        a: "At Multi-Servis in Bydgoszcz, we replace worn-out mechanical HDDs with ultra-fast NVMe M.2 SSDs, clone your entire Windows/macOS with all data preserved, and clean cooling fans with fresh Arctic MX-6 / Thermal Grizzly thermal paste. The laptop will boot in seconds and run quietly."
+      },
+      {
+        q: "My TV has sound but black screen (no picture). Is it worth repairing?",
+        a: "Yes! In 95% of cases, the LED backlight strips have burnt out. We install a full set of brand new aluminum LED strips, restoring original picture quality at a fraction of the cost of a new television. The exact repair cost is quoted individually after inspecting the model and screen size."
+      },
+      {
+        q: "What is Multi-Guard and why is it installed exclusively at your workshop?",
+        a: "Multi-Guard is our proprietary software for Windows 10 and 11. We do not offer standalone public downloads because generic packages contain thousands of bloated drivers that slow your PC down. At our workshop (Ku Wiatrakom 18, Bydgoszcz), we bench-test and configure the utility specifically for your laptop or PC, injecting only the exact sensor drivers needed. It stays ultra-light and fast, continuously monitoring CPU/GPU thermals after cooling service, managing Microsoft Defender, cutting off microphone/webcam snooping, and providing user-consented remote support."
+      }
+    ]
+  },
+  uk: {
+    seoTitle: "FAQ - Часті запитання про ремонт електроніки в Бидгощі | Multi-Servis",
+    seoDesc: "Відповіді на поширені запитання про ремонт телевізорів, ноутбуків та ПК у Multi-Servis Бидгощ (Ku Wiatrakom 18). Терміни, діагностика та індивідуальна оцінка, гарантія.",
+    heroBadge: "База знань Multi-Servis",
+    heroTitle: "Часті запитання (FAQ)",
+    heroSubtitle: "Ми зібрали відповіді на найпоширеніші запитання про ремонт телевізорів, ноутбуків та ПК у Бидгощі. Маєте додаткові запитання? Зателефонуйте за номером 505 012 914.",
+    pills: ["⚡ Швидке виконання", "😊 Привітне та професійне обслуговування", "🔍 Діагностика та оцінка", "🛡️ Гарантія 3-24 міс.", "🤝 Чесна оцінка до ремонту", "🛡️ Програма Multi-Guard", "📍 Бидгощ Вижини"],
+    ctaBadge: "Не знайшли відповіді?",
+    ctaTitle: "Зателефонуйте до Multi-Servis",
+    ctaSubtitle: "Ми із задоволенням відповімо на будь-яке технічне запитання та оцінимо несправність вашої техніки.",
+    ctaCall: "Зателефонувати: 505 012 914",
+    ctaContact: "Контакти та адреса",
+    faqs: [
+      {
+        q: "Як проходить діагностика та оцінка несправності в майстерні?",
+        a: "Кожен пристрій (телевізор, ноутбук чи комп'ютер) проходить ретельну діагностику в нашій майстерні. Це включає розбирання, заміри на платі та локалізацію пошкоджень. Після виявлення поломки ми телефонуємо клієнту та надаємо індивідуальну оцінку вартості робіт і деталей — ви приймаєте рішення про ремонт лише після погодження ціни."
+      },
+      {
+        q: "Чи дізнаюся я точну вартість ремонту до початку робіт?",
+        a: "Так, після проведення діагностики ми обов'язково телефонуємо вам і повідомляємо точний кошторис ремонту та запчастин. Роботи розпочинаються тільки після вашої згоди. Жодних прихованих платежів."
+      },
+      {
+        q: "Скільки часу триває ремонт електроніки?",
+        a: "Стандартна діагностика триває від 1 до 3 робочих днів. Сам ремонт за наявності деталей (наприклад, LED-планок, роз'ємів, мікросхем живлення) зазвичай займає 1–2 дні."
+      },
+      {
+        q: "Чи надається гарантія на виконані роботи?",
+        a: "Так. На кожен виконаний ремонт та встановлені нові комплектуючі надається гарантія терміном від 3 до 24 місяців."
+      },
+      {
+        q: "Чи ремонтуєте ви телевізори з розбитою матрицею?",
+        a: "У разі фізичного розбиття скла екрана ремонт є економічно недоцільним, оскільки нова матриця коштує 80-110% вартості нового телевізора. Проте якщо скло ціле, але немає зображення чи блимає індикатор — ремонт електроніки та підсвічування повністю виправданий."
+      },
+      {
+        q: "Що робити негайно після залиття ноутбука рідиною?",
+        a: "Негайно від'єднайте зарядку від мережі та вимкніть ноутбук. Не вмикайте його, не сушіть феном і не кладіть у рис. Якнайшвидше принесіть до сервісу для ультразвукової чистки."
+      },
+      {
+        q: "Чи потрібно попередньо записуватися на візит?",
+        a: "Попередній запис не потрібен. Чекаємо на вас у нашій майстерні на вул. Ku Wiatrakom 18 у Бидгощі з понеділка по п'ятницю з 10:00 до 17:00."
+      },
+      {
+        q: "Ноутбук дуже гальмує, повільно працює та шумить кулер. Як ви можете його прискорити?",
+        a: "У Multi-Servis у Бидгощі ми замінюємо старі HDD на надшвидкі SSD NVMe M.2, клонуємо систему без втрати даних та чистимо систему охолодження з заміною термопасти (Arctic / Thermal Grizzly). Ноутбук вмикатиметься за секунди та перестане перегріватися."
+      },
+      {
+        q: "У телевізорі є звук, але чорний екран (немає зображення). Чи варто ремонтувати?",
+        a: "Так, у 95% випадків це перегорання LED-підсвічування. Ми встановлюємо новий комплект планок на алюмінієвій основі, повертаючи ідеальне зображення за значно менші кошти, ніж новий ТВ. Вартість розраховується індивідуально залежно від моделі та розміру екрана."
+      },
+      {
+        q: "Що таке Multi-Guard і чому програма встановлюється виключно у сервісі?",
+        a: "Multi-Guard — це наше фірмове програмне забезпечення для Windows 10 та 11. Ми не надаємо публічного завантаження з інтернету, оскільки універсальні пакети містять тисячі зайвих драйверів і гальмують Windows. У нашій майстерні на вул. Ku Wiatrakom 18 у Бидгощі ми налаштовуємо програму під вашу конкретну модель ноутбука чи ПК, підключаючи лише необхідні драйвери датчиків. Вона залишається надлегкою, контролює температури CPU/GPU після заміни термопасти, керує Microsoft Defender, блокує прослуховування мікрофона/камери та забезпечує безпечну віддалену підтримку за вашої згоди."
+      }
+    ]
+  }
+};
+
+const c = content[lang] || content.pl;
+
+// FAQPage JSON-LD schema for rich snippets
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `https://multi-servis.pl${prefix}/faq#faqpage`,
+  "mainEntity": c.faqs.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+});
+
+// BreadcrumbList schema
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": lang === "pl" ? "Strona główna" : (lang === "en" ? "Home" : "Головна"),
+      "item": `https://multi-servis.pl${prefix || "/"}`
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": lang === "pl" ? "FAQ" : (lang === "en" ? "FAQ" : "FAQ"),
+      "item": `https://multi-servis.pl${prefix}/faq`
+    }
+  ]
+});
+---
+
+<Layout
+  title={c.seoTitle}
+  description={c.seoDesc}
+  wfPage="faq"
+  ogImage="/images/social-20preview.avif"
+  lang={lang}
+  keywords={lang === "pl" ? "FAQ serwis elektroniki Bydgoszcz, pytania naprawa telewizorów, serwis laptopów pytania, Multi-Servis FAQ" : (lang === "en" ? "FAQ electronics repair Bydgoszcz, TV repair questions, laptop repair FAQ, Multi-Servis FAQ" : "FAQ ремонт електроніки Бидгощ, питання ремонт телевізорів, Multi-Servis FAQ")}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={faqSchema} />
+  <script slot="head" type="application/ld+json" is:inline set:html={breadcrumbSchema} />
+
+  <!-- Unified Navbar -->
+  <Navbar lang={lang} currentPath={currentPath} />
+
+  <!-- Hero Section -->
+  <section class="section" style="padding-top: 2rem;">
+    <div class="container centered">
+      <div class="page-header" style="text-align: center; max-width: 900px; margin: 0 auto 3rem auto;">
+        <nav aria-label="Breadcrumb" style="margin-bottom: 1rem; font-size: 0.875rem;">
+          <ol style="list-style: none; padding: 0; margin: 0; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <li><a href={prefix || "/"} style="color: inherit; opacity: 0.75; text-decoration: none;">{lang === "pl" ? "Główna" : (lang === "en" ? "Home" : "Головна")}</a></li>
+            <li aria-hidden="true" style="opacity: 0.4; font-size: 0.75rem;">/</li>
+            <li aria-current="page" style="color: #d32f2f; font-weight: 600;">{lang === "pl" ? "FAQ" : (lang === "en" ? "FAQ" : "FAQ")}</li>
+          </ol>
+        </nav>
+        <div class="section-badge">{c.heroBadge}</div>
+        <h1 class="display-h1" style="margin-top: 1rem; margin-bottom: 1.25rem;">
+          {c.heroTitle}
+        </h1>
+        <p class="large-paragraph t---neutral-10">
+          {c.heroSubtitle}
+        </p>
+        <div class="hero-stats-row" style="margin-top: 2rem;">
+          {c.pills.map((pill) => (
+            <div class="hero-stat-pill">
+              {pill}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion / Cards List -->
+  <section class="section" style="padding: 4.5rem 0;">
+    <div class="container centered faq-centered-container" style="max-width: 900px; margin: 0 auto;">
+      <div class="faq-list-wrap" style="display: flex; flex-direction: column; gap: 1.25rem; width: 100%; max-width: 860px; margin: 0 auto;">
+        {c.faqs.map((item, idx) => (
+          <div class="subpage-card faq-card-item" style="padding: 1.5rem 1.75rem; width: 100%; box-sizing: border-box;">
+            <h2 class="display-h5" style="color: #d32f2f; margin-bottom: 0.75rem; font-size: 1.2rem;">
+              {idx + 1}. {item.q}
+            </h2>
+            <p class="paragraph t---neutral-10" style="margin: 0; line-height: 1.6;">
+              {item.a}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section inverse" style="padding: 4.5rem 0;">
+    <div class="container">
+      <div class="cta-glass-card" style="max-width: 860px; margin: 0 auto; padding: clamp(2.25rem, 5vw, 3.5rem) 2rem; text-align: center;">
+        <div class="section-badge" style="background: rgba(255,255,255,0.1); color: #ffffff;">{c.ctaBadge}</div>
+        <h2 class="display-h2" style="margin-top: 1rem; margin-bottom: 1rem; color: #ffffff;">{c.ctaTitle}</h2>
+        <p class="large-paragraph" style="max-width: 600px; margin: 0 auto 2rem auto; color: rgba(255,255,255,0.85);">
+          {c.ctaSubtitle}
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="tel:+48505012914" class="primary-button w-inline-block" style="color: #ffffff !important;">
+            <span class="button-text" style="color: #ffffff !important;">{c.ctaCall}</span>
+          </a>
+          <a href={`${prefix}/kontakt`} class="outline-button w-inline-block" style="color: #ffffff; border-color: rgba(255,255,255,0.4);">
+            <span class="button-text">{c.ctaContact}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-03"></div>
+    <div class="contact-bg"></div>
+  </section>
+
+  <!-- Modern Clean Footer -->
+  <Footer lang={lang} />
+</Layout>

@@ -1,0 +1,544 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../Navbar.astro";
+import Footer from "../Footer.astro";
+import type { Lang } from "../../i18n/translations";
+import "../../styles/ix/index.css";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "pl" } = Astro.props;
+const currentPath = "/polityka-prywatnosci-multi-guard-browser-shield/";
+const canonicalUrl = "https://multi-servis.pl/polityka-prywatnosci-multi-guard-browser-shield/";
+
+// WebPage Schema for Privacy Policy
+const pageSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${canonicalUrl}#webpage`,
+  "url": canonicalUrl,
+  "name": "Polityka prywatności – Multi-Guard Browser Shield",
+  "description": "Polityka prywatności rozszerzenia Multi-Guard Browser Shield dla przeglądarek internetowych. Zasady przetwarzania danych, lokalna analiza bezpieczeństwa i ochrona prywatności użytkowników.",
+  "inLanguage": "pl-PL",
+  "datePublished": "2026-09-27",
+  "dateModified": "2026-09-27",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Multi-Servis Tomasz Jeliński",
+    "url": "https://multi-servis.pl",
+    "logo": "https://multi-servis.pl/images/multi-servis-logo.png",
+    "telephone": "+48505012914",
+    "email": "kontakt@multi-servis.pl",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ku Wiatrakom 18",
+      "addressLocality": "Bydgoszcz",
+      "postalCode": "85-856",
+      "addressCountry": "PL"
+    }
+  }
+});
+
+// BreadcrumbList schema
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Strona główna",
+      "item": "https://multi-servis.pl/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Polityka prywatności – Multi-Guard Browser Shield",
+      "item": canonicalUrl
+    }
+  ]
+});
+
+const sections = [
+  { id: "sekcja-1", num: "1", title: "Dane operatora" },
+  { id: "sekcja-2", num: "2", title: "Cel działania rozszerzenia" },
+  { id: "sekcja-3", num: "3", title: "Analiza treści stron internetowych" },
+  { id: "sekcja-4", num: "4", title: "Historia przeglądania i adresy URL" },
+  { id: "sekcja-5", num: "5", title: "Współpraca z aplikacją Multi-Guard" },
+  { id: "sekcja-6", num: "6", title: "Dane przechowywane lokalnie" },
+  { id: "sekcja-7", num: "7", title: "Dane osobowe" },
+  { id: "sekcja-8", num: "8", title: "Sprzedaż i udostępnianie danych" },
+  { id: "sekcja-9", num: "9", title: "Komunikacja z zewnętrznymi serwerami" },
+  { id: "sekcja-10", num: "10", title: "Kod rozszerzenia" },
+  { id: "sekcja-11", num: "11", title: "Minimalizacja danych" },
+  { id: "sekcja-12", num: "12", title: "Okres przechowywania" },
+  { id: "sekcja-13", num: "13", title: "Bezpieczeństwo" },
+  { id: "sekcja-14", num: "14", title: "Zmiany Polityki prywatności" },
+  { id: "sekcja-15", num: "15", title: "Kontakt" },
+];
+---
+
+<Layout
+  title="Polityka prywatności – Multi-Guard Browser Shield | Multi-Servis"
+  description="Polityka prywatności rozszerzenia Multi-Guard Browser Shield. Zasady działania, lokalna analiza bezpieczeństwa, brak zapisu historii oraz poufność danych użytkownika."
+  wfPage="privacy-policy"
+  ogImage="/images/social-20preview.avif"
+  lang="pl"
+  keywords="polityka prywatności, Multi-Guard Browser Shield, ochrona przeglądarki, prywatność, Multi-Servis Bydgoszcz"
+  canonical={canonicalUrl}
+  hideHreflang={true}
+  favicon="/images/favicon.png?v=3"
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={pageSchema} />
+  <script slot="head" type="application/ld+json" is:inline set:html={breadcrumbSchema} />
+
+  <!-- Unified Navbar -->
+  <Navbar lang="pl" currentPath={currentPath} />
+
+  <!-- Header / Hero Section -->
+  <header class="section" style="padding-top: 2rem; padding-bottom: 2rem;">
+    <div class="container centered">
+      <div class="page-header" style="text-align: center; max-width: 920px; margin: 0 auto;">
+        <nav aria-label="Breadcrumb" style="margin-bottom: 1.25rem; font-size: 0.875rem;">
+          <ol style="list-style: none; padding: 0; margin: 0; display: inline-flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: center;">
+            <li>
+              <a href="/" style="color: inherit; opacity: 0.75; text-decoration: none; transition: opacity 0.2s;">
+                Strona główna
+              </a>
+            </li>
+            <li aria-hidden="true" style="opacity: 0.4; font-size: 0.75rem;">/</li>
+            <li aria-current="page" style="color: #d32f2f; font-weight: 600;">
+              Polityka prywatności
+            </li>
+          </ol>
+        </nav>
+
+        <div class="section-badge" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+          <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></span>
+          Multi-Guard Browser Shield &bull; Rozszerzenie przeglądarki
+        </div>
+
+        <h1 class="display-h1" style="margin-top: 0.5rem; margin-bottom: 1rem; font-size: clamp(2rem, 4vw, 2.75rem); line-height: 1.2;">
+          Polityka prywatności – Multi-Guard Browser Shield
+        </h1>
+
+        <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 20px; background: rgba(211, 47, 47, 0.08); border: 1px solid rgba(211, 47, 47, 0.2); font-size: 0.9rem; font-weight: 600; color: #d32f2f; margin-bottom: 1.75rem;">
+          📅 Data ostatniej aktualizacji: 27 września 2026 r.
+        </div>
+
+        <!-- Lead summary box -->
+        <div class="subpage-card" style="text-align: left; padding: 1.75rem 2rem; margin-top: 0.5rem; border-left: 4px solid #d32f2f;">
+          <p class="large-paragraph" style="margin: 0 0 1rem 0; font-weight: 500; line-height: 1.65;">
+            Niniejsza Polityka prywatności opisuje sposób działania rozszerzenia <strong>Multi-Guard Browser Shield</strong> oraz zasady przetwarzania informacji związanych z jego używaniem.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin: 0; line-height: 1.65;">
+            Rozszerzenie Multi-Guard Browser Shield jest elementem systemu Multi-Guard i współpracuje z aplikacją Multi-Guard dla systemu Windows.
+          </p>
+        </div>
+
+        <!-- Quick highlights badges -->
+        <div class="hero-stats-row" style="margin-top: 1.75rem; justify-content: center; gap: 0.75rem;">
+          <div class="hero-stat-pill">🔒 100% lokalna analiza</div>
+          <div class="hero-stat-pill">🚫 Zero przesyłania treści stron</div>
+          <div class="hero-stat-pill">🛡️ Brak zapisu historii przeglądania</div>
+          <div class="hero-stat-pill">🧩 Minimalizacja danych</div>
+          <div class="hero-stat-pill">🛑 Brak profilowania i reklam</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Table of Contents Quick Nav -->
+  <section class="section" style="padding-top: 0; padding-bottom: 2rem;">
+    <div class="container" style="max-width: 920px; margin: 0 auto;">
+      <details class="subpage-card" style="padding: 1.25rem 1.75rem; cursor: pointer;">
+        <summary style="font-weight: 600; font-size: 1.05rem; display: flex; align-items: center; justify-content: space-between; user-select: none;">
+          <span>📑 Spis treści (15 sekcji dokumentu)</span>
+          <span style="font-size: 0.85rem; opacity: 0.7; font-weight: normal;">Rozwiń / zwiń</span>
+        </summary>
+        <div style="margin-top: 1.25rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.6rem;">
+          {sections.map((sec) => (
+            <a
+              href={`#${sec.id}`}
+              style="display: flex; align-items: baseline; gap: 0.5rem; text-decoration: none; color: inherit; padding: 0.4rem 0.6rem; border-radius: 6px; font-size: 0.9rem; transition: background 0.15s, color 0.15s;"
+              class="toc-link"
+            >
+              <span style="font-weight: 700; color: #d32f2f; min-width: 1.5rem;">{sec.num}.</span>
+              <span style="line-height: 1.35;">{sec.title}</span>
+            </a>
+          ))}
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- Policy Content Section -->
+  <main class="section" style="padding-top: 0; padding-bottom: 5rem;">
+    <div class="container" style="max-width: 920px; margin: 0 auto;">
+      <article class="privacy-policy-body" style="display: flex; flex-direction: column; gap: 1.75rem;">
+
+        <!-- Sekcja 1 -->
+        <section id="sekcja-1" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">1</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            1. Dane operatora
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1.25rem; line-height: 1.7;">
+            Operatorem rozwiązania Multi-Guard Browser Shield jest:
+          </p>
+          <div class="operator-box" style="padding: 1.5rem; border-radius: 10px; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(128, 128, 128, 0.15); line-height: 1.75;">
+            <div style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem;">
+              Multi-Servis Tomasz Jeliński
+            </div>
+            <div>ul. Ku Wiatrakom 18</div>
+            <div>85-856 Bydgoszcz</div>
+            <div>Polska</div>
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed rgba(128, 128, 128, 0.2); display: flex; flex-direction: column; gap: 0.35rem;">
+              <div><strong>NIP:</strong> 8431233428</div>
+              <div><strong>REGON:</strong> 340798977</div>
+              <div>
+                <strong>E-mail do kontaktu w sprawach prywatności:</strong>{" "}
+                <a href="mailto:kontakt@multi-servis.pl" style="color: #d32f2f; text-decoration: underline;">
+                  kontakt@multi-servis.pl
+                </a>
+              </div>
+              <div>
+                <strong>Telefon:</strong>{" "}
+                <a href="tel:+48505012914" style="color: inherit; text-decoration: underline;">
+                  +48 505 012 914
+                </a>
+              </div>
+              <div>
+                <strong>Strona internetowa:</strong>{" "}
+                <a href="https://multi-servis.pl" target="_blank" rel="noopener noreferrer" style="color: #d32f2f; text-decoration: underline;">
+                  https://multi-servis.pl
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sekcja 2 -->
+        <section id="sekcja-2" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">2</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            2. Cel działania rozszerzenia
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Multi-Guard Browser Shield służy do zwiększania bezpieczeństwa użytkownika podczas korzystania z przeglądarki internetowej.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Rozszerzenie lokalnie analizuje treść odwiedzanych stron internetowych w celu wykrywania wzorców typowych dla fałszywych alertów bezpieczeństwa, fałszywych komunikatów o wirusach, prób podszywania się pod oprogramowanie zabezpieczające oraz prób nakłaniania użytkownika do wykonania potencjalnie niebezpiecznych działań, w szczególności włączenia niepożądanych powiadomień.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0; line-height: 1.7;">
+            W przypadku wykrycia podejrzanego wzorca rozszerzenie może wyświetlić użytkownikowi ostrzeżenie.
+          </p>
+        </section>
+
+        <!-- Sekcja 3 -->
+        <section id="sekcja-3" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">3</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            3. Analiza treści stron internetowych
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            W celu realizacji swojej podstawowej funkcji Multi-Guard Browser Shield może lokalnie odczytywać i analizować tekst widoczny na odwiedzanej stronie internetowej oraz tytuł strony.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Analiza odbywa się bezpośrednio na urządzeniu użytkownika, w przeglądarce internetowej.
+          </p>
+          <div style="padding: 1rem 1.25rem; border-radius: 8px; background: rgba(16, 185, 129, 0.08); border-left: 3px solid #10b981; margin-bottom: 1rem;">
+            <p class="paragraph" style="margin: 0; font-weight: 500; line-height: 1.6;">
+              🔒 <strong>Treść odwiedzanych stron internetowych nie jest przesyłana do Multi-Servis ani do zewnętrznych serwerów.</strong>
+            </p>
+          </div>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0; line-height: 1.7;">
+            Treść stron nie jest przez Multi-Guard Browser Shield zapisywana jako historia przeglądania.
+          </p>
+        </section>
+
+        <!-- Sekcja 4 -->
+        <section id="sekcja-4" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">4</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            4. Historia przeglądania i adresy URL
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Multi-Guard Browser Shield nie tworzy bazy historii odwiedzanych stron internetowych.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Rozszerzenie nie przesyła do Multi-Servis ani do zewnętrznych serwerów pełnych adresów URL odwiedzanych stron.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0; line-height: 1.7;">
+            Rozszerzenie nie wykorzystuje historii przeglądania do profilowania użytkownika, celów reklamowych, marketingowych ani sprzedażowych.
+          </p>
+        </section>
+
+        <!-- Sekcja 5 -->
+        <section id="sekcja-5" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">5</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            5. Współpraca z aplikacją Multi-Guard
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Multi-Guard Browser Shield współpracuje z zainstalowaną na komputerze użytkownika aplikacją Multi-Guard dla Windows.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Komunikacja odbywa się lokalnie z wykorzystaniem mechanizmu Native Messaging udostępnianego przez przeglądarkę.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            W ramach tej komunikacji rozszerzenie może przekazywać do lokalnej aplikacji Multi-Guard informacje techniczne niezbędne do potwierdzania prawidłowego działania Browser Shield, takie jak identyfikator typu przeglądarki, wersja rozszerzenia, czas wysłania sygnału kontrolnego, losowy identyfikator sesji technicznej, informacja o aktywności rozszerzenia oraz ogólny kod wykrytego zdarzenia bezpieczeństwa.
+          </p>
+          <div style="padding: 1rem 1.25rem; border-radius: 8px; background: rgba(59, 130, 246, 0.08); border-left: 3px solid #3b82f6; margin-bottom: 0;">
+            <p class="paragraph" style="margin: 0; font-weight: 500; line-height: 1.6;">
+              ℹ️ <strong>Do aplikacji Multi-Guard nie jest przekazywana treść odwiedzanej strony internetowej ani jej pełny adres URL.</strong>
+            </p>
+          </div>
+        </section>
+
+        <!-- Sekcja 6 -->
+        <section id="sekcja-6" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">6</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            6. Dane przechowywane lokalnie
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Multi-Guard Browser Shield może przechowywać lokalnie w przeglądarce ograniczone informacje techniczne dotyczące współpracy z aplikacją Multi-Guard.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Mogą to być między innymi stan połączenia z lokalną aplikacją Multi-Guard, czas ostatniego poprawnego kontaktu oraz techniczny komunikat dotyczący stanu połączenia.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Informacje te są wykorzystywane wyłącznie w celu poinformowania użytkownika, czy Browser Shield działa prawidłowo i czy jest połączony z aplikacją Multi-Guard.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0; line-height: 1.7;">
+            Nie są wykorzystywane do reklamy, marketingu ani profilowania.
+          </p>
+        </section>
+
+        <!-- Sekcja 7 -->
+        <section id="sekcja-7" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">7</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            7. Dane osobowe
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Multi-Guard Browser Shield nie jest przeznaczony do zbierania danych identyfikujących użytkownika, takich jak imię i nazwisko, adres zamieszkania, adres e-mail, numer telefonu, dane płatnicze, dane kart płatniczych, informacje zdrowotne, hasła, dane uwierzytelniające ani dokładna lokalizacja użytkownika.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0; line-height: 1.7;">
+            Treść strony internetowej analizowana lokalnie przez rozszerzenie może zawierać informacje wyświetlane lub wprowadzone na danej stronie przez użytkownika. Multi-Guard Browser Shield nie przesyła jednak tej treści do Multi-Servis ani do zewnętrznych serwerów.
+          </p>
+        </section>
+
+        <!-- Sekcja 8 -->
+        <section id="sekcja-8" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">8</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            8. Sprzedaż i udostępnianie danych
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Multi-Servis nie sprzedaje danych użytkowników Multi-Guard Browser Shield.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Dane użytkowników nie są przekazywane reklamodawcom i nie są wykorzystywane do tworzenia profili reklamowych.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Informacje przetwarzane przez rozszerzenie nie są wykorzystywane do celów niezwiązanych z funkcją ochronną Multi-Guard Browser Shield.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0; line-height: 1.7;">
+            Dane nie są wykorzystywane do ustalania zdolności kredytowej, udzielania pożyczek ani podejmowania podobnych decyzji finansowych.
+          </p>
+        </section>
+
+        <!-- Sekcja 9 -->
+        <section id="sekcja-9" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">9</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            9. Komunikacja z zewnętrznymi serwerami
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Obecna wersja Multi-Guard Browser Shield nie przesyła treści odwiedzanych stron internetowych ani historii przeglądania do serwerów Multi-Servis ani innych zewnętrznych usług.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0; line-height: 1.7;">
+            Komunikacja pomiędzy rozszerzeniem a aplikacją Multi-Guard realizowana za pomocą Native Messaging odbywa się lokalnie na urządzeniu użytkownika.
+          </p>
+        </section>
+
+        <!-- Sekcja 10 -->
+        <section id="sekcja-10" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">10</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            10. Kod rozszerzenia
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Kod JavaScript wymagany do działania Multi-Guard Browser Shield znajduje się w pakiecie rozszerzenia dostarczanym za pośrednictwem oficjalnego sklepu z rozszerzeniami.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0; line-height: 1.7;">
+            Multi-Guard Browser Shield nie pobiera ani nie wykonuje zdalnego kodu JavaScript lub WebAssembly w celu rozszerzania swojej funkcjonalności.
+          </p>
+        </section>
+
+        <!-- Sekcja 11 -->
+        <section id="sekcja-11" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">11</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            11. Minimalizacja danych
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Multi-Guard Browser Shield został zaprojektowany zgodnie z zasadą minimalizacji danych.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0; line-height: 1.7;">
+            Rozszerzenie wykorzystuje wyłącznie informacje oraz uprawnienia niezbędne do realizacji funkcji ochronnej, komunikacji z lokalną aplikacją Multi-Guard oraz informowania użytkownika o stanie działania Browser Shield.
+          </p>
+        </section>
+
+        <!-- Sekcja 12 -->
+        <section id="sekcja-12" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">12</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            12. Okres przechowywania
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Treść analizowanych stron internetowych jest wykorzystywana podczas bieżącej lokalnej analizy i nie jest zapisywana przez Multi-Guard Browser Shield jako historia odwiedzonych witryn.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0; line-height: 1.7;">
+            Lokalne informacje techniczne dotyczące stanu połączenia mogą pozostawać zapisane w pamięci przeglądarki do czasu ich nadpisania, wyczyszczenia danych rozszerzenia albo odinstalowania rozszerzenia.
+          </p>
+        </section>
+
+        <!-- Sekcja 13 -->
+        <section id="sekcja-13" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">13</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            13. Bezpieczeństwo
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Multi-Servis stosuje rozwiązania mające ograniczać zakres danych przetwarzanych przez Browser Shield do minimum niezbędnego do działania funkcji ochronnych.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0; line-height: 1.7;">
+            Analiza treści odbywa się lokalnie, a komunikacja z aplikacją Multi-Guard jest ograniczona do lokalnej komunikacji technicznej wymaganej do działania produktu.
+          </p>
+        </section>
+
+        <!-- Sekcja 14 -->
+        <section id="sekcja-14" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">14</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            14. Zmiany Polityki prywatności
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1rem; line-height: 1.7;">
+            Niniejsza Polityka prywatności może zostać zaktualizowana w przypadku zmian funkcjonalności Multi-Guard Browser Shield, sposobu przetwarzania informacji albo wymagań prawnych lub regulaminowych sklepów z rozszerzeniami.
+          </p>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0.5rem; line-height: 1.7;">
+            Aktualna wersja Polityki prywatności będzie dostępna pod stałym adresem:
+          </p>
+          <div style="padding: 0.85rem 1.25rem; border-radius: 8px; background: rgba(211, 47, 47, 0.06); border: 1px solid rgba(211, 47, 47, 0.2); word-break: break-all; margin-bottom: 1rem;">
+            <a href="https://multi-servis.pl/polityka-prywatnosci-multi-guard-browser-shield/" style="color: #d32f2f; font-weight: 600; text-decoration: underline;">
+              https://multi-servis.pl/polityka-prywatnosci-multi-guard-browser-shield/
+            </a>
+          </div>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 0; line-height: 1.7;">
+            Data ostatniej aktualizacji dokumentu znajduje się na jego początku.
+          </p>
+        </section>
+
+        <!-- Sekcja 15 -->
+        <section id="sekcja-15" class="subpage-card policy-section-card" style="padding: clamp(1.75rem, 3vw, 2.5rem); scroll-margin-top: 90px;">
+          <div class="section-num-badge">15</div>
+          <h2 class="display-h4" style="margin-top: 0; margin-bottom: 1.25rem; font-size: 1.35rem; color: #d32f2f;">
+            15. Kontakt
+          </h2>
+          <p class="paragraph t---neutral-10" style="margin-bottom: 1.25rem; line-height: 1.7;">
+            W sprawach dotyczących prywatności, bezpieczeństwa lub działania Multi-Guard Browser Shield można skontaktować się z:
+          </p>
+          <div class="operator-box" style="padding: 1.5rem; border-radius: 10px; background: rgba(0, 0, 0, 0.03); border: 1px solid rgba(128, 128, 128, 0.15); line-height: 1.75;">
+            <div style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem;">
+              Multi-Servis Tomasz Jeliński
+            </div>
+            <div>ul. Ku Wiatrakom 18</div>
+            <div>85-856 Bydgoszcz</div>
+            <div>Polska</div>
+            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed rgba(128, 128, 128, 0.2); display: flex; flex-direction: column; gap: 0.5rem;">
+              <div>
+                <strong>E-mail:</strong>{" "}
+                <a href="mailto:kontakt@multi-servis.pl" style="color: #d32f2f; text-decoration: underline; font-weight: 500;">
+                  kontakt@multi-servis.pl
+                </a>
+              </div>
+              <div>
+                <strong>Telefon:</strong>{" "}
+                <a href="tel:+48505012914" style="color: inherit; text-decoration: underline; font-weight: 500;">
+                  +48 505 012 914
+                </a>
+              </div>
+              <div>
+                <strong>Strona:</strong>{" "}
+                <a href="https://multi-servis.pl" target="_blank" rel="noopener noreferrer" style="color: #d32f2f; text-decoration: underline; font-weight: 500;">
+                  https://multi-servis.pl
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </article>
+
+      <!-- Return button -->
+      <div style="margin-top: 3rem; text-align: center;">
+        <a href="/" class="primary-button w-inline-block" style="color: #ffffff !important; display: inline-flex; align-items: center; gap: 0.5rem;">
+          <span>← Wróć do strony głównej</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modern Clean Footer -->
+  <Footer lang="pl" />
+</Layout>
+
+<style>
+  .policy-section-card {
+    position: relative;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .policy-section-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+  }
+
+  .section-num-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #d32f2f;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .toc-link:hover {
+    background: rgba(211, 47, 47, 0.08);
+    color: #d32f2f !important;
+  }
+
+  html[data-theme="dark"] .operator-box {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+  }
+
+  html[data-theme="dark"] .policy-section-card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  html[data-theme="dark"] .toc-link:hover {
+    background: rgba(211, 47, 47, 0.18);
+  }
+</style>

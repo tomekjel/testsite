@@ -1,0 +1,259 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	wfPage: string;
+	ogImage?: string;
+	lang?: 'pl' | 'en' | 'uk';
+	keywords?: string;
+	canonical?: string;
+	hideHreflang?: boolean;
+	favicon?: string;
+}
+
+const {
+	title,
+	description,
+	wfPage,
+	ogImage = "/images/social-20preview.avif",
+	lang = "pl",
+	keywords = "",
+	canonical,
+	hideHreflang = false,
+	favicon,
+} = Astro.props;
+
+const og = ogImage.startsWith("/") || ogImage.startsWith("http")
+	? ogImage
+	: `/${ogImage}`;
+
+const rawPath = Astro.url.pathname;
+const cleanPath = rawPath.endsWith("/") && rawPath.length > 1 ? rawPath.slice(0, -1) : rawPath;
+const canonicalURL = canonical
+	? new URL(canonical, Astro.site)
+	: new URL(cleanPath === "" ? "/" : cleanPath, Astro.site);
+const ogImageURL = new URL(og, Astro.site);
+
+// Compute hreflang URLs for ALL pages (not just homepage)
+// Strip language prefix to get the base slug
+const langPrefixes = ["/en", "/uk"];
+let baseSlug = cleanPath;
+for (const lp of langPrefixes) {
+	if (cleanPath === lp) {
+		baseSlug = "/";
+		break;
+	}
+	if (cleanPath.startsWith(lp + "/")) {
+		baseSlug = cleanPath.slice(lp.length);
+		break;
+	}
+}
+const hreflangPl = new URL(baseSlug === "/" ? "/" : baseSlug, Astro.site);
+const hreflangEn = new URL(baseSlug === "/" ? "/en" : `/en${baseSlug}`, Astro.site);
+const hreflangUk = new URL(baseSlug === "/" ? "/uk" : `/uk${baseSlug}`, Astro.site);
+
+// Global organization & website schema
+const websiteSchema = JSON.stringify({
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": "https://multi-servis.pl/#website",
+			"url": "https://multi-servis.pl/",
+			"name": "Multi-Servis Bydgoszcz",
+			"description": "Profesjonalny serwis elektroniki: telewizory, laptopy, komputery. Ponad 20 lat doświadczenia w Bydgoszczy.",
+			"inLanguage": lang,
+			"publisher": {
+				"@type": "Organization",
+				"@id": "https://multi-servis.pl/#organization",
+				"name": "Multi-Servis",
+				"legalName": "Multi-Servis",
+				"url": "https://multi-servis.pl/",
+				"logo": "https://multi-servis.pl/images/multi-servis-logo.png",
+				"telephone": "+48505012914",
+				"email": "kontakt@multi-servis.pl",
+				"sameAs": [
+					"https://www.google.com/maps/search/?api=1&query=Multi-Servis+Ku+Wiatrakom+18+Bydgoszcz",
+					"https://maps.google.com/?q=Multi-Servis+Ku+Wiatrakom+18+Bydgoszcz"
+				],
+				"contactPoint": [
+					{
+						"@type": "ContactPoint",
+						"telephone": "+48505012914",
+						"contactType": "customer service",
+						"availableLanguage": ["Polish", "English", "Ukrainian"],
+						"areaServed": "PL"
+					}
+				],
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": "Ku Wiatrakom 18",
+					"addressLocality": "Bydgoszcz",
+					"postalCode": "85-856",
+					"addressRegion": "Kujawsko-Pomorskie",
+					"addressCountry": "PL"
+				},
+				"areaServed": [
+					{ "@type": "City", "name": "Bydgoszcz" },
+					{ "@type": "AdministrativeArea", "name": "Wyżyny, Bydgoszcz" },
+					{ "@type": "AdministrativeArea", "name": "Fordon, Bydgoszcz" },
+					{ "@type": "AdministrativeArea", "name": "Bartodzieje, Bydgoszcz" },
+					{ "@type": "AdministrativeArea", "name": "Bielawy, Bydgoszcz" },
+					{ "@type": "AdministrativeArea", "name": "Szwederowo, Bydgoszcz" },
+					{ "@type": "AdministrativeArea", "name": "Wzgórze Wolności, Bydgoszcz" },
+					{ "@type": "AdministrativeArea", "name": "Błonie, Bydgoszcz" },
+					{ "@type": "AdministrativeArea", "name": "Kapuściska, Bydgoszcz" },
+					{ "@type": "AdministrativeArea", "name": "Śródmieście, Bydgoszcz" },
+					{ "@type": "AdministrativeArea", "name": "Osowa Góra, Bydgoszcz" },
+					{ "@type": "AdministrativeArea", "name": "Solec Kujawski" },
+					{ "@type": "AdministrativeArea", "name": "Białe Błota" },
+					{ "@type": "AdministrativeArea", "name": "Osielsko" },
+					{ "@type": "AdministrativeArea", "name": "Nowa Wieś Wielka" },
+					{ "@type": "AdministrativeArea", "name": "Województwo kujawsko-pomorskie" }
+				]
+			}
+		}
+	]
+});
+
+const ogLocale = lang === "pl" ? "pl_PL" : (lang === "en" ? "en_US" : "uk_UA");
+const ogLocaleAlt1 = lang === "pl" ? "en_US" : "pl_PL";
+const ogLocaleAlt2 = lang === "uk" ? "en_US" : "uk_UA";
+---
+
+<!doctype html>
+<html
+	lang={lang}
+	data-wf-page={wfPage}
+	data-wf-site="68a413987ca3efce6f38ee67"
+	data-wf-status="1"
+>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#121212" />
+		<meta name="color-scheme" content="dark light" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="referrer" content="strict-origin-when-cross-origin" />
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+		{!hideHreflang && (
+			<>
+				<link rel="alternate" hreflang="pl" href={hreflangPl} />
+				<link rel="alternate" hreflang="en" href={hreflangEn} />
+				<link rel="alternate" hreflang="uk" href={hreflangUk} />
+				<link rel="alternate" hreflang="x-default" href={hreflangPl} />
+			</>
+		)}
+		<link rel="help" type="text/plain" href="https://multi-servis.pl/llms.txt" title="LLM Context" />
+		<meta name="author" content="Multi-Servis Bydgoszcz" />
+		{keywords && <meta name="keywords" content={keywords} />}
+		<meta name="geo.region" content="PL-04" />
+		<meta name="geo.placename" content="Bydgoszcz" />
+		<meta name="geo.position" content="53.108951;18.040959" />
+		<meta name="ICBM" content="53.108951, 18.040959" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageURL} />
+		<meta property="og:locale" content={ogLocale} />
+		<meta property="og:locale:alternate" content={ogLocaleAlt1} />
+		<meta property="og:locale:alternate" content={ogLocaleAlt2} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={canonicalURL} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageURL} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="/css/multi-servis.shared.f6c6fca70.css" />
+		<link rel="stylesheet" href="/css/theme.css" />
+		<link rel="stylesheet" href="/css/mobile.css" media="screen and (max-width: 991px)" />
+		<link rel="icon" type="image/png" sizes="32x32" href={favicon || "/favicon-32x32.png?v=3"} />
+		<link rel="icon" type="image/png" sizes="16x16" href={favicon || "/favicon-16x16.png?v=3"} />
+		<link rel="icon" type="image/png" href={favicon || "/images/favicon.png?v=3"} />
+		<link rel="shortcut icon" href="/favicon.ico?v=3" />
+		<link rel="apple-touch-icon" sizes="180x180" href={favicon || "/apple-touch-icon.png?v=3"} />
+		<script is:inline>
+			(function () {
+				try {
+					var stored = localStorage.getItem("theme");
+					var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+					var theme = stored ? stored : (prefersDark ? "dark" : "light");
+					document.documentElement.setAttribute("data-theme", theme);
+					if (theme === "dark") {
+						document.documentElement.classList.add("dark");
+					} else {
+						document.documentElement.classList.remove("dark");
+					}
+				} catch (e) {}
+			})();
+		</script>
+		<script is:inline>
+			!(function (o, c) {
+				var n = c.documentElement,
+					t = " w-mod-";
+				n.className += t + "js";
+				("ontouchstart" in o ||
+					(o.DocumentTouch && c instanceof DocumentTouch)) &&
+					(n.className += t + "touch");
+			})(window, document);
+		</script>
+		<script type="application/ld+json" is:inline set:html={websiteSchema} />
+		<slot name="head" />
+	</head>
+	<body>
+		<slot />
+		<script is:inline src="/js/jquery.js"></script>
+		<script is:inline src="/js/webflow.schunk.36b8fb49256177c8.js"></script>
+		<script is:inline src="/js/webflow.schunk.e5d3a0bed279ca48.js"></script>
+		<script is:inline src="/js/webflow-script.js"></script>
+		<script is:inline>
+			function setupThemeToggle() {
+				var buttons = document.querySelectorAll(".theme-toggle-btn");
+				buttons.forEach(function (btn) {
+					if (btn.dataset.themeBound) return;
+					btn.dataset.themeBound = "true";
+					btn.addEventListener("click", function () {
+						var currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+						var newTheme = currentTheme === "dark" ? "light" : "dark";
+						document.documentElement.setAttribute("data-theme", newTheme);
+						if (newTheme === "dark") {
+							document.documentElement.classList.add("dark");
+						} else {
+							document.documentElement.classList.remove("dark");
+						}
+						try {
+							localStorage.setItem("theme", newTheme);
+						} catch (e) {}
+						updateAria();
+					});
+				});
+
+				function updateAria() {
+					var isDark = document.documentElement.getAttribute("data-theme") === "dark";
+					document.querySelectorAll(".theme-toggle-btn").forEach(function (btn) {
+						btn.setAttribute("aria-label", isDark ? "Przełącz na jasny motyw" : "Przełącz na ciemny motyw");
+						btn.setAttribute("title", isDark ? "Przełącz na jasny motyw" : "Przełącz na ciemny motyw");
+					});
+				}
+				updateAria();
+			}
+
+			function initLayout() {
+				setupThemeToggle();
+			}
+
+			if (document.readyState === "loading") {
+				document.addEventListener("DOMContentLoaded", initLayout);
+			} else {
+				initLayout();
+			}
+			document.addEventListener("astro:page-load", initLayout);
+		</script>
+	</body>
+</html>

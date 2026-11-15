@@ -1,0 +1,278 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ThemeToggle from "../../components/ThemeToggle.astro";
+import Footer from "../../components/Footer.astro";
+
+const jsonLdRaw = `{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Licenses",
+  "url": "/admin/licenses",
+  "description": "Licenses the assets used in the template",
+  "inLanguage": "en",
+  "about": {
+    "@type": "CreativeWork",
+    "name": "Multi-Servis",
+    "description": "All graphical assets in this template are licensed for personal and commercial use",
+    "license": [
+      {
+        "@type": "CreativeWork",
+        "@id": "https://fonts.google.com/specimen/Albert+Sans/license",
+        "name": "Albert Sans Font License",
+        "creator": {
+          "@type": "Organization",
+          "name": "Google Fonts"
+        }
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://fonts.google.com/specimen/Geist/license",
+        "name": "Geist Font License",
+        "creator": {
+          "@type": "Organization",
+          "name": "Google Fonts"
+        }
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://www.lummi.ai/license",
+        "name": "Lummi Image License",
+        "creator": {
+          "@type": "Organization",
+          "name": "Lummi"
+        }
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://creativecommons.org/licenses/by/4.0/",
+        "name": "Creative Commons Attribution 4.0",
+        "description": "UI screens license from Figma Community resources"
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": "https://github.com/phosphor-icons/web",
+        "name": "Phosphor Icons License",
+        "creator": {
+          "@type": "Organization",
+          "name": "Phosphor Icons"
+        }
+      }
+    ]
+  }
+}`;
+---
+
+<Layout
+  title="Licenses"
+  description="Licenses the assets used in the template"
+  wfPage="68a413987ca3efce6f38eeab"
+  ogImage="/images/social-20preview.avif"
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={jsonLdRaw} />
+  <!-- Navigation -->
+  <div class="nav-wrap">
+    <div class="navbar">
+      <div class="nav-wrapper">
+        <div class="brand-wrapper">
+          <a href="/" class="brand w-inline-block">
+            <img src="/images/multi-servis-logo.png" loading="lazy" alt="Multi-Servis" class="nav-logo" />
+          </a>
+        </div>
+        <div class="nav-menu">
+          <a href="/serwis-telewizorow" class="navbar-link w-inline-block">
+            <div class="nav">Telewizory</div>
+          </a>
+          <a href="/serwis-laptopow" class="navbar-link w-inline-block">
+            <div class="nav">Laptopy</div>
+          </a>
+          <a href="/serwis-komputerow" class="navbar-link w-inline-block">
+            <div class="nav">Komputery</div>
+          </a>
+          <a href="/cennik" class="navbar-link w-inline-block">
+            <div class="nav">Cennik</div>
+          </a>
+          <a href="/about" class="navbar-link w-inline-block">
+            <div class="nav">O nas</div>
+          </a>
+          <a href="/faq" class="navbar-link w-inline-block">
+            <div class="nav">FAQ</div>
+          </a>
+          <a href="/kontakt" class="navbar-link w-inline-block">
+            <div class="nav">Kontakt</div>
+          </a>
+        </div>
+        <div class="nav-actions-group">
+          <a href="tel:+48505012914" class="nav-phone-btn">
+            <span class="phone-icon">📞</span>
+            <span class="phone-text">505 012 914</span>
+          </a>
+          <ThemeToggle />
+          <div class="nav-menu-button-wrap">
+            <div href="#" data-figma-id="156:103" data-w-id="aa6612f2-b0d5-f83c-935e-76485f130b37" class="nav-menu-button">
+              <div class="button-content">
+                <p data-figma-id="96:188" class="button-text">Menu</p>
+              </div>
+            </div>
+            <div href="#" data-figma-id="156:103" data-w-id="61563fd7-9f8a-5a95-991f-c86f85d98fab" class="nav-menu-button close">
+              <div class="button-content">
+                <p data-figma-id="96:188" class="button-text">X</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-dropdown-menu">
+          <a href="/serwis-telewizorow" class="navbar-link in-menu w-inline-block">
+            <div class="nav">📺 Serwis Telewizorów</div>
+          </a>
+          <a href="/serwis-laptopow" class="navbar-link in-menu w-inline-block">
+            <div class="nav">💻 Serwis Laptopów</div>
+          </a>
+          <a href="/serwis-komputerow" class="navbar-link in-menu w-inline-block">
+            <div class="nav">🖥️ Serwis Komputerów PC</div>
+          </a>
+          <a href="/cennik" class="navbar-link in-menu w-inline-block">
+            <div class="nav">💵 Cennik i Diagnoza</div>
+          </a>
+          <a href="/about" class="navbar-link in-menu w-inline-block">
+            <div class="nav">ℹ️ O nas</div>
+          </a>
+          <a href="/faq" class="navbar-link in-menu w-inline-block">
+            <div class="nav">❓ FAQ</div>
+          </a>
+          <a href="/kontakt" class="navbar-link in-menu w-inline-block">
+            <div class="nav">📍 Kontakt i Dojazd</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="admin-header-wrap">
+<div class="container">
+<div class="admin-header">
+<h1 class="display-h1">Licenses</h1>
+<p class="paragraph t---neutral-10">All graphical assets in this template are licensed for personal and commercial use. If you&#x27;d like to use a specific asset, please check the license below.</p>
+</div>
+</div>
+</div>
+<section class="section">
+<div class="container">
+<h2 class="display-h3">Font</h2>
+<div class="divider-line bg---neutral-06">
+</div>
+<div class="admin-block">
+<div class="admin-title license">
+<div class="label">Albert Sans</div>
+<p>Albert Sans is a free font that you can use on your website. Find more details below.</p>
+<a href="https://fonts.google.com/specimen/Albert+Sans/license?query=albert+sans" target="_blank">License Link</a>
+</div>
+</div>
+<div class="admin-block">
+<div class="admin-title license">
+<div class="label">Geist</div>
+<p>Geist is a free font that you can use on your website. Find more details below.</p>
+<a href="https://fonts.google.com/specimen/Geist/license?query=geist" target="_blank">License Link</a>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<h2 class="display-h3">Image</h2>
+<div class="divider-line bg---neutral-06">
+</div>
+<div class="admin-block">
+<div class="admin-title license">
+<div class="label">Lummi</div>
+<p>All images used across the website are from Lummi.</p>
+<a href="https://www.lummi.ai/license" target="_blank">License Link</a>
+</div>
+<div class="admin-list">
+<div class="unsplash-image-grid-block">
+<img loading="lazy" src="/images/content-20woman-20with-20laptop.avif" alt="Content Woman with Laptop" class="license-image"/>
+<img sizes="(max-width: 1200px) 100vw, 1200px" srcset="/images/colleagues-20collaborating-p-500.avif 500w, /images/colleagues-20collaborating-p-800.avif 800w, /images/colleagues-20collaborating.avif 1200w" alt="Colleagues Collaborating" src="/images/colleagues-20collaborating.avif" loading="lazy" class="license-image"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<h2 class="display-h3">UI Screens</h2>
+<div class="divider-line bg---neutral-06">
+</div>
+<div class="admin-block">
+<div class="admin-title license">
+<p>UI screens used in this template are edited from the following resources:</p>
+<a href="https://www.figma.com/community/file/1292982580121452290/full-dashboard-with-widgets-sidebar-charts-graphs" target="_blank">Customers dashboard UI</a>
+<a href="https://www.figma.com/community/file/1073116958099793906/project-management-dashboard" target="_blank">Task management UI</a>
+<a href="https://www.figma.com/community/file/1194749504233765849/registration-ui-templates-sign-up-log-in" target="_blank">Registration UI</a>
+<a href="https://www.figma.com/community/file/1302571471147483457/31-free-smart-charts-kit-if-you-enjoyed-press-like-and-follow-btn" target="_blank">Charts</a>
+<p>
+<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">License Link</a>
+</p>
+</div>
+<div class="admin-list">
+<div class="unsplash-image-grid-block">
+<img sizes="(max-width: 1184px) 100vw, 1184px" srcset="/images/customer-20card-p-500.png 500w, /images/customer-20card-p-800.png 800w, /images/customer-20card-p-1080.png 1080w, /images/customer-20card.png 1184w" alt="Customer dashboard UI" src="/images/customer-20card.png" loading="lazy" class="license-image"/>
+<img sizes="(max-width: 597px) 100vw, 597px" srcset="/images/task-20card-p-500.png 500w, /images/task-20card.png 597w" alt="Task card UI" src="/images/task-20card.png" loading="lazy" class="license-image"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<h2 class="display-h3">Icon</h2>
+<div class="divider-line bg---neutral-06">
+</div>
+<div class="admin-block">
+<div class="admin-title license">
+<div class="label">Phosphor Icons</div>
+<p>An excellent free icon pack, frequently updated and available in the Figma Community library, featuring multiple styles to suit various design needs.</p>
+<a href="https://github.com/phosphor-icons/web" target="_blank">License Link</a>
+</div>
+<div class="admin-list">
+<div class="icon-grid-block">
+<div class="icon m w-embed">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+<path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z">
+</path>
+</svg>
+</div>
+<div class="icon m w-embed">
+<svg width="32" height="32" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M28.5 16C28.5 16.3978 28.342 16.7794 28.0607 17.0607C27.7794 17.342 27.3978 17.5 27 17.5H8.62502L15.065 23.9388C15.3468 24.2206 15.5051 24.6027 15.5051 25.0013C15.5051 25.3998 15.3468 25.782 15.065 26.0638C14.7832 26.3456 14.401 26.5039 14.0025 26.5039C13.604 26.5039 13.2218 26.3456 12.94 26.0638L3.94002 17.0638C3.80018 16.9244 3.68923 16.7588 3.61352 16.5765C3.53781 16.3942 3.49884 16.1987 3.49884 16.0013C3.49884 15.8038 3.53781 15.6084 3.61352 15.426C3.68923 15.2437 3.80018 15.0781 3.94002 14.9388L12.94 5.93876C13.0796 5.79923 13.2452 5.68855 13.4275 5.61304C13.6098 5.53752 13.8052 5.49866 14.0025 5.49866C14.1998 5.49866 14.3952 5.53752 14.5775 5.61304C14.7598 5.68855 14.9255 5.79923 15.065 5.93876C15.2046 6.07829 15.3152 6.24393 15.3907 6.42624C15.4663 6.60854 15.5051 6.80393 15.5051 7.00126C15.5051 7.19858 15.4663 7.39398 15.3907 7.57628C15.3152 7.75858 15.2046 7.92423 15.065 8.06376L8.62502 14.5H27C27.3978 14.5 27.7794 14.658 28.0607 14.9393C28.342 15.2207 28.5 15.6022 28.5 16Z" fill="currentColor"/>
+</svg>
+</div>
+<div class="icon m w-embed">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+<path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z">
+</path>
+</svg>
+</div>
+<div class="icon m w-embed">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+<path d="M216.49,168.49a12,12,0,0,1-17,0L128,97,56.49,168.49a12,12,0,0,1-17-17l80-80a12,12,0,0,1,17,0l80,80A12,12,0,0,1,216.49,168.49Z">
+</path>
+</svg>
+</div>
+<div class="icon m w-embed">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256">
+<path d="M232.49,160.49l-48,48a12,12,0,0,1-17-17L195,164H128A108.12,108.12,0,0,1,20,56a12,12,0,0,1,24,0,84.09,84.09,0,0,0,84,84h67l-27.52-27.51a12,12,0,0,1,17-17l48,48A12,12,0,0,1,232.49,160.49Z">
+</path>
+</svg>
+</div>
+<div class="icon m w-embed">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256">
+<path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z">
+</path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Modern Clean Footer -->
+<Footer lang="pl" />
+</Layout>

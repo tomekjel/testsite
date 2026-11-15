@@ -1,0 +1,45 @@
+@media (min-width: 992px) {
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="fb183dfb-c60b-169b-83d2-10bc584a7ef6"] {
+    -webkit-transform: translate3d(-30px, 0, 0);
+    transform: translate3d(-30px, 0, 0);
+    opacity: 0;
+  }
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="84760383-3241-c221-771a-33900488d0de"] {
+    -webkit-transform: translate3d(-30px, 0, 0);
+    transform: translate3d(-30px, 0, 0);
+    opacity: 0;
+  }
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="42e4baa9-9891-fb60-296f-33f595a3edf6"] {
+    -webkit-transform: translate3d(-30px, 0, 0);
+    transform: translate3d(-30px, 0, 0);
+    opacity: 0;
+  }
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="1567ae63-759c-8e83-3eb8-a809b1c6d866"] {
+    -webkit-transform: translate3d(30px, 0, 0);
+    transform: translate3d(30px, 0, 0);
+    opacity: 0;
+  }
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="4fde0941-2d4c-bc46-8fa2-a624e2bfa162"] {
+    -webkit-transform: translate3d(30px, 0, 0);
+    transform: translate3d(30px, 0, 0);
+    opacity: 0;
+  }
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="71a70a0f-4395-10bb-a654-682d054f26a7"] {
+    -webkit-transform: translate3d(0, 30px, 0);
+    transform: translate3d(0, 30px, 0);
+    opacity: 0;
+  }
+  html.w-mod-js:not(.w-mod-ix) [data-w-id="c885e1dc-f502-a48a-2cc8-48f3e1daf7cb"] {
+    -webkit-transform: translate3d(0, 30px, 0);
+    transform: translate3d(0, 30px, 0);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  html.w-mod-js:not(.w-mod-ix) [data-w-id] {
+    -webkit-transform: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

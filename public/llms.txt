@@ -1,0 +1,63 @@
+# Multi-Servis – Serwis Elektroniki w Bydgoszczy
+
+> Profesjonalny, stacjonarny serwis elektroniki użytkowej prowadzony przez elektronika z ponad 20-letnim doświadczeniem w Bydgoszczy (osiedle Wyżyny, ul. Ku Wiatrakom 18). Specjalizacja: naprawa telewizorów (LED/OLED/QLED), laptopów i MacBooków oraz komputerów stacjonarnych i gamingowych PC.
+
+## Informacje podstawowe
+- **Nazwa serwisu:** Multi-Servis
+- **Adres:** ul. Ku Wiatrakom 18, 85-856 Bydgoszcz (Wyżyny), Polska
+- **Współrzędne GPS:** 53.108951, 18.040959
+- **Telefon bezpośredni:** +48 505 012 914
+- **E-mail:** kontakt@multi-servis.pl
+- **Strona WWW:** https://multi-servis.pl
+- **Godziny otwarcia:** Poniedziałek – Piątek: 10:00 – 17:00 (Sobota – Niedziela: Nieczynne)
+- **Wycena:** Zawsze indywidualna wycena przed przystąpieniem do naprawy (kontakt telefoniczny z klientem i pełna przejrzystość). W przypadku rezygnacji z naprawy pobierana jest opłata za przeprowadzoną diagnostykę urządzenia.
+- **Gwarancja:** Gwarancja od 3 do 24 miesięcy na wykonaną naprawę i wymienione komponenty
+
+## Obszar obsługi (Geotargeting)
+Obsługujemy mieszkańców całej Bydgoszczy oraz aglomeracji i województwa kujawsko-pomorskiego:
+- **Dzielnice Bydgoszczy:** Wyżyny, Wzgórze Wolności, Szwederowo, Bartodzieje, Fordon, Błonie, Kapuściska, Śródmieście, Bielawy, Bocianowo, Osowa Góra, Czyżkówko, Jary, Okole, Miedzyń, Glinki.
+- **Okolice i gminy ościenne:** Solec Kujawski, Białe Błota, Osielsko, Nowa Wieś Wielka, Sicienko, Koronowo, Nakło nad Notecią, Toruń.
+
+## Główne usługi i rozwiązywane problemy
+
+### 1. Serwis Laptopów i MacBook (https://multi-servis.pl/serwis-laptopow)
+- **Typowe usterki i objawy:**
+  - Laptop strasznie muli, wolno chodzi, długo się włącza, zawiesza się na pulpicie.
+  - Wentylator głośno chodzi, laptop parzy w kolana, sam się wyłącza pod obciążeniem (przegrzewanie).
+  - Laptop po zalaniu (kawa, herbata, woda, sok) – mycie ultradźwiękowe, odbudowa zjedzonych ścieżek.
+  - Nie reaguje na włącznik, nie ładuje baterii, uszkodzone gniazdo zasilania DC-IN / USB-C PD.
+  - Czarny ekran, brak obrazu po włączeniu, wiatraki kręcą (awaria BIOS, BGA, uszkodzenie taśmy matrycy).
+  - Pęknięta matryca LCD/IPS/OLED, brak podświetlenia.
+  - Połamane zawiasy, wyrwane tuleje mocujące z obudowy i klapy.
+  - Przyspieszanie: wymiana starego dysku HDD na szybki dysk SSD NVMe M.2 z zachowaniem danych.
+- **Marki:** Lenovo (Legion, ThinkPad), Dell, Asus (ROG, TUF), HP, Apple MacBook (Air/Pro), Acer, MSI.
+
+### 2. Serwis Telewizorów (https://multi-servis.pl/serwis-telewizorow)
+- **Typowe usterki i objawy:**
+  - Jest dźwięk, a brak obrazu (czarny/ciemny ekran z widocznym zarysem pod latarką) – wymiana listew podświetlenia LED na nowe aluminiowe.
+  - Telewizor nie włącza się, miga dioda czuwania (awaria zasilacza PSU, zwarcia po burzy).
+  - Ciągły restart na logo (bootloop, błąd pamięci eMMC/NAND na płycie głównej Main Board).
+  - Pionowe lub poziome paski, zniekształcone kolory (uszkodzenie T-CON, taśm LVDS/COF).
+  - Wyrwane lub uszkodzone gniazda HDMI i antenowe.
+  - *Uwaga:* W przypadku mechanicznie rozbitego/stłuczonego szkła matrycy naprawa jest nieopłacalna.
+- **Marki:** Samsung, LG, Philips (z Ambilight), Sony Bravia, TCL, Panasonic, Hisense, Xiaomi, Sharp.
+
+### 3. Serwis Komputerów PC i Gaming (https://multi-servis.pl/serwis-komputerow)
+- **Typowe usterki i objawy:**
+  - Komputer nie wstaje, brak reakcji na przycisk Power, restartuje się po sekundzie.
+  - Brak sygnału na monitorze, wentylatory kręcą się na 100%.
+  - Blue Screen (BSOD), restarty w trakcie gier, kolorowe paski/artefakty karty graficznej GPU.
+  - Głośna praca chłodzenia, wysokie temperatury CPU/GPU (wymiana pasty termoprzewodzącej, czyszczenie).
+  - Komputer wolno działa – montaż dysków SSD NVMe, klonowanie systemu Windows bez utraty danych.
+  - Modernizacja starszych komputerów PC i dobór podzespołów.
+
+## Cennik i Zasady
+- **Diagnoza i wycena:** Każda naprawa podlega indywidualnej wycenie po sprawdzeniu sprzętu. W przypadku rezygnacji z naprawy pobierana jest opłata za przeprowadzoną diagnostykę urządzenia.
+- **Kontakt z klientem:** Zawsze przed naprawą kontaktujemy się telefonicznie i podajemy ostateczny koszt do akceptacji.
+- **Gwarancja:** Gwarancja od 3 do 24 miesięcy na każdą usługę i wymienione części.
+
+## Szczegółowa dokumentacja
+- Pełna baza wiedzy dla AI: https://multi-servis.pl/llms-full.txt
+- Cennik usług: https://multi-servis.pl/cennik
+- Kontakt i dojazd: https://multi-servis.pl/kontakt
+- Mapa witryny: https://multi-servis.pl/sitemap-index.xml

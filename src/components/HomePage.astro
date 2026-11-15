@@ -1,0 +1,990 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import LanguageSwitcher from "../components/LanguageSwitcher.astro";
+import Footer from "../components/Footer.astro";
+import { translations, type Lang } from "../i18n/translations";
+import "../styles/ix/index.css";
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = "pl" } = Astro.props;
+const t = translations[lang];
+
+// Navigation paths
+const homePath = lang === "pl" ? "/" : `/${lang}`;
+const prefix = lang === "pl" ? "" : `/${lang}`;
+const aboutPath = lang === "pl" ? "/about" : `/${lang}/about`;
+const multiGuardPath = `${prefix}/multi-guard`;
+const servicesAnchor = `${homePath}#uslugi`;
+const processAnchor = `${homePath}#diagnoza`;
+const pricingAnchor = `${homePath}#cennik`;
+const caseStudiesPath = lang === "pl" ? "/case-studies" : `/${lang}/case-studies`;
+const faqAnchor = `${homePath}#faq`;
+const contactAnchor = `${homePath}#kontakt`;
+
+// 2026 AI / Local SEO JSON-LD
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["LocalBusiness", "ElectronicsRepair"],
+      "@id": "https://multi-servis.pl/#business",
+      "name": "Multi-Servis",
+      "description": t.seo.description,
+      "url": `https://multi-servis.pl${lang === 'pl' ? '' : '/' + lang}`,
+      "telephone": "+48505012914",
+      "email": "kontakt@multi-servis.pl",
+      "priceRange": "$$",
+      "currenciesAccepted": "PLN",
+      "image": "https://multi-servis.pl/images/multi-servis-logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ku Wiatrakom 18",
+        "addressLocality": "Bydgoszcz",
+        "postalCode": "85-856",
+        "addressRegion": "Kujawsko-Pomorskie",
+        "addressCountry": "PL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 53.108951,
+        "longitude": 18.040959
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "10:00",
+          "closes": "17:00"
+        }
+      ],
+      "legalName": "Multi-Servis",
+      "sameAs": [
+        "https://www.google.com/maps/search/?api=1&query=Multi-Servis+Ku+Wiatrakom+18+Bydgoszcz",
+        "https://maps.google.com/?q=Multi-Servis+Ku+Wiatrakom+18+Bydgoszcz"
+      ],
+      "areaServed": [
+        { "@type": "City", "name": "Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Wyżyny, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Fordon, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Bartodzieje, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Bielawy, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Szwederowo, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Wzgórze Wolności, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Błonie, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Kapuściska, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Śródmieście, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Osowa Góra, Bydgoszcz" },
+        { "@type": "AdministrativeArea", "name": "Solec Kujawski" },
+        { "@type": "AdministrativeArea", "name": "Białe Błota" },
+        { "@type": "AdministrativeArea", "name": "Osielsko" },
+        { "@type": "AdministrativeArea", "name": "Nowa Wieś Wielka" },
+        { "@type": "AdministrativeArea", "name": "Województwo kujawsko-pomorskie" }
+      ],
+      "knowsAbout": [
+        "Serwis i naprawa laptopów Bydgoszcz",
+        "Naprawa laptopa po zalaniu",
+        "Czyszczenie układu chłodzenia laptopa i wymiana pasty",
+        "Wymiana dysku HDD na SSD NVMe (przyspieszanie laptopa)",
+        "Naprawa telewizorów LED OLED QLED",
+        "Wymiana podświetlenia matrycy LED",
+        "Mikrolutowanie BGA SMD",
+        "Serwis komputerów stacjonarnych i PC gaming",
+        "Montaż monitoringu CCTV i kamer IP",
+        "Autorskie oprogramowanie diagnostyczne Multi-Guard dla Windows",
+        "Monitoring temperatur CPU/GPU i ochrona antywirusowa Defender"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Usługi serwisowe Multi-Servis Bydgoszcz",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serwis Laptopów Bydgoszcz",
+              "url": "https://multi-servis.pl/serwis-laptopow"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serwis Telewizorów Bydgoszcz",
+              "url": "https://multi-servis.pl/serwis-telewizorow"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Serwis Komputerów PC Bydgoszcz",
+              "url": "https://multi-servis.pl/serwis-komputerow"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cennik i Diagnoza Sprzętu",
+              "url": "https://multi-servis.pl/cennik"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "SoftwareApplication",
+              "name": "Multi-Guard (Ochrona i Diagnostyka PC Windows)",
+              "applicationCategory": "UtilitiesApplication",
+              "operatingSystem": "Windows 10, Windows 11",
+              "url": `https://multi-servis.pl${prefix}/multi-guard`
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `https://multi-servis.pl${lang === 'pl' ? '' : '/' + lang}#faqpage`,
+      "mainEntity": (t.faq.questions || t.faq.items || []).map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer
+        }
+      }))
+    }
+  ]
+};
+
+const jsonLdString = JSON.stringify(jsonLd);
+
+const brands = [
+  "Samsung", "LG OLED", "Sony", "Philips", "Asus ROG", 
+  "Lenovo", "HP", "Dell", "TCL", "Panasonic", "Hikvision CCTV", "Dahua"
+];
+---
+
+<Layout
+  title={t.seo.title}
+  description={t.seo.description}
+  wfPage="68a413987ca3efce6f38eea6"
+  ogImage="/images/social-20preview.avif"
+  lang={lang}
+>
+  <script slot="head" type="application/ld+json" is:inline set:html={jsonLdString} />
+
+  <!-- Navigation -->
+  <Navbar lang={lang} currentPath={homePath} />
+
+  <!-- Hero Section -->
+  <section class="section hero">
+    <div class="container">
+      <div class="hero-wrap">
+        <div class="hero">
+          <div class="hero-text">
+            <div class="hero-heading">
+              <div class="section-badge">
+                <span class="badge-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#d32f2f;"></span>
+                <span>{t.hero.badge}</span>
+              </div>
+              <h1 data-w-id="fb183dfb-c60b-169b-83d2-10bc584a7ef6" class="display-h1">
+                {t.hero.title}
+              </h1>
+              <div data-w-id="84760383-3241-c221-771a-33900488d0de" class="large-paragraph t---neutral-10">
+                {t.hero.subtitle}
+              </div>
+            </div>
+
+            <div data-w-id="42e4baa9-9891-fb60-296f-33f595a3edf6" class="hero-buttons">
+              <a href="tel:+48505012914" data-figma-id="156:103" class="primary-button w-inline-block" style="color: #ffffff !important; text-decoration: none;">
+                <div class="button-content">
+                  <p data-figma-id="96:188" class="button-text" style="color: #ffffff !important; margin: 0;">{t.hero.ctaPhone}</p>
+                </div>
+              </a>
+              <a href={contactAnchor} data-figma-id="156:103" class="outline-button w-inline-block" style="text-decoration: none;">
+                <div class="button-content">
+                  <p data-figma-id="96:188" class="button-text" style="color: #d32f2f !important; margin: 0;">{t.hero.ctaContact}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-ui">
+            <div class="hero-ui-wrap">
+              <img src="/images/multi-servis-logo.png" loading="lazy" data-w-id="1567ae63-759c-8e83-3eb8-a809b1c6d866" alt="Multi-Servis" class="hero-ui-card hero-ui-logo" />
+              <div class="hero-ui-card-2 hero-info-card">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                  <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #d32f2f;"></span>
+                  <strong style="font-size: 0.9375rem; color: var(--neutral--neutral-12);">{lang === 'pl' ? 'Serwis czynny' : (lang === 'uk' ? 'Сервіс працює' : 'Workshop open')}</strong>
+                </div>
+                <p style="margin: 0 0 6px 0; font-size: 0.8125rem; color: var(--neutral--neutral-11);">{lang === 'pl' ? 'Pon. – Pt. 10:00 – 17:00' : (lang === 'uk' ? 'Пн. – Пт. 10:00 – 17:00' : 'Mon. – Fri. 10:00 – 17:00')}</p>
+                <p style="margin: 0; font-size: 0.8125rem; font-weight: 700; color: #d32f2f;">Ku Wiatrakom 18, Bydgoszcz</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature Pills: wide horizontal layout from left to right with red borders and red text -->
+        <div class="hero-quick-stats">
+          <div class="hero-stat-pill">
+            {t.hero.pillCash}
+          </div>
+          <div class="hero-stat-pill">
+            {t.hero.pillFast}
+          </div>
+          <div class="hero-stat-pill">
+            {t.hero.pillService}
+          </div>
+          <div class="hero-stat-pill">
+            {t.hero.pillDiagnosis}
+          </div>
+          <div class="hero-stat-pill">
+            {t.hero.pillGuarantee}
+          </div>
+          <div class="hero-stat-pill">
+            {t.hero.pillQuote}
+          </div>
+          <a href={multiGuardPath} class="hero-stat-pill" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; border-color: rgba(211, 47, 47, 0.45); background: rgba(211, 47, 47, 0.08);">
+            <span>🛡️</span>
+            <span>{lang === 'pl' ? 'Ochrona PC: Multi-Guard' : (lang === 'uk' ? 'Захист ПК: Multi-Guard' : 'PC Protection: Multi-Guard')}</span>
+          </a>
+        </div>
+
+        <!-- Serviced Brands Ticker -->
+        <div data-w-id="71a70a0f-4395-10bb-a654-682d054f26a7" class="hero-ticker">
+          <div class="ticker-h">
+            <div class="ticker-gradient-h"></div>
+            <div class="ticker-content-h">
+              {brands.map((brand) => (
+                <div class="customer-logo-badge">
+                  <span class="badge-dot"></span>
+                  <span>{brand}</span>
+                </div>
+              ))}
+            </div>
+            <div class="ticker-content-h">
+              {brands.map((brand) => (
+                <div class="customer-logo-badge">
+                  <span class="badge-dot"></span>
+                  <span>{brand}</span>
+                </div>
+              ))}
+            </div>
+            <div class="ticker-gradient-h _2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-bg">
+      <div class="stripe-left">
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe-left-gradient"></div>
+      </div>
+      <div class="stripe-right">
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe-right-gradient"></div>
+      </div>
+      <div class="stripe-gradient"></div>
+    </div>
+  </section>
+
+  <!-- Process Section: 3 Expanding Cards Accordion -->
+  <section id="diagnoza" data-w-id="bbe8cfa0-151a-5d87-90e8-3d9cc64006b4" class="section">
+    <span id="process"></span>
+    <div class="container centered">
+      <div class="product-intro">
+        <div style="margin-bottom: 2.5rem; text-align: center;">
+          <div class="section-badge">{t.process.sectionBadge}</div>
+          <h2 class="display-h2" style="margin-bottom: 0.5rem;">{t.process.sectionTitle}</h2>
+          <p class="large-paragraph t---neutral-10" style="max-width: 620px; margin: 0 auto;">{t.process.sectionSubtitle}</p>
+        </div>
+
+        <div data-w-id="52e17c10-f6e2-693e-51ca-ffc09f18755e" class="process">
+          <!-- Step 1 -->
+          <div id="w-node-ac84b08e-31a9-f841-3071-13f6eb1a9ce4-6f38eea6" data-w-id="ac84b08e-31a9-f841-3071-13f6eb1a9ce4" class="process-card _1 is-expanded">
+            <div class="process-content-wrap _1">
+              <div class="process-card-content _1">
+                <div class="large-paragraph t---neutral-10" style="color: #d32f2f; font-weight: 800; font-size: 1.5rem;">01</div>
+                <div class="process-card-text">
+                  <h3 class="display-h5">{t.process.step1Title}</h3>
+                  <div class="paragraph t---neutral-10">{t.process.step1Desc}</div>
+                </div>
+              </div>
+              <div class="process-image-wrap _1">
+                <div class="process-image _1"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div data-w-id="ca53cf5d-ad22-f91e-28f1-062324241019" class="process-card _2">
+            <div class="process-content-wrap _2">
+              <div class="process-card-content _2">
+                <div class="large-paragraph t---neutral-10" style="color: #d32f2f; font-weight: 800; font-size: 1.5rem;">02</div>
+                <div class="process-card-text">
+                  <h3 class="display-h5">{t.process.step2Title}</h3>
+                  <div class="paragraph t---neutral-10">{t.process.step2Desc}</div>
+                </div>
+              </div>
+              <div class="process-image-wrap _2">
+                <div class="process-image _2"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div id="w-node-acec6c3f-9070-2600-cf49-9f6b706cc9c0-6f38eea6" data-w-id="acec6c3f-9070-2600-cf49-9f6b706cc9c0" class="process-card _3">
+            <div class="process-content-wrap _3">
+              <div class="process-card-content _3">
+                <div class="large-paragraph t---neutral-10" style="color: #d32f2f; font-weight: 800; font-size: 1.5rem;">03</div>
+                <div class="process-card-text">
+                  <h3 class="display-h5">{t.process.step3Title}</h3>
+                  <div class="paragraph t---neutral-10">{t.process.step3Desc}</div>
+                </div>
+              </div>
+              <div class="process-image-wrap _3">
+                <div class="process-image _3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script is:inline>
+          (function() {
+            function setupProcessCards() {
+              var cards = document.querySelectorAll('.process-card');
+              if (!cards.length) return;
+              cards.forEach(function(card) {
+                card.addEventListener('mouseenter', function() {
+                  cards.forEach(function(c) { c.classList.remove('is-expanded'); });
+                  card.classList.add('is-expanded');
+                });
+                card.addEventListener('click', function() {
+                  cards.forEach(function(c) { c.classList.remove('is-expanded'); });
+                  card.classList.add('is-expanded');
+                });
+              });
+            }
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', setupProcessCards);
+            } else {
+              setupProcessCards();
+            }
+            document.addEventListener('astro:page-load', setupProcessCards);
+          })();
+        </script>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Tabs Section -->
+  <section id="uslugi" class="section">
+    <span id="services"></span>
+    <span id="feature"></span>
+    <div class="container centered">
+      <div data-wf--section-header--variant="center" class="section-header">
+        <div class="section-badge">{t.services.sectionBadge}</div>
+        <h2 data-w-id="43e163e0-a4bf-51fc-16fd-fc73e02b5638" class="display-h2">{t.services.sectionTitle}</h2>
+        <div data-w-id="43e163e0-a4bf-51fc-16fd-fc73e02b563a" class="large-paragraph t---neutral-10">{t.services.sectionSubtitle}</div>
+      </div>
+
+      <div data-current="Tab 1" data-easing="ease" data-duration-in="0" data-duration-out="0" class="tab-wrap ms-tabs">
+        <div id="w-node-d1ab5cee-5f58-fa45-8302-636b2739224b-6f38eea6" class="tab-menu w-tab-menu">
+          <!-- Tab 1: Laptop (Default) -->
+          <a data-w-tab="Tab 1" class="tab-item w-inline-block w-tab-link w--current">
+            <div class="tab-item-text">💻 {t.services.laptopTitle}</div>
+          </a>
+
+          <!-- Tab 2: TV -->
+          <a data-w-tab="Tab 2" class="tab-item w-inline-block w-tab-link">
+            <div class="tab-item-text">📺 {t.services.tvTitle}</div>
+          </a>
+
+          <!-- Tab 3: PC -->
+          <a data-w-tab="Tab 3" class="tab-item w-inline-block w-tab-link">
+            <div class="tab-item-text">🖥️ {t.services.pcTitle}</div>
+          </a>
+
+          <!-- Tab 4: CCTV -->
+          <a data-w-tab="Tab 4" class="tab-item w-inline-block w-tab-link">
+            <div class="tab-item-text">📹 {t.services.cctvTitle}</div>
+          </a>
+        </div>
+
+        <div id="w-node-d1ab5cee-5f58-fa45-8302-636b2739225c-6f38eea6" class="tab-content w-tab-content">
+          <!-- Pane 1: Laptop (Default Active) -->
+          <div data-w-tab="Tab 1" class="tab-option _1 w-tab-pane w--tab-active">
+            <div class="feature-tab-content">
+              <div class="feature-tab-ui">
+                <img src="/images/service-laptop-repair.jpg" loading="lazy" alt={t.services.laptopTitle} class="feature-tab-photo" />
+              </div>
+              <div class="feature-content">
+                <div class="feature-tag"><div class="tag">Serwis Laptopów Bydgoszcz</div></div>
+                <h3 class="display-h3">{t.services.laptopTitle}</h3>
+                <div class="paragraph t---neutral-10">{t.services.laptopDesc}</div>
+                <ul style="margin-top: 1rem; padding-left: 1.25rem; color: var(--neutral--neutral-11); line-height: 1.8;">
+                  {t.services.laptopPoints.map((pt) => <li>{pt}</li>)}
+                </ul>
+                <div class="mg-tab-inline-badge">
+                  <span class="mg-tab-inline-icon">🛡️</span>
+                  <div class="mg-tab-inline-text">
+                    <strong>{lang === 'pl' ? 'Ochrona przed ponownym przegrzaniem:' : (lang === 'uk' ? 'Захист від повторного перегріву:' : 'Overheating protection:')}</strong>
+                    {lang === 'pl'
+                      ? ' Po czyszczeniu i wymianie past instalujemy autorski program Multi-Guard z bieżącym podglądem temperatur CPU i wentylatorów.'
+                      : (lang === 'uk'
+                        ? ' Після чистки та заміни паст встановлюємо фірмовий Multi-Guard для контролю температур CPU.'
+                        : ' After thermal maintenance, we install proprietary Multi-Guard for real-time CPU thermal monitoring.')}
+                  </div>
+                  <a href={multiGuardPath} class="mg-tab-inline-link">
+                    Multi-Guard &rarr;
+                  </a>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                  <a href={`${prefix}/serwis-laptopow`} class="primary-button w-inline-block" style="display:inline-flex; align-items:center; gap:0.5rem; text-decoration:none; color:#ffffff !important;">
+                    <div class="button-content">
+                      <p class="button-text" style="color:#ffffff !important; margin:0;">Szczegóły serwisu laptopów i cennik &rarr;</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pane 2: TV -->
+          <div data-w-tab="Tab 2" class="tab-option _2 w-tab-pane">
+            <div class="feature-tab-content">
+              <div class="feature-tab-ui">
+                <img src="/images/service-tv-repair.jpg" loading="lazy" alt={t.services.tvTitle} class="feature-tab-photo" />
+              </div>
+              <div class="feature-content">
+                <div class="feature-tag"><div class="tag">Serwis TV Bydgoszcz</div></div>
+                <h3 class="display-h3">{t.services.tvTitle}</h3>
+                <div class="paragraph t---neutral-10">{t.services.tvDesc}</div>
+                <ul style="margin-top: 1rem; padding-left: 1.25rem; color: var(--neutral--neutral-11); line-height: 1.8;">
+                  {t.services.tvPoints.map((pt) => <li>{pt}</li>)}
+                </ul>
+                <div style="margin-top: 1.5rem;">
+                  <a href={`${prefix}/serwis-telewizorow`} class="primary-button w-inline-block" style="display:inline-flex; align-items:center; gap:0.5rem; text-decoration:none; color:#ffffff !important;">
+                    <div class="button-content">
+                      <p class="button-text" style="color:#ffffff !important; margin:0;">Szczegóły serwisu TV i cennik napraw &rarr;</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pane 3: PC -->
+          <div data-w-tab="Tab 3" class="tab-option w-tab-pane">
+            <div class="feature-tab-content">
+              <div class="feature-tab-ui">
+                <img src="/images/service-pc-repair.jpg" loading="lazy" alt={t.services.pcTitle} class="feature-tab-photo" />
+              </div>
+              <div class="feature-content">
+                <div class="feature-tag"><div class="tag">Komputery PC Bydgoszcz</div></div>
+                <h3 class="display-h3">{t.services.pcTitle}</h3>
+                <div class="paragraph t---neutral-10">{t.services.pcDesc}</div>
+                <ul style="margin-top: 1rem; padding-left: 1.25rem; color: var(--neutral--neutral-11); line-height: 1.8;">
+                  {t.services.pcPoints.map((pt) => <li>{pt}</li>)}
+                </ul>
+                <div class="mg-tab-inline-badge">
+                  <span class="mg-tab-inline-icon">🛡️</span>
+                  <div class="mg-tab-inline-text">
+                    <strong>{lang === 'pl' ? 'Diagnostyka dysków SSD i zasilania:' : (lang === 'uk' ? 'Діагностика SSD та живлення:' : 'SSD & Power Telemetry:')}</strong>
+                    {lang === 'pl'
+                      ? ' Multi-Guard monitoruje żywotność dysków NVMe/SATA, rejestruje błędy Kernel-Power 41 oraz zarządza ochroną Microsoft Defender bez spadków FPS.'
+                      : (lang === 'uk'
+                        ? ' Multi-Guard контролює стан NVMe/SATA SSD, фіксує помилки Kernel-Power 41 та оптимізує захист без втрати FPS.'
+                        : ' Multi-Guard monitors NVMe/SATA health, logs Kernel-Power 41 events, and manages Defender without FPS drops.')}
+                  </div>
+                  <a href={multiGuardPath} class="mg-tab-inline-link">
+                    Multi-Guard &rarr;
+                  </a>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                  <a href={`${prefix}/serwis-komputerow`} class="primary-button w-inline-block" style="display:inline-flex; align-items:center; gap:0.5rem; text-decoration:none; color:#ffffff !important;">
+                    <div class="button-content">
+                      <p class="button-text" style="color:#ffffff !important; margin:0;">Szczegóły serwisu komputerów PC &rarr;</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pane 4: CCTV -->
+          <div data-w-tab="Tab 4" class="tab-option w-tab-pane">
+            <div class="feature-tab-content">
+              <div class="feature-tab-ui">
+                <img src="/images/service-cctv-install.jpg" loading="lazy" alt={t.services.cctvTitle} class="feature-tab-photo" />
+              </div>
+              <div class="feature-content">
+                <div class="feature-tag"><div class="tag">Monitoring CCTV</div></div>
+                <h3 class="display-h3">{t.services.cctvTitle}</h3>
+                <div class="paragraph t---neutral-10">{t.services.cctvDesc}</div>
+                <ul style="margin-top: 1rem; padding-left: 1.25rem; color: var(--neutral--neutral-11); line-height: 1.8;">
+                  {t.services.cctvPoints.map((pt) => <li>{pt}</li>)}
+                </ul>
+                <div style="margin-top: 1.5rem;">
+                  <a href={`${prefix}/kontakt`} class="primary-button w-inline-block" style="display:inline-flex; align-items:center; gap:0.5rem; text-decoration:none; color:#ffffff !important;">
+                    <div class="button-content">
+                      <p class="button-text" style="color:#ffffff !important; margin:0;">Zapytaj o instalację monitoringu &rarr;</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="cennik" class="section inverse">
+    <span id="pricing"></span>
+    <div class="container">
+      <div class="pricing-content-wrap">
+        <div class="pricing-header">
+          <div data-wf--section-header--variant="left" class="section-header w-variant-4bdb8bca-7bd4-5f1e-e98d-9e2e38ce7001">
+            <div class="section-badge">{t.pricing.sectionBadge}</div>
+            <h2 data-w-id="43e163e0-a4bf-51fc-16fd-fc73e02b5638" class="display-h2">{t.pricing.sectionTitle}</h2>
+            <div class="large-paragraph t---neutral-10">{t.pricing.sectionSubtitle}</div>
+            <div style="margin-top: 1.25rem;">
+              <a href={lang === 'pl' ? "/cennik" : pricingAnchor} class="primary-button w-inline-block" style="display:inline-flex; align-items:center; gap:0.5rem; text-decoration:none; color: #ffffff !important;">
+                <div class="button-content">
+                  <p class="button-text" style="color: #ffffff !important; margin: 0;">Zobacz szczegółowy cennik &rarr;</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div data-current="Tab 1" data-easing="ease" data-duration-in="0" data-duration-out="0" class="pricing-tab ms-tabs">
+          <div id="w-node-_3253794b-4fc3-5580-4b0c-dcb6ee5c2b4e-6f38eea6" class="tabs-menu w-tab-menu">
+            <a data-w-tab="Tab 1" class="pricing-menu-item w-inline-block w-tab-link w--current">
+              <div class="pricing-menu-text">
+                <div class="display-h6">{t.pricing.plan1Name}</div>
+                <div class="small-paragraph t---neutral-10">{t.pricing.plan1Price}</div>
+              </div>
+            </a>
+
+            <a data-w-tab="Tab 2" class="pricing-menu-item w-inline-block w-tab-link">
+              <div class="pricing-menu-text">
+                <div class="display-h6">{t.pricing.plan2Name}</div>
+                <div class="small-paragraph t---neutral-10">{t.pricing.plan2Price}</div>
+              </div>
+            </a>
+
+            <a data-w-tab="Tab 3" class="pricing-menu-item w-inline-block w-tab-link">
+              <div class="pricing-menu-text">
+                <div class="display-h6">{t.pricing.plan3Name}</div>
+                <div class="small-paragraph t---neutral-10">{t.pricing.plan3Price}</div>
+              </div>
+            </a>
+          </div>
+
+          <div id="w-node-_3253794b-4fc3-5580-4b0c-dcb6ee5c2b58-6f38eea6" class="tabs-content w-tab-content">
+            <!-- Plan 1 -->
+            <div data-w-tab="Tab 1" class="tab-panel w-tab-pane w--tab-active">
+              <div class="pricing-card">
+                <div class="pricing-main">
+                  <div class="pricing-heading">
+                    <h3 class="display-h4">{t.pricing.plan1Name}</h3>
+                  </div>
+                  <div class="pricing-description">
+                    <div class="price">
+                      <h4 class="display-h2">{t.pricing.plan1Price}</h4>
+                      <div class="large-paragraph t---neutral-10">/ {t.pricing.plan1Period}</div>
+                    </div>
+                    <p class="paragraph t---neutral-10">{t.pricing.plan1Desc}</p>
+                  </div>
+                  <a href={contactAnchor} class="primary-button w-inline-block" style="color: #ffffff !important; text-decoration: none;">
+                    <div class="button-content">
+                      <p class="button-text" style="color: #ffffff !important; margin: 0;">{t.pricing.cta}</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="check-list-wrap">
+                  {t.pricing.plan1Features.map((feat) => (
+                    <div class="icon-text">
+                      <div class="icon m w-embed">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#d32f2f" viewBox="0 0 256 256">
+                          <path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"></path>
+                        </svg>
+                      </div>
+                      <p class="paragraph">{feat}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Plan 2 -->
+            <div data-w-tab="Tab 2" class="tab-panel w-tab-pane">
+              <div class="pricing-card">
+                <div class="pricing-main">
+                  <div class="pricing-heading">
+                    <h3 class="display-h4">{t.pricing.plan2Name}</h3>
+                  </div>
+                  <div class="pricing-description">
+                    <div class="price">
+                      <h4 class="display-h2">{t.pricing.plan2Price}</h4>
+                      <div class="large-paragraph t---neutral-10">/ {t.pricing.plan2Period}</div>
+                    </div>
+                    <p class="paragraph t---neutral-10">{t.pricing.plan2Desc}</p>
+                  </div>
+                  <a href={contactAnchor} class="primary-button w-inline-block" style="color: #ffffff !important; text-decoration: none;">
+                    <div class="button-content">
+                      <p class="button-text" style="color: #ffffff !important; margin: 0;">{t.pricing.cta}</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="check-list-wrap">
+                  {t.pricing.plan2Features.map((feat) => (
+                    <div class="icon-text">
+                      <div class="icon m w-embed">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#d32f2f" viewBox="0 0 256 256">
+                          <path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"></path>
+                        </svg>
+                      </div>
+                      <p class="paragraph">{feat}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Plan 3 -->
+            <div data-w-tab="Tab 3" class="tab-panel w-tab-pane">
+              <div class="pricing-card">
+                <div class="pricing-main">
+                  <div class="pricing-heading">
+                    <h3 class="display-h4">{t.pricing.plan3Name}</h3>
+                  </div>
+                  <div class="pricing-description">
+                    <div class="price">
+                      <h4 class="display-h2">{t.pricing.plan3Price}</h4>
+                      <div class="large-paragraph t---neutral-10">/ {t.pricing.plan3Period}</div>
+                    </div>
+                    <p class="paragraph t---neutral-10">{t.pricing.plan3Desc}</p>
+                  </div>
+                  <a href={contactAnchor} class="primary-button w-inline-block" style="color: #ffffff !important; text-decoration: none;">
+                    <div class="button-content">
+                      <p class="button-text" style="color: #ffffff !important; margin: 0;">{t.pricing.cta}</p>
+                    </div>
+                  </a>
+                </div>
+                <div class="check-list-wrap">
+                  {t.pricing.plan3Features.map((feat) => (
+                    <div class="icon-text">
+                      <div class="icon m w-embed">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#d32f2f" viewBox="0 0 256 256">
+                          <path d="M232.49,80.49l-128,128a12,12,0,0,1-17,0l-56-56a12,12,0,1,1,17-17L96,183,215.51,63.51a12,12,0,0,1,17,17Z"></path>
+                        </svg>
+                      </div>
+                      <p class="paragraph">{feat}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-03"></div>
+    <div class="pricing-bg"></div>
+
+    <script is:inline>
+      (function() {
+        function bindTabs() {
+          var tabWidgets = document.querySelectorAll('.ms-tabs, .w-tabs');
+          tabWidgets.forEach(function(widget) {
+            var links = widget.querySelectorAll('.w-tab-link');
+            var panes = widget.querySelectorAll('.w-tab-pane');
+            links.forEach(function(link) {
+              if (link.dataset.tabBound) return;
+              link.dataset.tabBound = 'true';
+              link.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                var targetTab = link.getAttribute('data-w-tab');
+                if (!targetTab) return;
+                links.forEach(function(l) { l.classList.remove('w--current'); });
+                link.classList.add('w--current');
+                panes.forEach(function(pane) {
+                  if (pane.getAttribute('data-w-tab') === targetTab) {
+                    pane.classList.add('w--tab-active');
+                    pane.style.setProperty('display', 'block', 'important');
+                    pane.style.setProperty('opacity', '1', 'important');
+                    pane.style.setProperty('visibility', 'visible', 'important');
+                    pane.style.setProperty('position', 'relative', 'important');
+                  } else {
+                    pane.classList.remove('w--tab-active');
+                    pane.style.setProperty('display', 'none', 'important');
+                    pane.style.setProperty('opacity', '0', 'important');
+                    pane.style.setProperty('visibility', 'hidden', 'important');
+                    pane.style.setProperty('position', 'absolute', 'important');
+                  }
+                });
+              }, true);
+            });
+          });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', bindTabs);
+        } else {
+          bindTabs();
+        }
+        document.addEventListener('astro:page-load', bindTabs);
+      })();
+    </script>
+  </section>
+
+  <!-- Multi-Guard Promo Showcase Section -->
+  <section id="multi-guard" class="section mg-home-section" style="padding: 5.5rem 0;">
+    <div class="container">
+      <div class="mg-home-banner">
+        <div class="mg-home-content">
+          <div class="section-badge" style="background: rgba(211, 47, 47, 0.15); color: #d32f2f; border: 1px solid rgba(211, 47, 47, 0.3);">
+            🛡️ {t.multiGuardPromo.badge}
+          </div>
+          <h2 class="display-h2" style="margin-top: 0.75rem; margin-bottom: 1rem;">
+            {t.multiGuardPromo.title}
+          </h2>
+          <p class="large-paragraph t---neutral-10" style="margin-bottom: 1.75rem; max-width: 620px;">
+            {t.multiGuardPromo.subtitle}
+          </p>
+
+          <div class="mg-home-tags">
+            <span class="mg-home-tag">🛡️ {t.multiGuardPromo.tagDefender}</span>
+            <span class="mg-home-tag">🔒 {t.multiGuardPromo.tagPrivacy}</span>
+            <span class="mg-home-tag">⚡ {t.multiGuardPromo.tagHardware}</span>
+            <span class="mg-home-tag">🤝 {t.multiGuardPromo.tagRemote}</span>
+          </div>
+
+          <div class="mg-home-editions">
+            <div class="mg-home-edition-box mg-box-standard">
+              <div class="mg-box-header">
+                <span class="mg-swatch mg-swatch-red"></span>
+                <strong>{t.multiGuardPromo.standardTitle}</strong>
+              </div>
+              <p>{t.multiGuardPromo.standardDesc}</p>
+            </div>
+            <div class="mg-home-edition-box mg-box-pro">
+              <div class="mg-box-header">
+                <span class="mg-swatch mg-swatch-gold"></span>
+                <strong>{t.multiGuardPromo.proTitle}</strong>
+              </div>
+              <p>{t.multiGuardPromo.proDesc}</p>
+            </div>
+          </div>
+
+          <div class="mg-home-actions" style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+            <a href={`${prefix}/multi-guard`} class="primary-button w-inline-block" style="color: #ffffff !important; text-decoration: none;">
+              <div class="button-content">
+                <p class="button-text" style="color: #ffffff !important; margin: 0;">{t.multiGuardPromo.learnMoreBtn}</p>
+              </div>
+            </a>
+            <a href="tel:+48505012914" class="outline-button w-inline-block" style="text-decoration: none;">
+              <div class="button-content">
+                <p class="button-text" style="margin: 0;">📞 505 012 914</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="mg-home-visual">
+          <div class="mg-promo-window">
+            <div class="mg-promo-window-bar">
+              <span class="mg-promo-dot dot-red"></span>
+              <span class="mg-promo-dot dot-yellow"></span>
+              <span class="mg-promo-dot dot-green"></span>
+              <span class="mg-promo-title-bar">{lang === 'pl' ? 'Multi-Guard Pro • Ochrona i Telemetria Windows 10/11' : (lang === 'en' ? 'Multi-Guard Pro • Windows 10/11 Security & Telemetry' : 'Multi-Guard Pro • Захист та телеметрія Windows 10/11')}</span>
+            </div>
+            <img
+              src="/images/multiguard/multiguard-pro-desktop.png"
+              alt="Multi-Guard Pro Desktop Interface"
+              loading="lazy"
+              width="1360"
+              height="880"
+              class="mg-home-img"
+              style="object-fit: contain; max-width: 100%; height: auto;"
+            />
+            <div class="mg-promo-caption">
+              <span>{t.multiGuardPromo.previewNotice}</span>
+              <span class="mg-promo-badge" style="font-size: 0.6875rem; padding: 2px 8px;">Widok poglądowy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="column-layout">
+        <div class="fixed-section-header">
+          <div data-wf--section-header--variant="left" class="section-header w-variant-4bdb8bca-7bd4-5f1e-e98d-9e2e38ce7001">
+            <div class="section-badge">{t.faq.sectionBadge}</div>
+            <h2 class="display-h2">{t.faq.sectionTitle}</h2>
+            <div class="large-paragraph t---neutral-10">{t.faq.sectionSubtitle}</div>
+            <div class="section-header-button" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <a href="tel:+48505012914" class="primary-button w-inline-block" style="color: #ffffff !important; text-decoration: none;">
+                <div class="button-content">
+                  <p class="button-text" style="color: #ffffff !important; margin: 0;">tel. 505 012 914</p>
+                </div>
+              </a>
+              <a href={lang === 'pl' ? "/faq" : faqAnchor} style="font-weight: 700; color: var(--red--red-9, #d32f2f); text-decoration: underline; font-size: 0.95rem;">
+                Zobacz pełną bazę wiedzy i wszystkie pytania (FAQ) &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordions">
+          {(t.faq.questions || t.faq.items || []).map((item) => (
+            <div class="accordion-block icon-plus">
+              <div data-delay="0" data-hover="false" class="accordion w-dropdown">
+                <div class="accordion-toggle w-dropdown-toggle">
+                  <div class="accordion-heading">
+                    <h3 class="display-h6 wrap">{item.question}</h3>
+                  </div>
+                  <div class="accordion-button">
+                    <div class="icon m w-embed">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <nav class="accordion-list w-dropdown-list">
+                  <p class="accordion-content">{item.answer}</p>
+                </nav>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="kontakt" data-w-id="d238c4ea-6607-4bbf-9603-a5ef73a09d53" class="section inverse">
+    <span id="contact"></span>
+    <div class="container inverse-section">
+      <div class="contact-section-wrap">
+        <div class="contact-header">
+          <div data-wf--section-header--variant="left" class="section-header w-variant-4bdb8bca-7bd4-5f1e-e98d-9e2e38ce7001">
+            <div class="section-badge">{t.contact.sectionBadge}</div>
+            <h2 class="display-h2">{t.contact.sectionTitle}</h2>
+            <div class="large-paragraph t---neutral-10">{t.contact.sectionSubtitle}</div>
+          </div>
+        </div>
+
+        <div class="contact-grid-body">
+          <div class="contact-phone-preference-wrap" style="width: 100%;">
+            <div class="contact-info-card" style="height: 100%; box-sizing: border-box; justify-content: space-between;">
+              <div>
+                <div class="contact-card-header">
+                  <div class="section-badge" style="margin-bottom: 0.5rem; background: rgba(211, 47, 47, 0.25); color: #ff8a80; border: 1px solid rgba(255, 82, 82, 0.3);">{t.contact.noticeBadge}</div>
+                  <h3 class="display-h4" style="margin: 0; color: #ffffff;">{t.contact.noticeTitle}</h3>
+                </div>
+
+                <div style="margin-top: 1.25rem; font-size: 0.95rem; line-height: 1.6; color: rgba(255, 255, 255, 0.88);">
+                  <p style="margin: 0;">
+                    {t.contact.noticeP1}
+                  </p>
+                </div>
+              </div>
+
+              <div style="padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.12); text-align: center; margin-top: 1.5rem;">
+                <a href="tel:+48505012914" class="filled-button main" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 1.15rem; font-weight: 700; padding: 0.95rem 1.5rem; text-decoration: none; border-radius: 8px; width: 100%; box-sizing: border-box;">
+                  <span>📞</span>
+                  <span>{t.contact.callButton}</span>
+                </a>
+                <p style="font-size: 0.8125rem; color: rgba(255, 255, 255, 0.65); margin-top: 0.65rem; margin-bottom: 0;">
+                  {t.contact.callNote}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-wrap">
+            <div class="contact-info-card">
+              <div class="contact-card-header">
+                <div class="section-badge" style="margin-bottom: 0.5rem;">Multi-Servis Bydgoszcz</div>
+                <h3 class="display-h4" style="margin: 0;">{t.contact.ownerVal}</h3>
+                <p class="paragraph t---neutral-10" style="margin: 0.25rem 0 0 0;">Ponad 20 lat doświadczenia w naprawie elektroniki</p>
+              </div>
+
+              <div class="contact-card-rows">
+                <div class="contact-row">
+                  <span class="contact-icon">📞</span>
+                  <div>
+                    <span class="contact-row-label">{t.contact.phoneLabel}: </span>
+                    <a href="tel:+48505012914" class="contact-phone-link">{t.contact.phoneVal}</a>
+                    <div style="font-size: 0.8125rem; color: #ff8a80; margin-top: 0.25rem; font-weight: 500; line-height: 1.35;">
+                      ⚠️ {t.contact.phoneNoticeShort}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="contact-row">
+                  <span class="contact-icon">📍</span>
+                  <div>
+                    <span class="contact-row-label">{t.contact.addressLabel}: </span>
+                    <strong>{t.contact.addressVal}</strong>
+                  </div>
+                </div>
+
+                <div class="contact-row">
+                  <span class="contact-icon">🕒</span>
+                  <div>
+                    <span class="contact-row-label">{t.contact.hoursLabel}: </span>
+                    <span>{t.contact.hoursVal}</span>
+                  </div>
+                </div>
+
+                <div class="contact-row">
+                  <span class="contact-icon">🤝</span>
+                  <div>
+                    <span class="contact-row-label">{t.contact.paymentLabel}: </span>
+                    <span>{t.contact.paymentVal}</span>
+                  </div>
+                </div>
+
+                <div class="contact-row">
+                  <span class="contact-icon">✉️</span>
+                  <div>
+                    <span class="contact-row-label">{t.contact.emailLabel}: </span>
+                    <a href="mailto:kontakt@multi-servis.pl" class="contact-email-link">{t.contact.emailVal}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay-03"></div>
+    <div class="contact-bg"></div>
+  </section>
+
+  <!-- Modern Clean Footer -->
+  <Footer lang={lang} />
+</Layout>
