@@ -382,7 +382,7 @@ export const translations: Record<Lang, TranslationData> = {
         },
         {
           question: 'Czym jest program Multi-Guard i jak zabezpiecza komputer po serwisie?',
-          answer: 'Multi-Guard to nasze autorskie oprogramowanie dla Windows 10 i 11, instalowane wyłącznie stacjonarnie w warsztacie Multi-Servis (Ku Wiatrakom 18, Bydgoszcz). Podczas instalacji testujemy sprzęt i dołączamy wyłącznie sterowniki czujników dla Twojej konkretnej płyty głównej, dzięki czemu program jest ultralekki, szybki i nie spowalnia Windowsa. Pilnuje temperatur CPU/GPU po czyszczeniu chłodzenia, integruje ochronę Microsoft Defender, blokuje podsłuch mikrofonu i kamery oraz umożliwia bezpieczną zdalną pomoc serwisu na żądanie.'
+          answer: 'Multi-Guard to nasze autorskie oprogramowanie dla Windows 10 i 11, instalowane wyłącznie stacjonarnie w warsztacie Multi-Servis (Ku Wiatrakom 18, Bydgoszcz). Podczas instalacji testujemy sprzęt i dołączamy wyłącznie sterowniki czujników dla Twojej konkretnej płyty głównej, dzięki czemu program jest ultralekki, szybki i nie spowalnia Windowsa. Pilnuje temperatur CPU/GPU po czyszczeniu chłodzenia, integruje ochronę Microsoft Defender, umożliwia wyłączanie i pełną kontrolę nad kamerą i mikrofonem oraz zapewnia bezpieczną zdalną pomoc serwisu na żądanie.'
         }
       ],
     },
@@ -421,7 +421,7 @@ export const translations: Record<Lang, TranslationData> = {
     multiGuardPromo: {
       badge: 'Autorskie Oprogramowanie Multi-Servis',
       title: 'Multi-Guard — Bezpieczeństwo i Kondycja Komputera',
-      subtitle: 'Nowoczesny program dla Windows 10 i 11: ochrona z Microsoft Defender, kontrola prywatności (kamera/mikrofon), monitoring podzespołów w czasie rzeczywistym oraz zdalna pomoc serwisu.',
+      subtitle: 'Nowoczesny program dla Windows 10 i 11: ochrona z Microsoft Defender, wyłączanie i pełna kontrola kamery oraz mikrofonu, monitoring podzespołów w czasie rzeczywistym oraz zdalna pomoc serwisu.',
       standardTitle: 'Multi-Guard Standard',
       standardDesc: 'Ochrona i codzienna kontrola komputera. Granatowo-grafitowy interfejs z czerwonymi akcentami, Browser Shield i diagnostyka temperatur.',
       proTitle: 'Multi-Guard Pro',
@@ -633,7 +633,7 @@ export const translations: Record<Lang, TranslationData> = {
         },
         {
           question: 'What is Multi-Guard and how does it protect my PC after service?',
-          answer: 'Multi-Guard is our proprietary software for Windows 10 and 11, configured and installed exclusively in our workshop at Ku Wiatrakom 18, Bydgoszcz. We bench-test your machine and inject only the sensor drivers needed for your exact motherboard, keeping the utility ultra-lightweight and fast without dragging down Windows. It monitors CPU/GPU temperatures after cooling maintenance, integrates Microsoft Defender, blocks microphone and webcam surveillance, and offers secure on-demand remote support.'
+          answer: 'Multi-Guard is our proprietary software for Windows 10 and 11, configured and installed exclusively in our workshop at Ku Wiatrakom 18, Bydgoszcz. We bench-test your machine and inject only the sensor drivers needed for your exact motherboard, keeping the utility ultra-lightweight and fast without dragging down Windows. It monitors CPU/GPU temperatures after cooling maintenance, integrates Microsoft Defender, provides complete camera and microphone toggle controls, and offers secure on-demand remote support.'
         }
       ],
     },
@@ -672,7 +672,7 @@ export const translations: Record<Lang, TranslationData> = {
     multiGuardPromo: {
       badge: 'Developed by Multi-Servis',
       title: 'Multi-Guard — PC Security & Hardware Health',
-      subtitle: 'Modern Windows 10 & 11 utility: Microsoft Defender integration, privacy controls (camera/mic), real-time hardware telemetry, and remote technical assistance.',
+      subtitle: 'Modern Windows 10 & 11 utility: Microsoft Defender integration, camera and microphone shut-off & controls, real-time hardware telemetry, and remote technical assistance.',
       standardTitle: 'Multi-Guard Standard',
       standardDesc: 'Daily protection and system overview. Sleek dark interface with red accents, Browser Shield, and thermal monitoring.',
       proTitle: 'Multi-Guard Pro',
@@ -884,7 +884,7 @@ export const translations: Record<Lang, TranslationData> = {
         },
         {
           question: 'Що таке програма Multi-Guard і як вона захищає ПК після ремонту?',
-          answer: 'Multi-Guard — це наше власне програмне забезпечення для Windows 10 та 11, яке встановлюється виключно у майстерні Multi-Servis (Ku Wiatrakom 18, Бидгощ). Ми тестуємо пристрій і підключаємо драйвери лише під вашу материнську плату, завдяки чому програма надлегка, швидка і не гальмує Windows. Вона контролює температури CPU/GPU після заміни термопасти, інтегрує захист Microsoft Defender, блокує прослуховування мікрофона/камери та надає безпечну віддалену підтримку за запитом.'
+          answer: 'Multi-Guard — це наше власне програмне забезпечення для Windows 10 та 11, яке встановлюється виключно у майстерні Multi-Servis (Ku Wiatrakom 18, Бидгощ). Ми тестуємо пристрій і підключаємо драйвери лише під вашу материнську плату, завдяки чому програма надлегка, швидка і не гальмує Windows. Вона контролює температури CPU/GPU після заміни термопасти, інтегрує захист Microsoft Defender, дозволяє вимикати камеру і мікрофон та надає повний контроль над дозволами додатків, а також забезпечує безпечну віддалену підтримку за запитом.'
         }
       ],
     },
@@ -923,7 +923,7 @@ export const translations: Record<Lang, TranslationData> = {
     multiGuardPromo: {
       badge: 'Розробка Multi-Servis',
       title: 'Multi-Guard — Безпека та Стан Вашого Комп’ютера',
-      subtitle: 'Сучасна програма для Windows 10 та 11: захист на базі Microsoft Defender, контроль конфіденційності (камера/мікрофон), моніторинг температури та дистанційна підтримка.',
+      subtitle: 'Сучасна програма для Windows 10 та 11: захист на базі Microsoft Defender, вимикання та повний контроль камери і мікрофона, моніторинг температури та дистанційна підтримка.',
       standardTitle: 'Multi-Guard Standard',
       standardDesc: 'Щоденний захист та контроль системи. Графітовий інтерфейс з червоними акцентами, Browser Shield та моніторинг навантаження.',
       proTitle: 'Multi-Guard Pro',
