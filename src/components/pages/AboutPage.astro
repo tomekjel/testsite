@@ -302,10 +302,21 @@ const aboutSchema = JSON.stringify({
 
         <div class="mg-promo-window">
           <div class="mg-promo-window-bar">
-            <span class="mg-promo-dot dot-red"></span>
-            <span class="mg-promo-dot dot-yellow"></span>
-            <span class="mg-promo-dot dot-green"></span>
-            <span class="mg-promo-title-bar">{lang === 'pl' ? 'Multi-Guard Pro • Autorskie Oprogramowanie Windows' : (lang === 'en' ? 'Multi-Guard Pro • Proprietary Windows Software' : 'Multi-Guard Pro • Фірмове програмне забезпечення')}</span>
+            <div class="mg-win-title-left">
+              <span class="mg-win-icon">🛡️</span>
+              <span class="mg-promo-title-bar">{lang === 'pl' ? 'Multi-Guard Pro • Autorskie Oprogramowanie Windows' : (lang === 'en' ? 'Multi-Guard Pro • Proprietary Windows Software' : 'Multi-Guard Pro • Фірмове програмне забезпечення')}</span>
+            </div>
+            <div class="mg-win-controls" aria-hidden="true">
+              <span class="mg-win-btn" title="Minimalizuj">
+                <svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1" fill="currentColor"/></svg>
+              </span>
+              <span class="mg-win-btn" title="Maksymalizuj">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1"><rect x="0.5" y="0.5" width="9" height="9"/></svg>
+              </span>
+              <span class="mg-win-btn mg-win-close" title="Zamknij">
+                <svg width="10" height="10" viewBox="0 0 10 10" stroke="currentColor" stroke-width="1.2"><path d="M1 1l8 8M9 1L1 9"/></svg>
+              </span>
+            </div>
           </div>
           <img
             src="/images/multiguard/multiguard-pro-desktop.png"

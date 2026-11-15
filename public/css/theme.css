@@ -3503,24 +3503,77 @@ html[data-theme="dark"] .mg-tab-inline-link:hover {
   display: block;
   object-fit: contain;
 }
-.mg-promo-window-bar {
+/* Windows 10/11 Titlebar & Controls */
+.mg-promo-window-bar,
+.mg-window-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 0 0 0.85rem !important;
+  height: 34px !important;
+  background: #0d1524 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  user-select: none !important;
+  box-sizing: border-box !important;
+}
+
+.mg-win-title-left {
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 0.5rem 0.75rem;
-  background: #0a111e;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 1;
 }
-.mg-promo-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
+
+.mg-win-icon {
+  font-size: 0.875rem;
+  line-height: 1;
+  flex-shrink: 0;
 }
-.mg-promo-title-bar {
-  margin-left: 0.5rem;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.65);
-  font-family: monospace;
+
+.mg-promo-title-bar,
+.mg-window-title {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0.78125rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.mg-win-controls {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.mg-win-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 34px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: background-color 0.15s ease, color 0.15s ease;
+  cursor: default;
+}
+
+.mg-win-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.mg-win-btn.mg-win-close:hover {
+  background: #e81123 !important;
+  color: #ffffff !important;
 }
 .mg-promo-caption {
   padding: 0.45rem 0.65rem;
