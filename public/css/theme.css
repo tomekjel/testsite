@@ -2107,9 +2107,15 @@ html, body {
   box-sizing: border-box !important;
 }
 
-/* Ensure hero has breathing room below floating navbar */
-.section.hero {
-  padding-top: clamp(85px, 12vh, 120px) !important;
+/* Ensure hero and all subpages have breathing room below floating navbar */
+.section.hero,
+.mg-hero-section,
+body > .section:first-of-type,
+body > header.section:first-of-type,
+main > .section:first-of-type,
+main > .mg-hero-section:first-of-type,
+header.section:first-of-type {
+  padding-top: clamp(95px, 12vh, 125px) !important;
 }
 
 /* Large Displays (4K / TV > 1600px) */
@@ -2134,8 +2140,14 @@ html, body {
 
 /* Mobile Devices (< 768px) */
 @media screen and (max-width: 767px) {
-  .hero {
-    padding-top: 80px !important;
+  .hero,
+  .section.hero,
+  .mg-hero-section,
+  body > .section:first-of-type,
+  main > .section:first-of-type,
+  main > .mg-hero-section:first-of-type,
+  header.section:first-of-type {
+    padding-top: 85px !important;
   }
   .hero-heading .display-h1 {
     font-size: 2rem !important;

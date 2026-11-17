@@ -1460,7 +1460,7 @@ const multiGuardSchema = JSON.stringify({
 
   /* Hero Section */
   .mg-hero-section {
-    padding: 3.5rem 0 5rem 0;
+    padding: clamp(95px, 12vh, 125px) 0 5rem 0;
     background: radial-gradient(circle at 50% 0%, rgba(211, 47, 47, 0.08) 0%, transparent 60%);
     text-align: center;
     width: 100%;
@@ -2271,7 +2271,7 @@ const multiGuardSchema = JSON.stringify({
       padding: 3.75rem 0;
     }
     .mg-hero-section {
-      padding: 2.75rem 0 4rem 0;
+      padding: clamp(85px, 10vh, 105px) 0 4rem 0;
     }
     .mg-hero-title {
       font-size: clamp(1.85rem, 5vw, 2.75rem);
@@ -2384,7 +2384,7 @@ const multiGuardSchema = JSON.stringify({
 
   @media (max-width: 480px) {
     .mg-hero-section {
-      padding: 1.75rem 0 2.75rem 0;
+      padding: 85px 0 2.75rem 0;
     }
     .mg-section {
       padding: 2.25rem 0;
