@@ -15,13 +15,13 @@ const currentPath = `${prefix}/multi-guard`;
 
 const content = {
   pl: {
-    seoTitle: "Multi-Guard — Bezpieczeństwo i Kondycja PC | Multi-Servis Bydgoszcz",
+    seoTitle: "Multi-Guard: Bezpieczeństwo i Kondycja PC | Multi-Servis Bydgoszcz",
     seoDesc: "Program rozwijany przez Multi-Servis: ochrona Microsoft Defender, kontrola prywatności (kamera/mikrofon), monitoring temperatur i obciążenia CPU/GPU oraz zdalna pomoc Pro.",
     keywords: "Multi-Guard, ochrona komputera Bydgoszcz, monitoring temperatur PC, Microsoft Defender panel, zdalna pomoc techniczna Bydgoszcz, Multi-Servis oprogramowanie Windows",
     breadcrumbHome: "Główna",
     breadcrumbCurrent: "Multi-Guard",
     heroBadge: "Autorskie oprogramowanie Multi-Servis dla Windows 10 & 11",
-    heroTitle: "Multi-Guard — bezpieczeństwo, diagnostyka i kondycja Twojego komputera",
+    heroTitle: "Multi-Guard: bezpieczeństwo, diagnostyka i kondycja Twojego komputera",
     heroSubtitle: "Ochrona antywirusowa w oparciu o Microsoft Defender, kontrola prywatności, monitoring podzespołów w czasie rzeczywistym i profesjonalne wsparcie techniczne — w jednym, spójnym programie dla Windows.",
     heroCtaPhone: "Zapytaj o Multi-Guard w serwisie",
     heroCtaCompare: "Porównaj wersje Standard i Pro ↓",
@@ -116,6 +116,7 @@ const content = {
       "Bieżący monitoring obciążenia CPU, RAM, GPU",
       "Odczyty temperatur i wentylatorów (zależnie od czujników)",
       "Wgląd w historię zdarzeń systemowych i błędów",
+      "Kolejka zgłoszeń i napraw: obsługa w trybie standardowym",
       "Zdalny dostęp serwisu: Brak (edycja w pełni autonomiczna)"
     ],
     standardCta: "Zapytaj o edycję Standard w Multi-Servis →",
@@ -127,8 +128,9 @@ const content = {
     proTarget: "Dla graczy, profesjonalistów i klientów serwisu, którzy cenią bezkompromisową diagnostykę oraz szybką pomoc zdalną.",
     proFeatures: [
       "Wszystkie funkcje edycji Standard",
+      "⚡ Priorytetowa obsługa zgłoszeń i usterek sprzętu (zgłoszenia klientów Pro realizujemy w pierwszej kolejności z pominięciem standardowej kolejki)",
+      "Dostęp do Centrum Testów Podzespołów (w przygotowaniu — testy obciążeniowe CPU/GPU/RAM)",
       "Rozszerzona diagnostyka stabilności i raporty serwisowe",
-      "Dostęp do Centrum Testów Podzespołów (w przygotowaniu)",
       "⚡ Zdalna pomoc techniczna Multi-Servis — bez wychodzenia z domu",
       "Połączenie zdalne WYŁĄCZNIE po każdorazowej zgodzie użytkownika",
       "Możliwość natychmiastowego przerwania sesji zdalnej w dowolnym momencie",
@@ -159,7 +161,7 @@ const content = {
       },
       {
         q: "Czym dokładnie różni się edycja Standard od Pro?",
-        a: "Wersja Standard (z czerwonymi akcentami) zapewnia codzienną kontrolę: Defender, Browser Shield, panel prywatności urządzeń oraz monitoring parametrów CPU/GPU/RAM. Wersja Pro (ze złotymi akcentami) oferuje rozszerzoną diagnostykę, dostęp do planowanego Centrum Testów oraz moduł bezpiecznej Zdalnej Pomocy Technicznej ze stanowiskiem Multi-Servis."
+        a: "Wersja Standard (z czerwonymi akcentami) zapewnia codzienną kontrolę: integrację z Microsoft Defender, Browser Shield, wyłączanie i pełną kontrolę kamery/mikrofonu, bieżący monitoring temperatur oraz standardowy tryb obsługi zgłoszeń serwisowych.\n\nWersja Pro (ze złotymi akcentami) oferuje kluczowe przewagi:\n1. Priorytetowa obsługa zgłoszeń i usterek sprzętu: zgłoszenia klientów z wersją Pro są z automatu realizowane w pierwszej kolejności — jeśli w kolejce oczekują zgłoszenia Standard, to zgłoszenie klienta Pro wchodzi na początek kolejki i jest rozwiązywane jako pierwsze.\n2. Bezpieczna zdalna pomoc techniczna Multi-Servis na żądanie (każde połączenie wymaga Twojej zgody i możesz je przerwać w ułamku sekundy).\n3. Dostęp do Centrum Testów Podzespołów (w przygotowaniu) — przyszłościowych testów obciążeniowych CPU, GPU i pamięci RAM bezpośrednio na Twoim komputerze."
       },
       {
         q: "Czy serwis może połączyć się z moim komputerem bez mojej wiedzy?",
@@ -202,13 +204,13 @@ const content = {
   },
 
   en: {
-    seoTitle: "Multi-Guard — PC Security, Hardware Health & Support | Multi-Servis",
+    seoTitle: "Multi-Guard: PC Security, Hardware Health & Support | Multi-Servis",
     seoDesc: "Developed by Multi-Servis: Microsoft Defender management, webcam/mic privacy controls, live CPU/GPU thermal telemetry, and Pro on-demand remote support.",
     keywords: "Multi-Guard, PC security Bydgoszcz, hardware monitor Windows, Microsoft Defender control, remote computer support Bydgoszcz, Multi-Servis software",
     breadcrumbHome: "Home",
     breadcrumbCurrent: "Multi-Guard",
     heroBadge: "Proprietary Multi-Servis Software for Windows 10 & 11",
-    heroTitle: "Multi-Guard — Security, Diagnostics & Health for Your PC",
+    heroTitle: "Multi-Guard: Security, Diagnostics & Health for Your PC",
     heroSubtitle: "Antivirus integration with Microsoft Defender, hardware privacy controls, live component telemetry, and professional technician support — all in one clean Windows utility.",
     heroCtaPhone: "Inquire about Multi-Guard at workshop",
     heroCtaCompare: "Compare Standard vs Pro ↓",
@@ -303,6 +305,7 @@ const content = {
       "Live CPU, RAM, and GPU telemetry",
       "Fan and temperature readouts (hardware dependent)",
       "System stability and event log insights",
+      "Ticket queue: standard queue processing",
       "Remote service access: None (completely standalone)"
     ],
     standardCta: "Ask about Standard at Multi-Servis →",
@@ -314,8 +317,9 @@ const content = {
     proTarget: "For power users, gamers, and clients who want deep telemetry and fast remote repair assistance.",
     proFeatures: [
       "All features of Multi-Guard Standard",
+      "⚡ Priority ticket & hardware fault handling (Pro requests serviced first ahead of standard queue)",
+      "Component Test Center access (in development — CPU/GPU/RAM stress testing)",
       "Advanced diagnostics and detailed hardware reports",
-      "Component Test Center access (in development)",
       "⚡ Remote technician assistance by Multi-Servis",
       "Remote connection requires EXPLICIT user consent every time",
       "User can terminate the remote session instantly with 1 click",
@@ -346,7 +350,7 @@ const content = {
       },
       {
         q: "What is the key difference between Standard and Pro?",
-        a: "Standard (red accents) covers daily security: Defender, Browser Shield, privacy switches, and CPU/GPU monitoring. Pro (gold accents) unlocks deeper diagnostics, the upcoming Test Center, and on-demand Remote Technician Support."
+        a: "Standard (red accents) covers daily security: Defender, Browser Shield, privacy switches, hardware temperature monitoring, and standard queue ticket handling.\n\nPro (gold accents) unlocks significant advantages:\n1. Priority ticket & hardware fault handling: issues reported by Pro clients are automatically serviced first — jumping ahead of standard queue tickets for rapid resolution.\n2. Secure on-demand remote support from Multi-Servis technicians (strictly requiring your approval for each session, cancellable in 1 click).\n3. Access to the upcoming Component Test Center (in development) — future controlled stress tests for CPU, GPU, and RAM directly on your PC."
       },
       {
         q: "Can a technician connect to my computer without permission?",
@@ -389,13 +393,13 @@ const content = {
   },
 
   uk: {
-    seoTitle: "Multi-Guard — Безпека, Діагностика та Стан ПК | Multi-Servis Бидгощ",
+    seoTitle: "Multi-Guard: Безпека, Діагностика та Стан ПК | Multi-Servis Бидгощ",
     seoDesc: "Програма від Multi-Servis: захист Microsoft Defender, контроль конфіденційності (камера/мікрофон), моніторинг температур CPU/GPU та дистанційна допомога Pro.",
     keywords: "Multi-Guard, захист комп’ютера Бидгощ, моніторинг температури ПК, Microsoft Defender, дистанційна підтримка комп’ютера Бидгощ, Multi-Servis",
     breadcrumbHome: "Головна",
     breadcrumbCurrent: "Multi-Guard",
     heroBadge: "Власне програмне забезпечення Multi-Servis для Windows 10 & 11",
-    heroTitle: "Multi-Guard — безпека, діагностика та стан вашого комп’ютера",
+    heroTitle: "Multi-Guard: безпека, діагностика та стан вашого комп’ютера",
     heroSubtitle: "Антивірусний захист на базі Microsoft Defender, контроль конфіденційності, моніторинг компонентів у реальному часі та професійна підтримка — усе в одній зручній програмі.",
     heroCtaPhone: "Запитати про Multi-Guard у майстерні",
     heroCtaCompare: "Порівняти версії Standard та Pro ↓",
@@ -490,6 +494,7 @@ const content = {
       "Моніторинг навантаження CPU, RAM, GPU у реальному часі",
       "Показники температур та кулерів (за наявності датчиків)",
       "Перегляд системних збоїв та помилок",
+      "Черга звернень: стандартний порядок черги",
       "Дистанційний доступ: Відсутній (повна автономність)"
     ],
     standardCta: "Запитати про версію Standard у Multi-Servis →",
@@ -501,8 +506,9 @@ const content = {
     proTarget: "Для геймерів, професіоналів та клієнтів, які цінують детальну діагностику та швидку дистанційну допомогу.",
     proFeatures: [
       "Усі функції версії Standard",
+      "⚡ Пріоритетне обслуговування звернень та ремонтів (запити клієнтів Pro виконуються першочергово без стандартної черги)",
+      "Доступ до Центру Тестування (у підготовці — стрес-тести CPU/GPU/RAM)",
       "Розширена діагностика стабільності та звіти",
-      "Доступ до Центру Тестування (у підготовці)",
       "⚡ Дистанційна технічна допомога майстра Multi-Servis",
       "Підключення ВИКЛЮЧНО за вашою окремою згодою кожного разу",
       "Можливість миттєво розірвати з'єднання в будь-яку секунду",
@@ -533,7 +539,7 @@ const content = {
       },
       {
         q: "Чим відрізняється Standard від Pro?",
-        a: "Standard (з червоними акцентами) — це щоденний захист: Defender, Browser Shield, конфіденційність і моніторинг CPU/GPU/RAM. Pro (із золотими акцентами) відкриває розширену діагностику, майбутній Центр Тестів та дистанційну допомогу Multi-Servis."
+        a: "Standard (з червоними акцентами) — це щоденний захист: Defender, Browser Shield, контроль камери/мікрофона, моніторинг температур та стандартна черга звернень.\n\nPro (із золотими акцентами) відкриває ключові переваги:\n1. Пріоритетне обслуговування звернень та усунення несправностей: запити клієнтів із версією Pro автоматично обробляються першочергово, випереджаючи стандартну чергу.\n2. Безпечну дистанційну технічну підтримку Multi-Servis на запит (кожне підключення вимагає вашої згоди і переривається в 1 клік).\n3. Доступ до Центру Тестування Компонентів (у розробці) — майбутніх стрес-тестів процесора, відеокарти та оперативної пам'яті безпосередньо на вашому ПК."
       },
       {
         q: "Чи може майстер підключитися без мого відома?",
@@ -1158,9 +1164,14 @@ const multiGuardSchema = JSON.stringify({
                 <td>✓ {lang === 'pl' ? 'Rozszerzona analiza stabilności' : (lang === 'en' ? 'Extended stability analysis' : 'Розширений аналіз стабільності')}</td>
               </tr>
               <tr>
-                <td><strong>{lang === 'pl' ? 'Centrum Testów Podzespołów' : (lang === 'en' ? 'Component Test Center' : 'Центр Тестування Компонентів')}</strong></td>
+                <td><strong>{lang === 'pl' ? 'Centrum Testów Podzespołów (CPU/GPU/RAM)' : (lang === 'en' ? 'Component Test Center (CPU/GPU/RAM)' : 'Центр Тестування Компонентів (CPU/GPU/RAM)')}</strong></td>
                 <td>—</td>
                 <td><span class="mg-badge mg-badge-warning" style="font-size: 0.75rem;">⏳ {c.sec5Badge}</span></td>
+              </tr>
+              <tr class="mg-row-highlight">
+                <td><strong>{lang === 'pl' ? 'Kolejka obsługi zgłoszeń i usterek sprzętu' : (lang === 'en' ? 'Support & Hardware Fault Queue' : 'Черга звернень та ремонтів')}</strong></td>
+                <td>{lang === 'pl' ? 'Standardowa kolejka zgłoszeń' : (lang === 'en' ? 'Standard queue order' : 'Стандартна черга звернень')}</td>
+                <td><strong style="color: #10b981; font-weight: 700;">✓ {lang === 'pl' ? 'Priorytetowa obsługa bez kolejki (w pierwszej kolejności)' : (lang === 'en' ? 'Priority queue-free handling (serviced first)' : 'Пріоритетне обслуговування (першочергово)')}</strong></td>
               </tr>
               <tr class="mg-row-highlight">
                 <td><strong>{lang === 'pl' ? 'Zdalna pomoc techniczna Multi-Servis' : (lang === 'en' ? 'Multi-Servis Remote Technician Assistance' : 'Дистанційна допомога Multi-Servis')}</strong></td>
@@ -1254,8 +1265,8 @@ const multiGuardSchema = JSON.stringify({
           <h2 class="mg-section-title">{c.faqTitle}</h2>
         </div>
         <div class="mg-faq-grid">
-          {c.faqs.map((faq) => (
-            <div class="mg-faq-card">
+          {c.faqs.map((faq, index) => (
+            <div class={`mg-faq-card ${index === 6 ? 'mg-faq-card-center' : ''}`}>
               <h3 class="mg-faq-question">❓ {faq.q}</h3>
               <p class="mg-faq-answer">{faq.a}</p>
             </div>
@@ -2139,11 +2150,28 @@ const multiGuardSchema = JSON.stringify({
   /* FAQ Grid */
   .mg-faq-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    max-width: 1040px;
+    max-width: 1080px;
     width: 100%;
     margin: 0 auto;
+  }
+  @media (max-width: 992px) {
+    .mg-faq-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 768px) {
+    .mg-faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (min-width: 993px) {
+    .mg-faq-card-center,
+    .mg-faq-card:nth-child(7),
+    .mg-faq-card:last-child:nth-child(3n + 1) {
+      grid-column: 2 !important;
+    }
   }
   .mg-faq-card {
     padding: 1.75rem;
@@ -2167,6 +2195,7 @@ const multiGuardSchema = JSON.stringify({
     line-height: 1.6;
     opacity: 0.85;
     margin: 0;
+    white-space: pre-line;
   }
 
   /* CTA Section */

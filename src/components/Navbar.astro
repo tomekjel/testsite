@@ -87,7 +87,7 @@ const isHomePage = cleanPath === "" || cleanPath === "/" || cleanPath === "/en" 
           <a
             href={item.path}
             aria-current={isCurrent(item.path) ? "page" : undefined}
-            class={`navbar-link w-inline-block ${isCurrent(item.path) ? "w--current" : ""}`}
+            class={`navbar-link w-inline-block ${isCurrent(item.path) ? "w--current" : ""} ${item.path.includes('/multi-guard') ? "nav-link-multiguard" : ""}`}
           >
             <div class="nav">{item.label}</div>
           </a>
@@ -142,7 +142,7 @@ const isHomePage = cleanPath === "" || cleanPath === "/" || cleanPath === "/en" 
           <a
             href={item.path}
             aria-current={isCurrent(item.path) ? "page" : undefined}
-            class={`navbar-link in-menu w-inline-block ${isCurrent(item.path) ? "w--current" : ""}`}
+            class={`navbar-link in-menu w-inline-block ${isCurrent(item.path) ? "w--current" : ""} ${item.path.includes('/multi-guard') ? "nav-link-multiguard" : ""}`}
           >
             <div class="nav">{item.icon} {item.fullLabel}</div>
           </a>

@@ -3747,3 +3747,27 @@ html[data-theme="dark"] .mg-tab-inline-link:hover {
     padding: 1.25rem;
   }
 }
+
+/* Multi-Guard Blue Highlight in Navbar */
+.navbar-link.nav-link-multiguard,
+.navbar-link.nav-link-multiguard .nav {
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+}
+
+.navbar-link.nav-link-multiguard:hover,
+.navbar-link.nav-link-multiguard:hover .nav {
+  color: #0369a1 !important;
+}
+
+html[data-theme="dark"] .navbar-link.nav-link-multiguard,
+html[data-theme="dark"] .navbar-link.nav-link-multiguard .nav {
+  color: #38bdf8 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.45);
+}
+
+html[data-theme="dark"] .navbar-link.nav-link-multiguard:hover,
+html[data-theme="dark"] .navbar-link.nav-link-multiguard:hover .nav {
+  color: #7dd3fc !important;
+}

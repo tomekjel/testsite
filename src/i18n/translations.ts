@@ -420,7 +420,7 @@ export const translations: Record<Lang, TranslationData> = {
     },
     multiGuardPromo: {
       badge: 'Autorskie Oprogramowanie Multi-Servis',
-      title: 'Multi-Guard — Bezpieczeństwo i Kondycja Komputera',
+      title: 'Multi-Guard: Bezpieczeństwo i Kondycja Komputera',
       subtitle: 'Nowoczesny program dla Windows 10 i 11: ochrona z Microsoft Defender, wyłączanie i pełna kontrola kamery oraz mikrofonu, monitoring podzespołów w czasie rzeczywistym oraz zdalna pomoc serwisu.',
       standardTitle: 'Multi-Guard Standard',
       standardDesc: 'Ochrona i codzienna kontrola komputera. Granatowo-grafitowy interfejs z czerwonymi akcentami, Browser Shield i diagnostyka temperatur.',
@@ -671,7 +671,7 @@ export const translations: Record<Lang, TranslationData> = {
     },
     multiGuardPromo: {
       badge: 'Developed by Multi-Servis',
-      title: 'Multi-Guard — PC Security & Hardware Health',
+      title: 'Multi-Guard: PC Security & Hardware Health',
       subtitle: 'Modern Windows 10 & 11 utility: Microsoft Defender integration, camera and microphone shut-off & controls, real-time hardware telemetry, and remote technical assistance.',
       standardTitle: 'Multi-Guard Standard',
       standardDesc: 'Daily protection and system overview. Sleek dark interface with red accents, Browser Shield, and thermal monitoring.',
@@ -922,7 +922,7 @@ export const translations: Record<Lang, TranslationData> = {
     },
     multiGuardPromo: {
       badge: 'Розробка Multi-Servis',
-      title: 'Multi-Guard — Безпека та Стан Вашого Комп’ютера',
+      title: 'Multi-Guard: Безпека та Стан Вашого Комп’ютера',
       subtitle: 'Сучасна програма для Windows 10 та 11: захист на базі Microsoft Defender, вимикання та повний контроль камери і мікрофона, моніторинг температури та дистанційна підтримка.',
       standardTitle: 'Multi-Guard Standard',
       standardDesc: 'Щоденний захист та контроль системи. Графітовий інтерфейс з червоними акцентами, Browser Shield та моніторинг навантаження.',
